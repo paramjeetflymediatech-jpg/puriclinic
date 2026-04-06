@@ -2,98 +2,78 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import styles from './Hero.module.css';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const slides = [
   {
     id: 1,
-    title: 'Advanced Hair Restoration',
-    subtitle: 'Pioneers in Hair Transplant',
-    description: 'Dr. Gurinderjit Singh Puri pioneered hair transplantation in North India. Experience world-class PRP, GFC, and FUE transplants.',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2000&auto=format&fit=crop',
-    ctaPrimary: 'Explore Hair Services',
-    ctaPrimaryLink: '/services#hair',
-    ctaSecondary: 'Book Consultation',
-    ctaSecondaryLink: '/book-appointment'
+    image: '/slider-image-3.avif',
+    alt: 'Hair Transplant Legacy northern india 1988',
   },
   {
     id: 2,
-    title: 'Radiant, Youthful Skin',
-    subtitle: 'Advanced Aesthetic Care',
-    description: 'From Botox and Fillers to advanced Chemical Peels. We offer personalized treatments to rejuvenate your skin and restore your glow.',
-    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2000&auto=format&fit=crop',
-    ctaPrimary: 'Explore Skin Services',
-    ctaPrimaryLink: '/services#skin',
-    ctaSecondary: 'Book Consultation',
-    ctaSecondaryLink: '/book-appointment'
+    image: '/slider-image-2.avif',
+    alt: 'Skin & Hair Care Ludhiana',
   },
   {
     id: 3,
-    title: 'Expert Vitiligo Treatment',
-    subtitle: 'Comprehensive Care',
-    description: 'We provide specialized and effective therapies for Vitiligo and other pigmentation disorders, backed by decades of clinical experience.',
-    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=2000&auto=format&fit=crop',
-    ctaPrimary: 'Learn About Vitiligo',
-    ctaPrimaryLink: '/services/vitiligo-treatment',
-    ctaSecondary: 'Book Consultation',
-    ctaSecondaryLink: '/book-appointment'
-  }
+    image: '/slider-image-1.avif',
+    alt: 'Effective Acne Treatment Plans',
+  },
 ];
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const nextSlide = () => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 6000);
+    const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className={styles.heroSection}>
-      {slides.map((slide, index) => (
-        <div 
-          key={slide.id} 
-          className={`${styles.slide} ${index === currentSlide ? styles.active : ''}`}
-        >
-          <Image
-            src={slide.image}
-            alt={slide.title}
-            fill
-            priority={index === 0}
-            className={styles.bgImage}
-          />
-          <div className={styles.overlay}></div>
-          <div className="container" style={{ height: '100%', display: 'flex', alignItems: 'center' }}>
-            <div className={styles.content}>
-              <span className={styles.badge}>{slide.subtitle}</span>
-              <h1 className={styles.title}>{slide.title}</h1>
-              <p className={styles.description}>{slide.description}</p>
-              <div className={styles.ctaGroup}>
-                <Link href={slide.ctaPrimaryLink} className="btn btn-primary">
-                  {slide.ctaPrimary}
-                </Link>
-                <Link href={slide.ctaSecondaryLink} className="btn btn-outline">
-                  {slide.ctaSecondary}
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+    <section className="relative w-full h-[420px] overflow-hidden bg-gray-50 border-b border-gray-100">
       
-      <div className={styles.dots}>
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`${styles.dot} ${index === currentSlide ? styles.active : ''}`}
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
+      {/* ─── MAIN SLIDER SLIDES ─── */}
+      <div className="absolute inset-0 w-full h-full">
+        {slides.map((slide, index) => (
+          <div 
+            key={slide.id} 
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              priority={index === 0}
+              className="object-cover object-center"
+            />
+          </div>
         ))}
       </div>
+
+      {/* ─── NAVIGATION ARROWS (Deto: Simple Black Chevrons) ─── */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-0 md:px-0 z-30 pointer-events-none">
+        <button 
+          onClick={prevSlide}
+          className="pointer-events-auto bg-transparent text-black/40 hover:text-black transition-colors"
+          aria-label="Previous Slide"
+        >
+          <FaChevronLeft className="text-2xl md:text-3xl" />
+        </button>
+        <button 
+          onClick={nextSlide}
+          className="pointer-events-auto bg-transparent text-black/40 hover:text-black transition-colors"
+          aria-label="Next Slide"
+        >
+          <FaChevronRight className="text-2xl md:text-3xl" />
+        </button>
+      </div>
+
     </section>
   );
 };

@@ -8,6 +8,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'spcdn.shortpixel.ai',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
       },
     ],

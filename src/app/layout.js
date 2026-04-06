@@ -1,7 +1,42 @@
 import './globals.css';
-import Header from '@/components/Header/Header';
+import { Nunito_Sans, Cormorant_Garamond, Playfair_Display, Lora } from 'next/font/google';
+
 import Footer from '@/components/Footer/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import Header from '@/components/Header/Header';
+
+// Puri Skin Clinic uses Nunito Sans with heavy weights for that bold look
+const nunitoSans = Nunito_Sans({
+  subsets: ['latin'],
+  // 800 and 900 weights are critical for the Top Bar and Nav bold text
+  weight: ['300', '400', '600', '700', '800', '900'],
+  display: 'swap',
+  variable: '--font-nunito-sans',
+});
+
+// Lora — used for "Premium Option" dynamic text
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-lora',
+});
+
+// Cormorant Garamond — used for section headings (e.g. "Access our Exclusive Services!")
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-cormorant',
+});
+
+// Playfair Display — the actual font used for section headings (confirmed via DevTools: 46px)
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-playfair',
+});
 
 export const metadata = {
   title: {
@@ -21,7 +56,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      {/* humne yahan font-class apply ki hai taaki poori site par branding match ho */}
+      <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />
