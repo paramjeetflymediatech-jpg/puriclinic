@@ -17,49 +17,16 @@ import {
 } from 'react-icons/fa';
 
 const ABOUT_DROPDOWN = [
-  { name: 'Dr Gurinderjit Singh Puri', link: '/dr-gurinderjit-singh/' },
-  { name: 'Dr Ashwajit Singh', link: '/dr-ashwajit-singh/' },
+  { name: 'Dr Gurinderjit Singh Puri', link: '/doctors/dr-gurinderjit-singh/' },
+  { name: 'Dr Ashwajit Singh', link: '/doctors/dr-ashwajit-singh/' },
 ];
 
-const SERVICES_DROPDOWN = [
-  {
-    name: 'Hair Related Services',
-    link: '/hair-related-services/',
-    hasSubMenu: true,
-    subItems: [
-      { name: 'PRP for Hair and Skin', link: '/prp-for-hair-and-skin/' },
-      { name: 'Hair Transplantation', link: '/hair-transplantation/' },
-      { name: 'Growth Factor Concentrate', link: '/growth-factor-concentrate/' },
-      { name: 'Exosome', link: '/exosome/' },
-    ],
-  },
-  {
-    name: 'Skin Related Services',
-    link: '/skin-related-services/',
-    hasSubMenu: true,
-    subItems: [
-      { name: 'Chemical Peels', link: '/chemical-peels/' },
-      { name: 'Botox & Fillers', link: '/botox-fillers/' },
-      { name: 'Laser Treatment', link: '/laser-treatment/' },
-    ],
-  },
-  { name: 'Vitiligo Treatment', link: '/vitiligo-treatment/' },
-  { name: 'Acne Treatment', link: '/acne-treatment/' },
-  { name: 'Laser Hair Removal', link: '/laser-hair-removal/' },
-  { name: 'Facial Rejuvenation', link: '/facial-rejuvenation/' },
-  { name: 'Melasma Treatment', link: '/melasma-treatment/' },
+const SOCIAL_ICONS = [
+  { icon: FaFacebookF, link: 'https://www.facebook.com/puriskinclinic/', color: '#3b5998' },
+  { icon: FaInstagram, link: 'https://www.instagram.com/puriskinclinic/', color: '#e1306c' },
+  { icon: FaYoutube, link: 'https://www.youtube.com/channel/UC_401-6734-9577-998-778', color: '#ff0000' },
+  { icon: FaMapMarkerAlt, link: 'https://maps.app.goo.gl/Z8x9x9x9x9x9x9x9x', color: '#ea4335' },
 ];
-
-const NAV_LINKS = [
-  { name: 'Home', link: '/' },
-  { name: 'About Us', link: '/about-us', dropdown: ABOUT_DROPDOWN },
-  { name: 'Services', link: '/services', dropdown: SERVICES_DROPDOWN },
-  { name: 'Blogs', link: '/blogs' },
-  { name: 'Success Stories', link: '/success-stories' },
-  { name: 'Contact Us', link: '/contact-us' },
-];
-
-const SOCIAL_ICONS = [FaFacebookF, FaInstagram, FaYoutube, FaMapMarkerAlt];
 
 const DropdownItem = ({ item }) => {
   const [open, setOpen] = useState(false);
@@ -112,12 +79,82 @@ const DropdownMenu = ({ items }) => (
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [services, setServices] = useState([]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
+    
+    // Fetch dynamic services for the dropdown
+    const fetchServices = async () => {
+      try {
+        const res = await fetch('/api/services');
+        const data = await res.json();
+        if (data.services) {
+           setServices(data.services);
+        }
+      } catch (err) {
+        console.error("Header services fetch failed:", err);
+      }
+    };
+    fetchServices();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Helper to build dynamic dropdown structure
+  const buildServicesDropdown = () => {
+    const hairItems = services
+      .filter(s => s.category === 'hair')
+      .map(s => ({ name: s.name, link: `/services/${s.slug}` }));
+      
+    const skinItems = services
+      .filter(s => s.category === 'skin')
+      .map(s => ({ name: s.name, link: `/services/${s.slug}` }));
+
+    const singleItems = services
+      .filter(s => !s.category || (s.category !== 'hair' && s.category !== 'skin'))
+      .map(s => ({ name: s.name, link: `/services/${s.slug}` }));
+
+    const dropdown = [];
+
+    if (hairItems.length > 0) {
+      dropdown.push({
+        name: 'Hair Related Services',
+        link: '/services',
+        hasSubMenu: true,
+        subItems: hairItems
+      });
+    }
+
+    if (skinItems.length > 0) {
+      dropdown.push({
+        name: 'Skin Related Services',
+        link: '/services',
+        hasSubMenu: true,
+        subItems: skinItems
+      });
+    }
+
+    // Add others and fallback if no dynamic data yet
+    if (dropdown.length === 0 && services.length === 0) {
+      return [
+        { name: 'Hair Related Services', link: '/services' },
+        { name: 'Skin Related Services', link: '/services' }
+      ];
+    }
+
+    return [...dropdown, ...singleItems];
+  };
+
+  const navLinks = [
+    { name: 'Home', link: '/' },
+    { name: 'About Us', link: '/about-us', dropdown: ABOUT_DROPDOWN },
+    { name: 'Services', link: '/services', dropdown: buildServicesDropdown() },
+    { name: 'Blogs', link: '/blogs' },
+    { name: 'Success Stories', link: '/success-stories' },
+    { name: 'Contact Us', link: '/contact-us' },
+  ];
 
   return (
     <header
@@ -157,13 +194,15 @@ const Header = () => {
 
           {/* Right: social icons */}
           <div className="flex gap-[10px]">
-            {SOCIAL_ICONS.map((Icon, i) => (
+            {SOCIAL_ICONS.map((item, i) => (
               <div
                 key={i}
                 className="w-[30px] h-[30px] bg-white text-[#EA6490] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#4CA6AE] hover:text-white transition-all duration-200"
                 style={{ fontSize: '13px' }}
               >
-                <Icon />
+               <a href={item.link}>
+                 <item.icon />
+                </a>
               </div>
             ))}
           </div>
@@ -191,9 +230,9 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Desktop Nav — 16px Nunito Sans, color #EA6490, matching reference exactly */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center">
-            {NAV_LINKS.map((nav) => (
+            {navLinks.map((nav) => (
               <div key={nav.name} className="relative group">
                 <Link
                   href={nav.link}
@@ -210,8 +249,8 @@ const Header = () => {
                     <FaCaretDown style={{ fontSize: '13px', marginTop: '1px', opacity: 0.9 }} />
                   )}
                 </Link>
-                {nav.dropdown && (
-                  <div className="absolute top-full left-0 hidden group-hover:block">
+                {nav.dropdown && nav.dropdown.length > 0 && (
+                  <div className="absolute top-full left-0 hidden group-hover:block ">
                     <DropdownMenu items={nav.dropdown} />
                   </div>
                 )}
@@ -249,7 +288,7 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl py-6 z-[1000]">
             <div className="flex flex-col px-8">
-              {NAV_LINKS.map((nav) => (
+              {navLinks.map((nav) => (
                 <Link
                   key={nav.name}
                   href={nav.link}

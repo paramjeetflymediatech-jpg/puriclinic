@@ -128,7 +128,7 @@ const Footer = () => {
                     href="https://www.facebook.com/profile.php?id=61552061217807"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] rounded-full bg-[#1877F2] flex items-center justify-center text-white text-[15px] hover:opacity-80 transition-opacity"
+                    className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center text-[#1877F2]   hover:opacity-80 transition-opacity"
                     aria-label="Facebook"
                   >
                     <FaFacebookF />
@@ -137,9 +137,9 @@ const Footer = () => {
                     href="https://www.instagram.com/puriskinclinic/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] rounded-full flex items-center justify-center text-white text-[15px] hover:opacity-80 transition-opacity"
+                    className="w-[36px] h-[36px] bg-white rounded-full flex items-center justify-center text-[#EA6490] text-[15px] hover:opacity-80 transition-opacity"
                     style={{
-                      background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
+                      // background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
                     }}
                     aria-label="Instagram"
                   >
@@ -149,7 +149,7 @@ const Footer = () => {
                     href="https://www.youtube.com/@PuriSkinClinic-l8n"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] rounded-full bg-[#FF0000] flex items-center justify-center text-white text-[15px] hover:opacity-80 transition-opacity"
+                    className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center text-red-500 text-[15px] hover:opacity-80 transition-opacity"
                     aria-label="YouTube"
                   >
                     <FaYoutube />
@@ -158,7 +158,7 @@ const Footer = () => {
                     href="https://maps.app.goo.gl/2ZTvQ6qvDFwqdkLLA"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] rounded-full bg-[#34A853] flex items-center justify-center text-white text-[15px] hover:opacity-80 transition-opacity"
+                    className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center text-[#34A853] text-[15px] hover:opacity-80 transition-opacity"
                     aria-label="Google Maps"
                   >
                     <FaMapMarkerAlt />

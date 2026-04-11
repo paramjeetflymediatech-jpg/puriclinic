@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Appointment } from '@/lib/models';
+import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
@@ -22,6 +23,41 @@ export async function POST(request) {
       message,
       status: 'pending'
     });
+
+    // --- Send Email Notification ---
+    try {
+      // Create transporter
+      const transporter = nodemailer.createTransport({
+        service: 'gmail', // Optional: Use host/port for other providers or AWS SES
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.SMTP_USER,
+        to: process.env.CLINIC_EMAIL || process.env.SMTP_USER,
+        subject: `New Appointment Request - ${name}`,
+        html: `
+          <h3>New Appointment Request</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>Email:</strong> ${email || 'N/A'}</p>
+          <p><strong>Service:</strong> ${service || 'Not specified'}</p>
+          <p><strong>Message:</strong> ${message || 'None'}</p>
+        `,
+      };
+
+      if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+        await transporter.sendMail(mailOptions);
+        console.log('Admin notification email sent successfully.');
+      } else {
+        console.warn('Mail credentials not provided; skipped sending email.');
+      }
+    } catch (emailError) {
+      console.warn('Failed to send appointment email. Appointment saved in DB.', emailError);
+    }
 
     return NextResponse.json({ success: true, id: appointment.id }, { status: 201 });
   } catch (error) {

@@ -1,9 +1,7 @@
 import './globals.css';
 import { Nunito_Sans, Cormorant_Garamond, Playfair_Display, Lora } from 'next/font/google';
 
-import Footer from '@/components/Footer/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import Header from '@/components/Header/Header';
+import { HeaderConditional, FooterConditional } from '@/components/ConditionalLayout/ConditionalLayout';
 
 // Puri Skin Clinic uses Nunito Sans with heavy weights for that bold look
 const nunitoSans = Nunito_Sans({
@@ -58,10 +56,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       {/* humne yahan font-class apply ki hai taaki poori site par branding match ho */}
       <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`}>
-        <Header />
+        <HeaderConditional />
         <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <FooterConditional />
       </body>
     </html>
   );
