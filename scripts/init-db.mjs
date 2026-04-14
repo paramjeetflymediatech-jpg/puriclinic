@@ -45,10 +45,14 @@ async function main() {
     await syncDB();
 
     // 4. Create Default Admin
+    const { default: bcrypt } = await import('bcryptjs');
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash('password123', salt);
+
     const [admin, created] = await Admin.findOrCreate({
       where: { username: 'admin' },
       defaults: {
-        password: 'password123' 
+        password: hashedPassword 
       }
     });
 

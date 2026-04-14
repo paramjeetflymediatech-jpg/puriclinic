@@ -9,7 +9,7 @@ export async function POST(request) {
     // Look up the admin in the database
     const adminUser = await Admin.findOne({ where: { username } });
 
-    if (adminUser && adminUser.password === password) {
+    if (adminUser && await adminUser.validPassword(password)) {
       const sessionToken = await encrypt({ admin: true, user: username });
 
       // Build the response with cookie
