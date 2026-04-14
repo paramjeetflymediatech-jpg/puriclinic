@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaTimes, FaStar, FaGoogle, FaAward, FaQuoteRight, FaUserCheck, FaMapMarkerAlt } from 'react-icons/fa';
+import Swal from '@/lib/swal';
 
 export default function TestimonialsAdminPage() {
   const [testimonials, setTestimonials] = useState([]);
@@ -42,21 +43,57 @@ export default function TestimonialsAdminPage() {
         body: JSON.stringify(body)
       });
       if (res.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: `Testimonial ${editingId ? 'updated' : 'published'} successfully!`,
+          timer: 2000,
+          showConfirmButton: false
+        });
         resetForm();
         fetchTestimonials();
       }
     } catch (err) {
       console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong while saving the testimonial.'
+      });
     }
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this testimonial?')) return;
-    try {
-      const res = await fetch(`/api/admin/testimonials?id=${id}`, { method: 'DELETE' });
-      if (res.ok) fetchTestimonials();
-    } catch (err) {
-      console.error(err);
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this testimonial!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/admin/testimonials?id=${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The testimonial has been removed.',
+            timer: 2000,
+            showConfirmButton: false
+          });
+          fetchTestimonials();
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to delete the testimonial.'
+        });
+      }
     }
   };
 

@@ -16,10 +16,7 @@ import {
   FaCaretRight,
 } from 'react-icons/fa';
 
-const ABOUT_DROPDOWN = [
-  { name: 'Dr Gurinderjit Singh Puri', link: '/doctors/dr-gurinderjit-singh/' },
-  { name: 'Dr Ashwajit Singh', link: '/doctors/dr-ashwajit-singh/' },
-];
+
 
 const SOCIAL_ICONS = [
   { icon: FaFacebookF, link: 'https://www.facebook.com/puriskinclinic/', color: '#3b5998' },
@@ -79,6 +76,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [services, setServices] = useState([]);
+  const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -89,14 +87,25 @@ const Header = () => {
       try {
         const res = await fetch('/api/services');
         const data = await res.json();
-        if (data.services) {
-          setServices(data.services);
-        }
+        if (data.services) setServices(data.services);
       } catch (err) {
         console.error("Header services fetch failed:", err);
       }
     };
+
+    // Fetch dynamic doctors for the dropdown
+    const fetchDoctors = async () => {
+      try {
+        const res = await fetch('/api/doctors');
+        const data = await res.json();
+        if (data.doctors) setDoctors(data.doctors);
+      } catch (err) {
+        console.error("Header doctors fetch failed:", err);
+      }
+    };
+
     fetchServices();
+    fetchDoctors();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -146,9 +155,23 @@ const Header = () => {
     return [...dropdown, ...singleItems];
   };
 
+  // Helper to build dynamic about dropdown (Doctors)
+  const buildAboutDropdown = () => {
+    if (doctors.length === 0) {
+      return [
+        { name: 'Dr Gurinderjit Singh Puri', link: '/doctors/dr-gurinderjit-singh/' },
+        { name: 'Dr Ashwajit Singh', link: '/doctors/dr-ashwajit-singh/' },
+      ];
+    }
+    return doctors.map(d => ({
+      name: d.name,
+      link: `/doctors/${d.slug}`
+    }));
+  };
+
   const navLinks = [
     { name: 'Home', link: '/' },
-    { name: 'About Us', link: '/about-us', dropdown: ABOUT_DROPDOWN },
+    { name: 'About Us', link: '/about-us', dropdown: buildAboutDropdown() },
     { name: 'Services', link: '/services', dropdown: buildServicesDropdown() },
     { name: 'Blogs', link: '/blogs' },
     { name: 'Success Stories', link: '/success-stories' },

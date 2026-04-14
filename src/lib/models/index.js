@@ -1,13 +1,13 @@
-import sequelize from '../db';
-import Service from './Service';
-import Blog from './Blog';
-import Appointment from './Appointment';
-import Contact from './Contact';
-import Testimonial from './Testimonial';
-import Admin from './Admin';
-import Category from './Category';
-import SuccessStory from './SuccessStory';
-import Doctor from './Doctor';
+import sequelize from '../db.js';
+import Service from './Service.js';
+import Blog from './Blog.js';
+import Appointment from './Appointment.js';
+import Contact from './Contact.js';
+import Testimonial from './Testimonial.js';
+import Admin from './Admin.js';
+import Category from './Category.js';
+import SuccessStory from './SuccessStory.js';
+import Doctor from './Doctor.js';
 
 export { sequelize, Service, Blog, Appointment, Contact, Testimonial, Admin, Category, SuccessStory, Doctor };
 

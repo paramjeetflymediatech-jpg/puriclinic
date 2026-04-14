@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Swal from '@/lib/swal';
 
 const BlogSidebar = ({props}) => {
   console.log(props,'=d')
@@ -14,7 +15,12 @@ const BlogSidebar = ({props}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    alert('Thank you! Your message has been sent.');
+    Swal.fire({
+      icon: 'success',
+      title: 'Thank you!',
+      text: 'Your message has been sent successfully.',
+      confirmButtonColor: '#EA6490'
+    });
     setFormData({ name: '', phone: '', email: '', message: '' });
   };
 

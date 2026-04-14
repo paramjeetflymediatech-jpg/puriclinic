@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaTimes, FaTag, FaLayerGroup, FaInfoCircle } from 'react-icons/fa';
+import Swal from '@/lib/swal';
 
 export default function CategoriesAdminPage() {
   const [categories, setCategories] = useState([]);
@@ -41,21 +42,57 @@ export default function CategoriesAdminPage() {
         body: JSON.stringify(body)
       });
       if (res.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: `Category ${editingId ? 'updated' : 'created'} successfully!`,
+          timer: 2000,
+          showConfirmButton: false
+        });
         resetForm();
         fetchCategories();
       }
     } catch (err) {
       console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong while saving the category.'
+      });
     }
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure? This may affect services/blogs linked to this category.')) return;
-    try {
-      const res = await fetch(`/api/admin/categories?id=${id}`, { method: 'DELETE' });
-      if (res.ok) fetchCategories();
-    } catch (err) {
-      console.error(err);
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "This may affect services/blogs linked to this category!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/admin/categories?id=${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The category has been deleted.',
+            timer: 2000,
+            showConfirmButton: false
+          });
+          fetchCategories();
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to delete the category.'
+        });
+      }
     }
   };
 

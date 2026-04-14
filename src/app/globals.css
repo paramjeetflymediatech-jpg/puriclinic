@@ -107,6 +107,20 @@
   .breadcrumb span {
     @apply text-[#EA6490];
   }
+
+  /* ─── SWEETALERT CUSTOM ─── */
+  .swal-popup-custom {
+    @apply rounded-[3rem] p-8 border border-gray-100 shadow-2xl font-primary !important;
+  }
+
+  .swal-confirm-btn {
+    @apply btn btn-primary !important;
+  }
+
+  .swal-cancel-btn {
+    @apply btn btn-outline !important;
+    @apply border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-900 border-2 !important;
+  }
 }
 
 @keyframes pulse-glow {

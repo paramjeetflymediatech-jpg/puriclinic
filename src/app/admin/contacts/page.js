@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { FaTrash, FaEnvelope, FaUser, FaPhone, FaCalendarAlt, FaEye, FaTimes, FaInbox } from 'react-icons/fa';
+import Swal from '@/lib/swal';
 
 export default function ContactsAdminPage() {
   const [contacts, setContacts] = useState([]);
@@ -26,18 +27,40 @@ export default function ContactsAdminPage() {
   }, []);
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this inquiry?')) return;
-    try {
-      const res = await fetch(`/api/admin/contacts?id=${id}`, { method: 'DELETE' });
-      if (res.ok) {
-        fetchContacts();
-        if (selectedContact?.id === id) {
-          setIsModalOpen(false);
-          setSelectedContact(null);
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "This message will be permanently deleted!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/admin/contacts?id=${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The inquiry has been removed.',
+            timer: 2000,
+            showConfirmButton: false
+          });
+          fetchContacts();
+          if (selectedContact?.id === id) {
+            setIsModalOpen(false);
+            setSelectedContact(null);
+          }
         }
+      } catch (err) {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to delete the inquiry.'
+        });
       }
-    } catch (err) {
-      console.error(err);
     }
   };
 

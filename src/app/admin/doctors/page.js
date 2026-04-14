@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaUserMd, FaMedal, FaGraduationCap, FaHistory, FaBriefcase, FaIdCard, FaSortNumericDown } from 'react-icons/fa';
 import Image from 'next/image';
+import Swal from '@/lib/swal';
 
 export default function DoctorsAdminPage() {
   const [doctors, setDoctors] = useState([]);
@@ -53,11 +54,19 @@ export default function DoctorsAdminPage() {
       if (result.success) {
         setFormData({ ...formData, image_url: result.url });
       } else {
-        alert('Upload failed: ' + result.error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          text: result.error
+        });
       }
     } catch (err) {
       console.error(err);
-      alert('Upload failed');
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Connection interrupted or file too large.'
+      });
     } finally {
       setUploading(false);
     }
@@ -112,21 +121,57 @@ export default function DoctorsAdminPage() {
         body: JSON.stringify(body)
       });
       if (res.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: `Doctor profile ${editingId ? 'updated' : 'published'} successfully!`,
+          timer: 2000,
+          showConfirmButton: false
+        });
         resetForm();
         fetchDoctors();
       }
     } catch (err) {
       console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong while saving the profile.'
+      });
     }
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this doctor profile?')) return;
-    try {
-      const res = await fetch(`/api/admin/doctors?id=${id}`, { method: 'DELETE' });
-      if (res.ok) fetchDoctors();
-    } catch (err) {
-      console.error(err);
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this doctor profile!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/admin/doctors?id=${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The doctor profile has been removed.',
+            timer: 2000,
+            showConfirmButton: false
+          });
+          fetchDoctors();
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to delete the profile.'
+        });
+      }
     }
   };
 

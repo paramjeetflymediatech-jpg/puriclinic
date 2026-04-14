@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaImage, FaPenNib, FaLink, FaAlignLeft } from 'react-icons/fa';
 import Image from 'next/image';
+import Swal from '@/lib/swal';
 
 export default function BlogsAdminPage() {
   const [blogs, setBlogs] = useState([]);
@@ -48,11 +49,19 @@ export default function BlogsAdminPage() {
       if (result.success) {
         setFormData({ ...formData, image_url: result.url });
       } else {
-        alert('Upload failed: ' + result.error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          text: result.error
+        });
       }
     } catch (err) {
       console.error(err);
-      alert('Upload failed');
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Connection interrupted or file too large.'
+      });
     } finally {
       setUploading(false);
     }
@@ -70,21 +79,57 @@ export default function BlogsAdminPage() {
         body: JSON.stringify(body)
       });
       if (res.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: `Blog article ${editingId ? 'updated' : 'published'} successfully!`,
+          timer: 2000,
+          showConfirmButton: false
+        });
         resetForm();
         fetchBlogs();
       }
     } catch (err) {
       console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong while saving the article.'
+      });
     }
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this blog?')) return;
-    try {
-      const res = await fetch(`/api/admin/blogs?id=${id}`, { method: 'DELETE' });
-      if (res.ok) fetchBlogs();
-    } catch (err) {
-      console.error(err);
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "This article will be permanently removed!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/admin/blogs?id=${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The blog article has been deleted.',
+            timer: 2000,
+            showConfirmButton: false
+          });
+          fetchBlogs();
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to delete the article.'
+        });
+      }
     }
   };
 

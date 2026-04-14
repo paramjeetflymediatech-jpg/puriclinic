@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaAward, FaFilter, FaFilm, FaImage, FaCheckCircle, FaProjectDiagram } from 'react-icons/fa';
 import Image from 'next/image';
+import Swal from '@/lib/swal';
 
 export default function SuccessStoriesAdminPage() {
   const [stories, setStories] = useState([]);
@@ -53,11 +54,19 @@ export default function SuccessStoriesAdminPage() {
           media_type: result.type // Auto-detect media type from upload
         });
       } else {
-        alert(`Upload failed: ${result.error}${result.details ? ' (' + result.details + ')' : ''}`);
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          text: `${result.error}${result.details ? ' (' + result.details + ')' : ''}`
+        });
       }
     } catch (err) {
       console.error('Upload Error:', err);
-      alert('Upload failed: Connection interrupted or file too large.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Connection interrupted or file too large.'
+      });
     } finally {
       setUploading(false);
     }
@@ -75,21 +84,57 @@ export default function SuccessStoriesAdminPage() {
         body: JSON.stringify(body)
       });
       if (res.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: `Success story ${editingId ? 'updated' : 'published'} successfully!`,
+          timer: 2000,
+          showConfirmButton: false
+        });
         resetForm();
         fetchStories();
       }
     } catch (err) {
       console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong while saving the story.'
+      });
     }
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this success story?')) return;
-    try {
-      const res = await fetch(`/api/admin/success-stories?id=${id}`, { method: 'DELETE' });
-      if (res.ok) fetchStories();
-    } catch (err) {
-      console.error(err);
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "This transformation record will be removed!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/admin/success-stories?id=${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The record has been deleted.',
+            timer: 2000,
+            showConfirmButton: false
+          });
+          fetchStories();
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to delete the record.'
+        });
+      }
     }
   };
 

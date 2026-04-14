@@ -13,6 +13,9 @@ export async function GET() {
 export async function POST(request) {
   try {
     const body = await request.json();
+    if (Array.isArray(body.gallery_images)) {
+      body.gallery_images = JSON.stringify(body.gallery_images);
+    }
     const service = await Service.create(body);
     return NextResponse.json({ success: true, service });
   } catch(err) {
@@ -25,6 +28,10 @@ export async function PUT(request) {
     const body = await request.json();
     const { id, ...updateData } = body;
     if (!id) return NextResponse.json({ error: 'Missing ID' }, { status: 400 });
+
+    if (Array.isArray(updateData.gallery_images)) {
+      updateData.gallery_images = JSON.stringify(updateData.gallery_images);
+    }
 
     const service = await Service.findByPk(id);
     if (!service) return NextResponse.json({ error: 'Service not found' }, { status: 404 });
