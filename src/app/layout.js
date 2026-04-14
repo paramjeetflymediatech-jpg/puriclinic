@@ -44,6 +44,9 @@ export const metadata = {
   description:
     'Find the best skin clinic in Ludhiana at Puri Skin Clinic where our lead dermatologist Dr. Gurinderjit Singh has over 40 years of experience and offers the best skin treatments.',
   keywords: ['skin clinic Ludhiana', 'dermatologist Punjab', 'hair transplant Ludhiana', 'acne treatment', 'vitiligo treatment'],
+  icons: {
+    icon: '/icon.png',
+  },
   openGraph: {
     siteName: 'Puri Skin Clinic',
     type: 'website',
@@ -53,9 +56,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       {/* humne yahan font-class apply ki hai taaki poori site par branding match ho */}
-      <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`}>
+      <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`} suppressHydrationWarning>
         <HeaderConditional />
         <main>{children}</main>
         <FooterConditional />

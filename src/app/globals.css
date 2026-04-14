@@ -3,16 +3,109 @@
 @theme {
   --color-primary: #EA6490;
   --color-secondary: #4CA6AE;
+  --color-accent: #EA6490;
+  --color-bg-light: #FAFAFA;
+  --color-border: #E8E8E8;
+  --color-text-muted: #666666;
   
-  --font-primary: "var(--font-dm-sans)", sans-serif;
-  --font-heading: "var(--font-playfair)", serif;
+  --font-primary: var(--font-nunito-sans), sans-serif;
+  --font-heading: var(--font-playfair), serif;
 
-  --width-site: 1140px;
+  --width-site: 1400px;
+  --shadow-card: 0 15px 40px rgba(0, 0, 0, 0.05);
+  --radius-md: 2rem;
 }
 
 @layer base {
   body {
     @apply font-primary bg-white text-gray-800 antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply max-w-[1400px] mx-auto px-6;
+  }
+
+  /* ─── SECTION STYLES ─── */
+  .section {
+    @apply py-20 md:py-32;
+  }
+
+  .bg-card {
+    @apply bg-[#FAFAFA];
+  }
+
+  .section-label {
+    @apply block text-[#EA6490] font-bold uppercase tracking-[0.2em] text-xs mb-4;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-5xl font-heading font-bold text-gray-900 leading-tight mb-8;
+  }
+  
+  .section-title span {
+    @apply text-[#EA6490];
+  }
+
+  .section-subtitle {
+     @apply text-lg text-gray-500 max-w-2xl leading-relaxed;
+  }
+
+  .section-header {
+    @apply mb-16;
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    @apply inline-flex items-center justify-center px-10 py-4 rounded-full font-bold uppercase tracking-[0.15em] text-sm transition-all duration-300 active:scale-95;
+  }
+
+  .btn-primary {
+    @apply bg-[#EA6490] text-white shadow-lg shadow-[#EA6490]/20 hover:bg-[#d4547a] hover:shadow-xl hover:shadow-[#EA6490]/30;
+  }
+
+  .btn-outline {
+    @apply border-2 border-[#EA6490] text-[#EA6490] hover:bg-[#EA6490] hover:text-white;
+  }
+
+  /* ─── GRIDS ─── */
+  .grid-2 {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-12;
+  }
+
+  .grid-3 {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-10;
+  }
+
+  /* ─── COMPONENTS ─── */
+  .card {
+    @apply bg-white rounded-[2rem] shadow-[0_15px_40px_rgba(0,0,0,0.03)] border border-gray-50 overflow-hidden transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.06)];
+  }
+
+  .page-hero {
+    @apply relative py-24 md:py-32 bg-[#EA6490]/5 text-center overflow-hidden;
+  }
+
+  .page-hero::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(234,100,144,0.1),transparent)];
+  }
+
+  .breadcrumb {
+    @apply flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-6;
+  }
+
+  .breadcrumb a {
+    @apply text-gray-900 transition-colors hover:text-[#EA6490];
+  }
+
+  .breadcrumb span {
+    @apply text-[#EA6490];
   }
 }
 
@@ -21,3 +114,4 @@
   70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
+

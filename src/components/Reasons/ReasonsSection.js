@@ -32,20 +32,20 @@ const REASONS = [
 const ReasonsSection = () => {
   return (
     <section className="py-[100px] bg-white">
-      <div className="max-w-[1140px] mx-auto px-[15px]">
+      <div className="max-w-[1200px] mx-auto px-[15px]">
         
         {/* Section Heading */}
-        <div className="text-center mb-[70px]">
-          <h2 className="text-[32px] md:text-[38px] leading-tight">
+        <div className="text-center mb-[80px]">
+          <h2 className="text-[34px] md:text-[42px] leading-tight">
             <span 
-              className="text-black"
+              className="text-[#1a1a1a] font-semibold"
               style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
             >
               Reasons Why Puri Skin Clinic is a{' '}
             </span>
             <span 
-              className="text-[#EA6490]"
-              style={{ fontFamily: "var(--font-lora), 'Lora', serif" }}
+              className="text-[#EA6490] font-bold"
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
             >
               Premium Option
             </span>
@@ -53,39 +53,39 @@ const ReasonsSection = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[30px] gap-y-[30px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[40px] gap-y-[50px]">
           {REASONS.map((item, idx) => (
-            <div key={idx} className="relative group">
+            <div key={idx} className="relative group flex flex-col items-center">
               
               {/* Floating Teal Header */}
-              <div className="absolute -top-[20px] left-1/2 -translate-x-1/2 z-20 whitespace-nowrap">
-                <div className="bg-[#4CA6AE] text-white px-[30px] py-[10px] rounded-[15px] text-[18px] font-semibold shadow-md">
+              <div className="absolute -top-[22px] z-20">
+                <div className="bg-[#4CA6AE] text-white px-[32px] py-[12px] rounded-[10px] text-[17px] font-bold shadow-lg tracking-wide whitespace-nowrap">
                   {item.title}
                 </div>
               </div>
 
               {/* Card Body */}
               <div 
-                className="relative overflow-hidden bg-[#F8F8F8] border-[1px] border-[#EA6490] rounded-[16px] pt-[80px] pb-[40px] px-[20px] min-h-[260px] flex flex-col justify-center items-center text-center transition-all duration-300 hover:-translate-y-2"
+                className="relative w-full overflow-hidden bg-white border-[1px] border-[#fbdae3] rounded-[10px] pt-[85px] pb-[45px] px-[35px] min-h-[300px] flex flex-col justify-start items-center text-center transition-all duration-500 hover:shadow-2xl hover:border-[#EA6490]/30"
                 style={{
-                  boxShadow: '0 12px 15px -15px rgba(0, 0, 0, 0.15)',
+                  boxShadow: '0 15px 35px -15px rgba(0, 0, 0, 0.05)',
                 }}
               >
                 
-                {/* Official Wavy background pattern — Enhanced visibility */}
+                {/* Official Wavy background pattern — Enhanced fidelity */}
                 <div 
-                  className="absolute inset-0 pointer-events-none opacity-[0.7] z-0"
+                  className="absolute inset-0 pointer-events-none opacity-[0.3] group-hover:opacity-[0.45] transition-opacity duration-700"
                   style={{
                     backgroundImage: "url('/design.png')",
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: 'bottom center',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
                   }}
                 />
 
                 {/* Content */}
                 <p 
-                  className="relative z-10 text-[#414141] text-[16px] leading-[1.8]"
+                  className="relative z-10 text-[#4a4a4a] text-[15px] leading-[1.8] tracking-normal"
                   style={{ 
                     fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif",
                     fontWeight: 400

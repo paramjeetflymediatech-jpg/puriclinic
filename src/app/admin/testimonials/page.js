@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { FaEdit, FaTrash, FaPlus, FaTimes, FaStar, FaGoogle, FaAward, FaQuoteRight } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus, FaTimes, FaStar, FaGoogle, FaAward, FaQuoteRight, FaUserCheck, FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function TestimonialsAdminPage() {
   const [testimonials, setTestimonials] = useState([]);
@@ -78,18 +78,16 @@ export default function TestimonialsAdminPage() {
   };
 
   return (
-    <div className="p-8 bg-[#f8fafc] min-h-screen">
-      <div className="flex justify-between items-center mb-10">
-        <div className="flex items-center gap-4">
-           <div className="w-12 h-12 bg-amber-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-amber-200">
-             <FaQuoteRight />
-           </div>
-           <h1 className="text-3xl font-bold font-heading text-slate-900 tracking-tight text-gray-800 uppercase">Patient Reviews</h1>
+    <div className="p-4 sm:p-8 lg:p-12">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-6">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-2 leading-none" style={{ fontFamily: 'var(--font-playfair), serif' }}>Testimonials</h1>
+          <p className="text-slate-500 font-medium">Curate and manage authentic patient feedback and clinical reviews.</p>
         </div>
         {editingId && (
           <button 
             onClick={resetForm}
-            className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 px-5 py-2.5 rounded-xl transition-all font-bold text-sm"
+            className="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-3 rounded-2xl transition-all font-bold text-xs uppercase tracking-widest border border-slate-900 shadow-lg shadow-slate-900/10"
           >
             <FaTimes /> Cancel Editing
           </button>
@@ -97,57 +95,65 @@ export default function TestimonialsAdminPage() {
       </div>
       
       {/* Form Section */}
-      <div className="bg-white p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 mb-12 transition-all">
-        <h2 className="text-xl font-bold mb-8 text-slate-800 flex items-center gap-3">
-          <span className="w-2 h-8 bg-amber-500 rounded-full"></span>
-          {editingId ? 'Edit Review' : 'Add New Patient Review'}
+      <div className="bg-white p-6 sm:p-10 rounded-[2.5rem] shadow-sm border border-slate-100 mb-12 transition-all hover:shadow-xl hover:shadow-slate-100">
+        <h2 className="text-xl font-bold mb-10 text-slate-800 flex items-center gap-3">
+          <span className="w-2 h-8 bg-[#EA6490] rounded-full"></span>
+          {editingId ? 'Refine Feedback' : 'Onboard New Review'}
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-gray-800">
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700 ml-1">Patient Name</label>
+        <form onSubmit={handleSubmit} className="space-y-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 text-gray-800">
+            <div className="space-y-8">
+              <div className="space-y-3">
+                <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1 flex items-center gap-2">
+                   <FaUserCheck className="text-[#EA6490]" /> Author Name
+                </label>
                 <input 
-                  placeholder="e.g. Rahul Sharma" 
+                  placeholder="e.g. Jane Smith" 
                   value={formData.author} 
                   onChange={e=>setFormData({...formData, author: e.target.value})} 
                   required 
-                  className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-amber-100 focus:border-amber-500 focus:bg-white outline-none transition-all placeholder:text-slate-400 font-medium" 
+                  className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#EA6490]/10 focus:border-[#EA6490] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-bold text-slate-700" 
                 />
               </div>
               
-              <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700 ml-1">Rating</label>
+              <div className="grid grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1 flex items-center gap-2">
+                    <FaStar className="text-[#EA6490]" /> Satisfaction
+                  </label>
                   <select 
                     value={formData.rating} 
                     onChange={e=>setFormData({...formData, rating: Number(e.target.value)})} 
-                    className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-amber-100 focus:border-amber-500 focus:bg-white outline-none transition-all text-slate-700 font-medium"
+                    className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#EA6490]/10 focus:border-[#EA6490] focus:bg-white outline-none transition-all text-slate-700 font-bold"
                   >
-                    {[5,4,3,2,1].map(num => <option key={num} value={num}>{num} Stars</option>)}
+                    {[5,4,3,2,1].map(num => <option key={num} value={num}>{num} / 5 Stars</option>)}
                   </select>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700 ml-1">Source</label>
+                <div className="space-y-3">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1 flex items-center gap-2">
+                     <FaMapMarkerAlt className="text-[#4CA6AE]" /> Provenance (Source)
+                  </label>
                   <input 
-                    placeholder="e.g. Google" 
+                    placeholder="e.g. Google Maps" 
                     value={formData.source} 
                     onChange={e=>setFormData({...formData, source: e.target.value})} 
-                    className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-amber-100 focus:border-amber-500 focus:bg-white outline-none transition-all font-medium" 
+                    className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all font-bold text-slate-700" 
                   />
                 </div>
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-700 ml-1">Patient Review</label>
+            <div className="space-y-3">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1 flex items-center gap-2">
+                <FaQuoteRight className="text-slate-300" /> Verbatim Review
+              </label>
               <textarea 
-                rows="5"
-                placeholder="Paste the full patient review here..." 
+                rows="6"
+                placeholder="Transcribe the full patient feedback here..." 
                 value={formData.review} 
                 onChange={e=>setFormData({...formData, review: e.target.value})} 
                 required 
-                className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-amber-100 focus:border-amber-500 focus:bg-white outline-none transition-all placeholder:text-slate-400 font-medium resize-none" 
+                className="w-full p-6 border border-slate-100 bg-slate-50/50 rounded-[2rem] focus:ring-4 focus:ring-slate-100 focus:border-slate-300 focus:bg-white outline-none transition-all placeholder:text-slate-300 font-medium text-slate-600 resize-none leading-relaxed" 
               ></textarea>
             </div>
           </div>
@@ -155,61 +161,72 @@ export default function TestimonialsAdminPage() {
           <div className="flex justify-end pt-4">
             <button 
               type="submit" 
-              className="bg-amber-500 hover:bg-amber-600 text-white font-black px-12 py-4 rounded-2xl transition-all shadow-[0_10px_30px_rgba(245,158,11,0.3)] active:scale-[0.98] uppercase tracking-widest text-sm"
+              className="w-full sm:w-auto bg-[#EA6490] hover:bg-[#d84a7e] text-white font-black px-12 py-5 rounded-2xl transition-all shadow-lg shadow-[#4CA6AE]/20 active:scale-[0.98] uppercase tracking-widest text-sm"
             >
-              {editingId ? 'Update Review' : 'Publish Review'}
+              {editingId ? 'Validate Review' : 'Register Feedback'}
             </button>
           </div>
         </form>
       </div>
 
       {/* List Section */}
-      <div className="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden mb-20 text-gray-800">
+      <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden mb-20 transition-all hover:shadow-xl hover:shadow-slate-100 text-gray-800">
+        <div className="p-8 border-b border-slate-50">
+           <h2 className="text-xl font-bold text-slate-800 flex items-center gap-3">
+             <span className="w-2 h-8 bg-[#EA6490] rounded-full"></span>
+             Feedback Anthology
+           </h2>
+        </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full text-left border-collapse min-w-[1000px]">
             <thead>
-              <tr className="bg-slate-50/50 border-b border-slate-100 text-slate-500 uppercase text-[10px] font-black tracking-[0.2em]">
-                <th className="p-6">Patient</th>
-                <th className="p-6 w-1/3">The Review</th>
-                <th className="p-6">Rating</th>
-                <th className="p-6">Source</th>
-                <th className="p-6 text-right pr-10">Actions</th>
+              <tr className="bg-slate-50/50 border-b border-slate-100 text-slate-400 uppercase text-[10px] font-black tracking-[0.2em]">
+                <th className="p-8">Respondent</th>
+                <th className="p-8 w-1/3">The Testimony</th>
+                <th className="p-8">Score</th>
+                <th className="p-8">Provenance</th>
+                <th className="p-8 text-right pr-12">Controls</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
               {loading ? (
-                <tr><td colSpan="5" className="p-16 text-center text-slate-400 italic font-medium tracking-widest uppercase text-xs">Synchronizing patient feedback...</td></tr>
+                <tr><td colSpan="5" className="p-20 text-center text-slate-300 font-bold italic tracking-widest animate-pulse">Synchronizing Feedback Archives...</td></tr>
               ) : testimonials.length === 0 ? (
-                <tr><td colSpan="5" className="p-16 text-center text-slate-400 italic font-medium uppercase tracking-widest text-xs">No reviews added yet.</td></tr>
+                <tr><td colSpan="5" className="p-20 text-center text-slate-300 font-bold italic">No patient feedback found in the registry.</td></tr>
               ) : testimonials.map(t => (
                 <tr key={t.id} className="hover:bg-slate-50/30 transition-colors group">
-                  <td className="p-6">
-                    <div className="font-bold text-slate-900 group-hover:text-amber-600 transition-colors uppercase tracking-tight">{t.author}</div>
-                    <div className="text-[10px] text-slate-400 font-bold">{new Date(t.createdAt).toLocaleDateString()}</div>
+                  <td className="p-8 text-gray-800 uppercase tracking-tight">
+                    <div className="font-extrabold text-slate-900 group-hover:text-[#EA6490] transition-colors text-base mb-1">{t.author}</div>
+                    <div className="text-[10px] text-slate-400 font-black tracking-widest uppercase">{new Date(t.createdAt).toLocaleDateString(undefined, { dateStyle: 'medium' })}</div>
                   </td>
-                  <td className="p-6">
-                    <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed">{t.review}</p>
+                  <td className="p-8">
+                    <div className="relative">
+                       <FaQuoteRight className="absolute -left-6 -top-2 text-slate-50 text-2xl group-hover:text-[#4CA6AE]/5 transition-colors" />
+                       <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed italic relative z-10 font-medium">{t.review}</p>
+                    </div>
                   </td>
-                  <td className="p-6">
-                    <div className="flex text-amber-500 gap-0.5">
+                  <td className="p-8">
+                    <div className="flex text-[#EA6490] gap-1 bg-[#EA6490]/5 px-3 py-1.5 rounded-xl border border-[#EA6490]/10 w-fit">
                       {[...Array(t.rating)].map((_, i) => <FaStar key={i} size={10} />)}
                     </div>
                   </td>
-                  <td className="p-6">
-                    <span className="bg-slate-50 text-slate-500 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-slate-100 flex items-center gap-2 w-fit">
-                      <FaGoogle className="text-[9px]" /> {t.source}
+                  <td className="p-8 text-gray-800">
+                    <span className="bg-white text-slate-500 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border border-slate-100 flex items-center gap-2 w-fit shadow-sm">
+                      <FaGoogle className="text-[9px] text-[#4285F4]" /> {t.source}
                     </span>
                   </td>
-                  <td className="p-6 text-right pr-10 space-x-3">
+                  <td className="p-8 text-right pr-12 space-x-3">
                     <button 
                       onClick={() => handleEdit(t)}
-                      className="p-3 text-slate-300 hover:text-amber-600 hover:bg-amber-50 rounded-2xl transition-all inline-flex shadow-sm"
+                      className="p-4 text-slate-300 hover:text-white hover:bg-[#4CA6AE] rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-[#4CA6AE]/20"
+                      title="Refine Testimony"
                     >
                       <FaEdit size={16} />
                     </button>
                     <button 
                       onClick={() => handleDelete(t.id)}
-                      className="p-3 text-slate-300 hover:text-rose-600 hover:bg-rose-50 rounded-2xl transition-all inline-flex shadow-sm"
+                      className="p-4 text-slate-300 hover:text-white hover:bg-rose-500 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-rose-500/20"
+                      title="Revoke Testimony"
                     >
                       <FaTrash size={16} />
                     </button>
@@ -218,6 +235,9 @@ export default function TestimonialsAdminPage() {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="p-8 bg-slate-50/50 border-t border-slate-100 text-center">
+             <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Puri Skin Clinic Testimony Anthology</p>
         </div>
       </div>
     </div>

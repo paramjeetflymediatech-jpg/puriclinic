@@ -39,11 +39,10 @@ const DropdownItem = ({ item }) => {
     >
       <Link
         href={item.link}
-        className={`flex items-center justify-between px-[18px] py-[10px] text-[14px] font-semibold whitespace-nowrap transition-colors duration-150 ${
-          open
+        className={`flex items-center justify-between px-[18px] py-[10px] text-[14px] font-semibold whitespace-nowrap transition-colors duration-150 ${open
             ? 'bg-[#4CA6AE] text-white'
             : 'text-[#EA6490] hover:bg-[#4CA6AE] hover:text-white'
-        }`}
+          }`}
       >
         <span>{item.name}</span>
         {item.hasSubMenu && (
@@ -84,14 +83,14 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
-    
+
     // Fetch dynamic services for the dropdown
     const fetchServices = async () => {
       try {
         const res = await fetch('/api/services');
         const data = await res.json();
         if (data.services) {
-           setServices(data.services);
+          setServices(data.services);
         }
       } catch (err) {
         console.error("Header services fetch failed:", err);
@@ -107,7 +106,7 @@ const Header = () => {
     const hairItems = services
       .filter(s => s.category === 'hair')
       .map(s => ({ name: s.name, link: `/services/${s.slug}` }));
-      
+
     const skinItems = services
       .filter(s => s.category === 'skin')
       .map(s => ({ name: s.name, link: `/services/${s.slug}` }));
@@ -164,9 +163,8 @@ const Header = () => {
 
       {/* TOP BAR */}
       <div
-        className={`bg-[#EA6490] text-white transition-all duration-300 hidden lg:block overflow-hidden ${
-          scrolled ? 'max-h-0 opacity-0' : 'max-h-[48px] opacity-100'
-        }`}
+        className={`bg-[#EA6490] text-white transition-all duration-300 hidden lg:block overflow-hidden ${scrolled ? 'max-h-0 opacity-0' : 'max-h-[48px] opacity-100'
+          }`}
       >
         <div className="max-w-[1440px] mx-auto px-10 h-[38px] flex justify-between items-center">
 
@@ -200,8 +198,8 @@ const Header = () => {
                 className="w-[30px] h-[30px] bg-white text-[#EA6490] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#4CA6AE] hover:text-white transition-all duration-200"
                 style={{ fontSize: '13px' }}
               >
-               <a href={item.link}>
-                 <item.icon />
+                <a href={item.link}>
+                  <item.icon />
                 </a>
               </div>
             ))}

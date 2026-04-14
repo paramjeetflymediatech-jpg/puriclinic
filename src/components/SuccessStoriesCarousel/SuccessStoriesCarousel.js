@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import SuccessStoryCard from '@/app/success-stories/SuccessStoryCard';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import Lightbox from '@/components/Lightbox/Lightbox';
+
 
 // Import Swiper styles
 import 'swiper/css';
@@ -14,6 +16,9 @@ import 'swiper/css/pagination';
 export default function SuccessStoriesCarousel() {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
 
   useEffect(() => {
     const fetchStories = async () => {
@@ -87,12 +92,28 @@ export default function SuccessStoriesCarousel() {
           }}
           className="!pb-20"
         >
-          {imageSuccessStories.map((story) => (
+          {imageSuccessStories.map((story, index) => (
             <SwiperSlide key={story.id}>
-              <SuccessStoryCard story={story} />
+              <SuccessStoryCard 
+                story={story} 
+                onClick={() => {
+                  setCurrentIndex(index);
+                  setLightboxOpen(true);
+                }}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {lightboxOpen && (
+          <Lightbox 
+            images={imageSuccessStories} 
+            activeIndex={currentIndex} 
+            onClose={() => setLightboxOpen(false)} 
+            onNavigate={(idx) => setCurrentIndex(idx)}
+          />
+        )}
+
 
         <div className="swiper-custom-pagination flex justify-center gap-2 mt-[-20px] px-20"></div>
       </div>
