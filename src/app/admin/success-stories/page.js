@@ -48,6 +48,7 @@ export default function SuccessStoriesAdminPage() {
       });
       console.log(res,'image upload')
       const result = await res.json();
+      console.log(result,'image result')
       if (result.success) {
         setFormData({ 
           ...formData, 
