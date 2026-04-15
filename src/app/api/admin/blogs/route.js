@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Blog } from '@/lib/models';
+import { deletePhysicalFiles } from '@/lib/utils/fileStorage';
 
 export async function GET() {
   try {
@@ -45,6 +46,12 @@ export async function DELETE(request) {
     const blog = await Blog.findByPk(id);
     if (!blog) return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
 
+    // Collect all image paths for deletion
+    if (blog.image_url) {
+      await deletePhysicalFiles(blog.image_url);
+    }
+
+    // Destroy the DB record
     await blog.destroy();
     return NextResponse.json({ success: true });
   } catch (err) {

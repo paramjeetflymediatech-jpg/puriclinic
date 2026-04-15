@@ -98,7 +98,18 @@ export default function DoctorBioPage({ params: paramsPromise }) {
                   {doctor.degree}
                 </p>
                 <div className="h-1 w-20 bg-[#EA6490]/20 rounded-full"></div>
-                <div className="pt-8">
+                
+                {/* Introductory Bio (Part 1) */}
+                {doctor.bio && (
+                  <div className="pt-2">
+                    <div 
+                      className="text-gray-600 leading-relaxed font-medium prose prose-sm max-w-2xl break-words"
+                      dangerouslySetInnerHTML={{ __html: doctor.bio }} 
+                    />
+                  </div>
+                )}
+
+                <div className="pt-6">
                   <Link href="/book-appointment" className="btn btn-primary px-12 py-5 text-xs tracking-widest">
                     Book Consultation
                   </Link>
@@ -120,8 +131,8 @@ export default function DoctorBioPage({ params: paramsPromise }) {
                 <h3 className="text-sm font-black uppercase tracking-[0.3em] text-[#EA6490] mb-8">
                   Biography
                 </h3>
-                <div className="prose prose-lg prose-gray max-w-none text-gray-600 leading-relaxed font-medium">
-                   <div dangerouslySetInnerHTML={{ __html: doctor.bio }} />
+                <div className="prose prose-lg prose-gray max-w-none text-gray-600 leading-relaxed font-medium break-words">
+                   <div dangerouslySetInnerHTML={{ __html: doctor.bio_part2 }} />
                 </div>
               </div>
 
@@ -182,7 +193,7 @@ export default function DoctorBioPage({ params: paramsPromise }) {
                       <FaAward size={200} />
                    </div>
                    <h3 className="text-2xl font-bold font-heading text-gray-900 mb-8 relative z-10">Professional <br />Achievements</h3>
-                   <div className="relative z-10">
+                   <div className="relative z-10 break-words">
                       <div dangerouslySetInnerHTML={{ __html: doctor.achievements }} className="achievements-html" />
                    </div>
                 </div>

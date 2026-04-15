@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { SuccessStory } from '@/lib/models';
+import { deletePhysicalFiles } from '@/lib/utils/fileStorage';
 
 export async function GET() {
   try {
@@ -45,6 +46,15 @@ export async function DELETE(request) {
     const story = await SuccessStory.findByPk(id);
     if (!story) return NextResponse.json({ error: 'Story not found' }, { status: 404 });
 
+    // Collect all media paths for deletion
+    const filesToDelete = [];
+    if (story.image_url) filesToDelete.push(story.image_url);
+    if (story.video_url) filesToDelete.push(story.video_url);
+
+    // Physically delete the files
+    await deletePhysicalFiles(filesToDelete);
+
+    // Destroy the DB record
     await story.destroy();
     return NextResponse.json({ success: true });
   } catch (err) {

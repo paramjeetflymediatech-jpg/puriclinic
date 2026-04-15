@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaImage, FaPenNib, FaLink, FaAlignLeft } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaImage, FaPenNib, FaLink, FaAlignLeft, FaEye } from 'react-icons/fa';
+import Link from 'next/link';
 import Image from 'next/image';
 import Swal from '@/lib/swal';
 
@@ -327,6 +328,14 @@ export default function BlogsAdminPage() {
                     </span>
                   </td>
                   <td className="p-8 text-right pr-12 space-x-3">
+                    <Link
+                      href={`/blogs/${b.slug}`}
+                      target="_blank"
+                      className="p-4 text-slate-300 hover:text-white hover:bg-slate-900 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-slate-900/20"
+                      title="View Public Page"
+                    >
+                      <FaEye size={16} />
+                    </Link>
                     <button 
                       onClick={() => handleEdit(b)}
                       className="p-4 text-slate-300 hover:text-white hover:bg-[#4CA6AE] rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-[#4CA6AE]/20"

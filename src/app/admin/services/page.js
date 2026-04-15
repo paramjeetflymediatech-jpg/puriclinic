@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaStethoscope, FaTags, FaInfoCircle, FaImages } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaStethoscope, FaTags, FaInfoCircle, FaImages, FaEye } from 'react-icons/fa';
+import Link from 'next/link';
 import Image from 'next/image';
 import Swal from '@/lib/swal';
 
@@ -626,6 +627,14 @@ export default function ServicesAdminPage() {
                     <span className="text-slate-400 text-xs font-bold font-mono">/{s.slug}</span>
                   </td>
                   <td className="p-8 text-right pr-12 space-x-3">
+                    <Link
+                      href={`/services/${s.slug}`}
+                      target="_blank"
+                      className="p-4 text-slate-300 hover:text-white hover:bg-slate-900 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-slate-900/20"
+                      title="View Public Page"
+                    >
+                      <FaEye size={16} />
+                    </Link>
                     <button 
                       onClick={() => handleEdit(s)}
                       className="p-4 text-slate-300 hover:text-white hover:bg-[#4CA6AE] rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-[#4CA6AE]/20"

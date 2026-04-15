@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { FaChevronRight, FaBullseye, FaFlag, FaHeart, FaHome, FaCheckCircle } from 'react-icons/fa';
+import { FaChevronRight, FaBullseye, FaFlag, FaHeart, FaHome, FaCheckCircle, FaEye } from 'react-icons/fa';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -13,28 +13,51 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export default function AboutUs() {
+  const [activeTab, setActiveTab] = React.useState(1); // Default to Mission
+
+  const tabs = [
+    { 
+      id: 0,
+      title: "Vision", 
+      icon: <FaEye />, 
+      desc: "Consistently refining our processes to maintain highest standards of clinical excellence as a world-class center. We aim to be the benchmark for advanced dermatological care in India, where every patient finds their way to clinical perfection." 
+    },
+    { 
+      id: 1,
+      title: "Mission", 
+      icon: <FaBullseye />, 
+      desc: "Equipping our clinic with world-class equipment and providing premium treatments that cater to individual patient needs. Our mission is to deliver health, beauty, and self-assurance on every level through personalized care and unwavering focus on patient safety." 
+    },
+    { 
+      id: 2,
+      title: "Values", 
+      icon: <FaHeart />, 
+      desc: "Integrity, innovation, and unwavering focus on patient safety. We treat every patient with the personalized care they deserve. We believe in transparency and commitment to treatment possibilities alongside offering a promise to deliver excellence." 
+    }
+  ];
+
   return (
     <div className="bg-white min-h-screen">
       
       {/* ─── ENHANCED HERO SECTION (Matching image style) ─── */}
       <div className="container py-10">
-        <div className="relative w-full h-[180px] md:h-[250px] rounded-[2.5rem] overflow-hidden flex items-center justify-center">
+        <div className="relative w-full h-[180px] md:h-[250px] rounded-[2.5rem] overflow-hidden flex items-center justify-start p-6 md:p-12 lg:p-20">
           <Image 
-            src="/bg-about-image.jpg" 
+            src="/dermatology-3.jpg" 
             alt="Puri Skin Clinic Hero" 
             fill 
             priority
             className="object-cover"
           />
           {/* Greyish/Blurred Overlay Card */}
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative z-10 bg-slate-900/60 backdrop-blur-md px-12 py-8 rounded-[2rem] text-center text-white border border-white/10 shadow-2xl">
-            <h1 className="text-4xl md:text-5xl font-heading font-black mb-4">About Us</h1>
-            <div className="flex items-center justify-center gap-2 text-sm font-medium">
+          <div className="absolute inset-0 bg-black/40 "></div>
+          <div className="relative z-10  backdrop-blur-md px-12 py-8  text-left text-white">
+            <h3 className="text-3xl md:text-4xl font-heading mb-4">About Us</h3>
+            <div className="flex items-center justify-start gap-2 text-sm font-medium">
               <Link href="/" className="hover:text-[#EA6490] transition-colors flex items-center gap-2">
                 <FaHome className="text-[#EA6490]" /> Home
               </Link>
-              <FaChevronRight className="text-white/40 text-[10px]" />
+              <FaChevronRight className="text-white/40 text-[20px]" />
               <span className="text-white/80">About Us</span>
             </div>
           </div>
@@ -152,37 +175,66 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ─── MISSION, VISION, VALUES ─── */}
-      <section className="section py-24 bg-slate-50">
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { 
-                icon: <FaFlag />, 
-                title: "Our Mission", 
-                desc: "Equipping our clinic with world-class equipment and providing premium treatments that cater to individual patient needs." 
-              },
-              { 
-                icon: <FaBullseye />, 
-                title: "Our Vision", 
-                desc: "Consistently refining our processes to maintain highest standards of clinical excellence as a world-class center." 
-              },
-              { 
-                icon: <FaHeart />, 
-                title: "Our Values", 
-                desc: "Integrity, innovation, and unwavering focus on patient safety. We treat every patient with the personalized care they deserve." 
-              }
-            ].map((card, i) => (
-              <div key={i} className="group p-12 bg-white rounded-[3rem] shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 hover:-translate-y-2">
-                <div className="w-16 h-16 rounded-2xl bg-[#EA6490]/5 flex items-center justify-center text-[#EA6490] text-3xl mb-8 group-hover:bg-[#EA6490] group-hover:text-white transition-colors duration-500">
-                  {card.icon}
+      {/* ─── VISION, MISSION, VALUES REDESIGN (Reference matched) ─── */}
+      <section className="relative py-20 overflow-hidden">
+        {/* Wavy Background Container */}
+        <div className="absolute inset-0 bg-[#59998E] z-0">
+          {/* Top Wave */}
+          {/* <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+1.3px)] h-[60px]" fill="white">
+              <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.32,35.26,69.61,18.09,139,31.19,210.13,24.54,68.61-6.43,134.54-32.92,204-37.5,70.52-4.64,133.22,15.1,152.65,27V0Z"></path>
+            </svg>
+          </div> */}
+          {/* Bottom Wave */}
+          {/* <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+1.3px)] h-[60px]" fill="white">
+              <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.32,35.26,69.61,18.09,139,31.19,210.13,24.54,68.61-6.43,134.54-32.92,204-37.5,70.52-4.64,133.22,15.1,152.65,27V0Z"></path>
+            </svg>
+          </div> */}
+        </div>
+
+        <div className="container relative z-10 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {tabs.map((tab, idx) => (
+                <div 
+                  key={idx}
+                  className="group relative h-[320px] rounded-[2.5rem] cursor-pointer shadow-xl overflow-hidden"
+                >
+                  {/* Front Side (Default) */}
+                  <div className="absolute inset-0 bg-[#EA6490] flex flex-col items-center justify-center transition-all duration-700 group-hover:opacity-0 group-hover:scale-95">
+                    <div className="w-20 h-20 rounded-full border-2 border-white flex items-center justify-center text-white text-4xl mb-6">
+                      {tab.icon}
+                    </div>
+                    <span className="text-white font-heading font-black text-2xl uppercase tracking-wider">{tab.title}</span>
+                  </div>
+
+                  {/* Back Side (Hover) */}
+                  <div className="absolute inset-0 bg-white/95 backdrop-blur-md p-8 flex flex-col items-center justify-center text-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 opacity-10 text-[#EA6490]">
+                      {React.cloneElement(tab.icon, { size: 40 })}
+                    </div>
+                    <h4 className="text-[#EA6490] font-heading font-black text-lg uppercase tracking-widest mb-4">{tab.title}</h4>
+                    <p className="text-slate-600 text-[14px] leading-relaxed font-medium italic">
+                      {tab.desc}
+                    </p>
+                  </div>
+                  
+                  {/* Decorative Glow */}
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
-                <h3 className="text-2xl font-heading font-black text-slate-900 mb-4">{card.title}</h3>
-                <p className="text-slate-500 text-[15px] leading-relaxed font-light">{card.desc}</p>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
+
+        <style jsx>{`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+          }
+        `}</style>
       </section>
       
       {/* ─── FAQ SECTION ─── */}
@@ -213,7 +265,7 @@ export default function AboutUs() {
       </section>
       
       {/* ─── CALL TO ACTION ─── */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="container">
           <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
              <div className="absolute top-0 right-0 w-64 h-64 bg-[#EA6490]/20 blur-[100px] -mr-32 -mt-32"></div>
@@ -227,7 +279,7 @@ export default function AboutUs() {
              </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );

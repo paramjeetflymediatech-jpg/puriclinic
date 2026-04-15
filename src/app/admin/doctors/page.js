@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaUserMd, FaMedal, FaGraduationCap, FaHistory, FaBriefcase, FaIdCard, FaSortNumericDown } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaUserMd, FaMedal, FaGraduationCap, FaHistory, FaBriefcase, FaIdCard, FaSortNumericDown, FaEye } from 'react-icons/fa';
+import Link from 'next/link';
 import Image from 'next/image';
 import Swal from '@/lib/swal';
 
@@ -20,6 +21,7 @@ export default function DoctorsAdminPage() {
     achievements: '',
     achievement_images: [],
     bio: '',
+    bio_part2: '',
     image_url: '',
     order: 0
   });
@@ -186,6 +188,7 @@ export default function DoctorsAdminPage() {
       achievements: doc.achievements || '',
       achievement_images: doc.achievement_images ? JSON.parse(doc.achievement_images) : [],
       bio: doc.bio || '',
+      bio_part2: doc.bio_part2 || '',
       image_url: doc.image_url || '',
       order: doc.order || 0
     });
@@ -196,7 +199,7 @@ export default function DoctorsAdminPage() {
     setEditingId(null);
     setFormData({ 
       name: '', slug: '', designation: '', degree: '', 
-      experience: '', achievements: '', achievement_images: [], bio: '', image_url: '', order: 0 
+      experience: '', achievements: '', achievement_images: [], bio: '', bio_part2: '', image_url: '', order: 0 
     });
   };
 
@@ -367,14 +370,25 @@ export default function DoctorsAdminPage() {
             </div>
           </div>
 
-          <div className="space-y-4 text-gray-800">
-            <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Comprehensive Biography (HTML Supported)</label>
-            <textarea 
-              placeholder="Narrate the practitioner's full professional journey..." 
-              value={formData.bio} 
-              onChange={e=>setFormData({...formData, bio: e.target.value})} 
-              className="w-full p-8 border border-slate-100 bg-slate-50/50 rounded-[2.5rem] focus:ring-4 focus:ring-slate-100 focus:border-slate-300 focus:bg-white outline-none transition-all font-medium text-slate-600 min-h-[250px] leading-relaxed" 
-            />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div className="space-y-4 text-gray-800">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Biography - Introduction (HTML Supported)</label>
+              <textarea 
+                placeholder="Narrate the practitioner's introductory story..." 
+                value={formData.bio} 
+                onChange={e=>setFormData({...formData, bio: e.target.value})} 
+                className="w-full p-8 border border-slate-100 bg-slate-50/50 rounded-[2.5rem] focus:ring-4 focus:ring-slate-100 focus:border-slate-300 focus:bg-white outline-none transition-all font-medium text-slate-600 min-h-[250px] leading-relaxed" 
+              />
+            </div>
+            <div className="space-y-4 text-gray-800">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Biography - Professional Details (HTML Supported)</label>
+              <textarea 
+                placeholder="Narrate the practitioner's medical expertise and detailed journey..." 
+                value={formData.bio_part2} 
+                onChange={e=>setFormData({...formData, bio_part2: e.target.value})} 
+                className="w-full p-8 border border-slate-100 bg-slate-50/50 rounded-[2.5rem] focus:ring-4 focus:ring-slate-100 focus:border-slate-300 focus:bg-white outline-none transition-all font-medium text-slate-600 min-h-[250px] leading-relaxed" 
+              />
+            </div>
           </div>
 
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-6 gap-8">
@@ -450,6 +464,14 @@ export default function DoctorsAdminPage() {
                     <div className="w-10 h-10 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-xs font-black text-slate-400 group-hover:text-slate-900 transition-colors">{doc.order}</div>
                   </td>
                   <td className="p-8 text-right pr-12 space-x-3">
+                    <Link
+                      href={`/doctors/${doc.slug}`}
+                      target="_blank"
+                      className="p-4 text-slate-300 hover:text-white hover:bg-slate-900 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-slate-900/20"
+                      title="View Public Page"
+                    >
+                      <FaEye size={16} />
+                    </Link>
                     <button 
                       onClick={() => handleEdit(doc)}
                       className="p-4 text-slate-300 hover:text-white hover:bg-[#4CA6AE] rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-[#4CA6AE]/20"

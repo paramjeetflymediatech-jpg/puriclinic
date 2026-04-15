@@ -11,6 +11,7 @@ const Doctor = sequelize.define('Doctor', {
   achievements: { type: DataTypes.TEXT }, // Can store HTML or JSON string
   achievement_images: { type: DataTypes.TEXT }, // Stores a stringified JSON array of image URLs
   bio: { type: DataTypes.TEXT('long') },
+  bio_part2: { type: DataTypes.TEXT('long') },
   image_url: { type: DataTypes.STRING(500) },
   is_active: { type: DataTypes.BOOLEAN, defaultValue: true },
   order: { type: DataTypes.INTEGER, defaultValue: 0 },

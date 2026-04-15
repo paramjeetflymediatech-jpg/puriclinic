@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Service } from '@/lib/models';
+import { deletePhysicalFiles } from '@/lib/utils/fileStorage';
 
 export async function GET() {
   try {
@@ -52,6 +53,43 @@ export async function DELETE(request) {
     const service = await Service.findByPk(id);
     if (!service) return NextResponse.json({ error: 'Service not found' }, { status: 404 });
 
+    // Collect all image paths for deletion
+    const filesToDelete = [];
+    if (service.image_url) filesToDelete.push(service.image_url);
+    if (service.hero_image) filesToDelete.push(service.hero_image);
+
+    // Parse gallery images
+    if (service.gallery_images) {
+      try {
+        const gallery = typeof service.gallery_images === 'string' 
+          ? JSON.parse(service.gallery_images) 
+          : service.gallery_images;
+        if (Array.isArray(gallery)) filesToDelete.push(...gallery);
+      } catch (e) {
+        console.error("Failed to parse gallery_images for deletion:", e);
+      }
+    }
+
+    // Parse treatment_types images
+    if (service.treatment_types) {
+      try {
+        const types = typeof service.treatment_types === 'string' 
+          ? JSON.parse(service.treatment_types) 
+          : service.treatment_types;
+        if (Array.isArray(types)) {
+          types.forEach(item => {
+            if (item.image) filesToDelete.push(item.image);
+          });
+        }
+      } catch (e) {
+        console.error("Failed to parse treatment_types for deletion:", e);
+      }
+    }
+
+    // Physically delete the files
+    await deletePhysicalFiles(filesToDelete);
+
+    // Destroy the DB record
     await service.destroy();
     return NextResponse.json({ success: true });
   } catch (err) {

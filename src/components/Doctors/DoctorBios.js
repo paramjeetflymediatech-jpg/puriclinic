@@ -76,7 +76,7 @@ const DoctorBios = () => {
 
                 {/* Content Section */}
                 <div className="flex-1 space-y-6 text-center lg:text-left">
-                  <div className="prose prose-slate prose-sm md:prose-base max-w-none text-gray-700 leading-relaxed">
+                  <div className="prose prose-slate prose-sm md:prose-base max-w-none text-gray-700 leading-relaxed break-all">
                     <p className="font-medium whitespace-pre-line">
                       {doctor.bio}
                     </p>
