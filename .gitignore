@@ -17,6 +17,10 @@
 /.next/
 /out/
 
+# user uploads (runtime files, not tracked in git)
+/public/uploads/*
+!/public/uploads/.gitkeep
+
 # production
 /build
 
