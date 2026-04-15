@@ -18,8 +18,8 @@
 /out/
 
 # user uploads (runtime files, not tracked in git)
-/public/uploads/*
-!/public/uploads/.gitkeep
+/data/uploads/*
+!/data/uploads/.gitkeep
 
 # production
 /build
