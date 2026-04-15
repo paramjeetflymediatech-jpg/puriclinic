@@ -107,7 +107,7 @@ export default function LoginPage() {
                 {/* Branded Prefix Icon (requested: logo in field) */}
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                    <div className="w-5 h-5 relative grayscale group-focus-within:grayscale-0 transition-all opacity-40 group-focus-within:opacity-100">
-                      <Image src="/logo.png" alt="Icon" fill className="object-contain" />
+                      <Image src="/logo.png" alt="Icon" fill sizes="120px" className="object-contain" />
                    </div>
                 </div>
                 
