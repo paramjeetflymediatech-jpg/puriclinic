@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { FaChevronRight, FaClock, FaPhoneAlt, FaRegCheckCircle, FaStar, FaShieldAlt } from 'react-icons/fa';
 import AppointmentForm from '@/components/AppointmentForm/AppointmentForm';
+import { getPageSeo } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Book Appointment | Puri Skin Clinic',
-  description: 'Schedule a consultation with Dr. Gurinderjit Singh Puri or Dr. Ashwajit Singh at Puri Skin Clinic Ludhiana.',
-};
+export async function generateMetadata() {
+  return getPageSeo('book-appointment');
+}
 
 export default function BookAppointment() {
   return (

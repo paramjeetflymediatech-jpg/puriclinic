@@ -11,16 +11,16 @@ export default function SuccessStoryCard({ story, onClick }) {
   return (
     <div className="group space-y-5">
       {/* Treatment Title - Placed ABOVE the image frame with Serif styling */}
-      <h3 className="text-xl md:text-2xl font-heading text-slate-800 font-bold uppercase tracking-[0.1em] text-center leading-tight group-hover:text-[#EA6490] transition-colors duration-500 min-h-[1.5em] flex items-center justify-center">
+      <h3 className="text-lg md:text-xl font-heading text-slate-800 font-bold uppercase tracking-[0.1em] text-center leading-tight group-hover:text-[#EA6490] transition-colors duration-500 min-h-[1.5em] flex items-center justify-center">
         {displayTitle}
       </h3>
 
       {/* Main Image Frame */}
       <div 
-        className={`relative overflow-hidden rounded-[2.5rem] bg-white shadow-[0_15px_60px_rgba(0,0,0,0.06)] border border-slate-100 hover:shadow-[0_30px_90px_rgba(0,0,0,0.12)] transition-all duration-700 ${onClick ? 'cursor-pointer' : ''}`}
+        className={`relative overflow-hidden rounded-[1.5rem] bg-white shadow-[0_15px_60px_rgba(0,0,0,0.06)] border border-slate-100 hover:shadow-[0_30px_90px_rgba(0,0,0,0.12)] transition-all duration-700 ${onClick ? 'cursor-pointer' : ''}`}
         onClick={onClick}
       >
-        <div className="relative aspect-[3/4] overflow-hidden bg-slate-100">
+        <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
           {story.media_type === 'video' ? (
             <div className="relative w-full h-full group/video">
               <video 

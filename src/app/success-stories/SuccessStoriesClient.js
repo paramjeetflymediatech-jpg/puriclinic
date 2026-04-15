@@ -47,7 +47,7 @@ export default function SuccessStoriesClient({ stories }) {
       </div>
 
       {/* Stories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-x-12 md:gap-y-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-x-10 md:gap-y-16">
         {filteredStories.map((story, index) => (
           <SuccessStoryCard 
             key={story.id} 

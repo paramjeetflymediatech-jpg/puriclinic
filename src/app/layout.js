@@ -1,6 +1,6 @@
 import './globals.css';
 import { Nunito_Sans, Cormorant_Garamond, Playfair_Display, Lora } from 'next/font/google';
-
+import { getGlobalSchema } from '@/lib/seo';
 import { HeaderConditional, FooterConditional } from '@/components/ConditionalLayout/ConditionalLayout';
 
 // Puri Skin Clinic uses Nunito Sans with heavy weights for that bold look
@@ -54,11 +54,19 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const schema = await getGlobalSchema();
+
   return (
     <html lang="en" suppressHydrationWarning>
       {/* humne yahan font-class apply ki hai taaki poori site par branding match ho */}
       <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`} suppressHydrationWarning>
+        {schema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        )}
         <HeaderConditional />
         <main>{children}</main>
         <FooterConditional />

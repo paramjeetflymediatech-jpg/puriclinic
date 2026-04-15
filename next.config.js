@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ['sequelize', 'mysql2'],
+  serverExternalPackages: ['sequelize', 'mysql2', 'node-cron'],
   images: {
     remotePatterns: [
       {
@@ -14,6 +14,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com', // Google user avatars from Places API
+      },
+      {
+        protocol: 'https',
+        hostname: 'maps.googleapis.com',
       },
     ],
   },

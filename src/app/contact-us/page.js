@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { FaChevronRight, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock, FaFacebookF, FaInstagram, FaYoutube, FaMapMarkedAlt } from 'react-icons/fa';
 import ContactForm from '@/components/ContactForm/ContactForm';
+import { getPageSeo } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Contact Us | Puri Skin Clinic Ludhiana',
-  description: 'Get in touch with Puri Skin Clinic in Ludhiana. Open Monday to Saturday for expert skin and hair consultations.',
-};
+export async function generateMetadata() {
+  return getPageSeo('contact-us');
+}
 
 export default function ContactUs() {
   return (

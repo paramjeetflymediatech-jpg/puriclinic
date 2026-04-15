@@ -8,8 +8,9 @@ import Admin from './Admin.js';
 import Category from './Category.js';
 import SuccessStory from './SuccessStory.js';
 import Doctor from './Doctor.js';
+import SeoSetting from './SeoSetting.js';
 
-export { sequelize, Service, Blog, Appointment, Contact, Testimonial, Admin, Category, SuccessStory, Doctor };
+export { sequelize, Service, Blog, Appointment, Contact, Testimonial, Admin, Category, SuccessStory, Doctor, SeoSetting };
 
 export async function syncDB() {
   try {

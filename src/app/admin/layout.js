@@ -16,7 +16,9 @@ import {
   FaAward, 
   FaUserMd, 
   FaBars, 
-  FaTimes 
+  FaTimes,
+  FaSearch,
+  FaGoogle
 } from 'react-icons/fa';
 
 export default function AdminLayout({ children }) {
@@ -48,6 +50,8 @@ export default function AdminLayout({ children }) {
     { name: 'Success Stories', path: '/admin/success-stories', icon: <FaAward /> },
     { name: 'Testimonials', path: '/admin/testimonials', icon: <FaQuoteLeft /> },
     { name: 'Contacts', path: '/admin/contacts', icon: <FaEnvelope /> },
+    { name: 'SEO Settings', path: '/admin/seo', icon: <FaSearch /> },
+    { name: 'Google Reviews', path: '/admin/google-reviews', icon: <FaGoogle /> },
   ];
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);

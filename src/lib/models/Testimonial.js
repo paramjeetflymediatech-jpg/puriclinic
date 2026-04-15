@@ -8,6 +8,9 @@ const Testimonial = sequelize.define('Testimonial', {
   review: { type: DataTypes.TEXT },
   source: { type: DataTypes.STRING(100), defaultValue: 'Google' },
   is_active: { type: DataTypes.BOOLEAN, defaultValue: true },
+  google_review_id: { type: DataTypes.STRING(255), allowNull: true, unique: true },
+  avatar_url: { type: DataTypes.STRING(500), allowNull: true },
+  profile_url: { type: DataTypes.STRING(500), allowNull: true },
 }, { tableName: 'testimonials', timestamps: true, underscored: true });
 
 export default Testimonial;
