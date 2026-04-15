@@ -2,6 +2,16 @@
 const nextConfig = {
   serverExternalPackages: ['sequelize', 'mysql2', 'node-cron'],
   images: {
+    localPatterns: [
+      {
+        pathname: '/uploads/**',
+        search: '',
+      },
+      {
+        pathname: '/**',
+        search: '',
+      },
+    ],
     remotePatterns: [
       {
         protocol: 'https',

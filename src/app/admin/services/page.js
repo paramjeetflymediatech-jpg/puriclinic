@@ -299,7 +299,7 @@ export default function ServicesAdminPage() {
                     }`}>
                       {formData.image_url ? (
                         <div className="relative w-full h-full">
-                          <Image src={formData.image_url} alt="Preview" fill className="object-cover transition-transform group-hover:scale-105" />
+                          <Image src={formData.image_url} alt="Preview" fill unoptimized sizes="(max-width: 1024px) 33vw, 25vw" className="object-cover transition-transform group-hover:scale-105" />
                           <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                              <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                                 Change
@@ -340,7 +340,7 @@ export default function ServicesAdminPage() {
                   }`}>
                     {formData.hero_image ? (
                       <div className="relative w-full h-full">
-                        <Image src={formData.hero_image} alt="Hero Preview" fill className="object-cover transition-transform group-hover:scale-105" />
+                        <Image src={formData.hero_image} alt="Hero Preview" fill unoptimized sizes="(max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform group-hover:scale-105" />
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                            <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                               Change
@@ -548,7 +548,7 @@ export default function ServicesAdminPage() {
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6">
                {formData.gallery_images.map((img, idx) => (
                  <div key={idx} className="relative group aspect-square rounded-2xl overflow-hidden border border-slate-100 shadow-sm transition-transform hover:scale-105 hover:shadow-xl">
-                    <Image src={img} alt="" fill className="object-cover" />
+                    <Image src={img} alt="" fill unoptimized sizes="(max-width: 640px) 50vw, 16vw" className="object-cover" />
                     <button 
                       type="button"
                       onClick={() => setFormData({ ...formData, gallery_images: formData.gallery_images.filter((_, i) => i !== idx) })}
@@ -607,7 +607,7 @@ export default function ServicesAdminPage() {
                     <div className="flex items-center gap-6">
                       <div className="w-16 h-16 rounded-2xl bg-slate-100 overflow-hidden relative shrink-0 border border-slate-100 shadow-sm transition-transform group-hover:scale-105">
                         {s.image_url ? (
-                          <Image src={s.image_url} alt="" fill className="object-cover" />
+                          <Image src={s.image_url} alt="" fill unoptimized sizes="64px" className="object-cover" />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-slate-200">
                             <FaStethoscope size={24} />

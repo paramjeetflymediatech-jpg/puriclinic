@@ -29,7 +29,7 @@ async function requestToNodeStream(request) {
 
 export async function POST(request) {
   try {
-    const uploadDir = join(process.cwd(), 'public', 'uploads');
+    const uploadDir = join(process.cwd(), 'data', 'uploads');
     
     // Ensure directory exists
     try {

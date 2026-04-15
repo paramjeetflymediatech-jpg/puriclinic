@@ -225,7 +225,7 @@ export default function BlogsAdminPage() {
                   }`}>
                     {formData.image_url ? (
                       <div className="relative w-full h-full">
-                        <Image src={formData.image_url} alt="Preview" fill className="object-cover transition-transform group-hover:scale-105" />
+                        <Image src={formData.image_url} alt="Preview" fill unoptimized sizes="(max-width: 1024px) 33vw, 25vw" className="object-cover transition-transform group-hover:scale-105" />
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                            <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                               Replace Image
@@ -308,7 +308,7 @@ export default function BlogsAdminPage() {
                     <div className="flex items-center gap-6">
                       <div className="w-24 h-16 rounded-2xl bg-slate-100 overflow-hidden relative shrink-0 border border-slate-100 shadow-sm transition-transform group-hover:scale-105">
                         {b.image_url ? (
-                          <Image src={b.image_url} alt="" fill className="object-cover" />
+                          <Image src={b.image_url} alt="" fill unoptimized sizes="96px" className="object-cover" />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-slate-200">
                             <FaImage size={24} />

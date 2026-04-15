@@ -296,7 +296,7 @@ export default function DoctorsAdminPage() {
                   }`}>
                     {formData.image_url ? (
                       <div className="relative w-full h-full">
-                        <Image src={formData.image_url} alt="Preview" fill className="object-cover transition-transform group-hover:scale-105" />
+                        <Image src={formData.image_url} alt="Preview" fill unoptimized sizes="(max-width: 1024px) 33vw, 25vw" className="object-cover transition-transform group-hover:scale-105" />
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm shadow-inner">
                            <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                               Replace
@@ -347,7 +347,7 @@ export default function DoctorsAdminPage() {
               <div className="grid grid-cols-2 xs:grid-cols-3 gap-4">
                 {formData.achievement_images.map((img, idx) => (
                   <div key={idx} className="relative aspect-video rounded-2xl overflow-hidden border border-slate-100 group shadow-sm bg-slate-50">
-                    <Image src={img} alt="Achievement" fill className="object-cover transition-transform group-hover:scale-110" />
+                    <Image src={img} alt="Achievement" fill unoptimized sizes="(max-width: 640px) 50vw, 25vw" className="object-cover transition-transform group-hover:scale-110" />
                     <button 
                       onClick={() => removeAchievementImage(idx)}
                       type="button"
@@ -428,7 +428,7 @@ export default function DoctorsAdminPage() {
                     <div className="flex items-center gap-6">
                       <div className="w-16 aspect-[4/5] rounded-2xl bg-slate-100 overflow-hidden relative shrink-0 border border-slate-100 shadow-sm transition-transform group-hover:scale-105">
                         {doc.image_url ? (
-                          <Image src={doc.image_url} alt="" fill className="object-cover" />
+                          <Image src={doc.image_url} alt="" fill unoptimized sizes="64px" className="object-cover" />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-slate-200">
                             <FaUserMd size={24} />

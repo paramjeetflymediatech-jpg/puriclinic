@@ -46,7 +46,9 @@ export default function SuccessStoriesAdminPage() {
         method: 'POST',
         body: data
       });
+      console.log(res,'image upload')
       const result = await res.json();
+      console.log(result,'image result')
       if (result.success) {
         setFormData({ 
           ...formData, 
@@ -253,7 +255,7 @@ export default function SuccessStoriesAdminPage() {
                           </div>
                         ) : (
                           <div className="relative w-full h-full">
-                            <Image src={formData.image_url} alt="Preview" fill className="object-cover transition-transform group-hover:scale-105" />
+                            <Image src={formData.image_url} alt="Preview" fill unoptimized sizes="(max-width: 1024px) 33vw, 25vw" className="object-cover transition-transform group-hover:scale-105" />
                           </div>
                         )}
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm shadow-inner z-10">
@@ -334,7 +336,7 @@ export default function SuccessStoriesAdminPage() {
                                <FaFilm size={20} className="text-white/40" />
                             </div>
                           ) : (
-                            <Image src={s.image_url} alt="" fill className="object-cover" />
+                            <Image src={s.image_url} alt="" fill unoptimized sizes="80px" className="object-cover" />
                           )
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-slate-200 font-bold uppercase text-[9px]">no media</div>

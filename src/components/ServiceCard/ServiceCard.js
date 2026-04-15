@@ -10,6 +10,7 @@ const ServiceCard = ({ service }) => {
           src={service.image_url || 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800'}
           alt={service.name}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-1000 ease-in-out group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
