@@ -14,7 +14,7 @@ export async function generateMetadata() {
 export default function BookAppointment() {
   return (
     <>
-      <div className="relative pt-20 pb-20 overflow-hidden">
+      <div className="relative pt-10 pb-10 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
           <div className="relative h-[250px] md:h-[300px] rounded-[2rem] overflow-hidden flex flex-col items-start justify-center text-white px-10 md:px-16">
 
@@ -60,7 +60,7 @@ export default function BookAppointment() {
         </div>
       </section>
 
-      <section className="py-20 bg-slate-50/50">
+      <section className="py-10 bg-slate-50/50">
         <div className="container px-6 mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-[3rem] overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.08)]">
             {/* Form Section */}
