@@ -50,7 +50,7 @@ export default function DoctorBioPage({ params: paramsPromise }) {
   return (
     <div className="bg-white text-gray-800 min-h-screen font-sans">
       {/* ─── BREADCRUMBS ─── */}
-      <div className="bg-gray-50/50 border-b border-gray-100 pt-32 pb-6">
+      <div className="bg-gray-50/50 border-b border-gray-100 pt-10 pb-6">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
             <Link href="/" className="hover:text-[#EA6490] transition-colors">Home</Link> 
