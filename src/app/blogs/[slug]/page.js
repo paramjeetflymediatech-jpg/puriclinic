@@ -38,41 +38,45 @@ export default async function SingleBlog({ params }) {
     : 'February 10, 2026';
 
   return (
-    <div className="bg-[#fcfcfc] min-h-screen font-body">
-      {/* Cinematic Hero Header */}
-      <div className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden flex items-center justify-center text-center">
-        {/* Background Image with Cinematic Crop */}
-        <div className="absolute inset-0 z-0 ">
-
-          {/* Elegant Gradient Overlay */}
-          <div className="absolute inset-0 bg-[#C38EAB] backdrop-blur-[1px]"></div>
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-12">
-          {/* Breadcrumbs */}
-          <div className="flex items-center justify-center gap-2 text-sm font-bold text-white/80 mb-6 uppercase tracking-[0.2em]">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <FaChevronRight size={8} className="opacity-50" />
-            <Link href="/blogs" className="hover:text-primary transition-colors">Blogs</Link>
+    <div className="bg-white min-h-screen">
+      <div className="relative pt-10 pb-10 overflow-hidden">
+        <div className="container px-6 mx-auto relative z-10">
+          <div className="relative h-[150px] md:h-[250px] rounded-[2rem] overflow-hidden flex flex-col items-center justify-center text-white px-10 md:px-16 text-center">
+            <Image 
+              src="/bgimg.jpg" 
+              alt="Blog Hero" 
+              fill 
+              className="object-cover -z-10 brightness-[0.4]"
+              priority
+            />
+            <span className="text-white/80 text-[20px] font-black uppercase tracking-[0.5em] mb-4">Blog</span>
+            <h1 className="font-heading text-xl md:text-3xl lg:text-3xl mb-8 max-w-4xl leading-tight">
+              {blog.title}
+            </h1>
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-80">
+              <Link href="/" className="hover:text-[#EA6490] transition-colors">Home</Link>
+              <FaChevronRight size={8} />
+              <Link href="/blogs" className="hover:text-[#EA6490] transition-colors">Blogs</Link>
+              <FaChevronRight size={8} />
+              <span className="line-clamp-1 max-w-[200px]">{blog.title}</span>
+            </div>
           </div>
-
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading text-white font-bold leading-[1.2] max-w-[900px] mx-auto drop-shadow-lg">
-            {blog.title}
-          </h1>
         </div>
       </div>
 
 
 
-      <div className="py-12 flex max-w-[1400px] mx-auto flex-col lg:flex-row "> 
-        {/* Sidebar (Left) */}
-        <div className="w-full">
-          <BlogSidebar props={{width:'w-full'}} />
-        </div>
+      <div className="max-w-[1400px] mx-auto px-6 py-16">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+          {/* Sidebar (Left) */}
+          <div className="w-full lg:w-1/3 order-1">
+            <BlogSidebar />
+          </div>
 
-        {/* Article Content (Right) */}
-        <div className="w-full  bg-white p-6 md:p-12 lg:p-16 shadow-[0_5px_30px_rgba(0,0,0,0.03)] border border-gray-100 rounded-sm">
+
+          {/* Article Content (Right) */}
+          <div className="w-full lg:w-2/3 order-2 bg-white p-8 md:p-12 lg:p-16 shadow-[0_40px_100px_rgba(0,0,0,0.04)] border border-slate-50 rounded-[2.5rem]">
+
           <article className="prose prose-lg ">
             {/* Main Content */}
             <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden mb-10">
@@ -119,7 +123,7 @@ export default async function SingleBlog({ params }) {
           </article>
         </div>
         </div>
-     
+      </div>
     </div>
   );
 }
