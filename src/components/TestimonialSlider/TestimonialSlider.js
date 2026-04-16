@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { FaStar, FaChevronLeft, FaChevronRight, FaGoogle, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaStar, FaChevronLeft, FaChevronRight, FaGoogle, FaChevronDown, FaChevronUp, FaCheckCircle } from 'react-icons/fa';
+
 import styles from './TestimonialSlider.module.css';
 
 /* ─── Read More / Less component ─── */
@@ -136,6 +137,10 @@ const TestimonialSlider = ({ testimonials }) => {
 
   return (
     <div className={styles.outerContainer}>
+      <div className={styles.titleSection}>
+        <h2 className={styles.sliderTitle}>Our Happy Clients</h2>
+      </div>
+
       <div className={styles.mainWrapper}>
 
         {/* ─── Left: Summary panel ─── */}
@@ -145,9 +150,10 @@ const TestimonialSlider = ({ testimonials }) => {
           {/* Dynamic stars */}
           <div className={styles.largeStars}>
             {[1,2,3,4,5].map(i => (
-              <FaStar key={i} style={{ color: i <= Math.round(avg) ? '#EA6490' : '#e2e8f0' }} />
+              <FaStar key={i} style={{ color: i <= Math.round(avg) ? '#fbbc04' : '#e2e8f0' }} />
             ))}
           </div>
+
 
           {/* Dynamic rating number */}
           <p style={{ fontSize: '1.6rem', fontWeight: 900, color: '#1e293b', margin: '2px 0 0', letterSpacing: '-0.03em', lineHeight: 1 }}>
@@ -206,10 +212,14 @@ const TestimonialSlider = ({ testimonials }) => {
                       ) : null}
                       <div
                         className={styles.avatar}
-                        style={{ display: hasAvatar ? 'none' : 'flex' }}
+                        style={{ 
+                          display: hasAvatar ? 'none' : 'flex',
+                          backgroundColor: i % 3 === 0 ? '#4285F4' : i % 3 === 1 ? '#34A853' : '#EA4335' 
+                        }}
                       >
                         {initial}
                       </div>
+
 
                       {/* Name + date */}
                       <div className={styles.headerText}>
@@ -229,12 +239,14 @@ const TestimonialSlider = ({ testimonials }) => {
                     <div className={styles.cardRating}>
                       <div className={styles.smallStars}>
                         {[1,2,3,4,5].map(i => (
-                          <FaStar key={i} style={{ color: i <= (test.rating || 5) ? '#EA6490' : '#e2e8f0' }} />
+                          <FaStar key={i} style={{ color: i <= (test.rating || 5) ? '#fbbc04' : '#e2e8f0' }} />
                         ))}
                       </div>
+
                       <div className={styles.verifiedBadge}>
-                        <span className={styles.check}>✓</span> Verified
+                        <FaCheckCircle className={styles.checkIcon} /> Verified
                       </div>
+
                     </div>
 
                     {/* Review text with Read More */}

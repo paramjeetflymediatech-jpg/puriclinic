@@ -7,7 +7,7 @@
   --color-bg-light: #FAFAFA;
   --color-border: #E8E8E8;
   --color-text-muted: #666666;
-  
+  --font-playfair: 'Playfair Display', serif;
   --font-primary: var(--font-nunito-sans), sans-serif;
   --font-heading: var(--font-playfair), serif;
 

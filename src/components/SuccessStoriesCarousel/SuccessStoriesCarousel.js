@@ -53,14 +53,10 @@ export default function SuccessStoriesCarousel() {
   if (imageSuccessStories.length === 0) return null;
 
   return (
-    <section className="py-24 bg-[#FAFAFA] overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="flex flex-col items-center text-center justify-center mb-16 gap-4">
+    <section className="py-10 bg-[#FAFAFA] overflow-hidden">
+        <div className="flex flex-col text-center justify-center">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-[#EA6490] font-heading text-lg font-bold uppercase tracking-[0.2em] mb-4">
-              Our Results
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-heading text-gray-900 font-bold leading-tight">
+            <h3 style={{fontFamily: "var(--font-playfair), 'Playfair Display', serif"}} className="text-4xl md:text-5xl font-heading text-gray-900 font-bold leading-tight">
               Our Success Stories
             </h3>
           </div>
@@ -74,6 +70,7 @@ export default function SuccessStoriesCarousel() {
             </button>
           </div>
         </div>
+      <div className="max-w-[1400px] mx-auto px-6">
 
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}

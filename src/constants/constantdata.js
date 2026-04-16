@@ -2,6 +2,7 @@
  * Central FAQ Data for Puri Skin Clinic
  * Use this to populate Accordions or FAQ sections across the site.
  */
+import { FaMapMarkerAlt, FaClock, FaEnvelope, FaPhoneAlt, FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 export const FAQ_DATA = {
   general: [
@@ -96,3 +97,21 @@ export const FAQ_DATA = {
     }
   ]
 };
+
+export const CONTACT_INFO = {
+  "contact_info": [
+    { icon: <FaMapMarkerAlt />, label: "Location", value: "77, Vishal Nagar Ext, Vishal Nagar, Shaheed Bhagat Singh Nagar, Ludhiana, Punjab - 141013", link: "https://maps.app.goo.gl/2ZTvQ6gvDFwqdkLLA" },
+    { icon: <FaClock />, label: "Working Hours", value: "Mon - Sat: 5:30 PM - 8:00 PM Sunday: 11:00 AM - 1:00 PM" },
+    { icon: <FaEnvelope />, label: "Email", value: "puriskinclinic@gmail.com" },
+    { icon: <FaPhoneAlt />, label: "Call Us", value: ["+91-9876170054", "+91-9815673163"] }
+  ]
+}
+
+export const SOCIAL_LINKS = {
+  "social_links": [
+    { icon: <FaFacebook />, label: "Facebook", url: "https://www.facebook.com/puriskinclinic/", color: "#1877F2" },
+    { icon: <FaInstagram />, label: "Instagram", url: "https://www.instagram.com/puriskinclinic/", color: "#E4405F" },
+    { icon: <FaTwitter />, label: "Twitter", url: "https://twitter.com/puriskinclinic/", color: "#1DA1F2" },
+    { icon: <FaLinkedin />, label: "LinkedIn", url: "https://www.linkedin.com/company/puriskinclinic/", color: "#0A66C2" }
+  ]
+}

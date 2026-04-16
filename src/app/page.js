@@ -11,6 +11,7 @@ import DoctorBios from '@/components/Doctors/DoctorBios';
 import TestimonialSlider from '@/components/TestimonialSlider/TestimonialSlider';
 import { Testimonial } from '@/lib/models';
 import { getPageSeo } from '@/lib/seo';
+import AppointmentCTA from '@/components/AppointmentCTA/AppointmentCTA';
 
 export async function generateMetadata() {
   return getPageSeo('home');
@@ -31,12 +32,10 @@ export default async function Home() {
       <ReasonsSection />
       <DoctorBios />
       <SuccessStoriesCarousel title="Patient Transformations" />
-      <section className="py-24 px-4 bg-white overflow-hidden">
-        <TestimonialSlider testimonials={JSON.parse(JSON.stringify(testimonials))} />
-      </section>
+      <AppointmentCTA />
       <StatsStrip />
-
       <FAQAccordion faqs={FAQ_DATA.general} />
+      <TestimonialSlider testimonials={JSON.parse(JSON.stringify(testimonials))} />
     </>
   );
 }

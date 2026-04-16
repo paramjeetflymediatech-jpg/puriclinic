@@ -8,40 +8,42 @@ const BlogCard = ({ blog }) => {
     : 'February 10, 2026';
 
   return (
-    <article className="bg-white overflow-hidden transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.1)] group mb-12 border border-gray-100">
-      <Link href={`/blogs/${blog.slug}`} className="relative w-full pt-[56.25%] overflow-hidden block">
+    <article className="bg-white overflow-hidden transition-all duration-700 shadow-[0_10px_50px_rgba(0,0,0,0.02)] hover:shadow-[0_40px_100px_rgba(0,0,0,0.08)] group mb-12 rounded-[2rem] border border-slate-50">
+      <Link href={`/blogs/${blog.slug}`} className="relative w-full aspect-[16/9] overflow-hidden block">
         <Image 
           src={blog.image_url || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800'}
           alt={blog.title}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 66vw"
+          className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
           priority
         />
       </Link>
       
-      <div className="p-10 md:p-12 flex flex-col">
+      <div className="p-12 md:p-14 flex flex-col">
         <Link href={`/blogs/${blog.slug}`}>
-          <h2 className="font-heading text-2xl md:text-3xl text-black mb-6 leading-[1.3] font-bold transition-colors duration-300 group-hover:text-[#EA6490]">
+          <h2 className="font-heading text-3xl md:text-4xl text-slate-900 mb-6 leading-[1.3] font-bold transition-colors duration-500 group-hover:text-[#EA6490]">
             {blog.title}
           </h2>
         </Link>
         
-        <p className="text-[#6a6a6a] text-lg leading-[1.8] mb-8 line-clamp-3">
+        <p className="text-slate-500 text-lg md:text-xl leading-[1.8] mb-10 line-clamp-3">
           {blog.excerpt}
         </p>
         
-        <div className="mb-8">
-          <Link href={`/blogs/${blog.slug}`} className="text-sm font-bold text-black uppercase tracking-widest inline-flex items-center group/link hover:text-[#EA6490] transition-colors">
-            READ MORE »
+        <div className="mb-10">
+          <Link href={`/blogs/${blog.slug}`} className="text-xs font-black text-slate-900 uppercase tracking-[0.3em] inline-flex items-center group/link hover:text-[#EA6490] transition-colors gap-2">
+            READ MORE 
+            <span className="group-hover/link:translate-x-2 transition-transform duration-300">»</span>
           </Link>
         </div>
         
-        <div className="pt-8 border-t border-gray-100 flex items-center justify-between text-[#7A7A7A] text-sm font-medium">
+        <div className="pt-10 border-t border-slate-50 flex items-center justify-between text-slate-400 text-sm font-bold uppercase tracking-widest">
           <span>{dateStr}</span>
         </div>
       </div>
     </article>
+
   );
 };
 

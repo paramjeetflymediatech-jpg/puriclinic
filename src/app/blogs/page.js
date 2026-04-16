@@ -4,7 +4,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import BlogCard from '@/components/BlogCard/BlogCard';
 import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
 import { Blog } from '@/lib/models';
-
+import Image from 'next/image';
 export const metadata = {
   title: 'Skin & Hair Care Blogs | Puri Skin Clinic',
   description: 'Read the latest tips, updates, and educational articles on skin care, hair restoration, and dermatology from our expert doctors.',
@@ -22,28 +22,38 @@ export default async function BlogsPage() {
   }
 
   return (
-    <div className="bg-[#f8f9fa] min-h-screen">
-      {/* Hero Section */}
-      <div className="bg-white border-b border-gray-100 py-12 mb-12">
-        <div className="max-w-[1140px] mx-auto px-6 lg:px-10">
-          <div className="flex items-center gap-2 text-sm font-medium text-[#EA6490] mb-4 uppercase tracking-wider">
-            <Link href="/" className="hover:text-[#4CA6AE] transition-colors">Home</Link> 
-            <FaChevronRight size={10} className="text-gray-300" /> 
-            <span className="text-gray-400">Blogs</span>
+    <div className="bg-white min-h-screen">
+      <div className="relative pt-10 pb-10 overflow-hidden">
+        <div className="container px-6 mx-auto relative z-10">
+          <div className="relative h-[250px] md:h-[300px] rounded-[2rem] overflow-hidden flex flex-col items-start justify-center text-white px-10 md:px-16">
+            <Image 
+              src="/dermatology-3.jpg" 
+              alt="Blogs Hero" 
+              fill 
+              className="object-cover -z-10 brightness-[0.4]"
+              priority
+            />
+            <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">Our Blogs</h1>
+            <div className="flex items-center gap-2 text-sm font-medium opacity-80">
+              <Link href="/" className="hover:text-[#EA6490] transition-colors">Home</Link>
+              <FaChevronRight size={10} />
+              <span>Blogs</span>
+            </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-heading text-black font-bold">Blogs</h1>
         </div>
       </div>
 
-      <div className="max-w-[1140px] mx-auto px-6 lg:px-10 pb-24">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+      <div className="max-w-[1400px] mx-auto px-6 py-16">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+
           
-             {/* Sidebar */}
-          <div className="order-1 lg:order-1">
+          {/* Sidebar */}
+          <div className="w-full lg:w-1/3 order-1">
             <BlogSidebar />
           </div>
-          {/* Main Content */}
-          <div className="flex-1 order-2 lg:order-2">
+
+          <div className="w-full lg:w-2/3 order-2">
+
             <div className="space-y-4">
               {blogs.map(blog => (
                 <BlogCard key={blog.slug} blog={blog} />

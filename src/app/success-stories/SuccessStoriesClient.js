@@ -30,15 +30,15 @@ export default function SuccessStoriesClient({ stories }) {
   return (
     <>
       {/* Category Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-4 mb-20">
+      <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 border ${
+            className={`px-10 py-4 rounded-full text-xs font-black uppercase tracking-[0.2em] transition-all duration-500 border-2 ${
               activeCategory === cat
-                ? 'bg-[#EA6490] text-white border-[#EA6490] shadow-lg shadow-[#EA6490]/20'
-                : 'bg-white text-slate-400 border-slate-100 hover:border-[#EA6490]/50 hover:text-[#EA6490]'
+                ? 'bg-[#EA6490] text-white border-[#EA6490] shadow-xl shadow-[#EA6490]/20'
+                : 'bg-white text-slate-400 border-slate-50 hover:border-[#EA6490]/50 hover:text-[#EA6490] hover:shadow-lg'
             }`}
           >
             {cat}
@@ -46,8 +46,10 @@ export default function SuccessStoriesClient({ stories }) {
         ))}
       </div>
 
+
       {/* Stories Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-x-10 md:gap-y-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-12 md:gap-y-20">
+
         {filteredStories.map((story, index) => (
           <SuccessStoryCard 
             key={story.id} 

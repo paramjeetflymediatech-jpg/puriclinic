@@ -111,7 +111,8 @@ export default function ContactForm({ theme = 'default' }) {
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="message" className={labelClasses}>Your Messsage</label>
+        <label htmlFor="message" className={labelClasses}>Your Message</label>
+
         <textarea 
           id="message" 
           name="message" 
