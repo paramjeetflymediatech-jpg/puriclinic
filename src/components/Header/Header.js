@@ -112,47 +112,38 @@ const Header = () => {
 
   // Helper to build dynamic dropdown structure
   const buildServicesDropdown = () => {
-    const hairItems = services
-      .filter(s => s.category === 'hair')
-      .map(s => ({ name: s.name, link: `/services/${s.slug}` }));
-
-    const skinItems = services
-      .filter(s => s.category === 'skin')
-      .map(s => ({ name: s.name, link: `/services/${s.slug}` }));
-
-    const singleItems = services
-      .filter(s => !s.category || (s.category !== 'hair' && s.category !== 'skin'))
-      .map(s => ({ name: s.name, link: `/services/${s.slug}` }));
-
-    const dropdown = [];
-
-    if (hairItems.length > 0) {
-      dropdown.push({
+    return [
+      {
         name: 'Hair Related Services',
-        link: '/services',
+        link: '/services/hair-related-services',
         hasSubMenu: true,
-        subItems: hairItems
-      });
-    }
-
-    if (skinItems.length > 0) {
-      dropdown.push({
+        subItems: [
+          { name: 'PRP for Hair and Skin', link: '/services/prp-for-hair-and-skin' },
+          { name: 'Hair Transplantation', link: '/services/hair-transplantation' },
+          { name: 'Growth Factor Concentrate', link: '/services/growth-factor-concentrate' },
+          { name: 'Exosome', link: '/services/exosome' },
+        ]
+      },
+      {
         name: 'Skin Related Services',
-        link: '/services',
+        link: '/services/skin-related-services',
         hasSubMenu: true,
-        subItems: skinItems
-      });
-    }
-
-    // Add others and fallback if no dynamic data yet
-    if (dropdown.length === 0 && services.length === 0) {
-      return [
-        { name: 'Hair Related Services', link: '/services' },
-        { name: 'Skin Related Services', link: '/services' }
-      ];
-    }
-
-    return [...dropdown, ...singleItems];
+        subItems: [
+          { name: 'Botox', link: '/services/botox' },
+          { name: 'Chemical Peel', link: '/services/chemical-peel' },
+          { name: 'Dermapen', link: '/services/dermapen' },
+          { name: 'Dermaroller', link: '/services/dermaroller' },
+          { name: 'Fillers', link: '/services/fillers' },
+          { name: 'Non-Surgical Facelift', link: '/services/non-surgical-facelift' },
+          { name: 'Wart Removal in Ludhiana', link: '/services/wart-removal-in-ludhiana' },
+        ]
+      },
+      { name: 'Vitiligo Treatment', link: '/services/vitiligo-treatment' },
+      { name: 'Acne Treatment', link: '/services/acne-treatment' },
+      { name: 'Laser Hair Removal', link: '/services/laser-hair-removal' },
+      { name: 'Facial Rejuvenation', link: '/services/facial-rejuvenation' },
+      { name: 'Melasma Treatment', link: '/services/melasma-treatment' },
+    ];
   };
 
   // Helper to build dynamic about dropdown (Doctors)

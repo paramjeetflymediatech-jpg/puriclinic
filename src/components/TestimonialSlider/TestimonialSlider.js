@@ -176,11 +176,12 @@ const TestimonialSlider = ({ testimonials }) => {
 
         {/* ─── Slider ─── */}
         <div className={styles.sliderContainer}>
-          <div
-            ref={trackRef}
-            className={styles.sliderTrack}
-            style={{ transform: `translateX(-${translatePx}px)` }}
-          >
+          <div className={styles.sliderViewport}>
+            <div
+              ref={trackRef}
+              className={styles.sliderTrack}
+              style={{ transform: `translateX(-${translatePx}px)` }}
+            >
             {testimonials.map((test, i) => {
               const isGoogle  = test.source?.toLowerCase().includes('google');
               const hasAvatar = Boolean(test.avatar_url);
@@ -256,6 +257,7 @@ const TestimonialSlider = ({ testimonials }) => {
               );
             })}
           </div>
+        </div>
 
           {/* Controls: prev · dots · next */}
           <div className={styles.controls}>

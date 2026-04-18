@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { decrypt } from '@/lib/auth';
 
-export async function middleware(request) {
+export async function proxy(request) {
   // Check if we're trying to access an admin route
   const currentPath = request.nextUrl.pathname;
   

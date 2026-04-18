@@ -97,6 +97,11 @@
   position: relative;
 }
 
+.sliderViewport {
+  overflow: hidden;
+  width: 100%;
+}
+
 .sliderTrack {
   display: flex;
   gap: 24px;
@@ -255,7 +260,7 @@
 
 .dots {
   position: absolute;
-  bottom: -60px;
+  bottom: -220px;
   left: 0;
   right: 0;
   display: flex;
@@ -286,7 +291,7 @@
 
 @media (max-width: 1280px) {
   .mainWrapper {
-    max-width: 95%;
+    max-width: 100%;
     padding: 3rem;
   }
 }
@@ -296,6 +301,7 @@
     flex-direction: column;
     padding: 3rem 2rem;
     gap: 2rem;
+    display: block;
   }
 
   .leftSummary {
@@ -310,12 +316,16 @@
 
   .slide {
     flex: 0 0 calc(50% - 12px);
+
   }
+.dots{
+  bottom: -200px;
+} 
 }
 
 @media (max-width: 640px) {
   .outerContainer {
-    padding: 3rem 1rem;
+    padding: 3rem 1rem 5rem; /* bottom padding for dots */
   }
 
   .sliderTitle {
@@ -323,8 +333,38 @@
   }
 
   .mainWrapper {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.25rem;
     border-radius: 30px;
+    gap: 1.5rem;
+    display: block;
+  }
+
+  
+  .leftSummary {
+    gap: 0.25rem;
+  }
+
+  .statusBadge {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .largeStars {
+    font-size: 1.5rem;
+    gap: 0.25rem;
+  }
+
+  .divider {
+    opacity: 0.5;
+  }
+
+  .testimonialCard {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .reviewText {
+    font-size: 0.9rem;
   }
 
   .slide {
@@ -334,10 +374,21 @@
   .navBtn {
     width: 36px;
     height: 36px;
+    background: rgba(255, 255, 255, 0.9);
   }
 
   .controls {
-    left: -10px;
-    right: -10px;
+    left: -8px;
+    right: -8px;
+  }
+  
+  .dots {
+    bottom: -150px;
+  }
+  .titleSection{
+    margin-bottom: 2rem;
+  }
+  .otherContainer{
+    padding: 1rem;
   }
 }

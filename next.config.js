@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  turbopack: {
+    root: __dirname, // ensures current project folder is root
+  },
   serverExternalPackages: ['sequelize', 'mysql2', 'node-cron'],
   images: {
     localPatterns: [
