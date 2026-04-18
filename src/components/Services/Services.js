@@ -56,23 +56,41 @@ const ServiceCard = ({ service }) => {
 
 const defaultServices = [
   {
-    title: 'Hair Services',
-    description: 'Access advanced treatment for receding hairlines and thinning bald spots with solutions such as PRP, GRC, as well as the FUE hair transplant procedure.',
-    image_url: 'https://puriskinclinic.com/wp-content/uploads/2025/08/Hair-related-services-28.jpg',
-    link: 'hair-related-services',
+    name: 'Hair Services',
+    description: 'Advanced solutions for hair fall, thinning, baldness, including PRP, GFC, FUE hair transplant, Exosomes.',
+    image_url: '/services/Hair-related-services-28.avif',
+    slug: 'hair-related-services',
   },
   {
-    title: 'Skin Services',
+    name: 'Skin Services',
     description: 'Take care of your face and appearance by opting for acne treatments, pigmentation solutions, and rejuvenating dull skin with the help of chemical peels, microneedling, Botox fillers, and many more solutions.',
-    image_url: 'https://puriskinclinic.com/wp-content/uploads/2025/08/Skin-related-services-28.jpg',
-    link: 'skin-related-services',
+    image_url: '/services/Skin-related-services-28.avif',
+    slug: 'skin-related-services',
   },
   {
-    title: 'Undergo Vitiligo Treatment',
-    description: 'If you suffer from vitiligo, it can prove to be a complex disorder to manage. However, with the advancements made in the dermatology field, you can now address this issue!',
-    image_url: 'https://puriskinclinic.com/wp-content/uploads/2025/08/Vitiligo-cure-28.jpg',
-    link: 'vitiligo-treatment',
+    name: 'Undergo Vitiligo Treatment',
+    description: 'Targeted vitiligo care using topical therapy and melanocyte grafting for long-term pigment restoration and skin balance.',
+    image_url: '/services/Vitiligo-cure-28.avif',
+    slug: 'vitiligo-treatment',
   },
+  {
+    name: 'Acne Treatment',
+    description: 'Clear acne with chemical peels, topical medications, and customized advanced dermatological care for lasting results.',
+    image_url: '/services/Acne-Treatment-30.avif',
+    slug: 'vitiligo-treatment',
+  },
+  {
+    name: 'Melasma Treatment',
+    description: 'Melasma treatment includes oral medications, exosome therapy, chemical peels, and microneedling to reduce facial pigmentation.',
+    image_url: '/services/Melasma-Treatment-30.avif',
+    slug: 'vitiligo-treatment',
+  },
+  {
+    name: 'Facial rejuvenation Treatment',
+    description: 'Facial rejuvenation combines threads, HIFU, microneedling, and skin boosters to lift, tighten, and hydrate skin.',
+    image_url: '/services/Facial-Rejuvenation-30.avif',
+    slug: 'vitiligo-treatment',
+  }
 ];
 
 const Services = async () => {
@@ -84,7 +102,7 @@ const Services = async () => {
     console.error("Failed to load services from DB:", err);
   }
 
-  const displayServices = fetchedServices.length > 0 ? fetchedServices : defaultServices;
+  const displayServices = defaultServices;
 
   return (
     <section className="py-[70px] bg-[#f0f4f8]">

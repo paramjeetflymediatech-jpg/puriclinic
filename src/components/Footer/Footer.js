@@ -76,7 +76,7 @@ const Footer = () => {
             {/* ── COLUMN 3: Connect Us ── */}
             <div className="pb-8 md:pb-0">
               <h4
-                className="text-white text-[22px] font-bold mb-[30px]" style={{"font-family": "var(--font-nunito-sans), 'Nunito Sans', sans-serif"}}
+                className="text-white text-[22px] font-bold mb-[30px]" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}
               >
                 Connect Us
               </h4>
