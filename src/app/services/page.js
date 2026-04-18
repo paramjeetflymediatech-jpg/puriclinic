@@ -12,7 +12,7 @@ const CATEGORIES = [
     title: 'Hair Related Services',
     subtitle: ' Trichology Division',
     icon: <FaUserMd />,
-    image: 'https://puriskinclinic.com/wp-content/uploads/2025/08/Hair-related-services-28.jpg',
+    image: '/services/Hair-related-services-28.avif',
     description: 'Specialized hair restoration and transplant services using globally recognized FUE and PRP techniques for permanent results.',
     link: '/services/hair-related-services',
     stats: { patients: '15k+', years: '40+', success: '99%' }
@@ -22,7 +22,7 @@ const CATEGORIES = [
     title: 'Skin Related Services',
     subtitle: ' Dermatology Science',
     icon: <FaFlask />,
-    image: 'https://puriskinclinic.com/wp-content/uploads/2025/08/Skin-related-services-28.jpg',
+    image: '/services/Skin-related-services-28.avif',
     description: 'Advanced aesthetic solutions for rejuvenation, pigmentation, and chronic skin conditions delivered with medical precision.',
     link: '/services/skin-related-services',
     stats: { patients: '25k+', years: '40+', success: '98%' }
@@ -32,7 +32,7 @@ const CATEGORIES = [
     title: 'Vitiligo Treatment',
     subtitle: 'Pigment Restoration',
     icon: <FaStethoscope />,
-    image: 'https://puriskinclinic.com/wp-content/uploads/2025/08/Vitiligo-cure-28.jpg',
+    image: '/services/Vitiligo-cure-28.avif',
     description: 'Expert management and treatment for vitiligo using specialized topical therapy and melanocyte grafting techniques.',
     link: '/services/vitiligo-treatment',
     stats: { patients: '5k+', years: '40+', success: '95%' }
@@ -100,7 +100,7 @@ export default function ServicesPage() {
           </div>
           <div className="relative rounded-[3rem] overflow-hidden shadow-2xl">
             <Image
-              src="https://puriskinclinic.com/wp-content/uploads/2023/06/about-v-3-1.jpg"
+              src="/services/Hair-related-services-28.avif"
               width={600}
               height={500}
               className="object-cover w-full h-auto"
