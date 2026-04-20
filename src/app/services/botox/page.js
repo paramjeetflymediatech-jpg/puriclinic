@@ -13,9 +13,9 @@ import ImageSlider from '@/components/ImageSlider/ImageSlider';
 
 export default function BotoxTreatmentPage() {
   const sliderImages = [
-    "/skin-related/Botox-28.avif",
-    "/skin-related/skin-1.avif",
-    "/skin-related/dd.avif"
+    "/botox/skinn.avif",
+    "/botox/skin-2.avif",
+    "/botox/br.avif"
   ];
 
   const signs = [
@@ -80,24 +80,17 @@ export default function BotoxTreatmentPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
 
-      {/* ── HERO SECTION ── */}
-      <section className="relative w-full h-[250px] md:h-[350px] flex items-center justify-center overflow-hidden">
-        <Image
-          src="/skin-related/Botox-28.avif"
-          fill
-          className="object-cover object-center"
-          alt="Botox Treatment Banner"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/30"></div>
-        <div className="relative z-10 text-center text-white px-6">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-            Botox <span className="text-[#EA6490]">Treatment</span>
-          </h1>
-          <div className="w-24 h-1 bg-[#EA6490] mx-auto rounded-full mb-6"></div>
-          <p className="text-sm md:text-base font-bold uppercase tracking-[0.3em] opacity-80">Expert Age Management in Ludhiana</p>
-        </div>
-      </section>
+       {/* ── HERO SECTION ── */}
+          <section className="relative w-full h-[200px] md:h-[400px] flex items-center justify-center overflow-hidden">
+            <Image
+              src="/botox/9-1.jpg"
+              fill
+              className="object-cover object-center"
+              alt="Non-Surgical Facelift Banner"
+              priority
+            />
+          </section>
+    
 
       {/* ── MAIN CONTENT ── */}
       <div className="max-w-[1300px] mx-auto px-6 py-12 md:py-20 space-y-24">
@@ -149,7 +142,7 @@ export default function BotoxTreatmentPage() {
             
             <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100">
                 <Image 
-                    src="/skin-related/Botox-28.avif" 
+                    src="/botox/sqw.jpg" 
                     fill 
                     className="object-cover" 
                     alt="Botox Treatment Procedure" 
