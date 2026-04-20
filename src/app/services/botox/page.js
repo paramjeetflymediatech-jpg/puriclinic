@@ -4,8 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  FaChevronRight, FaCheckCircle, FaStethoscope, FaArrowRight, 
-  FaStar, FaShieldAlt, FaMagic, FaRegLightbulb, FaUserMd, FaCalendarAlt, FaSyncAlt
+  FaCheckCircle,  FaArrowRight, 
+  FaStar, FaShieldAlt, FaRegLightbulb, FaUserMd, FaCalendarAlt, FaSyncAlt
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FAQAccordion from '@/components/FAQAccordion/FAQAccordion';

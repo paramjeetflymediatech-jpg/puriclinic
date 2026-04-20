@@ -16,7 +16,7 @@ export default function FaqAccordion({ faqs, title = "Frequently Asked Questions
   const rightCol = faqs.slice(midpoint);
 
   return (
-    <section className="py-24 border-t border-slate-100 bg-slate-50/30">
+    <section className="py-10 border-t border-slate-100 bg-slate-50/30">
       <div className="container mx-auto px-6">
         {title && (
           <div className="text-center mb-16">
@@ -85,7 +85,7 @@ function FaqItem({ faq, index, isOpen, onClick }) {
       </button>
       
       <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100 p-6 pt-0' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-        <p className="text-slate-600 font-light leading-relaxed border-t border-slate-50 pt-4">
+        <p className="text-black font-small leading-relaxed border-t border-slate-50 pt-4">
           {faq.answer}
         </p>
       </div>
