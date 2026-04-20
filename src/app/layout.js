@@ -1,6 +1,8 @@
+// Root Layout for Puri Skin Clinic
 import './globals.css';
+import Script from 'next/script';
 import { Nunito_Sans, Cormorant_Garamond, Playfair_Display, Lora } from 'next/font/google';
-import { getGlobalSchema } from '@/lib/seo';
+import { getGlobalSchema, getGlobalScripts } from '../lib/seo';
 import { HeaderConditional, FooterConditional } from '@/components/ConditionalLayout/ConditionalLayout';
 
 // Puri Skin Clinic uses Nunito Sans with heavy weights for that bold look
@@ -55,12 +57,64 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const schema = await getGlobalSchema();
+  const [schema, scripts] = await Promise.all([
+    getGlobalSchema(),
+    getGlobalScripts()
+  ]);
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head />
       {/* humne yahan font-class apply ki hai taaki poori site par branding match ho */}
       <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`} suppressHydrationWarning>
+        {/* Google Analytics (GA4) */}
+        {scripts.gaId && (
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${scripts.gaId}`}
+            strategy="afterInteractive"
+          />
+        )}
+        {scripts.gaId && (
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${scripts.gaId}');
+            `}
+          </Script>
+        )}
+
+        {/* Google Tag Manager */}
+        {scripts.gtmId && (
+          <Script id="gtm-script" strategy="afterInteractive">
+            {`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtag/js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${scripts.gtmId}');
+            `}
+          </Script>
+        )}
+
+        {/* GTM Noscript */}
+        {scripts.gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${scripts.gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            ></iframe>
+          </noscript>
+        )}
+
+        {/* Custom Head/Global Scripts (Injected at start of body for compatibility) */}
+        {scripts.headScripts && (
+          <div dangerouslySetInnerHTML={{ __html: scripts.headScripts }} />
+        )}
+
         {schema && (
           <script
             type="application/ld+json"
@@ -70,6 +124,11 @@ export default async function RootLayout({ children }) {
         <HeaderConditional />
         <main>{children}</main>
         <FooterConditional />
+
+        {/* Custom Footer Scripts */}
+        {scripts.footerScripts && (
+          <div dangerouslySetInnerHTML={{ __html: scripts.footerScripts }} />
+        )}
       </body>
     </html>
   );

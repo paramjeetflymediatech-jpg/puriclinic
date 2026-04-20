@@ -5,10 +5,11 @@ import BlogCard from '@/components/BlogCard/BlogCard';
 import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
 import { Blog } from '@/lib/models';
 import Image from 'next/image';
-export const metadata = {
-  title: 'Skin & Hair Care Blogs | Puri Skin Clinic',
-  description: 'Read the latest tips, updates, and educational articles on skin care, hair restoration, and dermatology from our expert doctors.',
-};
+import { getPageSeo } from '@/lib/seo';
+
+export async function generateMetadata() {
+  return getPageSeo('blogs');
+}
 
 export const dynamic = 'force-dynamic';
 

@@ -17,6 +17,25 @@ const PAGES = [
   { key: 'book-appointment', label: 'Book Appt.' },
   { key: 'blogs', label: 'Blogs' },
   { key: 'success-stories', label: 'Success' },
+  // Services
+  { key: 'acne-treatment', label: 'Acne' },
+  { key: 'botox', label: 'Botox' },
+  { key: 'chemical-peel', label: 'Chem Peel' },
+  { key: 'dermapen', label: 'Dermapen' },
+  { key: 'dermaroller', label: 'Dermaroller' },
+  { key: 'exosome', label: 'Exosome' },
+  { key: 'facial-rejuvenation', label: 'Facial Rej.' },
+  { key: 'fillers', label: 'Fillers' },
+  { key: 'growth-factor-concentrate', label: 'GFC' },
+  { key: 'hair-related-services', label: 'Hair Svc.' },
+  { key: 'hair-transplantation', label: 'Hair Trans.' },
+  { key: 'laser-hair-removal', label: 'Laser Hair' },
+  { key: 'melasma-treatment', label: 'Melasma' },
+  { key: 'non-surgical-facelift', label: 'Facelift' },
+  { key: 'prp-for-hair-and-skin', label: 'PRP' },
+  { key: 'skin-related-services', label: 'Skin Svc.' },
+  { key: 'vitiligo-treatment', label: 'Vitiligo' },
+  { key: 'wart-removal-in-ludhiana', label: 'Wart Rem.' },
 ];
 
 const BUSINESS_TYPES = [
@@ -88,6 +107,13 @@ export default function SeoAdminPage() {
   const [jsonPreview, setJsonPreview] = useState('');
   const [showJson, setShowJson] = useState(false); // mobile toggle for JSON preview
 
+  const [doctors, setDoctors] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+
+  const [scriptData, setScriptData] = useState({ gtmId: '', gaId: '', headScripts: '', footerScripts: '' });
+  const [loadingScripts, setLoadingScripts] = useState(false);
+  const [savingScripts, setSavingScripts] = useState(false);
+
   // ── Meta ─────────────────────────────────────────────────────────────────
   const loadMeta = useCallback(async (key) => {
     setLoadingMeta(true);
@@ -98,6 +124,56 @@ export default function SeoAdminPage() {
     } catch { setMetaData({}); }
     setLoadingMeta(false);
   }, []);
+
+  // ── Scripts ──────────────────────────────────────────────────────────────
+  const loadScripts = useCallback(async () => {
+    setLoadingScripts(true);
+    try {
+      const res = await fetch('/api/admin/seo?page=__global_scripts__');
+      const data = await res.json();
+      if (data.seo && data.seo.schema_json) {
+        setScriptData(JSON.parse(data.seo.schema_json));
+      }
+    } catch {}
+    setLoadingScripts(false);
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [docRes, blogRes] = await Promise.all([
+          fetch('/api/admin/doctors'),
+          fetch('/api/admin/blogs')
+        ]);
+        const docData = await docRes.json();
+        const blogData = await blogRes.json();
+        setDoctors(docData.doctors || []);
+        setBlogs(blogData.blogs || []);
+        loadScripts();
+      } catch (err) {
+        console.error("Failed to fetch dynamic pages:", err);
+      }
+    }
+    fetchData();
+  }, [loadScripts]);
+
+  const saveScripts = async (e) => {
+    e.preventDefault();
+    setSavingScripts(true);
+    try {
+      const res = await fetch('/api/admin/seo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ page_key: '__global_scripts__', schema_json: JSON.stringify(scriptData) }),
+      });
+      if (res.ok) {
+        Swal.fire({ icon: 'success', title: 'Saved!', text: 'Global tags updated site-wide.', timer: 2000, showConfirmButton: false });
+      } else throw new Error();
+    } catch {
+      Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to save global tags.' });
+    }
+    setSavingScripts(false);
+  };
 
   useEffect(() => { loadMeta(activePage); }, [activePage, loadMeta]);
 
@@ -198,10 +274,24 @@ export default function SeoAdminPage() {
   };
 
   // ── Preview ───────────────────────────────────────────────────────────────
-  const pageLabel = PAGES.find(p => p.key === activePage)?.label || '';
+  const getPageLabel = (key) => {
+    if (key.startsWith('doctor:')) {
+      const slug = key.replace('doctor:', '');
+      return doctors.find(d => d.slug === slug)?.name || 'Doctor Profile';
+    }
+    if (key.startsWith('blog:')) {
+      const slug = key.replace('blog:', '');
+      return blogs.find(b => b.slug === slug)?.title || 'Blog Post';
+    }
+    return PAGES.find(p => p.key === key)?.label || '';
+  };
+
+  const pageLabel = getPageLabel(activePage);
   const previewTitle = metaData.title || `${pageLabel} — Puri Skin Clinic`;
   const previewDesc = metaData.description || 'Your meta description will appear here. Aim for 120–160 characters.';
-  const previewUrl = `puriskinclinic.com/${activePage === 'home' ? '' : activePage}`;
+  const previewUrl = activePage.includes(':') 
+    ? `puriskinclinic.com/${activePage.split(':')[0]}s/${activePage.split(':')[1]}`
+    : `puriskinclinic.com/${activePage === 'home' ? '' : activePage}`;
 
   return (
     <div className="p-4 sm:p-6 lg:p-10">
@@ -218,6 +308,7 @@ export default function SeoAdminPage() {
         {[
           { id: 'meta', label: 'Meta Tags', icon: <FaSearch size={11} /> },
           { id: 'schema', label: 'Schema Markup', icon: <FaCode size={11} /> },
+          { id: 'scripts', label: 'Global Tags', icon: <FaLink size={11} /> },
         ].map(tab => (
           <button
             key={tab.id}
@@ -240,21 +331,96 @@ export default function SeoAdminPage() {
         <div className="space-y-6">
           {/* Page Selector */}
           <div className="bg-white rounded-[1.5rem] p-5 sm:p-6 shadow-sm border border-slate-100">
-            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 block">Select Page</label>
-            <div className="flex flex-wrap gap-2">
-              {PAGES.map(p => (
-                <button
-                  key={p.key}
-                  onClick={() => setActivePage(p.key)}
-                  className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
-                    activePage === p.key
-                      ? 'bg-[#EA6490] text-white border-[#EA6490] shadow-md shadow-[#EA6490]/20'
-                      : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-[#EA6490]/30 hover:text-[#EA6490]'
-                  }`}
-                >
-                  {p.label}
-                </button>
-              ))}
+            <div className="space-y-6">
+              <div>
+                <label className="text-[10px] font-black uppercase tracking-widest text-[#EA6490] mb-3 block">Main Pages</label>
+                <div className="flex flex-wrap gap-2">
+                  {PAGES.filter(p => !p.key.includes('acne') && !p.key.includes('botox') && !p.key.includes('chemical') && !p.key.includes('derm') && !p.key.includes('exosome') && !p.key.includes('facial') && !p.key.includes('fillers') && !p.key.includes('growth') && !p.key.includes('hair') && !p.key.includes('laser') && !p.key.includes('melasma') && !p.key.includes('non-surgical') && !p.key.includes('prp') && !p.key.includes('skin-related') && !p.key.includes('vitiligo') && !p.key.includes('wart')).map(p => (
+                    <button
+                      key={p.key}
+                      type="button"
+                      onClick={() => setActivePage(p.key)}
+                      className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
+                        activePage === p.key
+                          ? 'bg-[#EA6490] text-white border-[#EA6490] shadow-md shadow-[#EA6490]/20'
+                          : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-[#EA6490]/30 hover:text-[#EA6490]'
+                      }`}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[10px] font-black uppercase tracking-widest text-[#4CA6AE] mb-3 block">Service Pages</label>
+                <div className="flex flex-wrap gap-2">
+                  {PAGES.filter(p => p.key.includes('acne') || p.key.includes('botox') || p.key.includes('chemical') || p.key.includes('derm') || p.key.includes('exosome') || p.key.includes('facial') || p.key.includes('fillers') || p.key.includes('growth') || p.key.includes('hair') || p.key.includes('laser') || p.key.includes('melasma') || p.key.includes('non-surgical') || p.key.includes('prp') || p.key.includes('skin-related') || p.key.includes('vitiligo') || p.key.includes('wart')).map(p => (
+                    <button
+                      key={p.key}
+                      type="button"
+                      onClick={() => setActivePage(p.key)}
+                      className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
+                        activePage === p.key
+                          ? 'bg-[#4CA6AE] text-white border-[#4CA6AE] shadow-md shadow-[#4CA6AE]/20'
+                          : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-[#4CA6AE]/30 hover:text-[#4CA6AE]'
+                      }`}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {doctors.length > 0 && (
+                <div>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 block">Doctor Profiles</label>
+                  <div className="flex flex-wrap gap-2">
+                    {doctors.map(doc => {
+                      const key = `doctor:${doc.slug}`;
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          onClick={() => setActivePage(key)}
+                          className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
+                            activePage === key
+                              ? 'bg-slate-900 text-white border-slate-900 shadow-md shadow-slate-900/20'
+                              : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-slate-900/30 hover:text-slate-900'
+                          }`}
+                        >
+                          {doc.name}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {blogs.length > 0 && (
+                <div>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 block">Blog Posts</label>
+                  <div className="flex flex-wrap gap-2">
+                    {blogs.map(blog => {
+                      const key = `blog:${blog.slug}`;
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          onClick={() => setActivePage(key)}
+                          className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
+                            activePage === key
+                              ? 'bg-slate-900 text-white border-slate-900 shadow-md shadow-slate-900/20'
+                              : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-slate-900/30 hover:text-slate-900'
+                          }`}
+                        >
+                          {blog.title.length > 20 ? blog.title.substring(0, 20) + '...' : blog.title}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -613,6 +779,105 @@ export default function SeoAdminPage() {
           )}
         </div>
       )}
+
+      {/* ══════════════════════════════════════════════════════════════ */}
+      {/* TAB 3 — GLOBAL TAGS & SCRIPTS                                 */}
+      {/* ══════════════════════════════════════════════════════════════ */}
+      {activeTab === 'scripts' && (
+            <div className="space-y-6">
+              {loadingScripts ? (
+                <div className="bg-white rounded-[1.5rem] p-16 text-center text-slate-300 font-bold italic animate-pulse">Loading Scripts...</div>
+              ) : (
+                <form onSubmit={saveScripts} className="space-y-6">
+                  {/* Google Integration */}
+                  <div className="bg-white rounded-[1.5rem] p-5 sm:p-8 shadow-sm border border-slate-100">
+                    <h2 className="text-base sm:text-lg font-bold mb-6 text-slate-800 flex items-center gap-3">
+                      <span className="w-1.5 h-7 bg-[#4CA6AE] rounded-full flex-shrink-0"></span>
+                      Google Tracking & Analytics
+                    </h2>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <Field label="Google Tag Manager ID" icon={<FaLink className="text-[#EA6490]" />}>
+                        <input
+                          value={scriptData.gtmId ?? ''}
+                          onChange={e => setScriptData({ ...scriptData, gtmId: e.target.value })}
+                          placeholder="e.g. GTM-XXXXXXX"
+                          className={inputCls('pink')}
+                        />
+                        <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tight">Standard GTM container ID</p>
+                      </Field>
+
+                      <Field label="Google Analytics ID (GA4)" icon={<FaLink className="text-[#4CA6AE]" />}>
+                        <input
+                          value={scriptData.gaId ?? ''}
+                          onChange={e => setScriptData({ ...scriptData, gaId: e.target.value })}
+                          placeholder="e.g. G-XXXXXXXXXX"
+                          className={inputCls('teal')}
+                        />
+                        <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tight">Your Measurement ID</p>
+                      </Field>
+                    </div>
+                  </div>
+
+                  {/* Custom Scripts */}
+                  <div className="bg-white rounded-[1.5rem] p-5 sm:p-8 shadow-sm border border-slate-100">
+                    <h2 className="text-base sm:text-lg font-bold mb-6 text-slate-800 flex items-center gap-3">
+                      <span className="w-1.5 h-7 bg-[#EA6490] rounded-full flex-shrink-0"></span>
+                      Custom Code Injection
+                    </h2>
+
+                    <div className="space-y-8">
+                      <Field label="Header Scripts (Injects into <head>)" icon={<FaCode className="text-[#EA6490]" />}>
+                        <textarea
+                          rows={6}
+                          value={scriptData.headScripts ?? ''}
+                          onChange={e => setScriptData({ ...scriptData, headScripts: e.target.value })}
+                          placeholder="Paste your <script> or <meta> tags here..."
+                          className={`${inputCls('pink')} font-mono text-xs`}
+                        />
+                      </Field>
+
+                      <Field label="Footer Scripts (Injects before </body>)" icon={<FaCode className="text-[#4CA6AE]" />}>
+                        <textarea
+                          rows={6}
+                          value={scriptData.footerScripts ?? ''}
+                          onChange={e => setScriptData({ ...scriptData, footerScripts: e.target.value })}
+                          placeholder="Paste your custom JS or tracking pixels here..."
+                          className={`${inputCls('teal')} font-mono text-xs`}
+                        />
+                      </Field>
+                    </div>
+
+                    <div className="flex justify-end mt-10 pt-6 border-t border-slate-50">
+                      <button
+                        type="submit"
+                        disabled={savingScripts}
+                        className="flex items-center gap-2 bg-[#EA6490] hover:bg-[#d84a7e] disabled:opacity-60 text-white font-black px-10 py-4 rounded-2xl transition-all shadow-lg shadow-[#EA6490]/20 uppercase tracking-widest text-xs w-full sm:w-auto justify-center"
+                      >
+                        <FaSave /> {savingScripts ? 'Applying Globally...' : 'Save & Deploy Globally'}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Warning Banner */}
+                  <div className="bg-amber-50 rounded-[1.5rem] p-6 border border-amber-100">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-white flex-shrink-0">
+                        <FaExclamationCircle size={18} />
+                      </div>
+                      <div>
+                        <h3 className="font-black text-amber-900 mb-1 text-sm uppercase tracking-wider">Advanced Usage</h3>
+                        <p className="text-xs text-amber-800/70 font-medium leading-relaxed">
+                          Scripts added here will be executed on <strong>every single page</strong> of the website. 
+                          Ensure your code is properly formatted and safe to avoid breaking site functionality.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              )}
+            </div>
+          )}
     </div>
   );
 }

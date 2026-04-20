@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FaChevronRight, FaCalendarAlt, FaUser } from 'react-icons/fa';
 import { Blog } from '@/lib/models';
+import { getPageSeo } from '@/lib/seo';
 import ShareButtons from '@/components/ShareButtons/ShareButtons';
 import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
 
@@ -11,15 +12,30 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
-  const blog = await Blog.findOne({ where: { slug: resolvedParams.slug } });
+  const slug = resolvedParams.slug;
+  const blog = await Blog.findOne({ where: { slug } });
 
   if (!blog) {
     return { title: 'Blog Not Found' };
   }
 
+  // Check for custom SEO settings in DB
+  const customSeo = await getPageSeo(`blog:${slug}`);
+
+  // Fallback to blog content if no custom settings
+  const title = customSeo.title !== 'Puri Skin Clinic' ? customSeo.title : `${blog.title} | Puri Skin Clinic Blog`;
+  const description = customSeo.description || blog.excerpt || '';
+
   return {
-    title: blog.title,
-    description: blog.excerpt,
+    ...customSeo,
+    title,
+    description,
+    openGraph: {
+      ...customSeo.openGraph,
+      title: customSeo.openGraph?.title || title,
+      description: customSeo.openGraph?.description || description,
+      images: customSeo.openGraph?.images || (blog.image_url ? [{ url: blog.image_url }] : []),
+    },
   };
 }
 

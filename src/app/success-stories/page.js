@@ -5,6 +5,12 @@ import { FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 import TypewriterText from '@/components/TypewriterText/TypewriterText';
 
+import { getPageSeo } from '@/lib/seo';
+
+export async function generateMetadata() {
+  return getPageSeo('success-stories');
+}
+
 export const dynamic = 'force-dynamic';
 
 export default async function SuccessStoriesPage() {
