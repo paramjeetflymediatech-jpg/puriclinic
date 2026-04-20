@@ -55,7 +55,7 @@ export default function AboutUs() {
             <h3 className="text-3xl md:text-4xl font-heading mb-4">About Us</h3>
             <div className="flex items-center justify-start gap-2 text-sm font-medium">
               <Link href="/" className="hover:text-[#EA6490] transition-colors flex items-center gap-2">
-                <FaHome className="text-[#EA6490]" /> Home
+                  Home
               </Link>
               <FaChevronRight className="text-white/40 text-[20px]" />
               <span className="text-white/80">About Us</span>
