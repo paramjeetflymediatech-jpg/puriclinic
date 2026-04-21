@@ -4,22 +4,24 @@ import React from 'react';
 import Link from 'next/link';
 
 const ServiceCard = ({ service }) => {
+  const href = `/services/${service.slug || service.link}/`;
+  
   return (
-    <div className="group relative rounded-[15px] bg-[#EA6490] overflow-hidden h-[340px] cursor-pointer">
-
+    <Link href={href} className="group relative rounded-[15px] bg-[#EA6490] overflow-hidden h-[360px] cursor-pointer block shadow-sm hover:shadow-xl transition-all duration-500">
       {/* ── FRONT (always visible) ── */}
-      <div className="p-[15px] pb-0 h-[255px]">
-        <div className="w-full h-full rounded-[15px] overflow-hidden">
+      <div className="p-[12px] pb-0 h-[260px]">
+        <div className="w-full h-full rounded-[12px] overflow-hidden bg-white/10">
           <img
-            src={service.image_url || 'https://puriskinclinic.com/wp-content/uploads/2025/08/Skin-related-services-28.jpg'}
+            src={service.image_url || '/services/Skin-related-services-28.avif'}
             alt={service.name || service.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </div>
       </div>
-      <div className="flex items-center justify-center h-[85px] px-4">
+      
+      <div className="flex items-center justify-center h-[100px] px-5">
         <h4
-          className="text-white text-center font-bold text-[18px] leading-snug"
+          className="text-white text-center font-bold text-[18px] leading-[1.3] group-hover:opacity-0 transition-opacity duration-300"
           style={{ fontFamily: "var(--font-playfair), serif" }}
         >
           {service.name || service.title}
@@ -29,28 +31,25 @@ const ServiceCard = ({ service }) => {
       {/* ── HOVER OVERLAY ── */}
       <div
         className="absolute inset-0 z-20 rounded-[15px] bg-[#4CA6AE] flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100"
-        style={{ padding: '35px', transition: 'opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
+        style={{ padding: '30px', transition: 'all 0.4s ease-in-out' }}
       >
         <div
-          className="transform scale-[0.4] group-hover:scale-100 opacity-0 group-hover:opacity-100"
-          style={{ transition: 'transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease' }}
+          className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
         >
-          <p
-            className="text-white text-[14px] leading-[1.75] mb-5 line-clamp-4"
-          >
+          <h4 className="text-white font-bold text-[20px] mb-3" style={{ fontFamily: "var(--font-playfair), serif" }}>
+            {service.name || service.title}
+          </h4>
+          <p className="text-white/90 text-[14px] leading-[1.6] mb-6 line-clamp-6">
             {service.description}
           </p>
-          <Link
-            href={`/services/${service.slug || service.link}/`}
-            className="inline-block text-white px-7 py-3 rounded-[4px] text-[14px] font-semibold hover:opacity-90 transition-opacity duration-200"
-            style={{ backgroundColor: 'rgba(0,0,0,0.25)' }}
+          <span
+            className="inline-block bg-white text-[#4CA6AE] px-8 py-2.5 rounded-full text-[13px] font-black uppercase tracking-widest shadow-lg"
           >
             Read More
-          </Link>
+          </span>
         </div>
       </div>
-
-    </div>
+    </Link>
   );
 };
 

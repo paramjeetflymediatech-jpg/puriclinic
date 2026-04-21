@@ -23,6 +23,7 @@ const displayServices=[
   {
     name: 'Vitiligo Treatment',
     description: 'Targeted vitiligo care using topical therapy and melanocyte grafting for long-term pigment restoration and skin balance.',
+    image_url: '/services/Vitiligo-cure-28.avif',
     slug: 'vitiligo-treatment',
   },
   {

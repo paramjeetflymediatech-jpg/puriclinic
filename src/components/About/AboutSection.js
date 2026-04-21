@@ -27,7 +27,7 @@ const AboutSection = () => {
         {/* Left Doctor */}
         <div className="hidden lg:flex w-[320px] flex-shrink-0 items-end self-end">
           <img
-            src="/doctors/dr-gurinderjit-singh/de3.avif"
+            src="/doctors/dr-gurinderjit-singh/dr1.avif"
             alt="Dr Gurinderjit Singh Puri"
             className="w-full h-auto object-contain transform translate-y-[2px]"
           />
@@ -87,7 +87,7 @@ const AboutSection = () => {
         {/* Right Doctor */}
         <div className="hidden lg:flex w-[320px] flex-shrink-0 items-end self-end">
           <img
-            src="/doctors/dr-ashwajit/de4.avif"
+            src="/doctors/dr-ashwajit/dr2.avif"
             alt="Dr Ashwajit Singh"
             className="w-full h-auto object-contain transform translate-y-[2px]"
           />
@@ -98,12 +98,12 @@ const AboutSection = () => {
       {/* Mobile Doctor Images */}
       <div className="flex lg:hidden justify-center gap-[10px] px-[15px] pb-[30px] relative z-10">
         <img
-          src="/doctors/dr-gurinderjit-singh/de3.avif"
+          src="/doctors/dr-gurinderjit-singh/dr1.avif"
           className="w-[45%] h-auto object-contain"
           alt="Dr Gurinderjit Singh Puri"
         />
         <img
-          src="/doctors/dr-ashwajit/de4.avif"
+          src="/doctors/dr-ashwajit/dr2.avif"
           className="w-[45%] h-auto object-contain"
           alt="Dr Ashwajit Singh"
         />

@@ -159,10 +159,10 @@ export default function ServiceCategoryLayout({
       <section className="bg-slate-50 py-24">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-20">
-            <span className="text-[#EA6490] font-black uppercase tracking-[0.4em] text-[10px] block mb-4">Medical Excellence</span>
-            <h2 className="text-3xl md:text-[50px] font-bold text-slate-900" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-              Specialized Treatments
-            </h2>
+              <h6 className="text-3xl md:text-[50px] font-bold text-slate-900" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+             Types of Hair Treatment Services Available at Puri Skin Clinic
+            </h6>
+            <p className='py-12 text-xl font-medium leading-[1.8] text-black'>When anything goes wrong with one’s hair, the first instinct is to panic. However, it is imperative to realise that one can find and explore solutions to these issues. In fact, the solutions are widely available. With the help of Puri Skin Clinic, you can thoroughly and effectively ensure the possibility of undergoing any of the following treatment and transplant services to address the issue of hair loss, hair thinning, or complete baldness in an effective and essential manner. </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
