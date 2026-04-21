@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const ServiceCard = ({ service }) => {
-  const href = `/services/${service.slug || service.link}/`;
+  const href = `/${service.slug || service.link}`;
   
   return (
     <Link href={href} className="group relative rounded-[15px] bg-[#EA6490] overflow-hidden h-[360px] cursor-pointer block shadow-sm hover:shadow-xl transition-all duration-500">

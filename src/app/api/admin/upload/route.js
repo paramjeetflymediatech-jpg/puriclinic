@@ -47,7 +47,6 @@ export async function POST(request) {
         return `${uuidv4()}${ext}`;
       },
       filter: (part) => {
-        console.log('UPLOADING PART:', part.name, part.mimetype);
         const isAllowed = part.mimetype.startsWith('image/') || part.mimetype.startsWith('video/');
         if (!isAllowed) console.warn('FILE TYPE REJECTED:', part.mimetype);
         return isAllowed;

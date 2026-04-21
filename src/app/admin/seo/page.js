@@ -4,6 +4,7 @@ import {
   FaSearch, FaCode, FaSave, FaCheckCircle, FaExclamationCircle,
   FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaLinkedin,
   FaClock, FaMapMarkerAlt, FaPhone, FaEnvelope, FaLink, FaTimes,
+  FaChevronDown,
 } from 'react-icons/fa';
 import { MdPreview } from 'react-icons/md';
 import Swal from '@/lib/swal';
@@ -11,31 +12,32 @@ import Swal from '@/lib/swal';
 const PAGES = [
   { key: 'home', label: 'Home' },
   { key: 'about-us', label: 'About Us' },
-  { key: 'services', label: 'Services' },
-  { key: 'doctors', label: 'Doctors' },
+  { key: 'services', label: 'Services' }, 
+  { key: 'dr-gurinderjit-singh', label: 'Dr. Gurinderjit Singh' },
+  { key: 'dr-ashwajit-singh', label: 'Dr. Ashwajit Singh' },
   { key: 'contact-us', label: 'Contact Us' },
-  { key: 'book-appointment', label: 'Book Appt.' },
+  { key: 'book-appointment', label: 'Book Appointment' },
   { key: 'blogs', label: 'Blogs' },
-  { key: 'success-stories', label: 'Success' },
+  { key: 'success-stories', label: 'Success Stories' },
   // Services
-  { key: 'acne-treatment', label: 'Acne' },
+  { key: 'acne-treatment', label: 'Acne Treatment' },
   { key: 'botox', label: 'Botox' },
-  { key: 'chemical-peel', label: 'Chem Peel' },
+  { key: 'chemical-peel', label: 'Chemical Peel' },
   { key: 'dermapen', label: 'Dermapen' },
   { key: 'dermaroller', label: 'Dermaroller' },
   { key: 'exosome', label: 'Exosome' },
-  { key: 'facial-rejuvenation', label: 'Facial Rej.' },
+  { key: 'facial-rejuvenation', label: 'Facial Rejuvenation' },
   { key: 'fillers', label: 'Fillers' },
-  { key: 'growth-factor-concentrate', label: 'GFC' },
-  { key: 'hair-related-services', label: 'Hair Svc.' },
-  { key: 'hair-transplantation', label: 'Hair Trans.' },
-  { key: 'laser-hair-removal', label: 'Laser Hair' },
-  { key: 'melasma-treatment', label: 'Melasma' },
-  { key: 'non-surgical-facelift', label: 'Facelift' },
-  { key: 'prp-for-hair-and-skin', label: 'PRP' },
-  { key: 'skin-related-services', label: 'Skin Svc.' },
-  { key: 'vitiligo-treatment', label: 'Vitiligo' },
-  { key: 'wart-removal-in-ludhiana', label: 'Wart Rem.' },
+  { key: 'growth-factor-concentrate', label: 'Growth Factor Concentrate' },
+  { key: 'hair-related-services', label: 'Hair Related Services' },
+  { key: 'hair-transplantation', label: 'Hair Transplantation' },
+  { key: 'laser-hair-removal', label: 'Laser Hair Removal' },
+  { key: 'melasma-treatment', label: 'Melasma Treatment' },
+  { key: 'non-surgical-facelift', label: 'Non-Surgical Face Lift' },
+  { key: 'prp-for-hair-and-skin', label: 'PRP for Hair and Skin' },
+  { key: 'skin-related-services', label: 'Skin Related Services' },
+  { key: 'vitiligo-treatment', label: 'Vitiligo Treatment' },
+  { key: 'wart-removal-in-ludhiana', label: 'Wart Removal' },
 ];
 
 const BUSINESS_TYPES = [
@@ -106,9 +108,9 @@ export default function SeoAdminPage() {
   const [globalCustomSchema, setGlobalCustomSchema] = useState('');
   const [jsonPreview, setJsonPreview] = useState('');
   const [showJson, setShowJson] = useState(false); // mobile toggle for JSON preview
+  const [isPageDropdownOpen, setIsPageDropdownOpen] = useState(false);
+  const [pageSearch, setPageSearch] = useState('');
 
-  const [doctors, setDoctors] = useState([]);
-  const [blogs, setBlogs] = useState([]);
 
   const [scriptData, setScriptData] = useState({ gtmId: '', gaId: '', headScripts: '', footerScripts: '' });
   const [loadingScripts, setLoadingScripts] = useState(false);
@@ -131,7 +133,7 @@ export default function SeoAdminPage() {
           // If it's an array, it might contain FAQ and other things
           const schemas = Array.isArray(schema) ? schema : [schema];
           
-          const faqObj = schemas.find(s => s['@type'] === 'FAQPage');
+          const faqObj = schemas.find(s => s && s['@type'] === 'FAQPage');
           if (faqObj && faqObj.mainEntity) {
             faqs = faqObj.mainEntity.map(item => ({
               question: item.name,
@@ -140,7 +142,7 @@ export default function SeoAdminPage() {
           }
 
           // Filter out the FAQPage to show the rest as custom JSON
-          const otherSchemas = schemas.filter(s => s['@type'] !== 'FAQPage');
+          const otherSchemas = schemas.filter(s => s && s['@type'] !== 'FAQPage');
           if (otherSchemas.length > 0) {
             customSchema = JSON.stringify(otherSchemas.length === 1 ? otherSchemas[0] : otherSchemas, null, 2);
           }
@@ -169,22 +171,7 @@ export default function SeoAdminPage() {
   }, []);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const [docRes, blogRes] = await Promise.all([
-          fetch('/api/admin/doctors'),
-          fetch('/api/admin/blogs')
-        ]);
-        const docData = await docRes.json();
-        const blogData = await blogRes.json();
-        setDoctors(docData.doctors || []);
-        setBlogs(blogData.blogs || []);
-        loadScripts();
-      } catch (err) {
-        console.error("Failed to fetch dynamic pages:", err);
-      }
-    }
-    fetchData();
+    loadScripts();
   }, [loadScripts]);
 
   const saveScripts = async (e) => {
@@ -206,6 +193,17 @@ export default function SeoAdminPage() {
   };
 
   useEffect(() => { loadMeta(activePage); }, [activePage, loadMeta]);
+
+  // Click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isPageDropdownOpen && !e.target.closest('.relative')) {
+        setIsPageDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isPageDropdownOpen]);
 
   const saveMeta = async (e) => {
     e.preventDefault();
@@ -271,7 +269,7 @@ export default function SeoAdminPage() {
         const schemas = Array.isArray(data.schema) ? data.schema : [data.schema];
         // 1. Find the Business Schema (based on @type)
         const bizSchema = schemas.find(s => 
-          ['MedicalClinic', 'Dermatologist', 'HealthAndBeautyBusiness', 'LocalBusiness'].includes(s['@type'])
+          s && ['MedicalClinic', 'Dermatologist', 'HealthAndBeautyBusiness', 'LocalBusiness'].includes(s['@type'])
         );
         if (bizSchema) {
           // Map back from schema.org format to our internal form state
@@ -406,23 +404,13 @@ export default function SeoAdminPage() {
 
   // ── Preview ───────────────────────────────────────────────────────────────
   const getPageLabel = (key) => {
-    if (key.startsWith('doctor:')) {
-      const slug = key.replace('doctor:', '');
-      return doctors.find(d => d.slug === slug)?.name || 'Doctor Profile';
-    }
-    if (key.startsWith('blog:')) {
-      const slug = key.replace('blog:', '');
-      return blogs.find(b => b.slug === slug)?.title || 'Blog Post';
-    }
     return PAGES.find(p => p.key === key)?.label || '';
   };
 
   const pageLabel = getPageLabel(activePage);
   const previewTitle = metaData.title || `${pageLabel} — Puri Skin Clinic`;
   const previewDesc = metaData.description || 'Your meta description will appear here. Aim for 120–160 characters.';
-  const previewUrl = activePage.includes(':') 
-    ? `puriskinclinic.com/${activePage.split(':')[0]}s/${activePage.split(':')[1]}`
-    : `puriskinclinic.com/${activePage === 'home' ? '' : activePage}`;
+  const previewUrl = `puriskinclinic.com/${activePage === 'home' ? '' : activePage}`;
 
   return (
     <div className="p-4 sm:p-6 lg:p-10">
@@ -461,97 +449,123 @@ export default function SeoAdminPage() {
       {activeTab === 'meta' && (
         <div className="space-y-6">
           {/* Page Selector */}
-          <div className="bg-white rounded-[1.5rem] p-5 sm:p-6 shadow-sm border border-slate-100">
-            <div className="space-y-6">
-              <div>
-                <label className="text-[10px] font-black uppercase tracking-widest text-[#EA6490] mb-3 block">Main Pages</label>
-                <div className="flex flex-wrap gap-2">
-                  {PAGES.filter(p => !p.key.includes('acne') && !p.key.includes('botox') && !p.key.includes('chemical') && !p.key.includes('derm') && !p.key.includes('exosome') && !p.key.includes('facial') && !p.key.includes('fillers') && !p.key.includes('growth') && !p.key.includes('hair') && !p.key.includes('laser') && !p.key.includes('melasma') && !p.key.includes('non-surgical') && !p.key.includes('prp') && !p.key.includes('skin-related') && !p.key.includes('vitiligo') && !p.key.includes('wart')).map(p => (
-                    <button
-                      key={p.key}
-                      type="button"
-                      onClick={() => setActivePage(p.key)}
-                      className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
-                        activePage === p.key
-                          ? 'bg-[#EA6490] text-white border-[#EA6490] shadow-md shadow-[#EA6490]/20'
-                          : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-[#EA6490]/30 hover:text-[#EA6490]'
-                      }`}
-                    >
-                      {p.label}
-                    </button>
-                  ))}
+          <div className="bg-white rounded-[1.5rem] p-4 sm:p-6 shadow-sm border border-slate-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Currently Editing</label>
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setIsPageDropdownOpen(!isPageDropdownOpen)}
+                    className="flex items-center justify-between w-full sm:w-[350px] bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 text-left focus:ring-4 focus:ring-[#EA6490]/10 transition-all hover:bg-white hover:border-[#EA6490]/30 group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`w-2 h-2 rounded-full ${activePage.includes(':') ? 'bg-[#4CA6AE]' : 'bg-[#EA6490]'}`}></div>
+                      <span className="font-bold text-slate-700 text-sm truncate">{pageLabel}</span>
+                    </div>
+                    <FaChevronDown className={`text-slate-300 transition-transform ${isPageDropdownOpen ? 'rotate-180 text-[#EA6490]' : ''}`} size={12} />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {isPageDropdownOpen && (
+                    <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-3xl border border-slate-100 shadow-2xl shadow-slate-200/50 z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 min-w-[300px]">
+                      {/* Search Header */}
+                      <div className="p-4 border-b border-slate-50 bg-slate-50/30">
+                        <div className="relative">
+                          <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={12} />
+                          <input
+                            autoFocus
+                            placeholder="Search pages, doctors, blogs..."
+                            value={pageSearch}
+                            onChange={(e) => setPageSearch(e.target.value)}
+                            className="w-full bg-white border border-slate-100 rounded-xl pl-10 pr-4 py-2.5 text-xs font-bold text-slate-600 outline-none focus:ring-2 focus:ring-[#EA6490]/20 focus:border-[#EA6490] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Scrollable List */}
+                      <div className="max-h-[400px] overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-slate-100">
+                        {/* Group: Main Pages */}
+                        {(() => {
+                          const items = PAGES.filter(p => 
+                            !p.key.includes('acne') && !p.key.includes('botox') && !p.key.includes('chemical') && 
+                            !p.key.includes('derm') && !p.key.includes('exosome') && !p.key.includes('facial') && 
+                            !p.key.includes('fillers') && !p.key.includes('growth') && !p.key.includes('hair') && 
+                            !p.key.includes('laser') && !p.key.includes('melasma') && !p.key.includes('non-surgical') && 
+                            !p.key.includes('prp') && !p.key.includes('skin-related') && !p.key.includes('vitiligo') && 
+                            !p.key.includes('wart')
+                          ).filter(p => p.label.toLowerCase().includes(pageSearch.toLowerCase()));
+                          
+                          if (items.length === 0) return null;
+                          return (
+                            <div className="mb-4">
+                              <label className="px-4 py-2 text-[9px] font-black uppercase tracking-widest text-[#EA6490] block opacity-50">Static Pages</label>
+                              {items.map(p => (
+                                <button
+                                  key={p.key}
+                                  onClick={() => { setActivePage(p.key); setIsPageDropdownOpen(false); setPageSearch(''); }}
+                                  className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between group/item ${
+                                    activePage === p.key ? 'bg-[#EA6490]/10 text-[#EA6490]' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                                  }`}
+                                >
+                                  {p.label}
+                                  {activePage === p.key && <FaCheckCircle size={10} />}
+                                </button>
+                              ))}
+                            </div>
+                          );
+                        })()}
+
+                        {/* Group: Services */}
+                        {(() => {
+                          const items = PAGES.filter(p => 
+                            p.key.includes('acne') || p.key.includes('botox') || p.key.includes('chemical') || 
+                            p.key.includes('derm') || p.key.includes('exosome') || p.key.includes('facial') || 
+                            p.key.includes('fillers') || p.key.includes('growth') || p.key.includes('hair') || 
+                            p.key.includes('laser') || p.key.includes('melasma') || p.key.includes('non-surgical') || 
+                            p.key.includes('prp') || p.key.includes('skin-related') || p.key.includes('vitiligo') || 
+                            p.key.includes('wart')
+                          ).filter(p => p.label.toLowerCase().includes(pageSearch.toLowerCase()));
+                          
+                          if (items.length === 0) return null;
+                          return (
+                            <div className="mb-4">
+                              <label className="px-4 py-2 text-[9px] font-black uppercase tracking-widest text-[#4CA6AE] block opacity-50">Clinical Services</label>
+                              {items.map(p => (
+                                <button
+                                  key={p.key}
+                                  onClick={() => { setActivePage(p.key); setIsPageDropdownOpen(false); setPageSearch(''); }}
+                                  className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between group/item ${
+                                    activePage === p.key ? 'bg-[#4CA6AE]/10 text-[#4CA6AE]' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                                  }`}
+                                >
+                                  {p.label}
+                                  {activePage === p.key && <FaCheckCircle size={10} />}
+                                </button>
+                              ))}
+                            </div>
+                          );
+                        })()}
+
+                        {pageSearch && (PAGES.filter(p => p.label.toLowerCase().includes(pageSearch.toLowerCase())).length) === 0 && (
+                          <div className="p-10 text-center text-slate-300 font-bold italic text-xs">No pages match "{pageSearch}"</div>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
-              <div>
-                <label className="text-[10px] font-black uppercase tracking-widest text-[#4CA6AE] mb-3 block">Service Pages</label>
-                <div className="flex flex-wrap gap-2">
-                  {PAGES.filter(p => p.key.includes('acne') || p.key.includes('botox') || p.key.includes('chemical') || p.key.includes('derm') || p.key.includes('exosome') || p.key.includes('facial') || p.key.includes('fillers') || p.key.includes('growth') || p.key.includes('hair') || p.key.includes('laser') || p.key.includes('melasma') || p.key.includes('non-surgical') || p.key.includes('prp') || p.key.includes('skin-related') || p.key.includes('vitiligo') || p.key.includes('wart')).map(p => (
-                    <button
-                      key={p.key}
-                      type="button"
-                      onClick={() => setActivePage(p.key)}
-                      className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
-                        activePage === p.key
-                          ? 'bg-[#4CA6AE] text-white border-[#4CA6AE] shadow-md shadow-[#4CA6AE]/20'
-                          : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-[#4CA6AE]/30 hover:text-[#4CA6AE]'
-                      }`}
-                    >
-                      {p.label}
-                    </button>
-                  ))}
-                </div>
+              {/* Quick Actions / Info */}
+              <div className="flex items-center gap-3 bg-[#EA6490]/5 px-5 py-4 rounded-[1.5rem] border border-[#EA6490]/10 hidden sm:flex">
+                 <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-[#EA6490] shadow-sm">
+                    <FaCheckCircle size={18} />
+                 </div>
+                 <div>
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SEO Health</p>
+                    <p className="text-xs font-bold text-slate-700">Configuring Static Page</p>
+                 </div>
               </div>
-
-              {doctors.length > 0 && (
-                <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 block">Doctor Profiles</label>
-                  <div className="flex flex-wrap gap-2">
-                    {doctors.map(doc => {
-                      const key = `doctor:${doc.slug}`;
-                      return (
-                        <button
-                          key={key}
-                          type="button"
-                          onClick={() => setActivePage(key)}
-                          className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
-                            activePage === key
-                              ? 'bg-slate-900 text-white border-slate-900 shadow-md shadow-slate-900/20'
-                              : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-slate-900/30 hover:text-slate-900'
-                          }`}
-                        >
-                          {doc.name}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {blogs.length > 0 && (
-                <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 block">Blog Posts</label>
-                  <div className="flex flex-wrap gap-2">
-                    {blogs.map(blog => {
-                      const key = `blog:${blog.slug}`;
-                      return (
-                        <button
-                          key={key}
-                          type="button"
-                          onClick={() => setActivePage(key)}
-                          className={`px-4 py-2 rounded-xl text-xs font-black transition-all border ${
-                            activePage === key
-                              ? 'bg-slate-900 text-white border-slate-900 shadow-md shadow-slate-900/20'
-                              : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-slate-900/30 hover:text-slate-900'
-                          }`}
-                        >
-                          {blog.title.length > 20 ? blog.title.substring(0, 20) + '...' : blog.title}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 

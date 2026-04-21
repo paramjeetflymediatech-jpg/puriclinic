@@ -28,25 +28,25 @@ export default function HairRelatedServicesCategory() {
       services={[
         {
           title: 'Hair Transplantation',
-          link: '/services/hair-transplantation',
+          link: '/hair-transplantation',
           image: '/hair copy/Hair-Transplantation-28.jpg',
           description: 'With the hair transplantation treatment procedure, you can make certain that you are able to thoroughly and effectively restore hair at your desired location. This process is a minimally invasive surgical procedure through which one can resolve the issue of baldness in an essential manner. This is done by transplanting active and healthy hair follicles to the desired location. This essentially offers permanent and natural-looking results.'
         },
         {
           title: 'Growth Factor Concentrate',
-          link: '/services/growth-factor-concentrate',
+          link: '/growth-factor-concentrate',
           image: '/hair copy/Growth-Factor-Concentrate-28.jpg',
           description: 'GFC essentially offers a regenerative therapy that employs the use of concentrated growth factors from the patient’s blood cells. With this therapy, you can boost collagen and reduce hair loss. GFC is an ideal option when you have been diagnosed with early-stage hair loss. This treatment possibility ensures that one can have healthier skin as well as hair.'
         },
         {
           title: 'PRP for Hair and Skin',
-          link: '/services/prp-for-hair-and-skin',
+          link: '/prp-for-hair-and-skin',
           image: '/hair copy/PRP-for-Hair-and-Skin-28.jpg',
           description: 'PRP, or Platelet-Rich Plasma, thoroughly and essentially ensures the possibility of utilising the blood’s natural healing techniques to ensure that you can rejuvenate your skin, treat hair thinning, reduce the presence of wrinkles, and improve cellular regeneration. This process ensures the possibility of youthful skin and thoroughly healthy hair.'
         },
         {
           title: 'Exosomes Therapy',
-          link: '/services/exosome',
+          link: '/exosome',
           image: '/hair copy/Exosome-30.jpg',
           description: 'Employing the use of one’s stem cells, you can thoroughly and effectively ensure the possibility of delivering influential growth factors, peptides, and thoroughly explore genetic material to target skin as well as hair growth and rejuvenation. This process reduces inflammation and stimulates collagen as well as hair follicle activity.'
         }

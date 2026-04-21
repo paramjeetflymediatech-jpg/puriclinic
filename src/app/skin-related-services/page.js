@@ -25,79 +25,79 @@ export default function SkinRelatedServicesCategory() {
   const skinServices = [
     {
       title: 'Acne Treatment',
-      link: '/services/acne-treatment',
+      link: '/acne-treatment',
       image: '/skin-related/skin-1.avif',
       description: 'Comprehensive clinical solutions for active acne and prevention of scarring using advanced topical and light-based therapies.'
     },
     {
       title: 'Chemical Peel',
-      link: '/services/chemical-peel',
+      link: '/chemical-peel',
       image: '/skin-related/Chemical-Peel-28.avif',
       description: 'Medical-grade exfoliative treatments to address texture, pores, and sun damage. Smoother, healthier skin with fewer wrinkles.'
     },
     {
       title: 'Exosomes',
-      link: '/services/exosome',
+      link: '/exosome',
       image: '/skin-related/Exosome-30-1.avif',
       description: 'Advanced regenerative therapy using cellular messengers to repair skin cells and address aging signs like wrinkles and scarring.'
     },
     {
       title: 'Growth Factor Concentrate',
-      link: '/services/growth-factor-concentrate',
+      link: '/growth-factor-concentrate',
       image: '/skin-related/Growth-Factor-Concentrate-28-1.avif',
       description: 'Regenerative therapy employing growth factors from your own blood to enhance facial appearance and skin health.'
     },
     {
       title: 'Dermaroller',
-      link: '/services/dermaroller',
+      link: '/dermaroller',
       image: '/skin-related/Dermaroller-28.avif',
       description: 'Triggering natural healing and collagen production through micro-punctures for firm, youthful-looking skin.'
     },
     {
       title: 'Melasma Treatment',
-      link: '/services/melasma-treatment',
+      link: '/melasma-treatment',
       image: '/skin-related/skina.avif',
       description: 'Targeted protocols to manage and resolve deep pigmentation and hormonal melasma for an even skin tone.'
     },
     {
       title: 'PRP for Hair and Skin',
-      link: '/services/prp-for-hair-and-skin',
+      link: '/prp-for-hair-and-skin',
       image: '/skin-related/PRP-for-Hair-and-Skin-28-1.avif',
       description: 'Using plasma-rich platelets to revitalize skin texture and promote hair density through natural biological responses.'
     },
     {
       title: 'Wart Removal',
-      link: '/services/wart-removal-in-ludhiana',
+      link: '/wart-removal-in-ludhiana',
       image: '/skin-related/dd.avif',
       description: 'Clinical removal of warts and skin growths using precise laser or radiofrequency technology for clear skin.'
     },
     {
       title: 'Dermapen',
-      link: '/services/dermapen',
+      link: '/dermapen',
       image: '/skin-related/Dermapen-28.avif',
       description: 'Micro-needling technology that stimulates elastin and collagen production for refined and rejuvenated skin.'
     },
     {
       title: 'Fillers',
-      link: '/services/fillers',
+      link: '/fillers',
       image: '/skin-related/Fillers-28.avif',
       description: 'Restoring facial volume and contouring features using hyaluronic acid for immediate, fuller results.'
     },
     {
       title: 'Botox',
-      link: '/services/botox',
+      link: '/botox',
       image: '/skin-related/Botox-28.avif',
       description: 'Softening expression lines and dynamic wrinkles like crow’s feet for a naturally youthful appearance.'
     },
     {
       title: 'Facial Rejuvenation',
-      link: '/services/facial-rejuvenation',
+      link: '/facial-rejuvenation',
       image: '/skin-related/skin-1.avif',
       description: 'Tailored aesthetic programs combining multiple modalities to restore vitality and youthfulness to your face.'
     },
     {
       title: 'Non-Surgical Facelift',
-      link: '/services/non-surgical-facelift',
+      link: '/non-surgical-facelift',
       image: '/skin-related/Non-Surgical-Facelift-28.avif',
       description: 'Defy signs of aging without surgery. Improve contours and lift sagging skin with minimally invasive procedures.'
     }
