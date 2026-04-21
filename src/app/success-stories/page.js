@@ -5,6 +5,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 import TypewriterText from '@/components/TypewriterText/TypewriterText';
 
+import { getPageSeo } from '@/lib/seo';
 import JsonLd from '@/components/Seo/JsonLd';
 
 export async function generateMetadata() {

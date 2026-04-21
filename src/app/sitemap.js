@@ -33,6 +33,21 @@ export default async function sitemap() {
     console.error('Sitemap Blog Fetch Error:', e);
   }
 
+  // 3. Fetch all Dynamic Doctors
+  let doctorEntries = [];
+  try {
+    const { Doctor } = await import('@/lib/models');
+    const doctors = await Doctor.findAll();
+    doctorEntries = doctors.map((doc) => ({
+      url: `${baseUrl}/doctors/${doc.slug}`,
+      lastModified: doc.updatedAt || new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    }));
+  } catch (e) {
+    console.error('Sitemap Doctor Fetch Error:', e);
+  }
+
   // 4. Hardcoded Clinical Service Pages (as seen in your file structure)
   const servicePages = [
     '/acne-treatment',
@@ -62,5 +77,5 @@ export default async function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...servicePages, ...blogEntries];
+  return [...staticPages, ...servicePages, ...blogEntries, ...doctorEntries];
 }

@@ -8,6 +8,8 @@ import { getPageSeo } from '@/lib/seo';
 import ShareButtons from '@/components/ShareButtons/ShareButtons';
 import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
 
+import JsonLd from '@/components/Seo/JsonLd';
+
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
@@ -18,11 +20,6 @@ export async function generateMetadata({ params }) {
   if (!blog) {
     return { title: 'Blog Not Found' };
   }
-
-  // Priorities: 
-  // 1. Blog-specific SEO fields (New)
-  // 2. Global SEO overrides (from getPageSeo)
-  // 3. Blog content fallbacks
 
   const customSeo = await getPageSeo(`blog:${slug}`);
 
@@ -46,7 +43,11 @@ export async function generateMetadata({ params }) {
 
 export default async function SingleBlog({ params }) {
   const resolvedParams = await params;
-  const rawBlog = await Blog.findOne({ where: { slug: resolvedParams.slug } });
+  const slug = resolvedParams.slug;
+  const [rawBlog, customSeo] = await Promise.all([
+    Blog.findOne({ where: { slug } }),
+    getPageSeo(`blog:${slug}`)
+  ]);
 
   if (!rawBlog) {
     notFound();
@@ -60,6 +61,7 @@ export default async function SingleBlog({ params }) {
 
   return (
     <div className="bg-white min-h-screen">
+      <JsonLd schema={customSeo.schema} />
       <div className="relative pt-10 pb-10 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
           <div className="relative h-[150px] md:h-[250px] rounded-[2rem] overflow-hidden flex flex-col items-center justify-center text-white px-10 md:px-16 text-center">

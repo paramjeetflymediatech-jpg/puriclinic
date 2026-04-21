@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaChevronRight } from 'react-icons/fa';
-import { motion } from 'framer-motion';
 import Services from '@/components/Services/Services';
 import { getPageSeo } from '@/lib/seo';
 import JsonLd from '@/components/Seo/JsonLd';
@@ -50,7 +49,8 @@ const displayServices=[
   }
 ];
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const seoData = await getPageSeo('services');
   return (
     <div className="bg-white min-h-screen text-[#1a1a1a]" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
       <JsonLd schema={seoData.schema} />
@@ -65,11 +65,7 @@ export default function ServicesPage() {
         />
 
         <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <h1 className="text-4xl md:text-[60px] font-bold text-white mb-6 leading-tight tracking-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
               Our Services
             </h1>
@@ -80,7 +76,7 @@ export default function ServicesPage() {
               <FaChevronRight size={8} className="opacity-50" />
               <span className="text-white">Services</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
