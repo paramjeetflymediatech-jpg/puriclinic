@@ -24,82 +24,61 @@ export default function SkinRelatedServicesCategory() {
 
   const skinServices = [
     {
-      title: 'Acne Treatment',
-      link: '/acne-treatment',
-      image: '/skin-related/skin-1.avif',
-      description: 'Comprehensive clinical solutions for active acne and prevention of scarring using advanced topical and light-based therapies.'
-    },
-    {
       title: 'Chemical Peel',
       link: '/chemical-peel',
       image: '/skin-related/Chemical-Peel-28.avif',
-      description: 'Medical-grade exfoliative treatments to address texture, pores, and sun damage. Smoother, healthier skin with fewer wrinkles.'
+      description: 'This is a cosmetic procedure where the face of the person undergoing the procedure is applied with chemical solution. This results in making certain that the damaged layers of the skin are removed. The skin that’s left behind is extensively rejuvenated. The regenerated skin is smoother, healthier, and has fewer wrinkles. One can address several signs of aging with this procedure.'
     },
     {
       title: 'Exosomes',
       link: '/exosome',
       image: '/skin-related/Exosome-30-1.avif',
-      description: 'Advanced regenerative therapy using cellular messengers to repair skin cells and address aging signs like wrinkles and scarring.'
+      description: 'Exosomes are essentially responsible for communication between cells. This aspect of their function allows them to help repair skin cells. They can help in rejuvenating and repairing one’s skin in an essential manner. Exosomes are filled with proteins, lipids, and nucleic acids. They can be derived from a variety of cell types, including but not limited to stem cells. Address several cosmetic concerns, such as wrinkles, pigmentation, and scarring, without any issues.'
     },
     {
       title: 'Growth Factor Concentrate',
       link: '/growth-factor-concentrate',
       image: '/skin-related/Growth-Factor-Concentrate-28-1.avif',
-      description: 'Regenerative therapy employing growth factors from your own blood to enhance facial appearance and skin health.'
+      description: 'This is a regenerative therapy that employs cells from the person’s blood in an essential manner. One needs to make sure that you are able to thoroughly separate growth factors from one’s blood and use them to enhance a person’s appearance by injecting them into a person’s skin, particularly over the space where they want to address a specific concern.'
     },
     {
       title: 'Dermaroller',
       link: '/dermaroller',
       image: '/skin-related/Dermaroller-28.avif',
-      description: 'Triggering natural healing and collagen production through micro-punctures for firm, youthful-looking skin.'
+      description: 'This handheld device makes sure to make small punctures on a person’s skin in an essential manner. Once these minor injuries are made, they trigger your skin’s natural healing abilities. This, then, causes the production of proteins such as collagen and elastin, which promote skin’s firmness and youthful appearance.'
     },
-    {
-      title: 'Melasma Treatment',
-      link: '/melasma-treatment',
-      image: '/skin-related/skina.avif',
-      description: 'Targeted protocols to manage and resolve deep pigmentation and hormonal melasma for an even skin tone.'
-    },
+ 
     {
       title: 'PRP for Hair and Skin',
       link: '/prp-for-hair-and-skin',
       image: '/skin-related/PRP-for-Hair-and-Skin-28-1.avif',
-      description: 'Using plasma-rich platelets to revitalize skin texture and promote hair density through natural biological responses.'
+      description: 'In this procedure, you can take advantage of the possibility of using plasma-rich platelets to enhance and improve your skin’s texture and appearance. This process is also often used for one’s hair follicles to rejuvenate and promote hair growth and density. Use your own body’s healing response to have a revitalised presence and appearance.'
     },
-    {
-      title: 'Wart Removal',
-      link: '/wart-removal-in-ludhiana',
-      image: '/skin-related/dd.avif',
-      description: 'Clinical removal of warts and skin growths using precise laser or radiofrequency technology for clear skin.'
-    },
+     
     {
       title: 'Dermapen',
       link: '/dermapen',
       image: '/skin-related/Dermapen-28.avif',
-      description: 'Micro-needling technology that stimulates elastin and collagen production for refined and rejuvenated skin.'
+      description: 'Much like the dermaroller procedure, dermapen also employs our natural healing process to ensure that we can get smooth and rejuvenated skin. This procedure also creates minor injuries on the skin’s surface to enhance the production of collagen and elastin, to enhance the skin’s appearance.'
     },
     {
       title: 'Fillers',
       link: '/fillers',
       image: '/skin-related/Fillers-28.avif',
-      description: 'Restoring facial volume and contouring features using hyaluronic acid for immediate, fuller results.'
+      description: 'Dermal fillers extensively make sure that you are able to restore facial volume and offer the possibility of contouring features. One can also thoroughly smooth any deep lines with these fillers. Employing the use of hyaluronic acid, they deliver immediate results and fuller cheeks.'
     },
     {
       title: 'Botox',
       link: '/botox',
       image: '/skin-related/Botox-28.avif',
-      description: 'Softening expression lines and dynamic wrinkles like crow’s feet for a naturally youthful appearance.'
+      description: 'With the help of Botox, you can thoroughly and extensively make sure that you are able to soften any expression lines as well as find a solution to dynamic issues such as crow’s feet on the side of your eyes. Attain a natural and youthful appearance with the help of Botox.'
     },
-    {
-      title: 'Facial Rejuvenation',
-      link: '/facial-rejuvenation',
-      image: '/skin-related/skin-1.avif',
-      description: 'Tailored aesthetic programs combining multiple modalities to restore vitality and youthfulness to your face.'
-    },
+ 
     {
       title: 'Non-Surgical Facelift',
       link: '/non-surgical-facelift',
       image: '/skin-related/Non-Surgical-Facelift-28.avif',
-      description: 'Defy signs of aging without surgery. Improve contours and lift sagging skin with minimally invasive procedures.'
+      description: 'This procedure can thoroughly and extensively combine several procedures to ensure a minimally invasive procedure. One can expect relief from sagging skin, enhance their face contours, and improve their overall appearance. Defy the signs of aging without undergoing surgery, scarring, or any extensive recovery.'
     }
   ];
 
@@ -135,16 +114,16 @@ export default function SkinRelatedServicesCategory() {
 
           <div className="order-1 lg:order-2 space-y-8">
             <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-              Improve Your Skin’s <br/><span className="text-[#EA6490]">Natural Appearance!</span>
+              Improve Your Skin’s <br/><span className="text-[#EA6490]">Natural Appearance! with Puri Skin Clinic!</span>
             </h2>
             <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
 
             <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
               <p>
-                Suffering from any type of skin trouble can prove to be a life-changing experience. One loses all their confidence and self-esteem. One becomes conscious of one’s appearance and avoids social gatherings altogether.
+               Suffering from any type of skin trouble can prove to be a life-changing experience. One loses all their confidence and self-esteem. One becomes conscious of one’s appearance and avoids social gatherings altogether.
               </p>
               <p>
-                With the advanced skin care treatments in Ludhiana at Puri Skin Clinic, you can make certain that you are able to get to the bottom of your issues, get a personalised consultation, and undergo treatment in an effective manner.
+               This can thoroughly prove to be a disruption in one’s life. However, it is essential to make sure that you are able to access dermatological consultations to understand what’s wrong. With the advanced skin care treatments in Ludhiana, you can make certain that you are able to get to the bottom of your issues, get a personalised consultation, and undergo treatment in an effective manner. Access Puri Skin Clinic and ensure that you are able to undergo skin treatment in a thorough and extensive manner. 
               </p>
             </div>
           </div>
@@ -160,10 +139,10 @@ export default function SkinRelatedServicesCategory() {
               <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
               <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
                 <p>
-                  When one gets extremely conscious about their skin and how they appear, it can start to impact other aspects of a person’s life. If this is the case with you, one needs to make sure that you are able to seek skin treatment services in an essential manner.
+              When one gets extremely conscious about their skin and how they appear, it can start to impact other aspects of a person’s life. If this is the case with you, one needs to make sure that you are able to seek skin treatment services in an essential manner. 
                 </p>
                 <p>
-                  There are several reasons why a person might consider undergoing skin treatment services. The following are some of the reasons why people undergo skin treatment services at Puri Skin Clinic.
+                  There are several reasons why a person might consider undergoing skin treatment services. The following are some of the reasons why people undergo skin treatment services. 
                 </p>
               </div>
             </div>
@@ -183,15 +162,15 @@ export default function SkinRelatedServicesCategory() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Address Acne & Blemishes", desc: "Easily target and resolve persistent acne and skin imperfections for a clearer look.", icon: <FaStethoscope /> },
-              { title: "Address Aging Signs", desc: "If you are bothered by aging signs, you can undergo specialized treatments to address them.", icon: <FaMagic /> },
-              { title: "Resolve Pigmentation", desc: "Effective solutions to manage and resolve various skin pigmentation issues.", icon: <FaStar /> },
-              { title: "Improve Sun Damage", desc: "Advanced therapies to repair and restore skin health sustained from sun exposure.", icon: <FaShieldAlt /> },
-              { title: "Relief from Eczema", desc: "Find professional clinical relief from chronic skin troubles such as eczema.", icon: <FaFlask /> },
-              { title: "Maintain Radiance", desc: "Regular professional care to preserve and enhance your skin's natural glow.", icon: <FaSun /> },
-              { title: "Hydrate & Repair", desc: "Deep hydration treatments to repair cellular damage and restore vitality.", icon: <FaSyringe /> },
-              { title: "Enhanced Product Application", desc: "Ensure your daily skincare products penetrate better and work more extensively.", icon: <FaSyncAlt /> },
-              { title: "Thorough Confidence", desc: "Gain thorough confidence by achieving your desired skin and hair results.", icon: <FaUsers /> }
+              { title: "Address Acne & Blemishes", desc: "You can easily address acne and blemishes.", icon: <FaStethoscope /> },
+              { title: "Address Aging Signs", desc: "If you are bothered by aging signs, you can undergo treatment to address them.", icon: <FaMagic /> },
+              { title: "Resolve Pigmentation", desc: "If you have pigmentation, you can also use skin treatments to resolve this issue.", icon: <FaStar /> },
+              { title: "Improve Sun Damage", desc: "Skin treatment services can also help improve any damage sustained from the sun.", icon: <FaShieldAlt /> },
+              { title: "Relief from Eczema", desc: "One can also find relief from troubles such as eczema. ", icon: <FaFlask /> },
+              { title: "Maintain Radiance", desc: "One can maintain their skin radiance", icon: <FaSun /> },
+              { title: "Hydrate & Repair", desc: "You can also hydrate your skin and repair any damage ", icon: <FaSyringe /> },
+              { title: "Enhanced Product Application", desc: "One can also thoroughly and extensively ensure that the product application gets better", icon: <FaSyncAlt /> },
+              { title: "Thorough Confidence", desc: "With the right skin treatment services, you can make certain that you are able to thoroughly gain confidence.", icon: <FaUsers /> }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -206,6 +185,7 @@ export default function SkinRelatedServicesCategory() {
               </motion.div>
             ))}
           </div>
+            <p className="text-black font-medium text-lg mt-10"> If you are trying to find a clinic to undergo any skin treatment, you can seek a consultation appointment from Puri Skin Clinic. </p>
         </section>
 
         {/* SECTION 3: TREATMENT CATEGORIES */}
@@ -215,12 +195,12 @@ export default function SkinRelatedServicesCategory() {
               Types of Skin Treatments Available <br/><span className="text-[#EA6490]">from Puri Skin Clinic</span>
             </h2>
             <div className="w-16 h-1 bg-[#EA6490] rounded-full mx-auto"></div>
-            <div className="max-w-4xl mx-auto space-y-6 text-black font-medium text-lg">
+            <div className="max-w-6xl mx-auto space-y-6 text-black font-medium text-lg">
               <p>
                 When anything goes wrong with one’s skin, one often finds oneself panicking and overwhelmed at this prospect. One needs to make sure that they can calm down and seek a consultation from the experts at Puri Skin Clinic.
               </p>
               <p>
-                You can make sure that you are able to understand the trouble, get a diagnosis, and undergo a treatment procedure to address your issues. With the right team around you, you can make certain that you are able to undergo the proper treatment procedures in a thorough and extensive manner and resolve the issue.
+               You can make sure that you are able to understand the trouble, get a diagnosis, and undergo a treatment procedure to address your issues. With the right team around you, you can make certain that you are able to undergo the proper treatment procedures in a thorough and extensive manner and resolve the issue.
               </p>
             </div>
           </div>

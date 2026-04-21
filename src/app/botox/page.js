@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  FaCheckCircle,  FaArrowRight, 
+  FaCheckCircle, FaArrowRight,
   FaStar, FaShieldAlt, FaRegLightbulb, FaUserMd, FaCalendarAlt, FaSyncAlt
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -23,36 +23,36 @@ export default function BotoxTreatmentPage() {
     "Appearance of fine lines",
     "Frown lines",
     "Crow’s feet",
-    "Forehead lines",
+    "Any forehead lines ",
     "Gummy smile",
     "Dropping eyebrows"
   ];
 
   const reasons = [
-    { 
-      title: "Experts and Professionals", 
-      desc: "At Puri Skin Clinic, you can be assured of finding reliable and trained professionals who will offer you this treatment possibility, especially since the procedure is done on a person's face.", 
-      icon: <FaUserMd /> 
+    {
+      title: "Experts and Professionals",
+      desc: "Most people who opt for Botox treatment use it for its cosmetic purposes. More often than not, the procedure is supposed to be done on a person’s face. Therefore, one needs to make sure that they can find professional and experienced experts. At Puri Skin Clinic, you can be assured of finding reliable and trained professionals who will offer you this treatment possibility.",
+      icon: <FaUserMd />
     },
-    { 
-      title: "Consultation", 
-      desc: "Puri Skin Clinic typically starts the procedure with a thorough consultation wherein the patient can lay out all their concerns.", 
-      icon: <FaCalendarAlt /> 
+    {
+      title: "Consultation",
+      desc: "Puri Skin Clinic typically starts the procedure with a thorough consultation wherein the patient can lay out all their concerns.",
+      icon: <FaCalendarAlt />
     },
-    { 
-      title: "Treatment Plan", 
-      desc: "During the consultation, the doctor typically devises a treatment plan and discusses it in detail with the patient to ensure complete satisfaction.", 
-      icon: <FaRegLightbulb /> 
+    {
+      title: "Treatment Plan",
+      desc: "During the consultation, the doctor typically devises a treatment plan and discusses it in detail with the patient. Once both parties are satisfied, the plan is set in motion.",
+      icon: <FaRegLightbulb />
     },
-    { 
-      title: "Personalised Experience", 
-      desc: "Puri Skin Clinic ensures that each patient is given a personalised experience based on their specific problems and desired outcomes.", 
-      icon: <FaSyncAlt /> 
+    {
+      title: "Personalised Experience",
+      desc: "Puri Skin Clinic ensures that each patient is given a personalised experience based on their specific problems.",
+      icon: <FaSyncAlt />
     },
-    { 
-      title: "Your Safety", 
-      desc: "Our team thoroughly ensures that the patient's safety is prioritised in any and all clinical scenarios.", 
-      icon: <FaShieldAlt /> 
+    {
+      title: "Your Safety",
+      desc: "Our team also thoroughly ensures that the patient’s safety is prioritised in any and all scenarios.",
+      icon: <FaShieldAlt />
     }
   ];
 
@@ -80,17 +80,17 @@ export default function BotoxTreatmentPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
 
-       {/* ── HERO SECTION ── */}
-          <section className="relative w-full h-[200px] md:h-[400px] flex items-center justify-center overflow-hidden">
-            <Image
-              src="/botox/9-1.jpg"
-              fill
-              className="object-cover object-center"
-              alt="Non-Surgical Facelift Banner"
-              priority
-            />
-          </section>
-    
+      {/* ── HERO SECTION ── */}
+      <section className="relative w-full h-[200px] md:h-[400px] flex items-center justify-center overflow-hidden">
+        <Image
+          src="/botox/9-1.jpg"
+          fill
+          className="object-cover object-center"
+          alt="Non-Surgical Facelift Banner"
+          priority
+        />
+      </section>
+
 
       {/* ── MAIN CONTENT ── */}
       <div className="max-w-[1300px] mx-auto px-6 py-12 md:py-20 space-y-24">
@@ -102,7 +102,7 @@ export default function BotoxTreatmentPage() {
           </div>
           <div className="space-y-8">
             <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-              Rejuvenate Life <br/><span className="text-[#EA6490]">Back Into Your Face!</span>
+              Rejuvenate Life <br /><span className="text-[#EA6490]">Back Into Your Face!</span>
             </h2>
             <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
 
@@ -119,7 +119,7 @@ export default function BotoxTreatmentPage() {
             </div>
           </div>
 
-         
+
         </section>
 
         {/* SECTION 2: WHAT IS BOTOX (SIDE-BY-SIDE) */}
@@ -132,68 +132,68 @@ export default function BotoxTreatmentPage() {
               <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
               <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
                 <p>
-                  Botox treatment involves using botulinum toxin to temporarily relax the facial muscles that cause wrinkles. It is a highly effective way to address fine lines, crow's feet, and forehead furrows, providing a refreshed and youthful appearance.
+                  Botox treatment, also known as the botulinum toxin type A procedure, aims to reduce the amount of wrinkles or fine lines on your skin by relaxing the muscles appropriately. This procedure essentially works by ensuring to block the nerve signal that forces the muscles to contract in the first place.
                 </p>
                 <p>
-                  At Puri Skin Clinic, we use FDA-approved Botox to ensure the highest standards of safety and efficacy. The procedure is quick, minimally invasive, and requires no downtime, making it a popular choice for busy individuals.
+                  This process allows one to have smooth skin and, therefore, a much more youthful appearance in an effective manner. While the procedure has gained notoriety for its cosmetic purposes, it is also important to note here that one can often use Botox treatment to resolve muscle spasms as well as an overactive bladder.
                 </p>
               </div>
             </div>
-            
+
             <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100">
-                <Image 
-                    src="/botox/sqw.jpg" 
-                    fill 
-                    className="object-cover" 
-                    alt="Botox Treatment Procedure" 
-                />
+              <Image
+                src="/botox/sqw.jpg"
+                fill
+                className="object-cover"
+                alt="Botox Treatment Procedure"
+              />
             </div>
           </div>
         </section>
 
         {/* SECTION 3: SIGNS YOU NEED BOTOX */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start border-t border-slate-100 pt-20">
-            <div className="lg:col-span-1 space-y-8 sticky top-32">
-                <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-                    Signs You Need <br/><span className="text-[#EA6490]">Botox Treatment</span>
-                </h2>
-                <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
-                <p className="text-black font-medium text-lg">
-                    Common indications that it might be time to consider professional age management.
-                </p>
-                <div className="p-8 rounded-3xl bg-slate-900 text-white space-y-4 shadow-xl">
-                    <p className="italic text-slate-300 font-medium leading-relaxed">
-                        “The Botox treatment was quick and effective. The team did a fantastic job, and my crow’s feet have vanished.”
-                    </p>
-                    <p className="font-bold text-[#EA6490] uppercase tracking-widest text-xs">— Ravi Sharma, Ludhiana</p>
-                </div>
+          <div className="lg:col-span-1 space-y-8 sticky top-32">
+            <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              Signs You Need <br /><span className="text-[#EA6490]">Botox Treatment</span>
+            </h2>
+            <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
+            <p className="text-black font-medium text-lg">
+            If you have never even thought of undergoing Botox treatment, you can miss out on the clear indications that you need the Botox treatment. In this section, we discuss the common signs you need to keep an eye out for to ensure that you can get this treatment in a timely manner. The following are some of the signs you need to consider for Botox treatment: 
+            </p>
+            <div className="p-8 rounded-3xl bg-slate-900 text-white space-y-4 shadow-xl">
+              <p className="italic text-slate-300 font-medium leading-relaxed">
+               If you or someone you know is desiring a refreshed appearance, while also looking for a non-invasive solution, Botox treatment is a perfect option for you. 
+              </p>
+            
             </div>
+          </div>
 
-            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-                {signs.map((sign, idx) => (
-                    <motion.div 
-                        key={idx}
-                        whileHover={{ x: 10 }}
-                        className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 flex items-center gap-6 group hover:border-[#EA6490] transition-all"
-                    >
-                        <div className="w-12 h-12 rounded-xl bg-white text-[#EA6490] flex items-center justify-center text-xl shadow-sm group-hover:bg-[#EA6490] group-hover:text-white transition-all">
-                            <FaCheckCircle />
-                        </div>
-                        <span className="font-bold text-slate-800 text-lg">{sign}</span>
-                    </motion.div>
-                ))}
-            </div>
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {signs.map((sign, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ x: 10 }}
+                className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 flex items-center gap-6 group hover:border-[#EA6490] transition-all"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white text-[#EA6490] flex items-center justify-center text-xl shadow-sm group-hover:bg-[#EA6490] group-hover:text-white transition-all">
+                  <FaCheckCircle />
+                </div>
+                <span className="font-bold text-slate-800 text-lg">{sign}</span>
+              </motion.div>
+            ))}
+          </div>
         </section>
 
         {/* SECTION 4: WHY CHOOSE PURI SKIN CLINIC */}
         <section className="pt-20 border-t border-slate-100">
           <div className="text-center mb-16 space-y-6">
             <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-              Why Opt for Puri Skin Clinic <br/><span className="text-[#EA6490]">for Your Botox?</span>
+           Reasons to Opt for Puri Skin Clinic for <br /><span className="text-[#EA6490]">Your Botox Treatment!</span>
             </h2>
             <div className="w-16 h-1 bg-[#EA6490] rounded-full mx-auto"></div>
             <p className="text-black font-medium text-lg max-w-2xl mx-auto">
-              Undertake this delicate procedure through seasoned professionals for safe, natural results.
+            While there are several clinics that can offer you Botox treatment, it is imperative to ensure that you can undertake this procedure through professionals. The following are some of the reasons you need to opt for Puri Skin Clinic if you want to undergo Botox treatment in Ludhiana: 
             </p>
           </div>
 
@@ -231,14 +231,14 @@ export default function BotoxTreatmentPage() {
                 className="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:shadow-2xl hover:bg-white transition-all h-full group"
               >
                 <div className="flex text-[#EA6490] mb-6">
-                    {[...Array(item.rating)].map((_, i) => (
-                        <FaStar key={i} />
-                    ))}
+                  {[...Array(item.rating)].map((_, i) => (
+                    <FaStar key={i} />
+                  ))}
                 </div>
                 <p className="text-black text-lg italic font-medium leading-relaxed mb-8">“{item.text}”</p>
                 <div>
-                    <h4 className="font-bold text-slate-900 text-xl">{item.name}</h4>
-                    <p className="text-[#EA6490] font-bold text-sm uppercase tracking-widest mt-1">{item.location}</p>
+                  <h4 className="font-bold text-slate-900 text-xl">{item.name}</h4>
+                  <p className="text-[#EA6490] font-bold text-sm uppercase tracking-widest mt-1">{item.location}</p>
                 </div>
               </motion.div>
             ))}
@@ -250,28 +250,28 @@ export default function BotoxTreatmentPage() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-10">
             <h2 className="text-3xl md:text-[45px] font-bold leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-              Access Puri Skin Clinic for <br/><span className="text-[#EA6490]">Botox Treatment Today!</span>
+              Access Puri Skin Clinic for <br /><span className="text-[#EA6490]">Botox Treatment Today!</span>
             </h2>
             <div className="w-16 h-1 bg-[#EA6490] rounded-full mx-auto"></div>
             <div className="space-y-6 text-slate-300 font-medium text-lg leading-[1.8]">
               <p>
-                Undergoing Botox treatment for the first time can prove to be a thoroughly intimidating prospect. At Puri Skin Clinic, we ensure you undergo the treatment effectively and without any complications.
+               Undergoing Botox treatment for the first time can prove to be a thoroughly intimidating prospect. One needs to make sure that they can find professionals who can extensively resolve their issues and offer them a chance to undergo the treatment effectively. With the help of Puri Skin Clinic, you can make certain that you are able to thoroughly address your specific concerns and attain personalised treatment programs.
               </p>
               <p>
-                Choose expertise, choose safety. Our experts provide the clinical excellence you need for perfect age management.
+             One can easily make sure that you are able to undergo the Botox treatment without any complications. It is also important to note that the botox treatment cost in Punjab is relatively affordable when compared to other states in the country. Choose Puri Skin Clinic and undergo the Botox treatment today!
               </p>
             </div>
             <div className="pt-6">
-                <Link href="/book-appointment/" className="inline-flex items-center gap-4 bg-[#EA6490] text-white px-12 py-6 rounded-full font-black uppercase tracking-widest text-[13px] hover:bg-white hover:text-slate-900 transition-all shadow-2xl active:scale-95 group">
-                  Book Your Consultation <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </Link>
+              <Link href="/book-appointment/" className="inline-flex items-center gap-4 bg-[#EA6490] text-white px-12 py-6 rounded-full font-black uppercase tracking-widest text-[13px] hover:bg-white hover:text-slate-900 transition-all shadow-2xl active:scale-95 group">
+                Book Your Consultation <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
+              </Link>
             </div>
           </div>
         </section>
 
       </div>
       {/* SECTION 7: FAQS */}
-      <FAQAccordion faqs={BOTOX_FAQS} title="Frequently Asked Questions" />
+      {/* <FAQAccordion faqs={BOTOX_FAQS} title="Frequently Asked Questions" /> */}
 
     </div>
   );

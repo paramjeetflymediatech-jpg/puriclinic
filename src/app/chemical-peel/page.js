@@ -66,14 +66,14 @@ export default function ChemicalPeelPage() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-                Chemical <span className="text-[#EA6490]">Peeling Therapy</span>
+                Chemical <span className="text-[#EA6490]">Peeling</span>
               </h2>
               <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
             </div>
 
             <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
               <p>
-                Are you looking for ways to revitalise your skin? Having youthful and radiant skin can be hard to achieve when you do not know which ways or solutions to look for. However, chemical peeling therapy can be the right solution for you. This highly loved cosmetic procedure has helped many people with various skin concerns, be it uneven skin, fine lines, acne marks, and much more.
+               Are you looking for ways to revitalise your skin? Having youthful and radiant skin can be hard to achieve when you do not know which ways or solutions to look for. However, chemical peeling therapy can be the right solution for you. This highly loved cosmetic procedure has helped many people with various skin concerns, be it uneven skin, fine lines, acne marks, and much more. 
               </p>
 
               <div className="pt-4 space-y-4">
@@ -81,10 +81,10 @@ export default function ChemicalPeelPage() {
                   Understanding <span className="text-[#EA6490]">chemical peeling</span>
                 </h3>
                 <p>
-                  Chemical peeling therapy is a cosmetic procedure that is beneficial in enhancing the skin’s appearance. The treatment is done by applying a chemical solution to the skin. It later helps in exfoliating the skin, and after some time, it peels off. The chemical solution leaves the skin feeling fresher and young-looking from within.
+                 Chemical peeling therapy is a cosmetic procedure that is beneficial in enhancing the skin’s appearance. The treatment is done by applying a chemical solution to the skin. It later helps in exfoliating the skin, and after some time, it peels off. The chemical solution leaves the skin feeling fresher and young-looking from within. 
                 </p>
                 <p>
-                  The entire process is effective in getting rid of the dead skin cells and producing new skin cells as well as collagen. This can be beneficial in enhancing the texture of the skin, skin tone, and its overall appearance. Chemical peels can have different strengths. If you are going for a mild peeling option then the downtime is going to be less. Otherwise, high intensity or deep peels will require some weeks to heal.
+               The entire process is effective in getting rid of the dead skin cells and producing new skin cells as well as collagen. This can be beneficial in enhancing the texture of the skin, skin tone, and its overall appearance. Chemical peels can have different strengths. If you are going for a mild peeling option then the downtime is going to be less. Otherwise, high intensity or deep peels will require some weeks to heal. 
                 </p>
               </div>
             </div>
@@ -104,14 +104,14 @@ export default function ChemicalPeelPage() {
 
               <div className="space-y-8 text-black font-medium text-lg leading-[1.8]">
                 <p>
-                  Before gathering all the information related to low-cost chemical peeling in Punjab, there is so much more to know about chemical peels, such as its types:
+                  Before gathering all the information related to low-cost chemical peeling in Punjab, there is so much more to know about chemical peels, such as its types: 
                 </p>
 
                 <div className="space-y-8">
                   <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
                     <h4 className="font-bold text-slate-900 text-xl mb-3">Superficial peels</h4>
                     <p className="text-base leading-relaxed">
-                      These are considered light peels as they use mild acids, such as AHAs. They are helpful in exfoliating the skin’s outer layer by treating minor issues like uneven skin tone, fine lines, etc. Also, superficial peels are going to require little or sometimes no downtime, and patients can get back to their normal routines within a short span. People having sensitive skin or have never undergone any chemical peel treatment, can opt for superficial peels.
+                    These are considered light peels as they use mild acids, such as AHAs. They are helpful in exfoliating the skin’s outer layer by treating minor issues like uneven skin tone, fine lines, etc. Also, superficial peels are going to require little or sometimes no downtime, and patients can get back to their normal routines within a short span. People having sensitive skin or have never undergone any chemical peel treatment, can opt for superficial peels. 
                     </p>
                   </div>
 
@@ -125,7 +125,7 @@ export default function ChemicalPeelPage() {
                   <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
                     <h4 className="font-bold text-slate-900 text-xl mb-3">Deep peels</h4>
                     <p className="text-base leading-relaxed">
-                      Deep peels are known as intensive treatment as they get deeper skin layers. There is involvement of strong acids in deep peels, which can be beneficial in treating severe wrinkles, major sun damage, etc. Due to its high intensity peels, long recovery periods are needed and are carried out by professional dermatologists. This procedure is best suited for people who have major skin concerns and are in search of profound and great results.
+                     Deep peels are known as intensive treatment as they get deeper skin layers. There is involvement of strong acids in deep peels, which can be beneficial in treating severe wrinkles, major sun damage, etc. Due to its high intensity peels, long recovery periods are needed and are carried out by professional dermatologists. This procedure is best suited for people who have major skin concerns and are in search of profound and great results. 
                     </p>
                   </div>
                 </div>
