@@ -1,11 +1,15 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaChevronRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import Services from '@/components/Services/Services';
+import { getPageSeo } from '@/lib/seo';
+import JsonLd from '@/components/Seo/JsonLd';
+
+export async function generateMetadata() {
+  return getPageSeo('services');
+}
 
 const displayServices=[
   {
@@ -49,6 +53,7 @@ const displayServices=[
 export default function ServicesPage() {
   return (
     <div className="bg-white min-h-screen text-[#1a1a1a]" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
+      <JsonLd schema={seoData.schema} />
       {/* ── REFERENCE STYLE HERO ── */}
       <section className="relative h-[45vh] md:h-[55vh] flex items-center justify-center overflow-hidden bg-slate-900 px-6 text-center">
         <Image

@@ -7,6 +7,8 @@ import { Blog } from '@/lib/models';
 import Image from 'next/image';
 import { getPageSeo } from '@/lib/seo';
 
+import JsonLd from '@/components/Seo/JsonLd';
+
 export async function generateMetadata() {
   return getPageSeo('blogs');
 }
@@ -14,6 +16,7 @@ export async function generateMetadata() {
 export const dynamic = 'force-dynamic';
 
 export default async function BlogsPage() {
+  const seoData = await getPageSeo('blogs');
   let blogs = [];
   try {
     const rawData = await Blog.findAll({ order: [['createdAt', 'DESC']] });
@@ -24,6 +27,7 @@ export default async function BlogsPage() {
 
   return (
     <div className="bg-white min-h-screen">
+      <JsonLd schema={seoData.schema} />
       <div className="relative pt-10 pb-10 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
           <div className="relative h-[250px] md:h-[300px] rounded-[2rem] overflow-hidden flex flex-col items-start justify-center text-white px-10 md:px-16">

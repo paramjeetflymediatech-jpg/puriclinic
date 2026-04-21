@@ -6,14 +6,18 @@ import Image from 'next/image';
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/constants/constantdata';
 import { getPageSeo } from '@/lib/seo';
 
+import JsonLd from '@/components/Seo/JsonLd';
+
 export async function generateMetadata() {
   return getPageSeo('contact-us');
 }
-export default function ContactUs() {
+export default async function ContactUs() {
+  const seoData = await getPageSeo('contact-us');
   const contact_detail = CONTACT_INFO.contact_info;
   const social_links = SOCIAL_LINKS.social_links;
   return (
     <div className="bg-white min-h-screen">
+      <JsonLd schema={seoData.schema} />
       <div className="relative pt-10 pb-10 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
           <div className="relative h-[250px] md:h-[300px] rounded-[2rem] overflow-hidden flex flex-col items-start justify-center text-white px-10 md:px-16">

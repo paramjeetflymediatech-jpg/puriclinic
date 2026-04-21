@@ -5,7 +5,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 import TypewriterText from '@/components/TypewriterText/TypewriterText';
 
-import { getPageSeo } from '@/lib/seo';
+import JsonLd from '@/components/Seo/JsonLd';
 
 export async function generateMetadata() {
   return getPageSeo('success-stories');
@@ -14,6 +14,7 @@ export async function generateMetadata() {
 export const dynamic = 'force-dynamic';
 
 export default async function SuccessStoriesPage() {
+  const seoData = await getPageSeo('success-stories');
   const storiesRaw = await SuccessStory.findAll({
     where: { is_active: true },
     order: [['createdAt', 'DESC']]
@@ -23,6 +24,7 @@ export default async function SuccessStoriesPage() {
 
   return (
     <div className="bg-white min-h-screen">
+      <JsonLd schema={seoData.schema} />
       <div className="relative pt-10 pb-10 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
           <div className="relative h-[250px] md:h-[300px] rounded-[2rem] overflow-hidden flex flex-col items-start justify-center text-white px-10 md:px-16">

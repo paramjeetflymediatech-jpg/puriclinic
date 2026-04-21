@@ -1,12 +1,20 @@
-'use client';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronRight, FaPlayCircle } from 'react-icons/fa';
+import { getPageSeo } from '@/lib/seo';
+import JsonLd from '@/components/Seo/JsonLd';
 
-export default function DrAshwajitSingh() {
+export async function generateMetadata() {
+  return getPageSeo('dr-ashwajit-singh');
+}
+
+export default async function DrAshwajitSingh() {
+    const seoData = await getPageSeo('dr-ashwajit-singh');
+
     return (
         <div className="bg-white min-h-screen">
+            <JsonLd schema={seoData.schema} />
 
             {/* ─── HERO BANNER SECTION ─── */}
             <div className="container py-10">
