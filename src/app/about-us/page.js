@@ -80,9 +80,9 @@ export default function AboutUs() {
                 className="about-usage-slider h-full"
               >
                 {[
-                  "WhatsApp-Image-2025-07-22-at-1.27.35-PM-1-scaled-1 copy.avif",
-                  "WhatsApp-Image-2025-07-22-at-1.27.43-PM-1-scaled-1 copy.avif",
-                  "WhatsApp-Image-2025-07-22-at-1.27.52-PM-1-scaled-1 copy.avif"
+                  "aboutus/about1.jpg",
+                  "aboutus/about2.jpg",
+                  "aboutus/about3.jpg"
                 ].map((fileName, idx) => (
                   <SwiperSlide key={idx}>
                     <div className="relative w-full h-full">

@@ -27,7 +27,7 @@ const AboutSection = () => {
         {/* Left Doctor */}
         <div className="hidden lg:flex w-[320px] flex-shrink-0 items-end self-end">
           <img
-            src="https://puriskinclinic.com/wp-content/uploads/2025/10/dr1.png"
+            src="/aboutus/about1.jpg"
             alt="Dr Gurinderjit Singh Puri"
             className="w-full h-auto object-contain transform translate-y-[2px]"
           />

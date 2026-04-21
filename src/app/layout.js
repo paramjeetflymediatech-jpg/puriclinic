@@ -38,7 +38,10 @@ const playfairDisplay = Playfair_Display({
   variable: '--font-playfair',
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: 'Best Skin Clinic in Ludhiana | Dermatologist in Punjab - Puri Skin Clinic',
     template: '%s | Puri Skin Clinic',
@@ -52,7 +55,7 @@ export const metadata = {
   openGraph: {
     siteName: 'Puri Skin Clinic',
     type: 'website',
-    url: 'https://puriskinclinic.com',
+    url: BASE_URL,
   },
 };
 
