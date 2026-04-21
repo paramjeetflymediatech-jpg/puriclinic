@@ -241,7 +241,7 @@ export default function BlogsAdminPage() {
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                            <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                               Replace Image
-                              <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} disabled={uploading} />
+                          <input type="file" className="hidden" accept="image/*,video/*" onChange={handleFileUpload} disabled={uploading} />
                            </label>
                         </div>
                       </div>
@@ -253,7 +253,7 @@ export default function BlogsAdminPage() {
                         <p className="text-sm font-bold text-slate-600 mb-1">{uploading ? 'Uploading...' : 'Tap to Upload'}</p>
                         <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">JPG, PNG (MAX. 2MB)</p>
                         <label className="absolute inset-0 cursor-pointer">
-                          <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} disabled={uploading} />
+                          <input type="file" className="hidden" accept="image/*,video/*" onChange={handleFileUpload} disabled={uploading} />
                         </label>
                       </>
                     )}

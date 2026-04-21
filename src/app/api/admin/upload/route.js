@@ -47,11 +47,10 @@ export async function POST(request) {
         return `${uuidv4()}${ext}`;
       },
       filter: (part) => {
-        const allowedTypes = [
-          'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'image/webp',
-          'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'
-        ];
-        return allowedTypes.includes(part.mimetype);
+        console.log('UPLOADING PART:', part.name, part.mimetype);
+        const isAllowed = part.mimetype.startsWith('image/') || part.mimetype.startsWith('video/');
+        if (!isAllowed) console.warn('FILE TYPE REJECTED:', part.mimetype);
+        return isAllowed;
       }
     });
 

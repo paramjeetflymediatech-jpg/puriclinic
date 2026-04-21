@@ -16,6 +16,7 @@ const MIME_TYPES = {
   '.webm': 'video/webm',
   '.ogg': 'video/ogg',
   '.mov': 'video/quicktime',
+  '.avif': 'image/avif',
 };
 
 export async function GET(request, { params }) {

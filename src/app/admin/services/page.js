@@ -304,7 +304,7 @@ export default function ServicesAdminPage() {
                           <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                              <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                                 Change
-                                <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} disabled={uploading} />
+                                <input type="file" className="hidden" accept="image/*,video/*" onChange={handleFileUpload} disabled={uploading} />
                              </label>
                           </div>
                         </div>
@@ -315,7 +315,7 @@ export default function ServicesAdminPage() {
                           </div>
                           <p className="text-sm font-bold text-slate-600 mb-1 leading-none">{uploading ? 'Processing...' : 'Upload Icon'}</p>
                           <label className="absolute inset-0 cursor-pointer">
-                            <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} disabled={uploading} />
+                            <input type="file" className="hidden" accept="image/*,video/*" onChange={handleFileUpload} disabled={uploading} />
                           </label>
                         </>
                       )}
@@ -345,7 +345,7 @@ export default function ServicesAdminPage() {
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                            <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                               Change
-                              <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'hero')} disabled={uploading} />
+                              <input type="file" className="hidden" accept="image/*,video/*" onChange={(e) => handleFileUpload(e, 'hero')} disabled={uploading} />
                            </label>
                         </div>
                       </div>
@@ -355,8 +355,8 @@ export default function ServicesAdminPage() {
                           {uploading ? <div className="w-5 h-5 border-2 border-[#EA6490] border-t-transparent rounded-full animate-spin"></div> : <FaImages size={20} />}
                         </div>
                         <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1 leading-none">Hero Backdrop</p>
-                        <label className="absolute inset-0 cursor-pointer">
-                          <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'hero')} disabled={uploading} />
+                         <label className="absolute inset-0 cursor-pointer">
+                          <input type="file" className="hidden" accept="image/*,video/*" onChange={(e) => handleFileUpload(e, 'hero')} disabled={uploading} />
                         </label>
                       </>
                     )}
@@ -564,7 +564,7 @@ export default function ServicesAdminPage() {
                     <FaPlus size={16} />
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Add Photo</span>
-                  <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'gallery')} />
+                  <input type="file" className="hidden" accept="image/*,video/*" onChange={(e) => handleFileUpload(e, 'gallery')} />
                </label>
             </div>
           </div>

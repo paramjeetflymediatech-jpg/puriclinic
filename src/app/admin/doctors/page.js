@@ -303,7 +303,7 @@ export default function DoctorsAdminPage() {
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm shadow-inner">
                            <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                               Replace
-                              <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} disabled={uploading} />
+                              <input type="file" className="hidden" accept="image/*,video/*" onChange={handleFileUpload} disabled={uploading} />
                            </label>
                         </div>
                       </div>
@@ -314,7 +314,7 @@ export default function DoctorsAdminPage() {
                         </div>
                         <p className="text-sm font-bold text-slate-600 mb-1 leading-none">{uploading ? 'Processing...' : 'Upload Portrait'}</p>
                         <label className="absolute inset-0 cursor-pointer">
-                          <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} disabled={uploading} />
+                          <input type="file" className="hidden" accept="image/*,video/*" onChange={handleFileUpload} disabled={uploading} />
                         </label>
                       </>
                     )}
@@ -364,7 +364,7 @@ export default function DoctorsAdminPage() {
                    <div className="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-400 group-hover:text-[#EA6490] transition-colors mb-2">
                        <FaPlus size={14} />
                    </div>
-                   <input type="file" multiple className="hidden" accept="image/*" onChange={handleAchievementFileUpload} />
+                   <input type="file" multiple className="hidden" accept="image/*,video/*" onChange={handleAchievementFileUpload} />
                 </label>
               </div>
             </div>
