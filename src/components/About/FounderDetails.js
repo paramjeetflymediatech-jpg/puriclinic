@@ -40,7 +40,7 @@ const FounderDetails = () => {
                 Puri Skin Clinic can address your concerns!
               </p>
               <Link 
-                href="/about-us" 
+                href="/about-us/" 
                 className="inline-flex items-center gap-3 bg-[#EA6490] text-white px-[30px] py-[14px] rounded-full text-[15px] font-bold hover:bg-[#4CA6AE] transition-all"
               >
                 <FaCheckCircle className="text-[18px]" />
@@ -75,7 +75,7 @@ const FounderDetails = () => {
                 He is regularly invited to speak at national conferences, offering insights into clinical and aesthetic advancements.
               </p>
               <Link 
-                href="/about-us" 
+                href="/about-us/" 
                 className="inline-flex items-center gap-3 bg-[#EA6490] text-white px-[30px] py-[14px] rounded-full text-[15px] font-bold hover:bg-[#4CA6AE] transition-all"
               >
                 <FaCheckCircle className="text-[18px]" />

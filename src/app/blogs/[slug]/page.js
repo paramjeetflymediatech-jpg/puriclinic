@@ -72,7 +72,7 @@ export default async function SingleBlog({ params }) {
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-80">
               <Link href="/" className="hover:text-[#EA6490] transition-colors">Home</Link>
               <FaChevronRight size={8} />
-              <Link href="/blogs" className="hover:text-[#EA6490] transition-colors">Blogs</Link>
+              <Link href="/blogs/" className="hover:text-[#EA6490] transition-colors">Blogs</Link>
               <FaChevronRight size={8} />
               <span className="line-clamp-1 max-w-[200px]">{blog.title}</span>
             </div>
@@ -91,7 +91,7 @@ export default async function SingleBlog({ params }) {
 
 
           {/* Article Content (Right) */}
-          <div className="w-full lg:w-2/3 order-2 bg-white p-8 md:p-12 lg:p-16 shadow-[0_40px_100px_rgba(0,0,0,0.04)] border border-slate-50 rounded-[2.5rem]">
+          <div className="w-full lg:w-2/3 order-2 bg-white p-4 md:p-8 lg:p-12 shadow-[0_40px_100px_rgba(0,0,0,0.04)] border border-slate-50 rounded-[2.5rem]">
 
           <article className="prose prose-lg ">
             {/* Main Content */}
@@ -100,7 +100,7 @@ export default async function SingleBlog({ params }) {
                 src={blog.image_url || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800'}
                 alt={blog.title}
                 fill
-                className="object-cover"
+                className="object-fit"
                 priority
               />
             </div>
@@ -131,7 +131,7 @@ export default async function SingleBlog({ params }) {
               </div>
               <div className="flex flex-wrap items-center gap-6">
                 <ShareButtons />
-                <Link href="/book-appointment" className="bg-[#EA6490] text-white px-10 py-4 rounded-full font-bold hover:bg-[#d4547a] transition-all transform hover:scale-105 shadow-lg">
+                <Link href="/book-appointment/" className="bg-[#EA6490] text-white px-10 py-4 rounded-full font-bold hover:bg-[#d4547a] transition-all transform hover:scale-105 shadow-lg">
                   Book Appointment
                 </Link>
               </div>

@@ -62,7 +62,7 @@ export default function ServiceCategoryLayout({
             <div className="flex items-center justify-center gap-3 text-white/80 font-bold uppercase tracking-[0.2em] text-[10px]">
               <Link href="/" className="hover:text-[#EA6490] transition-colors">Home</Link>
               <FaChevronRight size={8} className="opacity-50" />
-              <Link href="/services" className="hover:text-[#EA6490] transition-colors">Services</Link>
+              <Link href="/services/" className="hover:text-[#EA6490] transition-colors">Services</Link>
               <FaChevronRight size={8} className="opacity-50" />
               <span className="text-white">{title}</span>
             </div>
@@ -212,7 +212,7 @@ export default function ServiceCategoryLayout({
               {ctaText}
             </p>
             <Link
-              href="/contact-us"
+              href="/contact-us/"
               className="inline-block bg-[#EA6490] text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-[#EA6490] transition-colors shadow-lg"
             >
               Consult Our Experts

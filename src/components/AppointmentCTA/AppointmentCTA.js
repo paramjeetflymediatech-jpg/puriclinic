@@ -24,7 +24,7 @@ const AppointmentCTA = () => {
         </p>
         
         <div className={styles.buttonContainer}>
-          <Link href="/book-appointment">
+          <Link href="/book-appointment/">
             <button className={styles.appointmentButton}>
               Book Appointment
             </button>

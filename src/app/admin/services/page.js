@@ -628,7 +628,7 @@ export default function ServicesAdminPage() {
                   </td>
                   <td className="p-8 text-right pr-12 space-x-3">
                     <Link
-                      href={`/services/${s.slug}`}
+                      href={`/services/${s.slug}/`}
                       target="_blank"
                       className="p-4 text-slate-300 hover:text-white hover:bg-slate-900 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-slate-900/20"
                       title="View Public Page"

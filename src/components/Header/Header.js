@@ -115,58 +115,52 @@ const Header = () => {
     return [
       {
         name: 'Hair Related Services',
-        link: '/services/hair-related-services',
+        link: '/hair-related-services/',
         hasSubMenu: true,
         subItems: [
-          { name: 'PRP for Hair and Skin', link: '/services/prp-for-hair-and-skin' },
-          { name: 'Hair Transplantation', link: '/services/hair-transplantation' },
-          { name: 'Growth Factor Concentrate', link: '/services/growth-factor-concentrate' },
-          { name: 'Exosome', link: '/services/exosome' },
+          { name: 'PRP for Hair and Skin', link: '/prp-for-hair-and-skin/' },
+          { name: 'Hair Transplantation', link: '/hair-transplantation/' },
+          { name: 'Growth Factor Concentrate', link: '/growth-factor-concentrate/' },
+          { name: 'Exosome', link: '/exosome/' },
         ]
       },
       {
         name: 'Skin Related Services',
-        link: '/services/skin-related-services',
+        link: '/skin-related-services/',
         hasSubMenu: true,
         subItems: [
-          { name: 'Botox', link: '/services/botox' },
-          { name: 'Chemical Peel', link: '/services/chemical-peel' },
-          { name: 'Dermapen', link: '/services/dermapen' },
-          { name: 'Dermaroller', link: '/services/dermaroller' },
-          { name: 'Fillers', link: '/services/fillers' },
-          { name: 'Non-Surgical Facelift', link: '/services/non-surgical-facelift' },
-          { name: 'Wart Removal in Ludhiana', link: '/services/wart-removal-in-ludhiana' },
+          { name: 'Botox', link: '/botox/' },
+          { name: 'Chemical Peel', link: '/chemical-peel/' },
+          { name: 'Dermapen', link: '/dermapen/' },
+          { name: 'Dermaroller', link: '/dermaroller/' },
+          { name: 'Fillers', link: '/fillers/' },
+          { name: 'Non-Surgical Facelift', link: '/non-surgical-facelift/' },
+          { name: 'Wart Removal in Ludhiana', link: '/wart-removal-in-ludhiana/' },
         ]
       },
-      { name: 'Vitiligo Treatment', link: '/services/vitiligo-treatment' },
-      { name: 'Acne Treatment', link: '/services/acne-treatment' },
-      { name: 'Laser Hair Removal', link: '/services/laser-hair-removal' },
-      { name: 'Facial Rejuvenation', link: '/services/facial-rejuvenation' },
-      { name: 'Melasma Treatment', link: '/services/melasma-treatment' },
+      { name: 'Vitiligo Treatment', link: '/vitiligo-treatment/' },
+      { name: 'Acne Treatment', link: '/acne-treatment/' },
+      { name: 'Laser Hair Removal', link: '/laser-hair-removal/' },
+      { name: 'Facial Rejuvenation', link: '/facial-rejuvenation/' },
+      { name: 'Melasma Treatment', link: '/melasma-treatment/' },
     ];
   };
 
   // Helper to build dynamic about dropdown (Doctors)
   const buildAboutDropdown = () => {
-    if (doctors.length === 0) {
       return [
-        { name: 'Dr Gurinderjit Singh Puri', link: '/doctors/dr-gurinderjit-singh/' },
-        { name: 'Dr Ashwajit Singh', link: '/doctors/dr-ashwajit-singh/' },
+        { name: 'Dr Gurinderjit Singh Puri', link: '/dr-gurinderjit-singh/' },
+        { name: 'Dr Ashwajit Singh', link: '/dr-ashwajit-singh/' },
       ];
-    }
-    return doctors.map(d => ({
-      name: d.name,
-      link: `/doctors/${d.slug}`
-    }));
   };
 
   const navLinks = [
     { name: 'Home', link: '/' },
-    { name: 'About Us', link: '/about-us', dropdown: buildAboutDropdown() },
-    { name: 'Services', link: '/services', dropdown: buildServicesDropdown() },
-    { name: 'Blogs', link: '/blogs' },
-    { name: 'Success Stories', link: '/success-stories' },
-    { name: 'Contact Us', link: '/contact-us' },
+    { name: 'About Us', link: '/about-us/', dropdown: buildAboutDropdown() },
+    { name: 'Services', link: '/services/', dropdown: buildServicesDropdown() },
+    { name: 'Blogs', link: '/blogs/' },
+    { name: 'Success Stories', link: '/success-stories/' },
+    { name: 'Contact Us', link: '/contact-us/' },
   ];
 
   return (
@@ -278,7 +272,7 @@ const Header = () => {
             {/* Book Appointment */}
             <div className="hidden lg:block flex-shrink-0">
               <Link
-                href="/book-appointment"
+                href="/book-appointment/"
                 className="bg-[#EA6490] text-white rounded-full font-bold hover:bg-[#d4547a] transition-all inline-block whitespace-nowrap"
                 style={{
                   fontSize: '16px',
@@ -317,7 +311,7 @@ const Header = () => {
                   </Link>
                 ))}
                 <Link
-                  href="/book-appointment"
+                  href="/book-appointment/"
                   className="mt-5 text-center bg-[#EA6490] text-white py-3.5 rounded-full"
                   style={{ fontSize: '16px', fontWeight: 700 }}
                   onClick={() => setIsMobileMenuOpen(false)}

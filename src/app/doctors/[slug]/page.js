@@ -55,7 +55,7 @@ export default function DoctorBioPage({ params: paramsPromise }) {
           <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
             <Link href="/" className="hover:text-[#EA6490] transition-colors">Home</Link> 
             <FaChevronRight size={8} /> 
-            <Link href="/doctors" className="hover:text-[#EA6490] transition-colors">Doctors</Link> 
+            <Link href="/doctors/" className="hover:text-[#EA6490] transition-colors">Doctors</Link> 
             <FaChevronRight size={8} /> 
             <span className="text-[#EA6490]">{doctor.name}</span>
           </div>
@@ -110,7 +110,7 @@ export default function DoctorBioPage({ params: paramsPromise }) {
                 )}
 
                 <div className="pt-6">
-                  <Link href="/book-appointment" className="btn btn-primary px-12 py-5 text-xs tracking-widest">
+                  <Link href="/book-appointment/" className="btn btn-primary px-12 py-5 text-xs tracking-widest">
                     Book Consultation
                   </Link>
                 </div>
@@ -200,7 +200,7 @@ export default function DoctorBioPage({ params: paramsPromise }) {
 
                 <div className="bg-[#EA6490] p-10 rounded-[3rem] text-center shadow-xl shadow-[#EA6490]/20">
                    <h2 className="text-xl font-bold text-white mb-6">Start Your Journey to Better Skin</h2>
-                   <Link href="/book-appointment" className="inline-flex items-center gap-3 bg-white text-[#EA6490] px-10 py-4 rounded-full font-black uppercase tracking-widest text-[10px] transition-all hover:bg-gray-900 hover:text-white">
+                   <Link href="/book-appointment/" className="inline-flex items-center gap-3 bg-white text-[#EA6490] px-10 py-4 rounded-full font-black uppercase tracking-widest text-[10px] transition-all hover:bg-gray-900 hover:text-white">
                       <FaCalendarCheck /> Book Appointment
                    </Link>
                 </div>

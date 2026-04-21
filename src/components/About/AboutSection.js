@@ -68,14 +68,14 @@ const AboutSection = () => {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-[20px]">
             <Link
-              href="/book-appointment"
+              href="/book-appointment/"
               className="bg-transparent text-white px-[40px] py-[15px] rounded-[50px] text-[16px] font-semibold border-[1px] border-white/80 hover:bg-[#EA6490] hover:border-[#EA6490] transition-all duration-300"
               style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}
             >
               Book Appointment
             </Link>
             <Link
-              href="/about-us"
+              href="/about-us/"
               className="bg-transparent text-white px-[40px] py-[15px] rounded-[50px] text-[16px] font-semibold border-[1px] border-white/80 hover:bg-[#EA6490] hover:border-[#EA6490] transition-all duration-300"
               style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}
             >

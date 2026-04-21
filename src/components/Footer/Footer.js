@@ -55,11 +55,11 @@ const Footer = () => {
               </h4>
               <ul className="flex flex-col gap-[18px]">
                 {[
-                  { name: 'About Us', link: '/about-us' },
-                  { name: 'Services', link: '/services' },
-                  { name: 'Blogs', link: '/blogs' },
-                  { name: 'Success Stories', link: '/success-stories' },
-                  { name: 'Contact Us', link: '/contact-us' },
+                  { name: 'About Us', link: '/about-us/' },
+                  { name: 'Services', link: '/services/' },
+                  { name: 'Blogs', link: '/blogs/' },
+                  { name: 'Success Stories', link: '/success-stories/' },
+                  { name: 'Contact Us', link: '/contact-us/' },
                 ].map((item) => (
                   <li key={item.name}>
                     <Link
@@ -84,10 +84,12 @@ const Footer = () => {
               <div className="flex flex-col gap-[18px]">
                 {/* Location */}
                 <div className="flex items-start gap-[10px]">
-                  <FaMapMarkerAlt className="text-[#EA4335] text-[18px] mt-[3px] flex-shrink-0" />
-                  <span className="text-white font-semibold text-[16px] leading-[1.6]">
-                    Ludhiana, Punjab - 141013
-                  </span>
+                  <a href='https://maps.app.goo.gl/2ZTvQ6gvDFwqdkLLA' className='flex items-start gap-[10px]' target='_blank'>
+                    <FaMapMarkerAlt className="text-[#EA4335] text-[18px] mt-[3px] flex-shrink-0" />
+                    <span className="text-white font-semibold text-[16px] leading-[1.6]">
+                      Ludhiana, Punjab - 141013
+                    </span>
+                  </a>
                 </div>
 
                 {/* Phone 1 */}

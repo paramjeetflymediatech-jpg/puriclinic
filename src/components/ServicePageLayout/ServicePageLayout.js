@@ -60,7 +60,7 @@ export default function ServicePageLayout({
             <div className="flex flex-wrap items-center justify-center gap-3 text-slate-600 font-bold uppercase tracking-[0.15em] text-[10px] mt-8">
               <Link href="/" className="hover:text-[#EA6490] transition-colors">Home</Link>
               <FaChevronRight size={8} className="text-slate-300" />
-              <Link href="/services" className="hover:text-[#EA6490] transition-colors">Services</Link>
+              <Link href="/services/" className="hover:text-[#EA6490] transition-colors">Services</Link>
               {category && (
                 <>
                   <FaChevronRight size={8} className="text-slate-300" />
@@ -237,7 +237,7 @@ export default function ServicePageLayout({
           <p className="text-xl text-slate-500 mb-12 font-medium leading-relaxed italic opacity-80">
             "Puri Skin Clinic remains North India's benchmark for complex dermatological care."
           </p>
-          <Link href="/book-appointment" className="inline-flex items-center gap-4 bg-slate-900 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-[11px] hover:bg-[#EA6490] transition-all shadow-xl active:scale-95">
+          <Link href="/book-appointment/" className="inline-flex items-center gap-4 bg-slate-900 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-[11px] hover:bg-[#EA6490] transition-all shadow-xl active:scale-95">
             Calculate Treatment Fee <FaArrowRight />
           </Link>
         </div>

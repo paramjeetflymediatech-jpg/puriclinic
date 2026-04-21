@@ -7,44 +7,64 @@ import { FaMapMarkerAlt, FaClock, FaEnvelope, FaPhoneAlt, FaFacebook, FaInstagra
 export const FAQ_DATA = {
   general: [
     {
-      question: "How can I find the best skin doctor in Ludhiana for my persistent acne?",
-      answer: "To find the best skin doctor in Ludhiana, consider their experience and patient reviews. Puri Skin Clinic, led by experts like Dr. Gurinderjit Singh with over 40 years of experience, is highly recommended for persistent acne treatment."
+      question: " Which is the best skin clinic near me?",
+      answer: "Puri Skin Clinic is the best skin clinic in Ludhiana as the best skin doctors of Ludhiana Dr Gurinderjit Singh Puri and Dr Ashwajit Singh provide the best skin services and all types of skin treatments while the charges are very economical."
     },
     {
-      question: "When should I expect results of Botox surgery for my face?",
-      answer: "Noticeable changes typically appear within three to five days after the procedure. Results remain for several months, providing satisfactory outcomes."
+      question: "How much does a dermatologist consultation cost?",
+      answer: "The initial dermatologist consultation cost is INR 500. The cost of follow up appointments are separate. The best dermatologist in Ludhiana, at Puri Skin Clinic offers the best consultation as well as the best treatment at economical rates."
     },
     {
-      question: "Does a healthy diet help in managing my acne?",
-      answer: "Yes, a healthy diet helps manage blood sugar levels, which is a major factor in acne formation. Professional guidance from Puri Skin Clinic is recommended for severe conditions."
+      question: "Which skin problems are treated at your clinic?",
+      answer: "The best skin specialists in Ludhiana treat skin conditions like acne, blemishes, pigmentation, vitiligo treatment, melasma treatment and many more. The treatment is suggested as per the condition of the skin, whether it is really needed or not."
     },
     {
-      question: "What are the healthy lifestyle practices for managing my acne?",
-      answer: "Follow a healthy diet (low sugar), clean your face gently without harsh chemicals, and maintain a consistent skincare routine."
+      question: "Can acne scars be removed permanently?",
+      answer: "No, permanent removal of acne scars is not possible. But the best acne doctor in Ludhiana can permanently reduce the appearance of these scars with the help of various treatments like laser resurfacing, microneedling, dermal fillers and chemical peels."
     },
     {
-      question: "I am currently dealing with vitiligo; is it concerning if I didn't follow sun protection?",
-      answer: "Yes, it is concerning. UV rays can directly affect skin and highlight vitiligo patches. Appropriate sun protection methods as suggested by skin doctors are essential."
+      question: "Is laser hair removal safe for Indian skin?",
+      answer: "Yes, laser hair removal is absolutely safe for Indian skin provided that a professional dermatologist performs the procedure using the right tools by the correct method. Our experts use skilled techniques to offer the best laser hair removal treatment."
     },
     {
-      question: "What is done in vitiligo treatment?",
-      answer: "Treatment includes medications and procedures to restore natural skin color. Puri Skin Clinic offers options ranging from medication to surgical procedures for complex cases."
+      question: "How many sessions are required for laser hair removal?",
+      answer: "For effective hair removal, generally 6 to 8 sessions are required. These sessions are scheduled according to the cycle of the hair growth, which is usually every 4 to 6 weeks."
     },
     {
-      question: "Which skin treatment would be best for an aging and wrinkled face?",
-      answer: "Options include Botox or laser resurfacing, which are effective in removing fine lines and wrinkles."
+      question: "What is the cost of laser hair removal at Puri Skin Clinic?",
+      answer: "The cost of laser hair removal varies according to the body area with an approximate range of INR 4000 per session for smaller sections like face and for larger sections like the back, arms or legs, the cost is INR 10,000 per session. The laser hair removal for a full body costs around INR 20,000 per session."
     },
     {
-      question: "Is undergoing skin treatment safe for sensitive skin?",
-      answer: "Yes, but you must inform your expert about your skin condition beforehand to ensure the treatment is tailored to avoid side effects."
+      question: "What is the best treatment for melasma?",
+      answer: "There is exactly no best treatment for melasma as melasma can be managed but it cannot be cured. But the effective treatments provided by the best melasma doctors in Ludhaina do exist which include Microneedling, Chemical peels, Light therapy etc."
     },
     {
-      question: "Are skin treatments effective or not?",
-      answer: "They are highly effective if administered by experienced experts and if the patient follows post-treatment instructions."
+      question: "Is hair PRP therapy effective for hair fall?",
+      answer: "Yes, hair PRP therapy refers to a non surgical treatment which is effective for promoting regrowth of hair, thereby improving the density of hair by the stimulation of hair follicles. The best PRP treatment in Ludhiana is provided at Puri Skin Clinic at an affordable cost."
     },
     {
-      question: "What factors determine the cost of skin treatment?",
-      answer: "Cost depends on the technique and complexity. Non-invasive treatments start around Rs. 6,000, while complex procedures can cost around Rs. 20,000."
+      question: "How many PRP sessions are required to see visible results?",
+      answer: "Generally, the recommended initial sessions are 4 to 6 which are spaced 4 to 6 weeks apart. Thereafter, maintenance sessions are recommended which take 6 to 12 months approximately for proven results."
+    },
+    {
+      question: "Which sunscreen should I use for my skin type?",
+      answer: "For dry or mature skin, you must choose sunscreens having hydrating ingredients like ceramides and hyaluronic acid. For oily or acne prone skin, sunscreens with water based formulas are recommended. Matte finish gel which is non comedogenic should be chosen whereas for combination skin type, the sunscreens which provide enough hydration but are not too greasy should be chosen. For sensitive skin types, sunscreens which are without fragrance should be used. Hypoallergenic mineral sunscreens having active ingredients like zinc oxide or titanium dioxide should be chosen. SPF 50 with a broad spectrum should be used."
+    },
+    {
+      question: "Do you offer treatment for acne during pregnancy?",
+      answer: "Yes, treatment for acne during pregnancy is provided at our clinic at a reasonable cost. We offer OTC treatments which are safe and effective and they help in clearing the pores and reducing the oils."
+    },
+    {
+      question: "Are anti-aging treatments like Botox and Fillers safe?",
+      answer: "Yes, the anti ageing treatments like Botox and Fillers are generally safe if these are administered by an expert. The treatments do have a few side effects and a few risks but they are usually temporary."
+    },
+    {
+      question: "What is the difference between Botox and Fillers?",
+      answer: "Botox works by relaxing the muscles temporarily, thereby smoothening the dynamic wrinkles. Fillers are helpful in restoring the volume which is lost for filling in static creases and wrinkles. Botox is best for crow’s feet whereas fillers are best for the areas which require more fullness."
+    },
+    {
+      question: "Do you provide treatment for fungal infections?",
+      answer: "Yes, we provide the best treatment for fungal infections. Our experts use antifungal medications, oral pills or intravenous for the treatment of these fungal infections depending on the severity of the infection."
     }
   ],
   hair: [

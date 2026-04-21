@@ -20,19 +20,19 @@ export default function AboutUs() {
       id: 0,
       title: "Vision", 
       icon: <FaEye />, 
-      desc: "Consistently refining our processes to maintain highest standards of clinical excellence as a world-class center. We aim to be the benchmark for advanced dermatological care in India, where every patient finds their way to clinical perfection." 
+      desc: "We aim to ensure that we are able to offer the possibility of excellence in the dermatology field. We strive to make sure that each patient leaves satisfied with our treatment and confident in themselves." 
     },
     { 
       id: 1,
       title: "Mission", 
       icon: <FaBullseye />, 
-      desc: "Equipping our clinic with world-class equipment and providing premium treatments that cater to individual patient needs. Our mission is to deliver health, beauty, and self-assurance on every level through personalized care and unwavering focus on patient safety." 
+      desc: "Our mission is to ensure that we are capable of delivering high-quality, evidence-based dermatological care no matter the condition we are treating. We want to provide the possibility of finding a solution for each and every patient who seeks it." 
     },
     { 
       id: 2,
       title: "Values", 
       icon: <FaHeart />, 
-      desc: "Integrity, innovation, and unwavering focus on patient safety. We treat every patient with the personalized care they deserve. We believe in transparency and commitment to treatment possibilities alongside offering a promise to deliver excellence." 
+      desc: "With the best dermatologist in India, you can expect excellence, innovation, integrity, and commitment to treatment possibilities. We ensure respect for our patients and personalised care alongside offering a promise to deliver health, beauty, and self-assurance on every level." 
     }
   ];
 
@@ -139,7 +139,7 @@ export default function AboutUs() {
                 </h2>
               </div>
               
-              <div className="space-y-6 text-slate-600 text-[15px] leading-[1.8] font-light">
+              <div className="space-y-6 text-black text-[15px] leading-[1.8] font-light">
                 <p>
                   <strong className="text-slate-900">Puri Skin Clinic</strong> offers an ideal amalgamation of services for all those seeking hair transplant and skin problem solutions. With the help of the best skin clinic in your area, you can make certain that you are able to thoroughly address any and all concerns affecting your physical appearance. From face rejuvenation to hair transplant techniques, you can easily enhance the possibility of undergoing advanced dermatological care.
                 </p>
@@ -205,7 +205,7 @@ export default function AboutUs() {
                     <div className="w-20 h-20 rounded-full border-2 border-white flex items-center justify-center text-white text-4xl mb-6">
                       {tab.icon}
                     </div>
-                    <span className="text-white font-heading font-black text-2xl uppercase tracking-wider">{tab.title}</span>
+                    <span className="text-white font-heading font-black text-2xl   tracking-wider">{tab.title}</span>
                   </div>
 
                   {/* Back Side (Hover) */}
@@ -214,7 +214,7 @@ export default function AboutUs() {
                       {React.cloneElement(tab.icon, { size: 40 })}
                     </div>
                     <h4 className="text-[#EA6490] font-heading font-black text-lg uppercase tracking-widest mb-4">{tab.title}</h4>
-                    <p className="text-slate-600 text-[14px] leading-relaxed font-medium italic">
+                    <p className="text-slate-600 text-[14px] leading-relaxed font-medium ">
                       {tab.desc}
                     </p>
                   </div>
@@ -273,7 +273,7 @@ export default function AboutUs() {
                 <h2 className="text-4xl md:text-6xl font-heading font-black text-white mb-8">
                   Ready to Restore Your <span className="text-[#EA6490]">Confidence?</span>
                 </h2>
-                <Link href="/book-appointment" className="inline-block bg-[#EA6490] text-white px-12 py-5 rounded-full font-black uppercase tracking-[0.2em] text-xs hover:bg-white hover:text-[#EA6490] transition-all duration-500 shadow-xl shadow-[#EA6490]/20">
+                <Link href="/book-appointment/" className="inline-block bg-[#EA6490] text-white px-12 py-5 rounded-full font-black uppercase tracking-[0.2em] text-xs hover:bg-white hover:text-[#EA6490] transition-all duration-500 shadow-xl shadow-[#EA6490]/20">
                   Book Your Consultation
                 </Link>
              </div>

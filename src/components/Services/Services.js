@@ -1,6 +1,7 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { Service } from '@/lib/models';
 
 const ServiceCard = ({ service }) => {
   return (
@@ -19,7 +20,7 @@ const ServiceCard = ({ service }) => {
       <div className="flex items-center justify-center h-[85px] px-4">
         <h4
           className="text-white text-center font-bold text-[18px] leading-snug"
-          style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}
+          style={{ fontFamily: "var(--font-playfair), serif" }}
         >
           {service.name || service.title}
         </h4>
@@ -36,14 +37,13 @@ const ServiceCard = ({ service }) => {
         >
           <p
             className="text-white text-[14px] leading-[1.75] mb-5 line-clamp-4"
-            style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}
           >
             {service.description}
           </p>
           <Link
-            href={`/services/${service.slug || service.link}`}
+            href={`/services/${service.slug || service.link}/`}
             className="inline-block text-white px-7 py-3 rounded-[4px] text-[14px] font-semibold hover:opacity-90 transition-opacity duration-200"
-            style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif", backgroundColor: 'rgba(0,0,0,0.25)' }}
+            style={{ backgroundColor: 'rgba(0,0,0,0.25)' }}
           >
             Read More
           </Link>
@@ -57,7 +57,7 @@ const ServiceCard = ({ service }) => {
 const defaultServices = [
   {
     name: 'Hair Services',
-    description: 'Advanced solutions for hair fall, thinning, baldness, including PRP, GFC, FUE hair transplant, Exosomes.',
+    description: 'Access advanced treatment for receding hairlines and thinning bald spots with solutions such as PRP, GRC, as well as the FUE hair transplant procedure.',
     image_url: '/services/Hair-related-services-28.avif',
     slug: 'hair-related-services',
   },
@@ -69,39 +69,31 @@ const defaultServices = [
   },
   {
     name: 'Undergo Vitiligo Treatment',
-    description: 'Targeted vitiligo care using topical therapy and melanocyte grafting for long-term pigment restoration and skin balance.',
+    description: 'If you suffer from vitiligo, it can prove to be a complex disorder to manage. However, with the advancements made in the dermatology field, you can now address this issue!',
     image_url: '/services/Vitiligo-cure-28.avif',
     slug: 'vitiligo-treatment',
   },
   {
-    name: 'Acne Treatment',
-    description: 'Clear acne with chemical peels, topical medications, and customized advanced dermatological care for lasting results.',
+    name: 'Access Acne Treatment',
+    description: 'If you have been struggling with adult acne, it can prove to be an obstacle in your life. With the help of Puri Skin Clinic, you can address the issue of acne in an essential manner.',
     image_url: '/services/Acne-Treatment-30.avif',
-    slug: 'vitiligo-treatment',
+    slug: 'acne-treatment',
   },
   {
-    name: 'Melasma Treatment',
-    description: 'Melasma treatment includes oral medications, exosome therapy, chemical peels, and microneedling to reduce facial pigmentation.',
+    name: 'Ensure Melasma Treatment',
+    description: 'Suffering from melasma can foster insecurities in a person. One can easily address this issue with the help of experts at Puri Skin Clinic.',
     image_url: '/services/Melasma-Treatment-30.avif',
-    slug: 'vitiligo-treatment',
+    slug: 'melasma-treatment',
   },
   {
-    name: 'Facial rejuvenation Treatment',
-    description: 'Facial rejuvenation combines threads, HIFU, microneedling, and skin boosters to lift, tighten, and hydrate skin.',
+    name: 'Undergo Facial Rejuvenation',
+    description: 'Tighten, skin, and lift your face by opting for facial rejuvenation services as offered by the Puri Skin Clinic. Incorporate threads, HIFU, microneedling, and skin boosters into your facial rejuvenation treatment.',
     image_url: '/services/Facial-Rejuvenation-30.avif',
-    slug: 'vitiligo-treatment',
+    slug: 'facial-rejuvenation',
   }
 ];
 
-const Services = async () => {
-  let fetchedServices = [];
-  try {
-    const rawServices = await Service.findAll({ limit: 6, order: [['createdAt', 'DESC']] });
-    fetchedServices = rawServices.map(s => s.get({ plain: true }));
-  } catch (err) {
-    console.error("Failed to load services from DB:", err);
-  }
-
+const Services = () => {
   const displayServices = defaultServices;
 
   return (

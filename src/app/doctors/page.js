@@ -54,7 +54,7 @@ export default function DoctorsListPage() {
           {doctors.map((doctor) => (
             <Link 
               key={doctor.id} 
-              href={`/doctors/${doctor.slug}`}
+              href={`/doctors/${doctor.slug}/`}
               className="group flex flex-col bg-white rounded-[2.5rem] overflow-hidden border border-slate-100/80 shadow-[0_15px_45px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2"
             >
               <div className="aspect-[4/5] relative overflow-hidden bg-slate-50">
@@ -124,7 +124,7 @@ export default function DoctorsListPage() {
                 <h2 className="text-3xl font-heading font-black text-white mb-4 leading-tight">Start Your <br />Skin Journey</h2>
                 <p className="text-white/60 text-sm font-medium mb-10 max-w-[200px]">Schedule a personal consultation with our experts.</p>
                 <Link 
-                  href="/book-appointment" 
+                  href="/book-appointment/" 
                   className="bg-[#EA6490] text-white px-10 py-4 rounded-full font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-[#EA6490] transition-all shadow-xl shadow-[#EA6490]/20"
                 >
                    Book Now

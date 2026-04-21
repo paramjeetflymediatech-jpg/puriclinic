@@ -5,6 +5,7 @@ const nextConfig = {
       bodySizeLimit: '200mb', // Increase for video uploads
     },
   },
+  trailingSlash: true,
 };
 
 export default nextConfig;
