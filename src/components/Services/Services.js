@@ -39,9 +39,10 @@ const ServiceCard = ({ service }) => {
           <h4 className="text-white font-bold text-[20px] mb-3" style={{ fontFamily: "var(--font-playfair), serif" }}>
             {service.name || service.title}
           </h4>
-          <p className="text-white/90 text-[14px] leading-[1.6] mb-6 line-clamp-6">
-            {service.description}
-          </p>
+          <div 
+            className="text-white/90 text-[14px] leading-[1.6] mb-6 line-clamp-6"
+            dangerouslySetInnerHTML={{ __html: service.description }}
+          />
           <span
             className="inline-block bg-white text-[#4CA6AE] px-8 py-2.5 rounded-full text-[13px] font-black uppercase tracking-widest shadow-lg"
           >

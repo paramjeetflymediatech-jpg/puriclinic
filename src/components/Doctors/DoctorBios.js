@@ -36,9 +36,10 @@ const DoctorBios = () => {
             <div className="w-full md:w-[65%]">
               <div className="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl h-full flex flex-col justify-center items-center md:items-start text-center md:text-left">
                 <div className="prose prose-slate prose-lg max-w-none text-gray-700 leading-relaxed font-medium mb-8">
-                  <p className="whitespace-pre-line text-gray-600">
-                    Dr. Gurinderjit Singh Puri has pioneered the way for hair transplantation in North India in 1988. He also established the Department of Dermato-Venereology and Hair Transplantation at Mohandai Oswal Hospital, Ludhiana. Under Dr Puri's guidance, the clinic has completed treatments for innumerable patients. Dr Puri has ensured the possibility of addressing any hair or skin-related concern for all his patients! Trying to Google, "best skin doctor near me"? Puri Skin Clinic can address your concerns!
-                  </p>
+                  <div 
+                    className="text-gray-600 whitespace-pre-line"
+                    dangerouslySetInnerHTML={{ __html: `Dr. Gurinderjit Singh Puri has pioneered the way for hair transplantation in North India in 1988. He also established the Department of Dermato-Venereology and Hair Transplantation at Mohandai Oswal Hospital, Ludhiana. Under Dr Puri's guidance, the clinic has completed treatments for innumerable patients. Dr Puri has ensured the possibility of addressing any hair or skin-related concern for all his patients! Trying to Google, "best skin doctor near me"? Puri Skin Clinic can address your concerns!` }}
+                  />
                 </div>
 
                 <Link
@@ -81,11 +82,10 @@ const DoctorBios = () => {
             <div className="w-full md:w-[65%]">
               <div className="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl h-full flex flex-col justify-center items-center md:items-start text-center md:text-left">
                 <div className="prose prose-slate prose-lg max-w-none text-gray-700 leading-relaxed font-medium">
-                  <p className="whitespace-pre-line text-gray-600">
-                    Dr. Ashwajit Singh offers expert and passionate dermatological care to all his patients, with over five years of experience in the field, He is a renowned alumni of Dayanand Medical College and Hospital (DMCH), Ludhiana, where he served as a dermatologist for two years, expertly dealing with any and all cases of skin, hair and nail troubles. Dr Ashwajit Singh has also completed a fellowship under the Admire Advanced Aesthetic Fellowship program, which has allowed him to offer insight into any dermatological problem with advanced and innovative solutions. He has presented his papers at over fifty national and international conferences. He is regularly invited to speak at national conferences, where Dr Singh offers his regular insights into clinical and aesthetic advancements made in the field.
-                    {"\n\n"}
-                    Currently, Dr Ashwajit Singh is practising through Puri Skin Clinic, one of the best skin clinics in Ludhiana.
-                  </p>
+                  <div 
+                    className="text-gray-600 whitespace-pre-line"
+                    dangerouslySetInnerHTML={{ __html: `Dr. Ashwajit Singh offers expert and passionate dermatological care to all his patients, with over five years of experience in the field, He is a renowned alumni of Dayanand Medical College and Hospital (DMCH), Ludhiana, where he served as a dermatologist for two years, expertly dealing with any and all cases of skin, hair and nail troubles. Dr Ashwajit Singh has also completed a fellowship under the Admire Advanced Aesthetic Fellowship program, which has allowed him to offer insight into any dermatological problem with advanced and innovative solutions. He has presented his papers at over fifty national and international conferences. He is regularly invited to speak at national conferences, where Dr Singh offers his regular insights into clinical and aesthetic advancements made in the field.<br/><br/>Currently, Dr Ashwajit Singh is practising through Puri Skin Clinic, one of the best skin clinics in Ludhiana.` }}
+                  />
                 </div>
               </div>
             </div>

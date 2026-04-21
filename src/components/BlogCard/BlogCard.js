@@ -27,9 +27,10 @@ const BlogCard = ({ blog }) => {
           </h2>
         </Link>
         
-        <p className="text-slate-500 text-lg md:text-xl leading-[1.8] mb-10 line-clamp-3">
-          {blog.excerpt}
-        </p>
+        <div 
+          className="text-slate-500 text-lg md:text-xl leading-[1.8] mb-10 line-clamp-3"
+          dangerouslySetInnerHTML={{ __html: blog.excerpt }}
+        />
         
         <div className="mb-10">
           <Link href={`/blogs/${blog.slug}/`} className="text-xs font-black text-slate-900 uppercase tracking-[0.3em] inline-flex items-center group/link hover:text-[#EA6490] transition-colors gap-2">
