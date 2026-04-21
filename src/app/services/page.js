@@ -7,6 +7,44 @@ import { FaChevronRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import Services from '@/components/Services/Services';
 
+const displayServices=[
+  {
+    name: 'Hair Services',
+    description: 'Advanced solutions for hair fall, thinning, baldness, including PRP, GFC, FUE hair transplant, Exosomes.',
+    image_url: '/services/Hair-related-services-28.avif',
+    slug: 'hair-related-services',
+  },
+  {
+    name: 'Skin Services',
+    description: 'Comprehensive care for acne, pigmentation, aging, and dull skin using chemical peels, microneedling, Botox, fillers, and laser treatments.',
+    image_url: '/services/Skin-related-services-28.avif',
+    slug: 'skin-related-services',
+  },
+  {
+    name: 'Vitiligo Treatment',
+    description: 'Targeted vitiligo care using topical therapy and melanocyte grafting for long-term pigment restoration and skin balance.',
+    slug: 'vitiligo-treatment',
+  },
+  {
+    name: 'Acne Treatment',
+    description: 'Clear acne with chemical peels, topical medications, and customized advanced dermatological care for lasting results',
+    image_url: '/services/Acne-Treatment-30.avif',
+    slug: 'acne-treatment',
+  },
+  {
+    name: 'Melasma Treatment',
+    description: 'Melasma treatment includes oral medications, exosome therapy, chemical peels, and microneedling to reduce facial pigmentation.',
+    image_url: '/services/Melasma-Treatment-30.avif',
+    slug: 'melasma-treatment',
+  },
+  {
+    name: 'Facial Rejuvenation',
+    description: 'Facial rejuvenation combines threads, HIFU, microneedling, and skin boosters to lift, tighten, and hydrate skin.',
+    image_url: '/services/Facial-Rejuvenation-30.avif',
+    slug: 'facial-rejuvenation',
+  }
+];
+
 export default function ServicesPage() {
   return (
     <div className="bg-white min-h-screen text-[#1a1a1a]" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
@@ -40,7 +78,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <Services />
+      <Services displayServices={displayServices} />
 
       {/* ── CTA SECTION ── */}
       <section className="max-w-[1200px] mx-auto px-6 py-24 md:py-32">

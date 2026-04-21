@@ -17,7 +17,18 @@ export async function syncDB() {
     console.log('Starting database authentication...');
     await sequelize.authenticate();
     console.log('Authentication successful. Starting sync...');
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
+    
+    // Manual fallback for columns if alter:true missed them
+    const [results] = await sequelize.query("SHOW COLUMNS FROM blogs LIKE 'meta_title'");
+    if (results.length === 0) {
+      console.log('Manually adding missing SEO columns to blogs table...');
+      await sequelize.query("ALTER TABLE blogs ADD COLUMN meta_title TEXT NULL");
+      await sequelize.query("ALTER TABLE blogs ADD COLUMN meta_description TEXT NULL");
+      await sequelize.query("ALTER TABLE blogs ADD COLUMN meta_keywords TEXT NULL");
+      await sequelize.query("ALTER TABLE blogs ADD COLUMN meta_schema TEXT NULL");
+    }
+
     console.log('Database synced successfully.');
   } catch (error) {
     console.error('Database sync failed critically:', error);

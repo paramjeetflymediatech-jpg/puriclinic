@@ -93,8 +93,10 @@ const defaultServices = [
   }
 ];
 
-const Services = () => {
-  const displayServices = defaultServices;
+const Services = ({ displayServices }) => { 
+  if (displayServices === undefined) {
+    displayServices = defaultServices;
+  }
 
   return (
     <section className="py-[70px] bg-[#f0f4f8]">

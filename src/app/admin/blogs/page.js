@@ -17,7 +17,11 @@ export default function BlogsAdminPage() {
     slug: '',
     excerpt: '',
     content: '',
-    image_url: ''
+    image_url: '',
+    meta_title: '',
+    meta_description: '',
+    meta_keywords: '',
+    meta_schema: ''
   });
 
   const fetchBlogs = async () => {
@@ -141,14 +145,21 @@ export default function BlogsAdminPage() {
       slug: blog.slug,
       excerpt: blog.excerpt,
       content: blog.content,
-      image_url: blog.image_url || ''
+      image_url: blog.image_url || '',
+      meta_title: blog.meta_title || '',
+      meta_description: blog.meta_description || '',
+      meta_keywords: blog.meta_keywords || '',
+      meta_schema: blog.meta_schema || ''
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const resetForm = () => {
     setEditingId(null);
-    setFormData({ title: '', slug: '', excerpt: '', content: '', image_url: '' });
+    setFormData({ 
+      title: '', slug: '', excerpt: '', content: '', image_url: '',
+      meta_title: '', meta_description: '', meta_keywords: '', meta_schema: ''
+    });
   };
 
   return (
@@ -257,6 +268,68 @@ export default function BlogsAdminPage() {
                     </button>
                   )}
                 </div>
+            </div>
+          </div>
+          
+          {/* SEO SECTION */}
+          <div className="pt-8 border-t border-slate-100 space-y-8">
+            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-[#4CA6AE] flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-[#4CA6AE]"></span>
+              SEO & Meta Tags
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-3">
+                <div className="flex justify-between items-center px-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Meta Title</label>
+                  <span className={`text-[10px] font-bold ${formData.meta_title?.length > 60 ? 'text-amber-500' : 'text-slate-300'}`}>
+                    {formData.meta_title?.length || 0}
+                  </span>
+                </div>
+                <input 
+                  placeholder="Focus keyword included title..." 
+                  value={formData.meta_title} 
+                  onChange={e=>setFormData({...formData, meta_title: e.target.value})} 
+                  className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-bold text-slate-700" 
+                />
+              </div>
+
+              <div className="space-y-3">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Meta Keywords</label>
+                <input 
+                  placeholder="keyword1, keyword2, keyword3..." 
+                  value={formData.meta_keywords} 
+                  onChange={e=>setFormData({...formData, meta_keywords: e.target.value})} 
+                  className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-bold text-slate-700" 
+                />
+              </div>
+
+              <div className="md:col-span-2 space-y-3">
+                <div className="flex justify-between items-center px-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Meta Description</label>
+                  <span className={`text-[10px] font-bold ${formData.meta_description?.length > 160 ? 'text-amber-500' : 'text-slate-300'}`}>
+                    {formData.meta_description?.length || 0}
+                  </span>
+                </div>
+                <textarea 
+                  placeholder="Summarize your article for search results (150-160 chars)..." 
+                  value={formData.meta_description} 
+                  onChange={e=>setFormData({...formData, meta_description: e.target.value})} 
+                  rows={3}
+                  className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-medium text-slate-600" 
+                />
+              </div>
+
+              <div className="md:col-span-2 space-y-3">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Custom JSON-LD Schema (Optional)</label>
+                <textarea 
+                  placeholder='{ "@context": "https://schema.org", "@type": "BlogPosting", ... }' 
+                  value={formData.meta_schema} 
+                  onChange={e=>setFormData({...formData, meta_schema: e.target.value})} 
+                  rows={4}
+                  className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-mono text-sm" 
+                />
+              </div>
             </div>
           </div>
 

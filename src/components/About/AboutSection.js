@@ -27,7 +27,7 @@ const AboutSection = () => {
         {/* Left Doctor */}
         <div className="hidden lg:flex w-[320px] flex-shrink-0 items-end self-end">
           <img
-            src="/aboutus/about1.jpg"
+            src="/doctors/dr-gurinderjit-singh/de3.avif"
             alt="Dr Gurinderjit Singh Puri"
             className="w-full h-auto object-contain transform translate-y-[2px]"
           />
@@ -87,7 +87,7 @@ const AboutSection = () => {
         {/* Right Doctor */}
         <div className="hidden lg:flex w-[320px] flex-shrink-0 items-end self-end">
           <img
-            src="https://puriskinclinic.com/wp-content/uploads/2025/10/dr2.png"
+            src="/doctors/dr-ashwajit/de4.avif"
             alt="Dr Ashwajit Singh"
             className="w-full h-auto object-contain transform translate-y-[2px]"
           />
@@ -98,12 +98,12 @@ const AboutSection = () => {
       {/* Mobile Doctor Images */}
       <div className="flex lg:hidden justify-center gap-[10px] px-[15px] pb-[30px] relative z-10">
         <img
-          src="https://puriskinclinic.com/wp-content/uploads/2025/10/dr1.png"
+          src="/doctors/dr-gurinderjit-singh/de3.avif"
           className="w-[45%] h-auto object-contain"
           alt="Dr Gurinderjit Singh Puri"
         />
         <img
-          src="https://puriskinclinic.com/wp-content/uploads/2025/10/dr2.png"
+          src="/doctors/dr-ashwajit/de4.avif"
           className="w-[45%] h-auto object-contain"
           alt="Dr Ashwajit Singh"
         />
