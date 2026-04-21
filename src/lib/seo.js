@@ -176,6 +176,8 @@ export async function getPageSeo(pageKey) {
         description: ogDescription,
         images: [ogImage],
       },
+      // We'll also return the raw schema if someone wants to render it manually
+      schema: row?.schema_json ? JSON.parse(row.schema_json) : null,
     };
   } catch {
     const defaults = DEFAULTS[pageKey] || { title: SITE_NAME, description: '' };

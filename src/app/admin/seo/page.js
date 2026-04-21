@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import {
   FaSearch, FaCode, FaSave, FaCheckCircle, FaExclamationCircle,
   FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaLinkedin,
-  FaClock, FaMapMarkerAlt, FaPhone, FaEnvelope, FaLink,
+  FaClock, FaMapMarkerAlt, FaPhone, FaEnvelope, FaLink, FaTimes,
 } from 'react-icons/fa';
 import { MdPreview } from 'react-icons/md';
 import Swal from '@/lib/swal';
@@ -104,6 +104,7 @@ export default function SeoAdminPage() {
   const [schema, setSchema] = useState(defaultSchema);
   const [schemaLoading, setSchemaLoading] = useState(false);
   const [schemaSaving, setSchemaSaving] = useState(false);
+  const [globalCustomSchema, setGlobalCustomSchema] = useState('');
   const [jsonPreview, setJsonPreview] = useState('');
   const [showJson, setShowJson] = useState(false); // mobile toggle for JSON preview
 
@@ -120,8 +121,38 @@ export default function SeoAdminPage() {
     try {
       const res = await fetch(`/api/admin/seo?page=${key}`);
       const data = await res.json();
-      setMetaData(data.seo || {});
-    } catch { setMetaData({}); }
+      const seo = data.seo || {};
+
+      // Extract FAQs and Custom Schema from schema_json
+      let faqs = [];
+      let customSchema = '';
+      if (seo.schema_json) {
+        try {
+          const schema = JSON.parse(seo.schema_json);
+          // If it's an array, it might contain FAQ and other things
+          const schemas = Array.isArray(schema) ? schema : [schema];
+          
+          const faqObj = schemas.find(s => s['@type'] === 'FAQPage');
+          if (faqObj && faqObj.mainEntity) {
+            faqs = faqObj.mainEntity.map(item => ({
+              question: item.name,
+              answer: item.acceptedAnswer?.text || ''
+            }));
+          }
+
+          // Filter out the FAQPage to show the rest as custom JSON
+          const otherSchemas = schemas.filter(s => s['@type'] !== 'FAQPage');
+          if (otherSchemas.length > 0) {
+            customSchema = JSON.stringify(otherSchemas.length === 1 ? otherSchemas[0] : otherSchemas, null, 2);
+          }
+        } catch (e) { 
+          console.error("Failed to parse page schema", e);
+          customSchema = seo.schema_json; // Fallback to raw string
+        }
+      }
+      
+      setMetaData({ ...seo, faqs, customSchema });
+    } catch { setMetaData({ faqs: [] }); }
     setLoadingMeta(false);
   }, []);
 
@@ -181,10 +212,46 @@ export default function SeoAdminPage() {
     e.preventDefault();
     setSavingMeta(true);
     try {
+      // Build Schema Array
+      let finalSchemas = [];
+
+      // 1. Add FAQs if they exist
+      if (metaData.faqs && metaData.faqs.length > 0) {
+        finalSchemas.push({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": metaData.faqs.map(f => ({
+            "@type": "Question",
+            "name": f.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.answer
+            }
+          }))
+        });
+      }
+
+      // 2. Add Custom Schema if it exists
+      if (metaData.customSchema && metaData.customSchema.trim()) {
+        try {
+          const parsed = JSON.parse(metaData.customSchema);
+          if (Array.isArray(parsed)) finalSchemas.push(...parsed);
+          else finalSchemas.push(parsed);
+        } catch (e) {
+          Swal.fire({ icon: 'error', title: 'Invalid JSON', text: 'Please check your Custom Schema format.' });
+          setSavingMeta(false);
+          return;
+        }
+      }
+
+      const schema_json = finalSchemas.length > 0 
+        ? JSON.stringify(finalSchemas.length === 1 ? finalSchemas[0] : finalSchemas)
+        : null;
+
       const res = await fetch('/api/admin/seo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ page_key: activePage, ...metaData }),
+        body: JSON.stringify({ page_key: activePage, ...metaData, schema_json }),
       });
       if (res.ok) {
         Swal.fire({ icon: 'success', title: 'Saved!', text: 'SEO settings updated.', timer: 2000, showConfirmButton: false });
@@ -201,8 +268,56 @@ export default function SeoAdminPage() {
     try {
       const res = await fetch('/api/admin/seo?schema=global');
       const data = await res.json();
-      if (data.schema) setSchema(s => ({ ...s, ...data.schema }));
-    } catch {}
+      if (data.schema) {
+        const schemas = Array.isArray(data.schema) ? data.schema : [data.schema];
+        // 1. Find the Business Schema (based on @type)
+        const bizSchema = schemas.find(s => 
+          ['MedicalClinic', 'Dermatologist', 'HealthAndBeautyBusiness', 'LocalBusiness'].includes(s['@type'])
+        );
+        if (bizSchema) {
+          // Map back from schema.org format to our internal form state
+          const internal = {
+            businessName: bizSchema.name,
+            businessType: bizSchema['@type'],
+            description: bizSchema.description,
+            website: bizSchema.url,
+            phone: bizSchema.telephone,
+            email: bizSchema.email,
+            logoUrl: bizSchema.logo,
+            priceRange: bizSchema.priceRange,
+            address: {
+              street: bizSchema.address?.streetAddress,
+              city: bizSchema.address?.addressLocality,
+              state: bizSchema.address?.addressRegion,
+              postalCode: bizSchema.address?.postalCode,
+              country: bizSchema.address?.addressCountry,
+            },
+            lat: bizSchema.geo?.latitude,
+            lng: bizSchema.geo?.longitude,
+            socials: bizSchema.sameAs?.reduce((acc, url) => {
+              if (url.includes('facebook')) acc.facebook = url;
+              if (url.includes('instagram')) acc.instagram = url;
+              if (url.includes('youtube')) acc.youtube = url;
+              if (url.includes('twitter')) acc.twitter = url;
+              if (url.includes('linkedin')) acc.linkedin = url;
+              return acc;
+            }, {}),
+            hours: bizSchema.openingHoursSpecification?.reduce((acc, spec) => {
+              const day = spec.dayOfWeek.split('/').pop();
+              acc[day] = { open: true, from: spec.opens, to: spec.closes };
+              return acc;
+            }, {}),
+          };
+          setSchema(s => ({ ...s, ...internal }));
+        }
+
+        // 2. Everything else is custom
+        const otherSchemas = schemas.filter(s => s !== bizSchema);
+        if (otherSchemas.length > 0) {
+          setGlobalCustomSchema(JSON.stringify(otherSchemas.length === 1 ? otherSchemas[0] : otherSchemas, null, 2));
+        }
+      }
+    } catch (e) { console.error("Load Schema Error", e); }
     setSchemaLoading(false);
   }, []);
 
@@ -248,10 +363,27 @@ export default function SeoAdminPage() {
   const saveSchema = async () => {
     setSchemaSaving(true);
     try {
+      let finalSchemas = [buildJsonLd(schema)];
+
+      if (globalCustomSchema && globalCustomSchema.trim()) {
+        try {
+          const parsed = JSON.parse(globalCustomSchema);
+          if (Array.isArray(parsed)) finalSchemas.push(...parsed);
+          else finalSchemas.push(parsed);
+        } catch (e) {
+          Swal.fire({ icon: 'error', title: 'Invalid Custom JSON', text: 'Please check your Global Custom Schema format.' });
+          setSchemaSaving(false);
+          return;
+        }
+      }
+
       const res = await fetch('/api/admin/seo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ page_key: '__schema__', schema_json: JSON.stringify(buildJsonLd(schema)) }),
+        body: JSON.stringify({ 
+          page_key: '__schema__', 
+          schema_json: JSON.stringify(finalSchemas.length === 1 ? finalSchemas[0] : finalSchemas) 
+        }),
       });
       if (res.ok) {
         Swal.fire({ icon: 'success', title: 'Schema Saved!', text: 'JSON-LD injected on all pages automatically.', timer: 3000, showConfirmButton: false });
@@ -471,11 +603,11 @@ export default function SeoAdminPage() {
                       <CharCounter value={metaData.description} max={160} />
                     </div>
                     <textarea
-                      rows={3}
+                      rows={6}
                       value={metaData.description ?? ''}
                       onChange={e => setMetaData({ ...metaData, description: e.target.value })}
                       placeholder="Write a compelling 120–160 character description..."
-                      className={`${inputCls('pink')} resize-none`}
+                      className={`${inputCls('pink')} resize-y min-h-[120px]`}
                     />
                     {(metaData.description?.length ?? 0) > 160 && (
                       <p className="text-xs text-red-500 font-bold flex items-center gap-1"><FaExclamationCircle size={10} /> Exceeds 160 chars — Google may truncate.</p>
@@ -514,22 +646,112 @@ export default function SeoAdminPage() {
                       <CharCounter value={metaData.og_description} max={160} />
                     </div>
                     <textarea
-                      rows={2}
+                      rows={5}
                       value={metaData.og_description ?? ''}
                       onChange={e => setMetaData({ ...metaData, og_description: e.target.value })}
                       placeholder="Description shown when page is shared on social media..."
-                      className={`${inputCls('pink')} resize-none`}
+                      className={`${inputCls('pink')} resize-y min-h-[100px]`}
                     />
                   </div>
                 </div>
 
-                <div className="flex justify-end mt-6 pt-5 border-t border-slate-50">
+                {/* FAQ Schema Section */}
+                <div className="mt-10 pt-8 border-t border-slate-100">
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <h2 className="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-3">
+                        <span className="w-1.5 h-7 bg-[#4CA6AE] rounded-full flex-shrink-0"></span>
+                        FAQ Schema (Page Specific)
+                      </h2>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Add Q&A for rich results in Google</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setMetaData({ ...metaData, faqs: [...(metaData.faqs || []), { question: '', answer: '' }] })}
+                      className="bg-[#4CA6AE] hover:bg-[#3d8b92] text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all shadow-md shadow-[#4CA6AE]/10"
+                    >
+                      + Add Question
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {(metaData.faqs || []).map((faq, idx) => (
+                      <div key={idx} className="bg-slate-50/50 rounded-2xl p-5 border border-slate-100 relative group">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const newFaqs = [...metaData.faqs];
+                            newFaqs.splice(idx, 1);
+                            setMetaData({ ...metaData, faqs: newFaqs });
+                          }}
+                          className="absolute top-4 right-4 text-slate-300 hover:text-red-500 transition-colors"
+                        >
+                          <FaTimes size={14} />
+                        </button>
+                        <div className="grid grid-cols-1 gap-4 pr-6">
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-black uppercase text-slate-400">Question {idx + 1}</label>
+                            <input
+                              value={faq.question}
+                              onChange={e => {
+                                const newFaqs = [...metaData.faqs];
+                                newFaqs[idx].question = e.target.value;
+                                setMetaData({ ...metaData, faqs: newFaqs });
+                              }}
+                              placeholder="e.g. What treatments do you offer for acne?"
+                              className={inputCls('teal')}
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-black uppercase text-slate-400">Answer</label>
+                            <textarea
+                              rows={3}
+                              value={faq.answer}
+                              onChange={e => {
+                                const newFaqs = [...metaData.faqs];
+                                newFaqs[idx].answer = e.target.value;
+                                setMetaData({ ...metaData, faqs: newFaqs });
+                              }}
+                              placeholder="Provide a clear, detailed answer..."
+                              className={`${inputCls('pink')} resize-y`}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    {(metaData.faqs || []).length === 0 && (
+                      <div className="text-center py-10 bg-slate-50/30 border-2 border-dashed border-slate-100 rounded-[2rem]">
+                        <p className="text-slate-300 font-bold italic text-sm">No FAQs added for this page yet.</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Advanced: Custom JSON-LD */}
+                <div className="mt-10 pt-8 border-t border-slate-100">
+                  <div className="mb-6">
+                    <h2 className="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-3">
+                      <span className="w-1.5 h-7 bg-[#EA6490] rounded-full flex-shrink-0"></span>
+                      Custom JSON-LD Schema
+                    </h2>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Paste any valid Schema.org JSON object here</p>
+                  </div>
+                  <textarea
+                    rows={8}
+                    value={metaData.customSchema ?? ''}
+                    onChange={e => setMetaData({ ...metaData, customSchema: e.target.value })}
+                    placeholder='{ "@context": "https://schema.org", "@type": "MedicalWebPage", ... }'
+                    className={`${inputCls('pink')} font-mono text-xs resize-y min-h-[150px]`}
+                  />
+                </div>
+
+                <div className="flex justify-end mt-10 pt-6 border-t border-slate-100">
                   <button
                     type="submit"
                     disabled={savingMeta}
-                    className="flex items-center gap-2 bg-[#EA6490] hover:bg-[#d84a7e] disabled:opacity-60 text-white font-black px-8 py-3.5 rounded-2xl transition-all shadow-lg shadow-[#EA6490]/20 uppercase tracking-widest text-xs w-full sm:w-auto justify-center"
+                    className="flex items-center gap-2 bg-[#EA6490] hover:bg-[#d84a7e] disabled:opacity-60 text-white font-black px-10 py-4 rounded-2xl transition-all shadow-lg shadow-[#EA6490]/20 uppercase tracking-widest text-xs w-full sm:w-auto justify-center"
                   >
-                    <FaSave /> {savingMeta ? 'Saving...' : 'Save Meta Tags'}
+                    <FaSave /> {savingMeta ? 'Saving Changes...' : 'Save Meta & Schema'}
                   </button>
                 </div>
               </div>
@@ -622,7 +844,7 @@ export default function SeoAdminPage() {
                         </select>
                       </Field>
                       <Field label="Description" colSpan="sm:col-span-2">
-                        <textarea rows={2} value={schema.description ?? ''} onChange={e => setSchemaField('description', e.target.value)} className={`${inputCls('pink')} resize-none`} />
+                        <textarea rows={6} value={schema.description ?? ''} onChange={e => setSchemaField('description', e.target.value)} className={`${inputCls('pink')} resize-y min-h-[120px]`} />
                       </Field>
                       <Field label="Phone" icon={<FaPhone className="text-[#EA6490]" />}>
                         <input value={schema.phone ?? ''} onChange={e => setSchemaField('phone', e.target.value)} placeholder="+91-XXXXXXXXXX" className={inputCls('pink')} />
@@ -746,6 +968,22 @@ export default function SeoAdminPage() {
                     </div>
                   </div>
 
+                  {/* Global Custom JSON-LD */}
+                  <div className="bg-white rounded-[1.5rem] p-5 sm:p-7 shadow-sm border border-slate-100">
+                    <h2 className="text-sm sm:text-base font-bold mb-5 text-slate-800 flex items-center gap-2">
+                      <span className="w-1.5 h-6 bg-[#EA6490] rounded-full flex-shrink-0"></span>
+                      Global Custom JSON-LD
+                    </h2>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-4">Injected into every page alongside business info</p>
+                    <textarea
+                      rows={8}
+                      value={globalCustomSchema}
+                      onChange={e => setGlobalCustomSchema(e.target.value)}
+                      placeholder='{ "@context": "https://schema.org", "@type": "Organization", ... }'
+                      className={`${inputCls('pink')} font-mono text-xs resize-y min-h-[150px]`}
+                    />
+                  </div>
+
                   <button
                     onClick={saveSchema}
                     disabled={schemaSaving}
@@ -829,21 +1067,21 @@ export default function SeoAdminPage() {
                     <div className="space-y-8">
                       <Field label="Header Scripts (Injects into <head>)" icon={<FaCode className="text-[#EA6490]" />}>
                         <textarea
-                          rows={6}
+                          rows={15}
                           value={scriptData.headScripts ?? ''}
                           onChange={e => setScriptData({ ...scriptData, headScripts: e.target.value })}
                           placeholder="Paste your <script> or <meta> tags here..."
-                          className={`${inputCls('pink')} font-mono text-xs`}
+                          className={`${inputCls('pink')} font-mono text-xs resize-y min-h-[300px]`}
                         />
                       </Field>
 
                       <Field label="Footer Scripts (Injects before </body>)" icon={<FaCode className="text-[#4CA6AE]" />}>
                         <textarea
-                          rows={6}
+                          rows={15}
                           value={scriptData.footerScripts ?? ''}
                           onChange={e => setScriptData({ ...scriptData, footerScripts: e.target.value })}
                           placeholder="Paste your custom JS or tracking pixels here..."
-                          className={`${inputCls('teal')} font-mono text-xs`}
+                          className={`${inputCls('teal')} font-mono text-xs resize-y min-h-[300px]`}
                         />
                       </Field>
                     </div>

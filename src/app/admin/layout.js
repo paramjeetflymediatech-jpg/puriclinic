@@ -31,7 +31,7 @@ export default function AdminLayout({ children }) {
     setIsSidebarOpen(false);
   }, [pathname]);
 
-  if (pathname === '/admin/login') {
+  if (pathname === '/admin/login' || pathname === '/admin/login/') {
     return <div className="min-h-screen bg-white flex items-center justify-center font-primary">{children}</div>;
   }
 

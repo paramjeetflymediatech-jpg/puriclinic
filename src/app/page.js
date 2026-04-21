@@ -12,12 +12,14 @@ import TestimonialSlider from '@/components/TestimonialSlider/TestimonialSlider'
 import { Testimonial } from '@/lib/models';
 import { getPageSeo } from '@/lib/seo';
 import AppointmentCTA from '@/components/AppointmentCTA/AppointmentCTA';
+import JsonLd from '@/components/Seo/JsonLd';
 
 export async function generateMetadata() {
   return getPageSeo('home');
 }
 
 export default async function Home() {
+  const seoData = await getPageSeo('home');
   const testimonials = await Testimonial.findAll({
     where: { is_active: true },
     order: [['createdAt', 'DESC']],
@@ -26,6 +28,7 @@ export default async function Home() {
 
   return (
     <>
+      <JsonLd schema={seoData.schema} />
       <Hero />
       <Services/>
       <AboutSection/>
