@@ -17,8 +17,8 @@ export async function syncDB() {
     console.log('Starting database authentication...');
     await sequelize.authenticate();
     console.log('Authentication successful. Starting sync...');
-    await sequelize.sync({ alter: true });
-    console.log('Database synced successfully with { alter: true }.');
+    await sequelize.sync();
+    console.log('Database synced successfully.');
   } catch (error) {
     console.error('Database sync failed critically:', error);
     throw error;

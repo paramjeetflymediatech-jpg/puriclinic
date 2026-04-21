@@ -67,11 +67,10 @@ const defaultSchema = {
 // Safely handle null/undefined from DB
 function CharCounter({ value, max, className = '' }) {
   const len = (value ?? '').length;
-  const pct = len / max;
-  const color = pct > 1 ? 'text-red-500' : pct > 0.85 ? 'text-amber-500' : 'text-slate-400';
+  const color = len > max ? 'text-amber-500' : 'text-slate-400';
   return (
     <span className={`text-[10px] font-black ${color} ${className}`}>
-      {len}/{max}
+      {len}
     </span>
   );
 }
@@ -580,9 +579,6 @@ export default function SeoAdminPage() {
                       placeholder="e.g. Puri Skin Clinic — Best Dermatologist"
                       className={inputCls('pink')}
                     />
-                    {(metaData.title?.length ?? 0) > 60 && (
-                      <p className="text-xs text-red-500 font-bold flex items-center gap-1"><FaExclamationCircle size={10} /> Exceeds 60 chars — Google may truncate.</p>
-                    )}
                   </div>
 
                   {/* Keywords */}
@@ -609,9 +605,6 @@ export default function SeoAdminPage() {
                       placeholder="Write a compelling 120–160 character description..."
                       className={`${inputCls('pink')} resize-y min-h-[120px]`}
                     />
-                    {(metaData.description?.length ?? 0) > 160 && (
-                      <p className="text-xs text-red-500 font-bold flex items-center gap-1"><FaExclamationCircle size={10} /> Exceeds 160 chars — Google may truncate.</p>
-                    )}
                   </div>
 
                   {/* OG Title */}
