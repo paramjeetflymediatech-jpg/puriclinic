@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { Nunito_Sans, Cormorant_Garamond, Playfair_Display, Lora } from 'next/font/google';
 import { getGlobalSchema, getGlobalScripts } from '../lib/seo';
 import { HeaderConditional, FooterConditional } from '@/components/ConditionalLayout/ConditionalLayout';
+import HeadScripts from '@/components/Seo/HeadScripts';
 
 // Puri Skin Clinic uses Nunito Sans with heavy weights for that bold look
 const nunitoSans = Nunito_Sans({
@@ -67,8 +68,9 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
-      {/* humne yahan font-class apply ki hai taaki poori site par branding match ho */}
+      <head>
+        <HeadScripts html={scripts.headScripts} />
+      </head>
       <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`} suppressHydrationWarning>
         {/* Google Analytics (GA4) */}
         {scripts.gaId && (
@@ -113,10 +115,6 @@ export default async function RootLayout({ children }) {
           </noscript>
         )}
 
-        {/* Custom Head/Global Scripts (Injected at start of body for compatibility) */}
-        {scripts.headScripts && (
-          <div dangerouslySetInnerHTML={{ __html: scripts.headScripts }} />
-        )}
 
         {schema && (
           <script

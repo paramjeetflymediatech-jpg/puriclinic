@@ -11,6 +11,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from 'react-icons/fa';
+import { SOCIAL_LINKS } from '@/constants/constantdata';
 
 const Footer = () => {
   return (
@@ -127,45 +128,19 @@ const Footer = () => {
 
                 {/* Social Icons — colored circles matching reference */}
                 <div className="flex items-center gap-[10px] mt-[10px]">
-                  <a
-                    href="https://www.facebook.com/profile.php?id=61552061217807"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center text-[#1877F2]   hover:opacity-80 transition-opacity"
-                    aria-label="Facebook"
-                  >
-                    <FaFacebookF />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/puriskinclinic/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] bg-white rounded-full flex items-center justify-center text-[#EA6490] text-[15px] hover:opacity-80 transition-opacity"
-                    style={{
-                      // background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
-                    }}
-                    aria-label="Instagram"
-                  >
-                    <FaInstagram />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/@PuriSkinClinic-l8n"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center text-red-500 text-[15px] hover:opacity-80 transition-opacity"
-                    aria-label="YouTube"
-                  >
-                    <FaYoutube />
-                  </a>
-                  <a
-                    href="https://maps.app.goo.gl/2ZTvQ6qvDFwqdkLLA"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center text-[#34A853] text-[15px] hover:opacity-80 transition-opacity"
-                    aria-label="Google Maps"
-                  >
-                    <FaMapMarkerAlt />
-                  </a>
+                  {SOCIAL_LINKS.social_links.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center text-[15px] hover:opacity-80 transition-opacity"
+                      style={{ color: item.color }}
+                      aria-label={item.label}
+                    >
+                      {item.icon}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>

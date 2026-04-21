@@ -2,7 +2,7 @@
  * Central FAQ Data for Puri Skin Clinic
  * Use this to populate Accordions or FAQ sections across the site.
  */
-import { FaMapMarkerAlt, FaClock, FaEnvelope, FaPhoneAlt, FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaClock, FaEnvelope, FaPhoneAlt, FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 export const FAQ_DATA = {
   general: [
@@ -129,9 +129,9 @@ export const CONTACT_INFO = {
 
 export const SOCIAL_LINKS = {
   "social_links": [
-    { icon: <FaFacebook />, label: "Facebook", url: "https://www.facebook.com/puriskinclinic/", color: "#1877F2" },
-    { icon: <FaInstagram />, label: "Instagram", url: "https://www.instagram.com/puriskinclinic/", color: "#E4405F" },
-    { icon: <FaTwitter />, label: "Twitter", url: "https://twitter.com/puriskinclinic/", color: "#1DA1F2" },
-    { icon: <FaLinkedin />, label: "LinkedIn", url: "https://www.linkedin.com/company/puriskinclinic/", color: "#0A66C2" }
+    { icon: <FaFacebook />, label: "Facebook", url: "https://www.facebook.com/profile.php?id=61552061217807", color: "#1877F2" },
+    { icon: <FaInstagram />, label: "Instagram", url: "https://www.instagram.com/puriskinclinic/", color: "#ed1c11ff" },
+    { icon: <FaYoutube />, label: "Youtube", url: "https://www.youtube.com/@PuriSkinClinic-l8n", color: "#f40000ff" },
+    { icon: <FaMapMarkerAlt />, label: "Map", url: "https://maps.app.goo.gl/2ZTvQ6gvDFwqdkLLA", color: "#28b536ff" }
   ]
 }

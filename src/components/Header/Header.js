@@ -15,15 +15,15 @@ import {
   FaCaretDown,
   FaCaretRight,
 } from 'react-icons/fa';
+import { SOCIAL_LINKS } from '@/constants/constantdata';
 
 
-
-const SOCIAL_ICONS = [
-  { icon: FaFacebookF, link: 'https://www.facebook.com/puriskinclinic/', color: '#3b5998' },
-  { icon: FaInstagram, link: 'https://www.instagram.com/puriskinclinic/', color: '#e1306c' },
-  { icon: FaYoutube, link: 'https://www.youtube.com/channel/UC_401-6734-9577-998-778', color: '#ff0000' },
-  { icon: FaMapMarkerAlt, link: 'https://maps.app.goo.gl/Z8x9x9x9x9x9x9x9x', color: '#ea4335' },
-];
+// const SOCIAL_ICONS = [
+//   { icon: FaFacebookF, link: 'https://www.facebook.com/puriskinclinic/', color: '#3b5998' },
+//   { icon: FaInstagram, link: 'https://www.instagram.com/puriskinclinic/', color: '#e1306c' },
+//   { icon: FaYoutube, link: 'https://www.youtube.com/channel/UC_401-6734-9577-998-778', color: '#ff0000' },
+//   { icon: FaMapMarkerAlt, link: 'https://maps.app.goo.gl/Z8x9x9x9x9x9x9x9x', color: '#ea4335' },
+// ];
 
 const DropdownItem = ({ item }) => {
   const [open, setOpen] = useState(false);
@@ -206,14 +206,14 @@ const Header = () => {
 
             {/* Right: social icons */}
             <div className="flex gap-[10px]">
-              {SOCIAL_ICONS.map((item, i) => (
+              {SOCIAL_LINKS.social_links.map((item, i) => (
                 <div
                   key={i}
-                  className="w-[30px] h-[30px] bg-white text-[#EA6490] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#4CA6AE] hover:text-white transition-all duration-200"
-                  style={{ fontSize: '13px' }}
+                  className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#4CA6AE] hover:text-white transition-all duration-200"
+                  style={{ fontSize: '13px', color: item.color }}
                 >
-                  <a href={item.link}>
-                    <item.icon />
+                  <a href={item.url}>
+                    {item.icon}
                   </a>
                 </div>
               ))}
