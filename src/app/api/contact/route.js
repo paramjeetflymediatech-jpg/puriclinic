@@ -33,8 +33,8 @@ export async function POST(request) {
       });
 
       const mailOptions = {
-        from: process.env.SMTP_USER,
-        to: `anujguptaflymedia@gmail.com, pravi.flymediatech@gmail.com, puriskinclinic@gmail.com`,
+        from: `PuriSkinClinic <${process.env.CLINIC_EMAIL}>`,
+        to: `anujguptaflymedia@gmail.com, pravi.flymediatech@gmail.com, puriskinclinic@gmail.com, ${process.env.CLINIC_EMAIL}`,
         subject: `New Contact Inquiry - ${name}`,
         html: `
           <h3>New Contact Message</h3>
