@@ -4,6 +4,8 @@ import React from 'react';
 import ServiceCategoryLayout from '@/components/ServiceCategoryLayout/ServiceCategoryLayout';
 import { FaUserMd, FaArrowRight, FaCheckCircle, FaStar, FaStethoscope, FaCrown, FaShieldAlt } from 'react-icons/fa';
 
+import { FAQ_DATA } from '@/constants/constantdata';
+
 export default function HairServicesClient() {
   return (
     <ServiceCategoryLayout
@@ -53,64 +55,7 @@ export default function HairServicesClient() {
       ]}
       ctaText="If you have never considered the possibility of addressing your hair loss or thinning, it is natural to feel overwhelmed at the prospect of several options. However, you can find the proper treatment possibility by consulting the experts at Puri Skin Clinic. Our team ensures to provide personalised recommendations on a case-by-case basis."
       ctaImage="/hair copy/swa.jpg"
-      faqs={[
-        {
-          question: "Will I feel any kind of pain and discomfort during the hair transplant procedure?",
-          answer: "No, you won’t feel much pain or discomfort during the hair transplant procedure, as the treatment includes the use of anaesthesia. This can significantly help in numbing the specific area of your scalp in order to prevent you from much pain and discomfort."
-        },
-        {
-          question: "What should I look for while finding the best hair transplant surgeon?",
-          answer: "Make sure to thoroughly check the surgeon’s expertise, along with qualifications regarding the relevant field. Along with this, make sure to analyse the previous patient’s reviews regarding the hair transplant surgeon for more precise results."
-        },
-        {
-          question: "Why am I feeling mild discomfort after the completion of hair transplant surgery?",
-          answer: "Feeling mild discomfort after the completion of hair transplant surgery is normal and usually not a matter of concern. Along with discomfort, you’ll also feel tightness in your head; however, make sure to get thorough guidance on this from your hair transplant surgeon for managing your discomfort."
-        },
-        {
-          question: "What qualities define the best hair transplant clinic for providing effective results?",
-          answer: "The best hair transplant clinic includes skilled and professional hair transplant surgeons proficient in performing modern techniques to provide you with long-lasting results."
-        },
-        {
-          question: "What is the simple way of finding the best hair transplant clinic that is near my location?",
-          answer: "In order to find the best hair transplant clinic, make sure to open your Google and type, “best hair transplant clinic near me”, to get effective results. Choose the best one according to the nature of the results and years of experience."
-        },
-        {
-          question: "Is a hair transplant expensive in India compared to Western countries?",
-          answer: "No, generally, hair transplant cost in India is manageable as compared to Western countries, including the precise techniques and methods to drive the long-lasting results. Overall, the rough estimate of hair transplant cost in India includes around Rs.30,000 to Rs.400,000 approximately."
-        },
-        {
-          question: "Are there any specific precautions that should be taken after hair transplant surgery?",
-          answer: "Yes, there are some necessary precautions that should be in your mind after hair transplant surgery, such as sleeping with the head elevated, along with avoiding washing your hair for a few days. Also, make sure to be gentle with your scalp after the completion of hair transplant surgery by avoiding scratching your scalp."
-        },
-        {
-          question: "Can I opt for PRP therapy instead of a hair transplant to achieve permanent results?",
-          answer: "If you are willing to achieve permanent results, then choosing PRP therapy will not be the best option for you, as it doesn’t provide permanent results. You need to maintain your scalp for healthy growth and to improve your hair density."
-        },
-        {
-          question: "When can I continue my daily activities after PRP therapy?",
-          answer: "You can continue with your daily activities after two to three days of PRP therapy, with the aim of providing proper and adequate rest to your scalp, which is necessary for faster healing."
-        },
-        {
-          question: "Can I apply ice to my scalp after PRP therapy?",
-          answer: "Make sure not to apply ice directly to your scalp after the completion of PRP therapy; however, you can use it by wrapping it in a cotton cloth. Generally, avoid giving any cold compress to your scalp for a few hours after your PRP therapy."
-        },
-        {
-          question: "Is PRP therapy expensive in Ludhiana?",
-          answer: "No PRP therapy costs in Ludhiana are not very expensive and can sound affordable to most individuals. However, make sure to engage with the professionals of Puri Skin Clinic regarding this, to get thorough guidance on the financial structure of PRP hair therapy."
-        },
-        {
-          question: "Does GFC hair treatment include less pain and discomfort?",
-          answer: "Yes, GFC hair treatment is usually done by applying the cream over your scalp to efficiently numb the specific area. Along with this, only fine needles are used for an effective procedure of GFC hair treatment; as a result, you’ll experience less pain and discomfort throughout the procedure."
-        },
-        {
-          question: "Can GFC hair treatment help in managing the complex hair loss cases?",
-          answer: "Yes, the best GFC hair treatment in India helps in managing the complex hair loss cases in an efficient and effective manner. You can count on the professionals of Puri Skin Clinic to get effective results regarding this."
-        },
-        {
-          question: "Will my existing hair be affected by hair transplant surgery?",
-          answer: "No, through hair transplant surgery, the bald patches in your head get covered with the growth of new hair, without affecting your existing hair. Along with this, make sure to engage with the professionals of Puri Skin Clinic – the best hair transplant clinic in Ludhiana, for effective guidance over this."
-        }
-      ]}
+      faqs={FAQ_DATA.hair}
       faqTitle="Frequently Asked Questions"
       bottomSectionTitle="Choose Puri Skin Clinic for Any Hair Treatment Needed!"
       bottomSectionText="Suffering through any issues of hair, hair loss, and permanent balding can be thoroughly difficult to accept in an essential manner. It can start to affect a person’s confidence and cause issues with regard to their self-esteem. Therefore, it is imperative to make sure that one can seek hair treatment and transplant services in Punjab effectively. With the experts of Puri Skin Clinic, you can make certain that you are able to thoroughly and actively address any hair-related issue in a thorough and effective manner. Say hi to rejuvenated hair and goodbye to baldness with the help of our rigorous hair treatment and transplant options today!"

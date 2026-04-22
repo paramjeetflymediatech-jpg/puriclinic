@@ -9,7 +9,7 @@ import {
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FAQAccordion from '@/components/FAQAccordion/FAQAccordion';
-import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
+import { FAQ_DATA } from '@/constants/constantdata';
 import ImageSlider from '@/components/ImageSlider/ImageSlider';
 
 export default function HairTransplantClient() {
@@ -317,6 +317,9 @@ export default function HairTransplantClient() {
             </div>
           </div>
         </section>
+
+      {/* ── FAQS SECTION ── */}
+      <FAQAccordion faqs={FAQ_DATA.hair} title="Frequently Asked Questions" />
 
       {/* ── 7. FOOTER CTA ── */}
       <section className="bg-white py-24 mt-20 px-6 border-t-[8px] border-[#EA6490]">

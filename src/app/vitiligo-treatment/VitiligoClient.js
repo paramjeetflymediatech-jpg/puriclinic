@@ -14,7 +14,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { FAQ_DATA } from '@/constants/constantdata';
 
 export default function VitiligoClient() {
   const sliderImages = [
@@ -455,7 +455,7 @@ export default function VitiligoClient() {
         </section>
       </div>
         {/* SECTION 11: FREQUENTLY ASKED QUESTIONS */}
-      <FAQAccordion faqs={VITILIGO_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.vitiligo} title="Frequently Asked Questions" />
 
       <style jsx global>{`
         .res-pagination .swiper-pagination-bullet {
@@ -476,41 +476,6 @@ export default function VitiligoClient() {
   );
 }
 
-// ─── VITILIGO SPECIFIC FAQS ───
-const VITILIGO_FAQS = [
-  {
-    question: "Is vitiligo a contagious disease?",
-    answer: "No, vitiligo is absolutely not contagious. It is not an infection and cannot be spread from person to person through contact."
-  },
-  {
-    question: "Can vitiligo be cured completely?",
-    answer: "While 'cure' is a complex word in autoimmune conditions, we can achieve significant and often total repigmentation in stable cases using advanced therapies."
-  },
-  {
-    question: "Is surgical grafting safe for vitiligo?",
-    answer: "Yes, surgical grafting is a very safe and effective procedure for stable vitiligo where the patches haven't spread for at least a year."
-  },
-  {
-    question: "How long does NB-UVB therapy take to show results?",
-    answer: "NB-UVB therapy typically requires 2 to 3 sessions per week. Visible repigmentation usually begins to appear after 8 to 12 weeks of consistent treatment."
-  },
-  {
-    question: "What triggers vitiligo to spread?",
-    answer: "Triggers can include severe emotional stress, physical trauma to the skin (like a cut or burn), and sometimes hormonal changes."
-  },
-  {
-    question: "Can diet help in managing vitiligo?",
-    answer: "While there is no specific 'vitiligo diet,' maintaining a healthy immune system through balanced nutrition is generally beneficial. We provide guidance on this during consultation."
-  },
-  {
-    question: "Does vitiligo affect internal organs?",
-    answer: "No, vitiligo only affects the skin's pigment-producing cells and does not impact any internal organs or overall physical health."
-  },
-  {
-    question: "Is treatment more effective if started early?",
-    answer: "Yes, early clinical intervention often leads to better and faster repigmentation results, especially for smaller, localized patches."
-  }
-];
 
 // ─── VITILIGO SPECIFIC TESTIMONIALS ───
 const HAPPY_CUSTOMERS = [

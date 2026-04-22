@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FAQAccordion from '@/components/FAQAccordion/FAQAccordion';
+import { FAQ_DATA } from '@/constants/constantdata';
 import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
 import AppointmentForm from '@/components/AppointmentForm/AppointmentForm';
 import ImageSlider from '@/components/ImageSlider/ImageSlider';
@@ -282,6 +283,7 @@ export default function ExosomeClient() {
           </div>
         </section>
       </div>
+      <FAQAccordion faqs={FAQ_DATA.exosome} title="Frequently Asked Questions" />
 
       {/* ── FOOTER TRUST ── */}
       <section className="bg-slate-50 py-24 border-t border-slate-100 text-center px-6 relative overflow-hidden">

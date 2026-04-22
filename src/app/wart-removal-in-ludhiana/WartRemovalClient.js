@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FAQ_DATA } from '@/constants/constantdata';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -252,60 +253,9 @@ export default function WartRemovalClient() {
 
       </div>
       {/* SECTION 6: FAQS */}
-      <FAQAccordion faqs={WART_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.wartRemoval} title="Frequently Asked Questions" />
 
     </div>
   );
 }
 
-// ─── WART SPECIFIC FAQS ───
-const WART_FAQS = [
-  {
-    question: "IWhat exactly are warts, and why did I get them?",
-    answer: "Warts are non-cancerous skin growth caused by a virus named HPV. You can get by by touching a wart on another person or by touching the surface they touched. Warts are actually easily spread through contact with a person who already has them. For instance, from swimming pools, gyms or shared bathrooms."
-  },
-  {
-    question: "Can I remove a wart at home with home remedies?",
-    answer: "There are some over-the-counter activities that exist for the removal of warts, such as using a razor to remove them or improper ointments. These home remedies are quick but can lead to certain infections or scars. It is always recommended to look for a dermatologist for wart removal in India for safe and complete removal. By doing it from an expert, there is no chance of any infection, and they also ensure that the virus is destroyed."
-  },
-  {
-    question: "Is the wart removal procedure painful?",
-    answer: "No. The dermatologist usually applies a local anaesthetic cream or injection to numb the area before the procedure. This leads to no pain or minimal discomfort during the process of wart removal. "
-  },
-  {
-    question: "How long does a wart removal session take?",
-    answer: "A single session usually takes only 15 to 20 minutes. The total time duration for its removal also depends on the size and number of warts."
-  },
-  {
-    question: "Will I need multiple sessions for wart removal?",
-    answer: "It completely depends on the size and depth of the wart. If you have small warts, they may be removed in a single session. In case of larger or deeper warts, 2 to 4 sessions, spaced apart by 2 to 3 weeks. "
-  },
-  {
-    question: "What is the cost of wart removal in India?",
-    answer: "The cost of wart removal in India varies based on the complexity of the warts. There are various procedures that can be used for wart removal, and the average cost for wart removal can range from one thousand to five thousand rupees per lesion. The cost may be higher, often with discounts for removing multiple warts all at once."
-  },
-  {
-    question: "Will the warts come back?",
-    answer: "There are chances of recurring warts because the virus still remains in the surrounding area of the skin. However, getting them treated by a professional wart removal clinic in India significantly reduces the risk as compared to home treatments."
-  },
-  {
-    question: "What are the risks or side effects of wart removal?",
-    answer: "The primary side effects are actually very minor and temporary. The side effects which can occur are: redness, swelling and slight pain. But these side effects will get resolved on their own in a few days. In rare cases, especially on dark skin tones, there might be slight discolouration on the area of the wart after removal."
-  },
-  {
-    question: "Are genital warts treated differently?",
-    answer: "Yes, genital warts are treated differently and usually require specialised care. Dermatologists use special methods for it as compared to the removal of facial warts. Genital warts are removed with specialised chemical application or by cutting off the wart, as they are sexually transmitted. One thing you should strictly note is that you should never treat genital warts with any of the over-the-counter wart removers."
-  },
-  {
-    question: "What should I do before the appointment?",
-    answer: "There are many things that you should keep in mind before your wart removal procedure. The things include:Completely avoid using any irritants on the skin, whether it is any lotion or sunscreen. Tell your doctor if you are on blood thinners.Avoid smoking or excessive caffeine 2 to 3 days prior to the procedure."
-  },
-  {
-    question: "How should I take care of my skin after the procedure?",
-    answer: "The things you need to follow for taking the proper care of your skin include keeping the area clean and dry, applying the prescribed cream by the dermatologists, avoiding scratching or picking the crust from the affected area, and another important thing is to use sunscreen on the affected area to prevent dark spots. "
-  },
-  {
-    question: "How can I prevent new warts after treatment?",
-    answer: "You have to take lots of precautions to prevent it from recurring. The precautions include:Avoid sharing your towel, razor or clothes.Wear footwear in public showers/pools.Keep your skin healthy and moisturised."
-  }
-];

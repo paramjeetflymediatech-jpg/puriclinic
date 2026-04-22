@@ -136,6 +136,8 @@ const Header = () => {
           { name: 'Fillers', link: '/fillers/' },
           { name: 'Non-Surgical Facelift', link: '/non-surgical-facelift/' },
           { name: 'Wart Removal in Ludhiana', link: '/wart-removal-in-ludhiana/' },
+          { name: 'Mesotherapy', link: '/mesotherapy/' },
+          { name: 'Radio-Frequency', link: '/radio-frequency/' },
         ]
       },
       { name: 'Vitiligo Treatment', link: '/vitiligo-treatment/' },

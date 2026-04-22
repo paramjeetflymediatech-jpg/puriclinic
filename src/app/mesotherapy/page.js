@@ -3,20 +3,20 @@ import { getPageSeo } from '@/lib/seo';
 import JsonLd from '@/components/Seo/JsonLd';
 import FAQSchema from '@/components/Seo/FAQSchema';
 import { FAQ_DATA } from '@/constants/constantdata';
-import LaserHairRemovalClient from './LaserHairRemovalClient';
+import MesotherapyClient from './MesotherapyClient';
 
 export async function generateMetadata() {
-  return getPageSeo('laser-hair-removal');
+  return getPageSeo('mesotherapy');
 }
 
-export default async function LaserHairRemovalPage() {
-  const seoData = await getPageSeo('laser-hair-removal');
+export default async function MesotherapyPage() {
+  const seoData = await getPageSeo('mesotherapy');
 
   return (
     <>
       <JsonLd schema={seoData.schema} />
-      <FAQSchema faqs={FAQ_DATA.laserHairRemoval} />
-      <LaserHairRemovalClient />
+      <FAQSchema faqs={FAQ_DATA.mesotherapy} />
+      <MesotherapyClient />
     </>
   );
 }

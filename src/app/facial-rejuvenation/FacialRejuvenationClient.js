@@ -297,44 +297,9 @@ export default function FacialRejuvenationClient() {
          
       </div>
       {/* SECTION 8: FAQS */}
-      <FAQAccordion faqs={FR_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.facialRejuvenation} title="Frequently Asked Questions" />
 
     </div>
   );
 }
 
-// ─── FACIAL REJUVENATION SPECIFIC FAQS ───
-const FR_FAQS = [
-  {
-    question: "What is facial rejuvenation?",
-    answer: "Facial rejuvenation is a combination of clinical procedures aimed at restoring a youthful appearance by addressing wrinkles, sagging skin, and loss of volume."
-  },
-  {
-    question: "Are the procedures non-surgical?",
-    answer: "At Puri Skin Clinic, we specialize in advanced non-surgical rejuvenation procedures like microneedling, skin boosters, and HIFU lifting, which offer minimal downtime."
-  },
-  {
-    question: "How long do the results last?",
-    answer: "The duration of results depends on the specific treatment. Most non-surgical procedures provide noticeable improvement for 6 to 18 months."
-  },
-  {
-    question: "Is there any downtime involved?",
-    answer: "Most of our rejuvenation procedures have minimal downtime. You may experience slight redness or swelling for 24-48 hours depending on the treatment depth."
-  },
-  {
-    question: "When should I start anti-aging treatments?",
-    answer: "Many patients start preventative treatments in their late 20s or early 30s to maintain skin elasticity and delay the appearance of deeper wrinkles."
-  },
-  {
-    question: "Can multiple treatments be combined?",
-    answer: "Yes, we often create bespoke plans that combine different modalities like skin boosters and HIFU for more comprehensive and effective results."
-  },
-  {
-    question: "Is facial rejuvenation painful?",
-    answer: "Most procedures involve minimal discomfort. We use topical numbing creams and advanced technology to ensure your experience is as comfortable as possible."
-  },
-  {
-    question: "How do I choose the right treatment?",
-    answer: "Every journey begins with a personalized consultation where we assess your facial structure and skin type to recommend the most effective pathway for you."
-  }
-];

@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FAQAccordion from '@/components/FAQAccordion/FAQAccordion';
+import { FAQ_DATA } from '@/constants/constantdata';
 import ImageSlider from '@/components/ImageSlider/ImageSlider';
 
 export default function MelasmaClient() {
@@ -405,43 +406,8 @@ export default function MelasmaClient() {
         </section>
       </div>
       {/* SECTION 6: FAQS */}
-      <FAQAccordion faqs={MELASMA_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.melasma} title="Frequently Asked Questions" />
     </div>
   );
 }
 
-// ─── MELASMA SPECIFIC FAQS ───
-const MELASMA_FAQS = [
-  {
-    question: "What exactly is melasma?",
-    answer: "Melasma is a pigmentary disorder that causes dark, discolored patches on the skin. It is most common on the face and is often triggered by hormonal changes or sun exposure."
-  },
-  {
-    question: "Is melasma treatment permanent?",
-    answer: "While we can significantly fade melasma, it can be persistent and may recur if triggers like sun exposure aren't managed. We provide long-term maintenance plans to prevent recurrence."
-  },
-  {
-    question: "How long does it take to see results?",
-    answer: "Fading melasma is a gradual process. Most patients see noticeable improvement after 4 to 8 weeks of consistent clinical treatment and home care."
-  },
-  {
-    question: "Is sun protection important during treatment?",
-    answer: "Yes, strict sun protection is the single most important factor in managing melasma. Even a few minutes of unprotected exposure can trigger pigmentation."
-  },
-  {
-    question: "Can melasma be treated during pregnancy?",
-    answer: "We typically wait until after pregnancy and breastfeeding to start intensive treatments, as melasma (often called 'the mask of pregnancy') can resolve naturally after childbirth."
-  },
-  {
-    question: "Are chemical peels safe for melasma?",
-    answer: "Yes, professional superficial peels can be highly effective for epidermal melasma when combined with the right topical and oral treatments."
-  },
-  {
-    question: "Does microneedling help melasma?",
-    answer: "Yes, microneedling helps break up pigment and allows for deeper penetration of depigmenting agents, especially for dermal melasma."
-  },
-  {
-    question: "Is melasma treatment expensive?",
-    answer: "Puri Skin Clinic offers competitive pricing for melasma treatments, ensuring that advanced clinical care for pigmentation is accessible."
-  }
-];

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FAQ_DATA } from '@/constants/constantdata';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -405,44 +406,9 @@ export default function FaceliftClient() {
 
       </div>
       {/* SECTION 6: FAQS */}
-      <FAQAccordion faqs={NSFL_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.nonSurgicalFacelift} title="Frequently Asked Questions" />
 
     </div>
   );
 }
 
-// ─── NON-SURGICAL FACELIFT SPECIFIC FAQS ───
-const NSFL_FAQS = [
-  {
-    question: "How does a non-surgical facelift differ from a surgical one?",
-    answer: "A non-surgical facelift uses minimally invasive techniques like fillers and threads instead of large clinical incisions. It requires no general anesthesia and has significantly less downtime."
-  },
-  {
-    question: "Is the procedure painful?",
-    answer: "Most procedures involve minimal discomfort. We use topical numbing and local anesthesia where required to ensure a comfortable experience."
-  },
-  {
-    question: "How long do the results of a thread lift last?",
-    answer: "The effects of a thread lift typically last between 12 to 18 months, as the threads stimulate natural collagen production before being absorbed by the body."
-  },
-  {
-    question: "Can I combine Botox and Fillers in one session?",
-    answer: "Yes, combining different modalities is often recommended for more comprehensive rejuvenation, addressing both dynamic wrinkles and volume loss."
-  },
-  {
-    question: "When can I return to work after the treatment?",
-    answer: "Most patients can return to work within 24 to 48 hours. Some treatments, like certain fillers, have almost immediate recovery."
-  },
-  {
-    question: "Are there any side effects to worry about?",
-    answer: "Temporary side effects can include mild swelling, bruising, or redness at the treatment sites, which typically resolve within a few days."
-  },
-  {
-    question: "Is the non-surgical facelift permanent?",
-    answer: "No, the results are long-lasting but not permanent. Maintenance sessions are usually recommended every 12 to 24 months to sustain the youthful effect."
-  },
-  {
-    question: "Is non-surgical facelift treatment expensive in Ludhiana?",
-    answer: "At Puri Skin Clinic, we offer competitive and transparent pricing, ensuring world-class age management is accessible to our patients."
-  }
-];

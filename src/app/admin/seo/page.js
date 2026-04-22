@@ -12,13 +12,15 @@ import Swal from '@/lib/swal';
 const PAGES = [
   { key: 'home', label: 'Home' },
   { key: 'about-us', label: 'About Us' },
-  { key: 'services', label: 'Services' }, 
+  { key: 'services', label: 'Services' },
   { key: 'dr-gurinderjit-singh', label: 'Dr. Gurinderjit Singh' },
   { key: 'dr-ashwajit-singh', label: 'Dr. Ashwajit Singh' },
   { key: 'contact-us', label: 'Contact Us' },
   { key: 'book-appointment', label: 'Book Appointment' },
   { key: 'blogs', label: 'Blogs' },
   { key: 'success-stories', label: 'Success Stories' },
+  { key: 'gallery', label: 'Gallery' },
+  { key: 'videos', label: 'Videos' },
   // Services
   { key: 'acne-treatment', label: 'Acne Treatment' },
   { key: 'botox', label: 'Botox' },
@@ -33,11 +35,14 @@ const PAGES = [
   { key: 'hair-transplantation', label: 'Hair Transplantation' },
   { key: 'laser-hair-removal', label: 'Laser Hair Removal' },
   { key: 'melasma-treatment', label: 'Melasma Treatment' },
+  { key: 'mesotherapy', label: 'Mesotherapy' },
   { key: 'non-surgical-facelift', label: 'Non-Surgical Face Lift' },
   { key: 'prp-for-hair-and-skin', label: 'PRP for Hair and Skin' },
+  { key: 'radio-frequency', label: 'Radio Frequency' },
   { key: 'skin-related-services', label: 'Skin Related Services' },
   { key: 'vitiligo-treatment', label: 'Vitiligo Treatment' },
   { key: 'wart-removal-in-ludhiana', label: 'Wart Removal' },
+
 ];
 
 const BUSINESS_TYPES = [
@@ -90,10 +95,9 @@ function Field({ label, icon, children, colSpan = '' }) {
 }
 
 const inputCls = (color = 'pink') =>
-  `w-full p-3 border border-slate-100 bg-slate-50/50 rounded-2xl outline-none transition-all text-sm font-medium text-slate-700 placeholder:text-slate-300 focus:ring-4 focus:bg-white ${
-    color === 'teal'
-      ? 'focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE]'
-      : 'focus:ring-[#EA6490]/10 focus:border-[#EA6490]'
+  `w-full p-3 border border-slate-100 bg-slate-50/50 rounded-2xl outline-none transition-all text-sm font-medium text-slate-700 placeholder:text-slate-300 focus:ring-4 focus:bg-white ${color === 'teal'
+    ? 'focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE]'
+    : 'focus:ring-[#EA6490]/10 focus:border-[#EA6490]'
   }`;
 
 export default function SeoAdminPage() {
@@ -132,7 +136,7 @@ export default function SeoAdminPage() {
           const schema = JSON.parse(seo.schema_json);
           // If it's an array, it might contain FAQ and other things
           const schemas = Array.isArray(schema) ? schema : [schema];
-          
+
           const faqObj = schemas.find(s => s && s['@type'] === 'FAQPage');
           if (faqObj && faqObj.mainEntity) {
             faqs = faqObj.mainEntity.map(item => ({
@@ -146,12 +150,12 @@ export default function SeoAdminPage() {
           if (otherSchemas.length > 0) {
             customSchema = JSON.stringify(otherSchemas.length === 1 ? otherSchemas[0] : otherSchemas, null, 2);
           }
-        } catch (e) { 
+        } catch (e) {
           console.error("Failed to parse page schema", e);
           customSchema = seo.schema_json; // Fallback to raw string
         }
       }
-      
+
       setMetaData({ ...seo, faqs, customSchema });
     } catch { setMetaData({ faqs: [] }); }
     setLoadingMeta(false);
@@ -166,7 +170,7 @@ export default function SeoAdminPage() {
       if (data.seo && data.seo.schema_json) {
         setScriptData(JSON.parse(data.seo.schema_json));
       }
-    } catch {}
+    } catch { }
     setLoadingScripts(false);
   }, []);
 
@@ -241,7 +245,7 @@ export default function SeoAdminPage() {
         }
       }
 
-      const schema_json = finalSchemas.length > 0 
+      const schema_json = finalSchemas.length > 0
         ? JSON.stringify(finalSchemas.length === 1 ? finalSchemas[0] : finalSchemas)
         : null;
 
@@ -268,7 +272,7 @@ export default function SeoAdminPage() {
       if (data.schema) {
         const schemas = Array.isArray(data.schema) ? data.schema : [data.schema];
         // 1. Find the Business Schema (based on @type)
-        const bizSchema = schemas.find(s => 
+        const bizSchema = schemas.find(s =>
           s && ['MedicalClinic', 'Dermatologist', 'HealthAndBeautyBusiness', 'LocalBusiness'].includes(s['@type'])
         );
         if (bizSchema) {
@@ -377,9 +381,9 @@ export default function SeoAdminPage() {
       const res = await fetch('/api/admin/seo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          page_key: '__schema__', 
-          schema_json: JSON.stringify(finalSchemas.length === 1 ? finalSchemas[0] : finalSchemas) 
+        body: JSON.stringify({
+          page_key: '__schema__',
+          schema_json: JSON.stringify(finalSchemas.length === 1 ? finalSchemas[0] : finalSchemas)
         }),
       });
       if (res.ok) {
@@ -432,11 +436,10 @@ export default function SeoAdminPage() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl font-black text-xs sm:text-sm transition-all flex-1 sm:flex-none justify-center ${
-              activeTab === tab.id
-                ? 'bg-[#EA6490] text-white shadow-lg shadow-[#EA6490]/20'
-                : 'text-slate-400 hover:text-slate-600'
-            }`}
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl font-black text-xs sm:text-sm transition-all flex-1 sm:flex-none justify-center ${activeTab === tab.id
+              ? 'bg-[#EA6490] text-white shadow-lg shadow-[#EA6490]/20'
+              : 'text-slate-400 hover:text-slate-600'
+              }`}
           >
             {tab.icon} {tab.label}
           </button>
@@ -487,15 +490,15 @@ export default function SeoAdminPage() {
                       <div className="max-h-[400px] overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-slate-100">
                         {/* Group: Main Pages */}
                         {(() => {
-                          const items = PAGES.filter(p => 
-                            !p.key.includes('acne') && !p.key.includes('botox') && !p.key.includes('chemical') && 
-                            !p.key.includes('derm') && !p.key.includes('exosome') && !p.key.includes('facial') && 
-                            !p.key.includes('fillers') && !p.key.includes('growth') && !p.key.includes('hair') && 
-                            !p.key.includes('laser') && !p.key.includes('melasma') && !p.key.includes('non-surgical') && 
-                            !p.key.includes('prp') && !p.key.includes('skin-related') && !p.key.includes('vitiligo') && 
+                          const items = PAGES.filter(p =>
+                            !p.key.includes('acne') && !p.key.includes('botox') && !p.key.includes('chemical') &&
+                            !p.key.includes('derm') && !p.key.includes('exosome') && !p.key.includes('facial') &&
+                            !p.key.includes('fillers') && !p.key.includes('growth') && !p.key.includes('hair') &&
+                            !p.key.includes('laser') && !p.key.includes('melasma') && !p.key.includes('non-surgical') &&
+                            !p.key.includes('prp') && !p.key.includes('skin-related') && !p.key.includes('vitiligo') &&
                             !p.key.includes('wart')
                           ).filter(p => p.label.toLowerCase().includes(pageSearch.toLowerCase()));
-                          
+
                           if (items.length === 0) return null;
                           return (
                             <div className="mb-4">
@@ -504,9 +507,8 @@ export default function SeoAdminPage() {
                                 <button
                                   key={p.key}
                                   onClick={() => { setActivePage(p.key); setIsPageDropdownOpen(false); setPageSearch(''); }}
-                                  className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between group/item ${
-                                    activePage === p.key ? 'bg-[#EA6490]/10 text-[#EA6490]' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
-                                  }`}
+                                  className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between group/item ${activePage === p.key ? 'bg-[#EA6490]/10 text-[#EA6490]' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                                    }`}
                                 >
                                   {p.label}
                                   {activePage === p.key && <FaCheckCircle size={10} />}
@@ -518,15 +520,15 @@ export default function SeoAdminPage() {
 
                         {/* Group: Services */}
                         {(() => {
-                          const items = PAGES.filter(p => 
-                            p.key.includes('acne') || p.key.includes('botox') || p.key.includes('chemical') || 
-                            p.key.includes('derm') || p.key.includes('exosome') || p.key.includes('facial') || 
-                            p.key.includes('fillers') || p.key.includes('growth') || p.key.includes('hair') || 
-                            p.key.includes('laser') || p.key.includes('melasma') || p.key.includes('non-surgical') || 
-                            p.key.includes('prp') || p.key.includes('skin-related') || p.key.includes('vitiligo') || 
+                          const items = PAGES.filter(p =>
+                            p.key.includes('acne') || p.key.includes('botox') || p.key.includes('chemical') ||
+                            p.key.includes('derm') || p.key.includes('exosome') || p.key.includes('facial') ||
+                            p.key.includes('fillers') || p.key.includes('growth') || p.key.includes('hair') ||
+                            p.key.includes('laser') || p.key.includes('melasma') || p.key.includes('non-surgical') ||
+                            p.key.includes('prp') || p.key.includes('skin-related') || p.key.includes('vitiligo') ||
                             p.key.includes('wart')
                           ).filter(p => p.label.toLowerCase().includes(pageSearch.toLowerCase()));
-                          
+
                           if (items.length === 0) return null;
                           return (
                             <div className="mb-4">
@@ -535,9 +537,8 @@ export default function SeoAdminPage() {
                                 <button
                                   key={p.key}
                                   onClick={() => { setActivePage(p.key); setIsPageDropdownOpen(false); setPageSearch(''); }}
-                                  className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between group/item ${
-                                    activePage === p.key ? 'bg-[#4CA6AE]/10 text-[#4CA6AE]' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
-                                  }`}
+                                  className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between group/item ${activePage === p.key ? 'bg-[#4CA6AE]/10 text-[#4CA6AE]' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                                    }`}
                                 >
                                   {p.label}
                                   {activePage === p.key && <FaCheckCircle size={10} />}
@@ -558,13 +559,13 @@ export default function SeoAdminPage() {
 
               {/* Quick Actions / Info */}
               <div className="flex items-center gap-3 bg-[#EA6490]/5 px-5 py-4 rounded-[1.5rem] border border-[#EA6490]/10 hidden sm:flex">
-                 <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-[#EA6490] shadow-sm">
-                    <FaCheckCircle size={18} />
-                 </div>
-                 <div>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SEO Health</p>
-                    <p className="text-xs font-bold text-slate-700">Configuring Static Page</p>
-                 </div>
+                <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-[#EA6490] shadow-sm">
+                  <FaCheckCircle size={18} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SEO Health</p>
+                  <p className="text-xs font-bold text-slate-700">Configuring Static Page</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1029,100 +1030,100 @@ export default function SeoAdminPage() {
       {/* TAB 3 — GLOBAL TAGS & SCRIPTS                                 */}
       {/* ══════════════════════════════════════════════════════════════ */}
       {activeTab === 'scripts' && (
-            <div className="space-y-6">
-              {loadingScripts ? (
-                <div className="bg-white rounded-[1.5rem] p-16 text-center text-slate-300 font-bold italic animate-pulse">Loading Scripts...</div>
-              ) : (
-                <form onSubmit={saveScripts} className="space-y-6">
-                  {/* Google Integration */}
-                  <div className="bg-white rounded-[1.5rem] p-5 sm:p-8 shadow-sm border border-slate-100">
-                    <h2 className="text-base sm:text-lg font-bold mb-6 text-slate-800 flex items-center gap-3">
-                      <span className="w-1.5 h-7 bg-[#4CA6AE] rounded-full flex-shrink-0"></span>
-                      Google Tracking & Analytics
-                    </h2>
+        <div className="space-y-6">
+          {loadingScripts ? (
+            <div className="bg-white rounded-[1.5rem] p-16 text-center text-slate-300 font-bold italic animate-pulse">Loading Scripts...</div>
+          ) : (
+            <form onSubmit={saveScripts} className="space-y-6">
+              {/* Google Integration */}
+              <div className="bg-white rounded-[1.5rem] p-5 sm:p-8 shadow-sm border border-slate-100">
+                <h2 className="text-base sm:text-lg font-bold mb-6 text-slate-800 flex items-center gap-3">
+                  <span className="w-1.5 h-7 bg-[#4CA6AE] rounded-full flex-shrink-0"></span>
+                  Google Tracking & Analytics
+                </h2>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <Field label="Google Tag Manager ID" icon={<FaLink className="text-[#EA6490]" />}>
-                        <input
-                          value={scriptData.gtmId ?? ''}
-                          onChange={e => setScriptData({ ...scriptData, gtmId: e.target.value })}
-                          placeholder="e.g. GTM-XXXXXXX"
-                          className={inputCls('pink')}
-                        />
-                        <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tight">Standard GTM container ID</p>
-                      </Field>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <Field label="Google Tag Manager ID" icon={<FaLink className="text-[#EA6490]" />}>
+                    <input
+                      value={scriptData.gtmId ?? ''}
+                      onChange={e => setScriptData({ ...scriptData, gtmId: e.target.value })}
+                      placeholder="e.g. GTM-XXXXXXX"
+                      className={inputCls('pink')}
+                    />
+                    <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tight">Standard GTM container ID</p>
+                  </Field>
 
-                      <Field label="Google Analytics ID (GA4)" icon={<FaLink className="text-[#4CA6AE]" />}>
-                        <input
-                          value={scriptData.gaId ?? ''}
-                          onChange={e => setScriptData({ ...scriptData, gaId: e.target.value })}
-                          placeholder="e.g. G-XXXXXXXXXX"
-                          className={inputCls('teal')}
-                        />
-                        <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tight">Your Measurement ID</p>
-                      </Field>
-                    </div>
+                  <Field label="Google Analytics ID (GA4)" icon={<FaLink className="text-[#4CA6AE]" />}>
+                    <input
+                      value={scriptData.gaId ?? ''}
+                      onChange={e => setScriptData({ ...scriptData, gaId: e.target.value })}
+                      placeholder="e.g. G-XXXXXXXXXX"
+                      className={inputCls('teal')}
+                    />
+                    <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tight">Your Measurement ID</p>
+                  </Field>
+                </div>
+              </div>
+
+              {/* Custom Scripts */}
+              <div className="bg-white rounded-[1.5rem] p-5 sm:p-8 shadow-sm border border-slate-100">
+                <h2 className="text-base sm:text-lg font-bold mb-6 text-slate-800 flex items-center gap-3">
+                  <span className="w-1.5 h-7 bg-[#EA6490] rounded-full flex-shrink-0"></span>
+                  Custom Code Injection
+                </h2>
+
+                <div className="space-y-8">
+                  <Field label="Header Scripts (Injects into <head>)" icon={<FaCode className="text-[#EA6490]" />}>
+                    <textarea
+                      rows={15}
+                      value={scriptData.headScripts ?? ''}
+                      onChange={e => setScriptData({ ...scriptData, headScripts: e.target.value })}
+                      placeholder="Paste your <script> or <meta> tags here..."
+                      className={`${inputCls('pink')} font-mono text-xs resize-y min-h-[300px]`}
+                    />
+                  </Field>
+
+                  <Field label="Footer Scripts (Injects before </body>)" icon={<FaCode className="text-[#4CA6AE]" />}>
+                    <textarea
+                      rows={15}
+                      value={scriptData.footerScripts ?? ''}
+                      onChange={e => setScriptData({ ...scriptData, footerScripts: e.target.value })}
+                      placeholder="Paste your custom JS or tracking pixels here..."
+                      className={`${inputCls('teal')} font-mono text-xs resize-y min-h-[300px]`}
+                    />
+                  </Field>
+                </div>
+
+                <div className="flex justify-end mt-10 pt-6 border-t border-slate-50">
+                  <button
+                    type="submit"
+                    disabled={savingScripts}
+                    className="flex items-center gap-2 bg-[#EA6490] hover:bg-[#d84a7e] disabled:opacity-60 text-white font-black px-10 py-4 rounded-2xl transition-all shadow-lg shadow-[#EA6490]/20 uppercase tracking-widest text-xs w-full sm:w-auto justify-center"
+                  >
+                    <FaSave /> {savingScripts ? 'Applying Globally...' : 'Save & Deploy Globally'}
+                  </button>
+                </div>
+              </div>
+
+              {/* Warning Banner */}
+              <div className="bg-amber-50 rounded-[1.5rem] p-6 border border-amber-100">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-white flex-shrink-0">
+                    <FaExclamationCircle size={18} />
                   </div>
-
-                  {/* Custom Scripts */}
-                  <div className="bg-white rounded-[1.5rem] p-5 sm:p-8 shadow-sm border border-slate-100">
-                    <h2 className="text-base sm:text-lg font-bold mb-6 text-slate-800 flex items-center gap-3">
-                      <span className="w-1.5 h-7 bg-[#EA6490] rounded-full flex-shrink-0"></span>
-                      Custom Code Injection
-                    </h2>
-
-                    <div className="space-y-8">
-                      <Field label="Header Scripts (Injects into <head>)" icon={<FaCode className="text-[#EA6490]" />}>
-                        <textarea
-                          rows={15}
-                          value={scriptData.headScripts ?? ''}
-                          onChange={e => setScriptData({ ...scriptData, headScripts: e.target.value })}
-                          placeholder="Paste your <script> or <meta> tags here..."
-                          className={`${inputCls('pink')} font-mono text-xs resize-y min-h-[300px]`}
-                        />
-                      </Field>
-
-                      <Field label="Footer Scripts (Injects before </body>)" icon={<FaCode className="text-[#4CA6AE]" />}>
-                        <textarea
-                          rows={15}
-                          value={scriptData.footerScripts ?? ''}
-                          onChange={e => setScriptData({ ...scriptData, footerScripts: e.target.value })}
-                          placeholder="Paste your custom JS or tracking pixels here..."
-                          className={`${inputCls('teal')} font-mono text-xs resize-y min-h-[300px]`}
-                        />
-                      </Field>
-                    </div>
-
-                    <div className="flex justify-end mt-10 pt-6 border-t border-slate-50">
-                      <button
-                        type="submit"
-                        disabled={savingScripts}
-                        className="flex items-center gap-2 bg-[#EA6490] hover:bg-[#d84a7e] disabled:opacity-60 text-white font-black px-10 py-4 rounded-2xl transition-all shadow-lg shadow-[#EA6490]/20 uppercase tracking-widest text-xs w-full sm:w-auto justify-center"
-                      >
-                        <FaSave /> {savingScripts ? 'Applying Globally...' : 'Save & Deploy Globally'}
-                      </button>
-                    </div>
+                  <div>
+                    <h3 className="font-black text-amber-900 mb-1 text-sm uppercase tracking-wider">Advanced Usage</h3>
+                    <p className="text-xs text-amber-800/70 font-medium leading-relaxed">
+                      Scripts added here will be executed on <strong>every single page</strong> of the website.
+                      Ensure your code is properly formatted and safe to avoid breaking site functionality.
+                    </p>
                   </div>
-
-                  {/* Warning Banner */}
-                  <div className="bg-amber-50 rounded-[1.5rem] p-6 border border-amber-100">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-white flex-shrink-0">
-                        <FaExclamationCircle size={18} />
-                      </div>
-                      <div>
-                        <h3 className="font-black text-amber-900 mb-1 text-sm uppercase tracking-wider">Advanced Usage</h3>
-                        <p className="text-xs text-amber-800/70 font-medium leading-relaxed">
-                          Scripts added here will be executed on <strong>every single page</strong> of the website. 
-                          Ensure your code is properly formatted and safe to avoid breaking site functionality.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              )}
-            </div>
+                </div>
+              </div>
+            </form>
           )}
+        </div>
+      )}
     </div>
   );
 }

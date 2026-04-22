@@ -1,6 +1,8 @@
 import React from 'react';
 import { getPageSeo } from '@/lib/seo';
 import JsonLd from '@/components/Seo/JsonLd';
+import FAQSchema from '@/components/Seo/FAQSchema';
+import { FAQ_DATA } from '@/constants/constantdata';
 import VitiligoClient from './VitiligoClient';
 
 export async function generateMetadata() {
@@ -13,6 +15,7 @@ export default async function VitiligoPage() {
   return (
     <>
       <JsonLd schema={seoData.schema} />
+      <FAQSchema faqs={FAQ_DATA.vitiligo} />
       <VitiligoClient />
     </>
   );

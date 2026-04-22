@@ -15,7 +15,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { FAQ_DATA } from '@/constants/constantdata';
 
 export default function AcneTreatmentClient() {
   const sliderImages = [
@@ -363,7 +363,7 @@ export default function AcneTreatmentClient() {
 
       </div>
       {/* SECTION 7: FAQS */}
-      <FAQAccordion faqs={ACNE_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.acne} title="Frequently Asked Questions" />
 
       <style jsx global>{`
         .swiper-pagination-bullet {
@@ -384,70 +384,3 @@ export default function AcneTreatmentClient() {
   );
 }
 
-// ─── ACNE SPECIFIC FAQS ───
-const ACNE_FAQS = [
-  {
-    "question": "When should I see a skin specialist for acne?",
-    "answer": "If any of the homemade remedies, over-the-counter procedures, and certain skin ointments are not showing any effect on the pimples, you should look for a dermatologist in your locality. In severe cases, when you start getting deep, painful pimples, it is important to visit a dermatologist in India to prevent them from scarring."
-  },
-  {
-    "question": "Are my current skincare products responsible for acne?",
-    "answer": "For the detection of this, you should bring all your current skincare products, such as soap, creams and face washes, to the first visit. The doctor you visit will check if any of them is responsible for worsening or causing your acne or not."
-  },
-  {
-    "question": "Is acne extraction painful?",
-    "answer": "Acne extraction is not considered that painful; it might just bring a little discomfort. The stinging sensation also depends on the severity of the acne and the sensitivity of the skin. A professional dermatologist makes the acne extraction easier, which is much better than popping it at home, which can cause scarring."
-  },
-  {
-    "question": "Can laser treatment help my acne?",
-    "answer": "Yes, getting a professional laser treatment in India can help you a lot in beating stubborn acne. Our clinic employs FDA-approved lasers to target and eliminate the acne-causing bacteria, while also working to eliminate both current breakouts and scars they leave."
-  },
-  {
-    "question": "Is it important to avoid the use of makeup during the treatment?",
-    "answer": "It is recommended by dermatologists to stop using makeup during the treatment process for more effective results. You can use pore-clogging makeup and only limited makeup applications while undergoing the treatment, but you should completely avoid it during intense procedures like chemical peels."
-  },
-  {
-    "question": "How much does a consultation cost in India?",
-    "answer": "For a single consultation at a reputable dermatologist clinic in India, the price ranges between five hundred and fifteen hundred rupees. The consultation cost in India also depends on the city and the expertise of the dermatologist."
-  },
-  {
-    "question": "What is the cost of treatment for acne in India?",
-    "answer": "The total cost of acne treatment in India differs based on how bad the acne is. For mild acne, it might cost ten to thirty thousand rupees for a few-month procedure, and for severe cases, which require laser treatment and long-term care, the total cost might range from sixty thousand to one lakh twenty thousand rupees."
-  },
-  {
-    "question": "Are there less expensive options available for acne treatment?",
-    "answer": "Yes, you can take this suggestion from your dermatologist. They will suggest to you the best pharmaceutical cream that can easily replace the expensive versions."
-  },
-  {
-    "question": "How to treat acne for Indian skin?",
-    "answer": "Indian skin types are often oily and prone to hyperpigmentation and sensitive to harsh ingredients. This leads to severe acne, and for treating this, you should follow a proper acne-prone skin treatment in India by washing your face twice daily with a mild facewash and using sunscreen daily."
-  },
-  {
-    "question": "How do I know if my acne is hormonal?",
-    "answer": "To detect this, if your acne appears after age 25 and is mostly around the jaw, chin, or is accompanied by irregular periods or abnormal hair growth, these are the common indicators that your hormones are responsible for the pimples. You might be dealing with conditions like PCOD, which you are not aware of. Get a regular checkup for that from your trusted doctor, as it requires specific medication for treatment."
-  },
-  {
-    "question": "Will my acne come back after treatment?",
-    "answer": "Acne is a chronic condition, which means it can come back. However, after the proper acne removal treatment, your dermatologist will make sure to provide you with the proper maintenance routine that will help you keep your skin clear permanently."
-  },
-  {
-    "question": "Can acne scars be removed permanently?",
-    "answer": "Mild active acne is easily treatable and usually does not cause any scarring with proper treatment. The deep scars need advanced treatments like microneedling or laser resurfacing, which might reduce the scars but cannot completely eliminate them from the skin."
-  },
-  {
-    "question": "How can I find the best skin doctor in Ludhiana for my persistent acne?",
-    "answer": "If you have been struggling with persistent acne, then make sure to find the best skin doctor on Google for the most effective results. You can simply search “best skin doctor near me”, and you’ll get the list of best skin doctors near you, providing effective skin treatment for your persistent acne."
-  },
-  {
-    "question": "Does a healthy diet help in managing my acne?",
-    "answer": "Yes, a healthy diet holds great importance in managing your acne by effectively managing the blood sugar level in your body, which can be the major reason for the formation of acne. However, if your condition is worse, then make sure to engage with the professionals of Puri Skin Clinic, who will provide thorough guidance on this."
-  },
-  {
-    "question": "What are the healthy lifestyle practices for managing my acne?",
-    "answer": "To manage your acne, make sure to follow a healthy diet, which does not include any high-sugar-enriched food items. Along with this, clean your face in a gentle manner without using any harsh or chemical products, with the aim of managing acne."
-  },
-  {
-    "question": "When is professional help necessary for managing my acne?",
-    "answer": "If you are unable to get rid of acne through over-the-counter medicines and constantly notice the painful cysts on your face, then make sure to consult the best acne doctor in Punjab. Through such professional help, you’ll be able to get healthy skin."
-  }
-];

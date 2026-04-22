@@ -9,6 +9,7 @@ import {
   FaVials, FaMicroscope, FaSyncAlt, FaSyringe
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { FAQ_DATA } from '@/constants/constantdata';
 import FAQAccordion from '@/components/FAQAccordion/FAQAccordion';
 import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
 import AppointmentForm from '@/components/AppointmentForm/AppointmentForm';
@@ -338,12 +339,12 @@ export default function GFCClient() {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start max-w-7xl mx-auto">
                 <div className="space-y-4">
-                  {GFC_FAQS.slice(0, 4).map((faq, index) => (
+                  {FAQ_DATA.gfc.slice(0, 4).map((faq, index) => (
                     <FAQItem key={index} faq={faq} index={index} />
                   ))}
                 </div>
                 <div className="space-y-4">
-                  {GFC_FAQS.slice(4).map((faq, index) => (
+                  {FAQ_DATA.gfc.slice(4).map((faq, index) => (
                     <FAQItem key={index + 4} faq={faq} index={index + 4} />
                   ))}
                 </div>
@@ -397,38 +398,3 @@ function FAQItem({ faq, index }) {
   );
 }
 
-// ─── GFC SPECIFIC FAQS ───
-const GFC_FAQS = [
-  {
-    question: "What is the main difference between GFC and PRP?",
-    answer: "GFC is an advanced, acellular version of PRP. While PRP involves injecting concentrated platelets that release growth factors later, GFC extracts and concentrates the growth factors directly from the platelets beforehand, making it more potent and stable."
-  },
-  {
-    question: "Is GFC therapy painful?",
-    answer: "GFC is a minimally invasive procedure. While it involves injections, most patients experience minimal discomfort. We can also use topical numbing agents if you have sensitive skin to ensure a comfortable experience."
-  },
-  {
-    question: "How long does a GFC session take?",
-    answer: "A typical session, including blood collection, processing, and application, takes about 45 to 60 minutes. It's a convenient 'lunchtime' procedure with no downtime."
-  },
-  {
-    question: "How many GFC sessions are needed for hair growth?",
-    answer: "For optimal results in hair restoration, we usually recommend 3 to 4 sessions spaced one month apart. However, the exact number depends on the severity of hair thinning."
-  },
-  {
-    question: "Are the results of GFC therapy permanent?",
-    answer: "GFC provides long-lasting improvements, but since natural aging and genetic hair loss continue, maintenance sessions every 6 to 12 months are often recommended to sustain the results."
-  },
-  {
-    question: "Is GFC safe for skin rejuvenation?",
-    answer: "Yes, GFC is highly effective for the face. It stimulates natural collagen and elastin, helping to reduce fine lines, improve texture, and restore a youthful glow using your own body's natural factors."
-  },
-  {
-    question: "Can GFC help with acne scars?",
-    answer: "Yes, GFC promotes tissue repair and skin regeneration, which can significantly reduce the appearance and intensity of acne scars over multiple sessions."
-  },
-  {
-    question: "Is GFC treatment expensive in Ludhiana?",
-    answer: "At Puri Skin Clinic, we ensure that GFC treatment is affordable and accessible. While it is a premium bio-therapy, our pricing in Punjab is highly competitive compared to major metropolitan centers."
-  }
-];

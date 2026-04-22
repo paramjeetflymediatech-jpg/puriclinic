@@ -13,6 +13,7 @@ import { Testimonial } from '@/lib/models';
 import { getPageSeo } from '@/lib/seo';
 import AppointmentCTA from '@/components/AppointmentCTA/AppointmentCTA';
 import JsonLd from '@/components/Seo/JsonLd';
+import FAQSchema from '@/components/Seo/FAQSchema';
 
 export async function generateMetadata() {
   return getPageSeo('home');
@@ -29,6 +30,7 @@ export default async function Home() {
   return (
     <>
       <JsonLd schema={seoData.schema} />
+      <FAQSchema faqs={FAQ_DATA.general} />
       <Hero />
       <Services/>
       <AboutSection/>

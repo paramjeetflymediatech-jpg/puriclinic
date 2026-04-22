@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FAQ_DATA } from '@/constants/constantdata';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -383,43 +384,8 @@ export default function DermarollerClient() {
 
       </div>
       {/* SECTION 8: FAQS */}
-      <FAQAccordion faqs={DERMAROLLER_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.dermaroller} title="Frequently Asked Questions" />
     </div>
   );
 }
 
-// ─── DERMAROLLER SPECIFIC FAQS ───
-const DERMAROLLER_FAQS = [
-  {
-    question: "How does the Dermaroller actually help my skin?",
-    answer: "It creates microscopic punctures that trigger the body's natural wound-healing response, producing new collagen and elastin to repair scars and wrinkles."
-  },
-  {
-    question: "Is the procedure painful?",
-    answer: "We use a high-quality topical numbing cream before the procedure to ensure you feel minimal discomfort during the session."
-  },
-  {
-    question: "How long does it take to see results from Dermaroller?",
-    answer: "While some glow is visible soon after, significant improvements in scars and texture usually appear after 2 to 3 sessions as new tissue forms."
-  },
-  {
-    question: "Is Dermaroller safe for all skin types?",
-    answer: "Yes, it is generally safe for all skin types. However, we avoid active acne areas to prevent the spread of bacteria."
-  },
-  {
-    question: "What is the downtime after a Dermaroller session?",
-    answer: "You may experience mild redness and swelling for 24 to 48 hours. Most patients return to their normal routine by the third day."
-  },
-  {
-    question: "How often should I undergo Dermaroller treatment?",
-    answer: "Sessions are typically spaced 4 to 6 weeks apart to allow the skin's natural regeneration process to complete."
-  },
-  {
-    question: "Can I do Dermaroller at home?",
-    answer: "Home rollers are much shallower and carry a high risk of infection. Professional clinical treatments use medical-grade needles for deeper, safer, and more effective results."
-  },
-  {
-    question: "What should I avoid after the treatment?",
-    answer: "Avoid direct sun exposure, strenuous exercise, and harsh skincare products for at least 48 hours post-treatment."
-  }
-];

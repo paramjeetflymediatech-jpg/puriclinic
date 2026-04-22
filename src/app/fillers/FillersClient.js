@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FAQ_DATA } from '@/constants/constantdata';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -357,44 +358,9 @@ export default function FillersClient() {
 
       </div>
       {/* SECTION 10: FAQS */}
-      <FAQAccordion faqs={FILLER_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.fillers} title="Frequently Asked Questions" />
 
     </div>
   );
 }
 
-// ─── FILLER SPECIFIC FAQS ───
-const FILLER_FAQS = [
-  {
-    question: "How long do dermal fillers typically last?",
-    answer: "Fillers generally last between 6 to 18 months, depending on the type of filler used and the area being treated. Highly mobile areas like lips may require touch-ups sooner."
-  },
-  {
-    question: "Is the filler injection procedure painful?",
-    answer: "Most fillers contain Lidocaine, a numbing agent, to ensure comfort. We also offer topical numbing creams to make the experience as painless as possible."
-  },
-  {
-    question: "Are there any side effects to worry about?",
-    answer: "Common side effects include mild swelling, redness, or bruising at the injection site, which typically resolve within a few days."
-  },
-  {
-    question: "Can fillers be dissolved if I'm not happy?",
-    answer: "Yes, Hyaluronic Acid fillers can be easily dissolved using an enzyme called hyaluronidase, making it a safe and reversible option."
-  },
-  {
-    question: "When will I see the final results?",
-    answer: "Results are immediate, although some initial swelling may occur. The 'final' settled look is usually visible after 1-2 weeks."
-  },
-  {
-    question: "How do I choose between Botox and Fillers?",
-    answer: "Botox is for dynamic wrinkles (caused by muscle movement), while fillers are for static wrinkles and volume loss. A consultation will determine the best mix for you."
-  },
-  {
-    question: "Is there any downtime after fillers?",
-    answer: "There is minimal downtime. You can return to work immediately, though we advise avoiding intense exercise for 24-48 hours."
-  },
-  {
-    question: "Who should avoid dermal fillers?",
-    answer: "Fillers are generally avoided for pregnant or breastfeeding women and those with active skin infections at the treatment site."
-  }
-];

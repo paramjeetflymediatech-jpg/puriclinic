@@ -17,7 +17,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { FAQ_DATA } from '@/constants/constantdata';
 
 export default function ChemicalPeelClient() {
   const sliderImages = [
@@ -437,7 +437,7 @@ export default function ChemicalPeelClient() {
 
       </div>
       {/* SECTION 7: FAQS */}
-      <FAQAccordion faqs={PEEL_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.chemicalPeel} title="Frequently Asked Questions" />
 
       <style jsx global>{`
         .res-pagination .swiper-pagination-bullet {
@@ -458,41 +458,6 @@ export default function ChemicalPeelClient() {
   );
 }
 
-// ─── PEEL SPECIFIC FAQS ───
-const PEEL_FAQS = [
-  {
-    question: "How long does a chemical peel session take?",
-    answer: "A typical session takes about 30 to 45 minutes, making it a convenient procedure that can even be done during a lunch break."
-  },
-  {
-    question: "Will my skin actually 'peel' after the treatment?",
-    answer: "Depending on the depth of the peel, you may experience mild flaking or more significant peeling for 3 to 7 days. Our dermatologists will explain what to expect for your specific peel."
-  },
-  {
-    question: "Is the procedure painful?",
-    answer: "Most patients feel a warm or tingling sensation during application. Cooling fans or soothing masks are used to manage any discomfort."
-  },
-  {
-    question: "How many sessions are recommended for best results?",
-    answer: "While some results are visible after one session, a series of 3 to 6 sessions is often recommended for significant improvements in texture and pigmentation."
-  },
-  {
-    question: "Can I go out in the sun after a chemical peel?",
-    answer: "Your skin will be more sensitive to UV rays post-peel. It is essential to wear high-SPF sunscreen and avoid direct sun exposure for at least a week."
-  },
-  {
-    question: "Are chemical peels safe for acne?",
-    answer: "Yes, certain peels are specifically designed to treat active acne and prevent future breakouts by unclogging pores and reducing bacteria."
-  },
-  {
-    question: "What is the downtime associated with peeling?",
-    answer: "For superficial peels, there is zero downtime. For medium or deep peels, you may want to plan for 3-5 days of social downtime as the skin exfoliates."
-  },
-  {
-    question: "Can I wear makeup after the procedure?",
-    answer: "We usually recommend waiting at least 24 hours before applying makeup to allow the skin to begin its healing process undisturbed."
-  }
-];
 
 // ─── PEEL SPECIFIC TESTIMONIALS ───
 const HAPPY_CUSTOMERS = [

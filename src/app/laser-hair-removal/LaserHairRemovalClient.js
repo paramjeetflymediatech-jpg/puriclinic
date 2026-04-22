@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FAQ_DATA } from '@/constants/constantdata';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -422,44 +423,9 @@ export default function LaserHairRemovalClient() {
 
       </div>
       {/* SECTION 6: FAQS */}
-      <FAQAccordion faqs={LASER_FAQS} title="Frequently Asked Questions" />
+      <FAQAccordion faqs={FAQ_DATA.laserHairRemoval} title="Frequently Asked Questions" />
 
     </div>
   );
 }
 
-// ─── LASER SPECIFIC FAQS ───
-const LASER_FAQS = [
-  {
-    question: "Does laser hair removal provide permanent results or not?",
-    answer: "Generally, the results of laser hair removal include reduced hair growth on your body for a long period of time. Therefore, you can get rid of your body hair for more than months or years in an effective manner."
-  },
-  {
-    question: "Is undergoing laser hair removal a safe choice for all skin types?",
-    answer: "Yes, generally, it is considered the safe option for all skin types; however, make sure to get thorough guidance regarding this from the professionals before opting for laser hair removal in Ludhiana."
-  },
-  {
-    question: "How much time does it take for the procedure of laser hair removal?",
-    answer: "Usually, the duration of the laser hair removal procedure widely depends on the size of the specific area of your body. For the smaller areas, such as the upper lip, our professionals do not take much time and remove the hair within a few minutes. However, the larger areas, such as legs and arms, might require more time."
-  },
-  {
-    question: "Are there different rates of laser hair removal for men and women?",
-    answer: "Yes, laser hair removal costs in Ludhiana significantly differ for men and women in terms of their hair density. Men usually have denser hair than women, due to which the cost of laser hair removal for them is higher than for women."
-  },
-  {
-    question: "Should I be more careful about my skin after laser hair removal?",
-    answer: "Yes, you should be extra careful of your skin after laser hair removal in terms of preventing burns and skin irritation.  You can protect your skin after laser hair removal from the sun in terms of preventing sunburns. Also, use mild cleansers for proper protection of your skin in an essential manner."
-  },
-  {
-    question: "Are there any side effects?",
-    answer: "You may experience slight redness or a mild sunburn sensation for a few hours, which typically resolves quickly. Our clinical team provides full post-care guidance."
-  },
-  {
-    question: "Can facial hair be treated safely?",
-    answer: "Absolutely. We use precise clinical parameters specifically for delicate facial skin to safely remove unwanted upper lip, chin, or jawline hair."
-  },
-  {
-    question: "How should I prepare for my first session?",
-    answer: "You should shave the area to be treated 24 hours before your session. Avoid waxing or plucking for at least 4 weeks prior."
-  }
-];

@@ -8,6 +8,8 @@ import {
   FaStar, FaShieldAlt, FaMagic, FaRegLightbulb, FaUserMd, FaCalendarAlt, FaSyncAlt
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import FAQAccordion from '@/components/FAQAccordion/FAQAccordion';
+import { FAQ_DATA } from '@/constants/constantdata';
 
 export default function DermapenClient() {
 
@@ -268,42 +270,7 @@ export default function DermapenClient() {
           </div>
         </div>
       </section>
+      <FAQAccordion faqs={FAQ_DATA.dermapen} title="Frequently Asked Questions" />
     </div> </div>
   );
 }
-
-// ─── DERMAPEN SPECIFIC FAQS ───
-const DERMAPEN_FAQS = [
-  {
-    question: "How is Dermapen different from a traditional Dermaroller?",
-    answer: "Dermapen uses vertical needles that oscillate at high speed, creating more precise micro-channels with less epidermal damage and pain compared to the rolling action of traditional rollers."
-  },
-  {
-    question: "Does Dermapen treatment hurt?",
-    answer: "Most patients feel a vibrating or tingling sensation. For deeper treatments, we apply a topical numbing cream to ensure the procedure is comfortable."
-  },
-  {
-    question: "How many sessions will I need for acne scars?",
-    answer: "For significant improvement in acne scarring, we typically recommend a series of 4 to 6 sessions spaced 4 to 6 weeks apart."
-  },
-  {
-    question: "Is there any downtime after the procedure?",
-    answer: "You may experience mild redness similar to a sunburn for 24 to 48 hours. Most patients return to work the next day."
-  },
-  {
-    question: "When will I see results?",
-    answer: "Visible improvements in skin texture and radiance can be seen after the first session, with significant collagen remodeling occurring over 3 to 6 months."
-  },
-  {
-    question: "Can Dermapen be used on sensitive areas?",
-    answer: "Yes, its precision technology allows us to treat delicate areas like the upper lip and around the eyes safely and effectively."
-  },
-  {
-    question: "What should I apply to my skin after the treatment?",
-    answer: "We recommend using only professional, sterile products provided by our clinic for the first 24 hours to ensure safe healing."
-  },
-  {
-    question: "Is Dermapen safe for all skin types?",
-    answer: "Yes, Dermapen is safe for all skin tones and types, making it a versatile option for diverse rejuvenation needs."
-  }
-];

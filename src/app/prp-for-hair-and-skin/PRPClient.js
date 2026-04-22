@@ -9,7 +9,7 @@ import {
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FAQAccordion from '@/components/FAQAccordion/FAQAccordion';
-import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
+import { FAQ_DATA } from '@/constants/constantdata';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -311,6 +311,7 @@ export default function PRPClient() {
         </section>
 
       </div>
+      <FAQAccordion faqs={FAQ_DATA.prp} title="Frequently Asked Questions" />
 
        {/* ── 6. FOOTER CTA ── */}
        <section className="bg-white py-24 mt-10 px-6 border-t-[8px] border-[#EA6490]">

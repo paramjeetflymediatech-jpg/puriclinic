@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FAQ_DATA } from '@/constants/constantdata';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -271,44 +272,9 @@ export default function BotoxClient() {
 
       </div>
       {/* SECTION 7: FAQS */}
-      {/* <FAQAccordion faqs={BOTOX_FAQS} title="Frequently Asked Questions" /> */}
+      <FAQAccordion faqs={FAQ_DATA.botox} title="Frequently Asked Questions" />
 
     </div>
   );
 }
 
-// ─── BOTOX SPECIFIC FAQS ───
-const BOTOX_FAQS = [
-  {
-    question: "When should I expect results from Botox?",
-    answer: "You will start noticing noticeable changes in your face within three to five days after the completion of your procedure. Full results are typically visible within 2 weeks."
-  },
-  {
-    question: "How long do the effects of Botox typically last?",
-    answer: "Generally, Botox results last between 3 to 6 months. As muscle action gradually returns, the lines and wrinkles begin to reappear and need to be treated again."
-  },
-  {
-    question: "Is undergoing Botox safe for sensitive skin?",
-    answer: "Yes, Botox is safe for most skin types. However, we always recommend a thorough consultation with our dermatologists to ensure it's the right choice for your specific skin profile."
-  },
-  {
-    question: "Does the procedure involve a lot of pain?",
-    answer: "The procedure involves very minimal discomfort. Most patients describe the sensation as a quick pinch. No anesthesia is typically required."
-  },
-  {
-    question: "Can I return to work immediately after the treatment?",
-    answer: "Yes, there is virtually no downtime. You can resume most normal activities immediately, though we recommend avoiding strenuous exercise for 24 hours."
-  },
-  {
-    question: "What are the common side effects of Botox?",
-    answer: "Common side effects are minimal and temporary, including slight redness, swelling, or bruising at the injection site. These typically resolve within a few hours."
-  },
-  {
-    question: "At what age should I start considering Botox?",
-    answer: "There is no 'right' age, but many patients start in their late 20s or early 30s as a preventative measure to stop dynamic wrinkles from becoming permanent lines."
-  },
-  {
-    question: "Is Botox treatment expensive in Ludhiana?",
-    answer: "Botox treatment cost in Punjab is relatively affordable. At Puri Skin Clinic, we offer competitive pricing while maintaining the highest medical standards."
-  }
-];

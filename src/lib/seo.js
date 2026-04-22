@@ -150,6 +150,16 @@ const DEFAULTS = {
     description: 'Watch our expert dermatologists in action. Video success stories and procedure walkthroughs from Puri Skin Clinic.',
     keywords: 'dermatology videos, skin treatment videos, success story videos',
   },
+  mesotherapy: {
+    title: 'Advanced Mesotherapy in Ludhiana | Skin & Hair Rejuvenation',
+    description: 'Revitalize your skin and hair with advanced Mesotherapy in Ludhiana. Non-surgical rejuvenation and targeted treatment at Puri Skin Clinic.',
+    keywords: 'mesotherapy Ludhiana, skin rejuvenation, hair fall treatment, non-surgical fat reduction',
+  },
+  'radio-frequency': {
+    title: 'Radio-Frequency Skin Tightening in Ludhiana | Puri Skin Clinic',
+    description: 'Tighten and firm your skin with Radio-Frequency (RF) therapy in Ludhiana. Safe, non-invasive skin tightening and anti-aging at Puri Skin Clinic.',
+    keywords: 'radio frequency skin tightening, RF treatment Ludhiana, skin firming, anti-aging therapy',
+  },
 };
 
 /**
