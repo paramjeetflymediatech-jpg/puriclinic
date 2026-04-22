@@ -37,7 +37,7 @@ export async function POST(request) {
 
       const mailOptions = {
         from: process.env.SMTP_USER,
-        to: process.env.CLINIC_EMAIL || process.env.SMTP_USER,
+        to: `anujguptaflymedia@gmail.com, pravi.flymediatech@gmail.com, puriskinclinic@gmail.com`,
         subject: `New Appointment Request - ${name}`,
         html: `
           <h3>New Appointment Request</h3>
