@@ -140,6 +140,16 @@ const DEFAULTS = {
     description: 'Smooth out wrinkles and fine lines with Botox treatment in Ludhiana. Professional anti-aging injections at Puri Skin Clinic.',
     keywords: 'botox Ludhiana, anti-wrinkle treatment, facial rejuvenation',
   },
+  gallery: {
+    title: 'Patient Transformation Gallery | Puri Skin Clinic',
+    description: 'Explore real before-and-after transformations of our patients. High-quality images showing our expertise in skin and hair care.',
+    keywords: 'skin clinic gallery, transformation photos, dermatology results',
+  },
+  videos: {
+    title: 'Treatment & Success Videos | Puri Skin Clinic',
+    description: 'Watch our expert dermatologists in action. Video success stories and procedure walkthroughs from Puri Skin Clinic.',
+    keywords: 'dermatology videos, skin treatment videos, success story videos',
+  },
 };
 
 /**
@@ -158,7 +168,6 @@ export async function getPageSeo(pageKey) {
     const ogTitle = row?.og_title || title;
     const ogDescription = row?.og_description || description;
     const ogImage = row?.og_image || DEFAULT_OG_IMAGE;
-
     return {
       title,
       description,
@@ -179,7 +188,7 @@ export async function getPageSeo(pageKey) {
       // We'll also return the raw schema if someone wants to render it manually
       schema: row?.schema_json ? JSON.parse(row.schema_json) : null,
     };
-  } catch {
+  } catch(err) {
     const defaults = DEFAULTS[pageKey] || { title: SITE_NAME, description: '' };
     return { title: defaults.title, description: defaults.description };
   }

@@ -230,7 +230,7 @@ const TestimonialSlider = ({ testimonials }) => {
 
                       {/* Source badge */}
                       {isGoogle ? (
-                        <FaGoogle className={styles.cardG} title="Google Review" />
+                        <FaGoogle className={styles.cardG} />
                       ) : (
                         <span className={styles.sourceBadge}>{test.source || 'Review'}</span>
                       )}

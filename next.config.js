@@ -42,7 +42,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:slug/',
+        source: '/:slug((?!admin|api|blogs|uploads|favicon.ico).+)/',
         destination: '/blogs/:slug/',
       },
     ];

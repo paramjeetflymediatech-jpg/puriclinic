@@ -88,15 +88,24 @@ const Lightbox = ({ images, activeIndex, onClose, onNavigate }) => {
         className="relative w-full h-full max-w-[90vw] max-h-[85vh] flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative w-full h-full">
-            <Image
-              src={imageUrl}
-              alt={currentImage?.title || 'Transformation Detail'}
-              fill
-              className="object-contain animate-in zoom-in-95 duration-500"
-              priority
-              quality={100}
-            />
+        <div className="relative w-full h-full flex items-center justify-center">
+            {currentImage?.media_type === 'video' ? (
+              <video 
+                src={imageUrl} 
+                controls 
+                autoPlay 
+                className="max-w-full max-h-full rounded-2xl shadow-2xl"
+              />
+            ) : (
+              <Image
+                src={imageUrl}
+                alt={currentImage?.title || 'Transformation Detail'}
+                fill
+                className="object-contain animate-in zoom-in-95 duration-500"
+                priority
+                quality={100}
+              />
+            )}
         </div>
 
         {/* ─── CAPTION ─── */}

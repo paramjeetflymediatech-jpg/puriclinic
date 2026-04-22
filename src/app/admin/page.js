@@ -36,7 +36,7 @@ export default async function AdminDashboard() {
           textColor="text-[#4CA6AE]"
         />
         <StatCard 
-          title="Services" 
+          title="Google Reviews" 
           count={servicesCount} 
           icon={<FaStethoscope />} 
           color="bg-[#EA6490]" 

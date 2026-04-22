@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaImage, FaPenNib, FaLink, FaAlignLeft, FaEye } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import Swal from '@/lib/swal';
+
+const Editor = dynamic(() => import('@/components/Editor/Editor'), { ssr: false });
 
 export default function BlogsAdminPage() {
   const [blogs, setBlogs] = useState([]);
@@ -26,7 +29,7 @@ export default function BlogsAdminPage() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch('/api/admin/blogs');
+      const res = await fetch('/api/admin/blogs/');
       const data = await res.json();
       setBlogs(data.blogs || []);
       setLoading(false);
@@ -46,13 +49,13 @@ export default function BlogsAdminPage() {
     data.append('file', file);
 
     try {
-      const res = await fetch('/api/admin/upload', {
+      const res = await fetch('/api/admin/upload/', {
         method: 'POST',
         body: data
       });
       const result = await res.json();
       if (result.success) {
-        setFormData({ ...formData, image_url: result.url });
+        setFormData(prev => ({ ...prev, image_url: result.url }));
       } else {
         Swal.fire({
           icon: 'error',
@@ -78,7 +81,7 @@ export default function BlogsAdminPage() {
     const body = editingId ? { id: editingId, ...formData } : formData;
 
     try {
-      const res = await fetch('/api/admin/blogs', {
+      const res = await fetch('/api/admin/blogs/', {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
@@ -93,13 +96,20 @@ export default function BlogsAdminPage() {
         });
         resetForm();
         fetchBlogs();
+      } else {
+        const result = await res.json();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: result.error || 'Something went wrong while saving the article.'
+        });
       }
     } catch (err) {
       console.error(err);
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'Something went wrong while saving the article.'
+        text: 'Connection error or server failure.'
       });
     }
   };
@@ -116,7 +126,7 @@ export default function BlogsAdminPage() {
 
     if (result.isConfirmed) {
       try {
-        const res = await fetch(`/api/admin/blogs?id=${id}`, { method: 'DELETE' });
+        const res = await fetch(`/api/admin/blogs/?id=${id}`, { method: 'DELETE' });
         if (res.ok) {
           Swal.fire({
             icon: 'success',
@@ -196,7 +206,7 @@ export default function BlogsAdminPage() {
                   <input 
                     placeholder="Article headline..." 
                     value={formData.title} 
-                    onChange={e=>setFormData({...formData, title: e.target.value})} 
+                    onChange={e=>setFormData(prev => ({...prev, title: e.target.value}))} 
                     required 
                     className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#EA6490]/10 focus:border-[#EA6490] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-bold text-slate-700" 
                   />
@@ -208,7 +218,7 @@ export default function BlogsAdminPage() {
                   <input 
                     placeholder="e.g. advance-skin-care" 
                     value={formData.slug} 
-                    onChange={e=>setFormData({...formData, slug: e.target.value})} 
+                    onChange={e=>setFormData(prev => ({...prev, slug: e.target.value}))} 
                     required 
                     className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-bold text-slate-700 font-mono text-sm" 
                   />
@@ -221,7 +231,7 @@ export default function BlogsAdminPage() {
                 <textarea 
                   placeholder="A brief teaser for the blog list page..." 
                   value={formData.excerpt} 
-                  onChange={e=>setFormData({...formData, excerpt: e.target.value})} 
+                  onChange={e=>setFormData(prev => ({...prev, excerpt: e.target.value}))} 
                   className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-medium text-slate-600" 
                   rows={2} 
                 />
@@ -237,7 +247,11 @@ export default function BlogsAdminPage() {
                   }`}>
                     {formData.image_url ? (
                       <div className="relative w-full h-full">
-                        <Image src={formData.image_url} alt="Preview" fill unoptimized sizes="(max-width: 1024px) 33vw, 25vw" className="object-cover transition-transform group-hover:scale-105" />
+                        <img 
+                          src={formData.image_url} 
+                          alt="Preview" 
+                          className="w-full h-full object-cover transition-transform group-hover:scale-105" 
+                        />
                         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                            <label className="cursor-pointer bg-white text-slate-900 px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl hover:scale-110 transition-transform">
                               Replace Image
@@ -261,7 +275,7 @@ export default function BlogsAdminPage() {
                   {formData.image_url && (
                     <button 
                       type="button" 
-                      onClick={() => setFormData({...formData, image_url: ''})}
+                      onClick={() => setFormData(prev => ({...prev, image_url: ''}))}
                       className="absolute -top-3 -right-3 w-10 h-10 bg-rose-500 text-white rounded-2xl flex items-center justify-center shadow-xl hover:bg-rose-600 transition-all z-10 hover:rotate-90 active:scale-90"
                     >
                       <FaTimes size={14} />
@@ -289,7 +303,7 @@ export default function BlogsAdminPage() {
                 <input 
                   placeholder="Focus keyword included title..." 
                   value={formData.meta_title} 
-                  onChange={e=>setFormData({...formData, meta_title: e.target.value})} 
+                  onChange={e=>setFormData(prev => ({...prev, meta_title: e.target.value}))} 
                   className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-bold text-slate-700" 
                 />
               </div>
@@ -299,7 +313,7 @@ export default function BlogsAdminPage() {
                 <input 
                   placeholder="keyword1, keyword2, keyword3..." 
                   value={formData.meta_keywords} 
-                  onChange={e=>setFormData({...formData, meta_keywords: e.target.value})} 
+                  onChange={e=>setFormData(prev => ({...prev, meta_keywords: e.target.value}))} 
                   className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-bold text-slate-700" 
                 />
               </div>
@@ -314,7 +328,7 @@ export default function BlogsAdminPage() {
                 <textarea 
                   placeholder="Summarize your article for search results (150-160 chars)..." 
                   value={formData.meta_description} 
-                  onChange={e=>setFormData({...formData, meta_description: e.target.value})} 
+                  onChange={e=>setFormData(prev => ({...prev, meta_description: e.target.value}))} 
                   rows={3}
                   className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-medium text-slate-600" 
                 />
@@ -325,7 +339,7 @@ export default function BlogsAdminPage() {
                 <textarea 
                   placeholder='{ "@context": "https://schema.org", "@type": "BlogPosting", ... }' 
                   value={formData.meta_schema} 
-                  onChange={e=>setFormData({...formData, meta_schema: e.target.value})} 
+                  onChange={e=>setFormData(prev => ({...prev, meta_schema: e.target.value}))} 
                   rows={4}
                   className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-mono text-sm" 
                 />
@@ -335,12 +349,9 @@ export default function BlogsAdminPage() {
 
           <div className="space-y-3">
             <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Main Content Structure (HTML Supported)</label>
-            <textarea 
-              placeholder="Tell your story here..." 
+            <Editor 
               value={formData.content} 
-              onChange={e=>setFormData({...formData, content: e.target.value})} 
-              required
-              className="w-full p-8 border border-slate-100 bg-slate-50/50 rounded-[2.5rem] focus:ring-4 focus:ring-[#EA6490]/5 focus:border-[#EA6490] focus:bg-white outline-none transition-all font-medium text-slate-600 min-h-[400px] leading-relaxed" 
+              onChange={data => setFormData(prev => ({...prev, content: data}))} 
             />
           </div>
           <div className="flex justify-end pt-6">
@@ -382,7 +393,7 @@ export default function BlogsAdminPage() {
                     <div className="flex items-center gap-6">
                       <div className="w-24 h-16 rounded-2xl bg-slate-100 overflow-hidden relative shrink-0 border border-slate-100 shadow-sm transition-transform group-hover:scale-105">
                         {b.image_url ? (
-                          <Image src={b.image_url} alt="" fill unoptimized sizes="96px" className="object-cover" />
+                          <img src={b.image_url} alt="" className="w-full h-full object-cover" />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-slate-200">
                             <FaImage size={24} />

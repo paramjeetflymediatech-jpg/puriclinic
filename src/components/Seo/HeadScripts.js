@@ -15,6 +15,8 @@ export default function HeadScripts({ html }) {
       const id = node.id || (node.src ? node.src.split('/').pop() : null);
       if (id && document.getElementById(id)) return;
 
+      if (node.tagName === 'TITLE') return;
+
       if (node.tagName === 'SCRIPT') {
         const s = document.createElement('script');
         s.innerHTML = node.innerHTML;
