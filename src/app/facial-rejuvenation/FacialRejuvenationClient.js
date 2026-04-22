@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FAQ_DATA } from '@/constants/constantdata';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
