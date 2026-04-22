@@ -11,13 +11,13 @@ const BlogCard = ({ blog }) => {
   return (
     <article className="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 flex flex-col h-full">
       {/* Image Container */}
-      <Link href={`/${blog.slug}/`} className="relative aspect-[16/10] overflow-hidden block">
+      <Link href={`/${blog.slug}/`} className="relative aspect-[16/10] overflow-hidden block bg-slate-50">
         <Image 
           src={blog.image_url || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800'}
           alt={blog.title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-contain transition-transform duration-700 group-hover:scale-110"
         />
           
       </Link>

@@ -62,12 +62,12 @@ export default async function BlogsPage() {
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-r from-[#EA6490]/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 <div className="relative bg-white rounded-[3rem] overflow-hidden shadow-2xl border border-slate-50 flex flex-col md:flex-row">
-                  <div className="md:w-1/2 aspect-square md:aspect-auto relative overflow-hidden">
+                  <div className="md:w-1/2 aspect-square md:aspect-auto relative overflow-hidden bg-slate-50">
                     <Image 
                       src={blogs[0].image_url || '/dermatology-3.jpg'} 
                       alt={blogs[0].title} 
                       fill 
-                      className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+                      className="object-contain transition-transform duration-1000 group-hover:scale-105" 
                     />
                   </div>
                   <div className="md:w-1/2 p-12 md:p-16 flex flex-col justify-center">
