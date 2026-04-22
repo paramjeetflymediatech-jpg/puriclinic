@@ -25,7 +25,9 @@ export async function POST(request) {
     // --- Send Email Notification ---
     try {
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp-relay.brevo.com",
+        port: 587,
+        secure: false, // true if using 465
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
@@ -34,7 +36,7 @@ export async function POST(request) {
 
       const mailOptions = {
         from: `PuriSkinClinic <${process.env.CLINIC_EMAIL}>`,
-        to: `anujguptaflymedia@gmail.com, pravi.flymediatech@gmail.com, puriskinclinic@gmail.com, ${process.env.CLINIC_EMAIL}`,
+        to: `pravi.flymediatech@gmail.com,anujguptaflymedia@gmail.com,${process.env.CLINIC_EMAIL}`,
         subject: `New Contact Inquiry - ${name}`,
         html: `
           <h3>New Contact Message</h3>
@@ -45,7 +47,7 @@ export async function POST(request) {
         `,
       };
       const user_mailOptions = {
-        from: process.env.SMTP_USER,
+        from: `PuriSkinClinic <${process.env.CLINIC_EMAIL}>`,
         to: email,
         subject: `Thanks for contacting us! `,
         html: `
