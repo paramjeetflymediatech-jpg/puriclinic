@@ -40,7 +40,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-[500px] md:h-[350px] lg:h-[420px] overflow-hidden bg-gray-50 border-b border-gray-100">
+    <section className="relative w-full h-[400px] md:h-[350px] lg:h-[420px] overflow-hidden bg-gray-50 border-b border-gray-100">
       
       {/* ─── MAIN SLIDER SLIDES (Full Width) ─── */}
       <div className="absolute inset-0 w-full h-full">

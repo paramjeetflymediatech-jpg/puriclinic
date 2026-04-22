@@ -299,22 +299,79 @@ const Header = () => {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl py-6 z-[1000]">
+            <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl py-6 z-[1000] max-h-[80vh] overflow-y-auto">
               <div className="flex flex-col px-8">
                 {navLinks.map((nav) => (
-                  <Link
-                    key={nav.name}
-                    href={nav.link}
-                    className="py-3.5 border-b border-gray-100 last:border-0"
-                    style={{ color: '#EA6490', fontSize: '16px', fontWeight: 600 }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {nav.name}
-                  </Link>
+                  <div key={nav.name} className="border-b border-gray-100 last:border-0">
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={nav.link}
+                        className="py-4 flex-grow"
+                        style={{ color: '#EA6490', fontSize: '16px', fontWeight: 600 }}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {nav.name}
+                      </Link>
+                      {nav.dropdown && (
+                        <button
+                          onClick={() => {
+                            const current = document.getElementById(`mobile-dropdown-${nav.name}`);
+                            if (current) current.classList.toggle('hidden');
+                          }}
+                          className="p-4 text-[#EA6490]"
+                        >
+                          <FaCaretDown />
+                        </button>
+                      )}
+                    </div>
+                    {nav.dropdown && (
+                      <div id={`mobile-dropdown-${nav.name}`} className="hidden pl-4 pb-4 space-y-2">
+                        {nav.dropdown.map((sub) => (
+                          <div key={sub.name}>
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href={sub.link}
+                                className="py-2 flex-grow"
+                                style={{ color: '#4CA6AE', fontSize: '15px', fontWeight: 600 }}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                {sub.name}
+                              </Link>
+                              {sub.hasSubMenu && (
+                                <button
+                                  onClick={() => {
+                                    const current = document.getElementById(`mobile-sub-dropdown-${sub.name.replace(/\s+/g, '-')}`);
+                                    if (current) current.classList.toggle('hidden');
+                                  }}
+                                  className="p-2 text-[#4CA6AE]"
+                                >
+                                  <FaCaretDown />
+                                </button>
+                              )}
+                            </div>
+                            {sub.hasSubMenu && sub.subItems && (
+                              <div id={`mobile-sub-dropdown-${sub.name.replace(/\s+/g, '-')}`} className="hidden pl-4 space-y-1">
+                                {sub.subItems.map((leaf) => (
+                                  <Link
+                                    key={leaf.name}
+                                    href={leaf.link}
+                                    className="block py-2 text-slate-500 text-sm font-medium hover:text-[#EA6490]"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    {leaf.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
                 <Link
                   href="/book-appointment/"
-                  className="mt-5 text-center bg-[#EA6490] text-white py-3.5 rounded-full"
+                  className="mt-6 text-center bg-[#EA6490] text-white py-4 rounded-full shadow-lg shadow-[#EA6490]/20"
                   style={{ fontSize: '16px', fontWeight: 700 }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

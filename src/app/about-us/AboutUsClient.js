@@ -185,29 +185,31 @@ export default function AboutUsClient() {
               {tabs.map((tab, idx) => (
                 <div 
                   key={idx}
-                  className="group relative h-[320px] rounded-[2.5rem] cursor-pointer shadow-xl overflow-hidden"
+                  className="group relative h-[320px] rounded-[2.5rem] cursor-pointer shadow-xl overflow-hidden bg-white lg:bg-transparent"
                 >
-                  {/* Front Side (Default) */}
-                  <div className="absolute inset-0 bg-[#EA6490] flex flex-col items-center justify-center transition-all duration-700 group-hover:opacity-0 group-hover:scale-95">
+                  {/* Front Side (Desktop only hover state) */}
+                  <div className="hidden lg:flex absolute inset-0 bg-[#EA6490] flex flex-col items-center justify-center transition-all duration-700 group-hover:opacity-0 group-hover:scale-95 z-10">
                     <div className="w-20 h-20 rounded-full border-2 border-white flex items-center justify-center text-white text-4xl mb-6">
                       {tab.icon}
                     </div>
-                    <span className="text-white font-heading font-black text-2xl   tracking-wider">{tab.title}</span>
+                    <span className="text-white font-heading font-black text-2xl tracking-wider">{tab.title}</span>
                   </div>
 
-                  {/* Back Side (Hover) */}
-                  <div className="absolute inset-0 bg-white/95 backdrop-blur-md p-8 flex flex-col items-center justify-center text-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 opacity-10 text-[#EA6490]">
-                      {React.cloneElement(tab.icon, { size: 40 })}
+                  {/* Content Side (Visible on mobile by default, hover on desktop) */}
+                  <div className="absolute inset-0 bg-white p-8 flex flex-col items-center justify-center text-center transition-all duration-500 lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 z-0">
+                    <div className="lg:hidden w-16 h-16 rounded-full bg-[#EA6490]/10 flex items-center justify-center text-[#EA6490] mb-6">
+                      {React.cloneElement(tab.icon, { size: 30 })}
                     </div>
                     <h4 className="text-[#EA6490] font-heading font-black text-lg uppercase tracking-widest mb-4">{tab.title}</h4>
-                    <p className="text-slate-600 text-[14px] leading-relaxed font-medium ">
+                    <p className="text-slate-600 text-[14px] leading-relaxed font-medium">
                       {tab.desc}
                     </p>
+                    
+                    {/* Background Decorative Icon - Hidden on mobile for cleaner look */}
+                    <div className="hidden lg:block absolute -bottom-4 -right-4 opacity-[0.03] text-slate-900 pointer-events-none">
+                      {React.cloneElement(tab.icon, { size: 120 })}
+                    </div>
                   </div>
-                  
-                  {/* Decorative Glow */}
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
               ))}
           </div>

@@ -7,9 +7,9 @@ const ServiceCard = ({ service }) => {
   const href = `/${service.slug || service.link}`;
   
   return (
-    <Link href={href} className="group relative rounded-[15px] bg-[#EA6490] overflow-hidden h-[360px] cursor-pointer block shadow-sm hover:shadow-xl transition-all duration-500">
+    <Link href={href} className="group relative rounded-[15px] bg-[#EA6490] overflow-hidden h-[300px] md:h-[360px] cursor-pointer block shadow-sm hover:shadow-xl transition-all duration-500">
       {/* ── FRONT (always visible) ── */}
-      <div className="p-[12px] pb-0 h-[260px]">
+      <div className="p-[12px] pb-0 h-[200px] md:h-[260px]">
         <div className="w-full h-full rounded-[12px] overflow-hidden bg-white/10">
           <img
             src={service.image_url || '/services/Skin-related-services-28.avif'}

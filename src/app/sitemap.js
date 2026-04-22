@@ -77,5 +77,5 @@ export default async function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...servicePages, ...blogEntries, ...doctorEntries];
+  return [...staticPages, ...servicePages, ...blogEntries];
 }
