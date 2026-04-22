@@ -13,12 +13,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import { motion } from 'framer-motion';
+
 export default function SuccessStoriesCarousel() {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
 
   useEffect(() => {
     const fetchStories = async () => {
@@ -53,81 +54,86 @@ export default function SuccessStoriesCarousel() {
   if (imageSuccessStories.length === 0) return null;
 
   return (
-    <section className="py-10 bg-[#FAFAFA] overflow-hidden">
-      <div className="flex flex-col text-center justify-center">
-        <div className="max-w-2xl mx-auto">
-          <h3 style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }} className="text-4xl md:text-5xl font-heading text-gray-900 font-bold leading-tight">
-            Our Success Stories
-          </h3>
+    <section className="py-20 bg-white border-t border-slate-100 overflow-hidden text-center">
+      <div className="max-w-[1300px] mx-auto space-y-12 px-6">
+        <div className="space-y-4">
+          <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+            Remarkable Results <span className="text-[#EA6490]">That Speak Volumes</span>
+          </h2>
+          <div className="w-16 h-1 bg-[#EA6490] rounded-full mx-auto"></div>
         </div>
-        <div className="max-w-[1400px] mx-auto px-6 mt-8">
 
+        <div className="relative group">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={30}
             slidesPerView={1}
             navigation={{
-              prevEl: '.swiper-prev-btn',
-              nextEl: '.swiper-next-btn',
+              prevEl: '.res-prev',
+              nextEl: '.res-next',
             }}
-            pagination={{ clickable: true, el: '.swiper-custom-pagination' }}
+            pagination={{ clickable: true, el: '.res-pagination' }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             breakpoints={{
-              320: { slidesPerView: 1, spaceBetween: 20 },
-              640: { slidesPerView: 2, spaceBetween: 20 },
-              1024: { slidesPerView: 3, spaceBetween: 30 },
-              1280: { slidesPerView: 4, spaceBetween: 30 },
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
             }}
-            className="!pb-20"
+            className="!pb-16"
           >
             {imageSuccessStories.map((story, index) => (
               <SwiperSlide key={story.id}>
-                <SuccessStoryCard
-                  story={story}
+                <motion.div 
+                  whileHover={{ y: -10 }}
+                  className="cursor-pointer"
                   onClick={() => {
                     setCurrentIndex(index);
                     setLightboxOpen(true);
                   }}
-                />
+                >
+                  <SuccessStoryCard
+                    story={story}
+                    onClick={null} // Click handled by parent motion.div
+                  />
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {lightboxOpen && (
-            <Lightbox
-              images={imageSuccessStories}
-              activeIndex={currentIndex}
-              onClose={() => setLightboxOpen(false)}
-              onNavigate={(idx) => setCurrentIndex(idx)}
-            />
-          )}
-
-
-          <div className="swiper-custom-pagination flex justify-center gap-2 mt-[-20px] px-20"></div>
-        </div>
-        <div className="flex gap-4 mt-8 text-center justify-center">
-          <button className="swiper-prev-btn w-14 h-14 rounded-full border-2 border-[#EA6490] text-[#EA6490] flex items-center justify-center hover:bg-[#EA6490] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#EA6490]">
-            <FaChevronLeft size={18} />
-          </button>
-          <button className="swiper-next-btn w-14 h-14 rounded-full border-2 border-[#EA6490] text-[#EA6490] flex items-center justify-center hover:bg-[#EA6490] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#EA6490]">
-            <FaChevronRight size={18} />
-          </button>
+          {/* Navigation Arrows & Pagination */}
+          <div className="flex justify-center items-center gap-6 mt-12">
+            <button className="res-prev w-14 h-14 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-400 hover:border-[#EA6490] hover:text-[#EA6490] hover:scale-110 transition-all shadow-sm bg-white cursor-pointer">
+              <FaChevronLeft size={20} />
+            </button>
+            <div className="res-pagination flex items-center gap-3 min-w-[80px] justify-center"></div>
+            <button className="res-next w-14 h-14 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-400 hover:border-[#EA6490] hover:text-[#EA6490] hover:scale-110 transition-all shadow-sm bg-white cursor-pointer">
+              <FaChevronRight size={20} />
+            </button>
+          </div>
         </div>
       </div>
 
+      {lightboxOpen && (
+        <Lightbox
+          images={imageSuccessStories}
+          activeIndex={currentIndex}
+          onClose={() => setLightboxOpen(false)}
+          onNavigate={(idx) => setCurrentIndex(idx)}
+        />
+      )}
 
       <style jsx global>{`
-        .swiper-custom-pagination .swiper-pagination-bullet {
-          width: 12px;
-          height: 12px;
-          background: #EA6490;
-          opacity: 0.2;
-          transition: all 0.3s ease;
-        }
-        .swiper-custom-pagination .swiper-pagination-bullet-active {
+        .res-pagination .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+          background: #cbd5e1;
           opacity: 1;
-          width: 30px;
-          border-radius: 6px;
+          transition: all 0.3s ease;
+          margin: 0 !important;
+        }
+        .res-pagination .swiper-pagination-bullet-active {
+          background: #EA6490;
+          width: 25px;
+          border-radius: 5px;
         }
       `}</style>
     </section>
