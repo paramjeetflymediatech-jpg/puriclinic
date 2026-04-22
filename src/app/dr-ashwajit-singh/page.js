@@ -89,7 +89,7 @@ export default async function DrAshwajitSingh() {
                                         </div>
                                         <div className="flex items-center justify-between text-sm">
                                             <span className="opacity-70 font-medium">Speciality:</span>
-                                            <span className="font-bold">Aesthetics</span>
+                                            <span className="font-bold">Dermatologist</span>
                                         </div>
                                     </div>
                                 </div>
