@@ -24,7 +24,7 @@ export default async function sitemap() {
   try {
     const blogs = await Blog.findAll({ where: { is_published: true } });
     blogEntries = blogs.map((blog) => ({
-      url: `${baseUrl}/blogs/${blog.slug}`,
+      url: `${baseUrl}/${blog.slug}/`,
       lastModified: blog.updatedAt || new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,

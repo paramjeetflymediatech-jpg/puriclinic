@@ -39,6 +39,14 @@ const nextConfig = {
     ],
   },
   trailingSlash: true,
+  async rewrites() {
+    return [
+      {
+        source: '/:slug/',
+        destination: '/blogs/:slug/',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
