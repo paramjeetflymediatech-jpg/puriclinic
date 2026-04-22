@@ -84,13 +84,13 @@ export default function SkinServicesClient() {
     {
       title: 'Mesotherapy',
       link: '/mesotherapy',
-      image: '/mesotherapy/meso-1.jpg',
+      image: '/mesotherapy/derm-1-768x614.avif',
       description: 'Rejuvenate your skin and scalp with a custom cocktail of vitamins, minerals, and growth factors. Mesotherapy targets the middle layer of the skin to provide deep hydration, promote hair growth, and achieve a radiant clinical glow.'
     },
     {
       title: 'Radio-Frequency',
       link: '/radio-frequency',
-      image: '/rf/rf-1.jpg',
+      image: '/radio-frequency/ds-768x614.avif',
       description: 'Firm and tighten sagging skin with advanced Radio-Frequency technology. This non-invasive treatment stimulates natural collagen production to lift your facial profile and smooth out fine lines and wrinkles.'
     }
   ];

@@ -62,26 +62,55 @@ export default async function SingleBlog({ params }) {
   return (
     <div className="bg-white min-h-screen">
       <JsonLd schema={customSeo.schema} />
-      <div className="relative pt-10 pb-10 overflow-hidden">
+      
+      {/* ─── IMPROVED EDITORIAL HERO ─── */}
+      <div className="relative pt-10 pb-12 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
-          <div className="relative h-[150px] md:h-[250px] rounded-[2rem] overflow-hidden flex flex-col items-center justify-center text-white px-10 md:px-16 text-center">
+          <div className="relative h-[300px] md:h-[450px] rounded-[3rem] overflow-hidden flex flex-col items-center justify-center text-white px-6 md:px-20 text-center">
+            {/* Background Image - Dynamic based on post */}
             <Image
-              src="/bgimg.jpg"
-              alt="Blog Hero"
+              src={"/bgimg.jpg"}
+              alt={blog.title}
               fill
-              className="object-cover -z-10 brightness-[0.4]"
+              className="object-cover -z-10 brightness-[0.45]"
               priority
             />
-            <span className="text-white/80 text-[20px] font-black uppercase tracking-[0.5em] mb-4">Blog</span>
-            <h1 className="font-heading text-xl md:text-3xl lg:text-3xl mb-8 max-w-4xl leading-tight">
-              {blog.title}
-            </h1>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-80">
-              <Link href="/" className="hover:text-[#EA6490] transition-colors">Home</Link>
+            
+            {/* Overlay Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent -z-10"></div>
+
+            <div className="space-y-6 max-w-4xl">
+              <div className="flex items-center justify-center gap-4">
+                <span className="h-[1px] w-8 bg-[#EA6490]"></span>
+                <span className="text-[#EA6490] text-[10px] md:text-xs font-black uppercase tracking-[0.3em]">
+                  {blog.category || "Medical Insights"}
+                </span>
+                <span className="h-[1px] w-8 bg-[#EA6490]"></span>
+              </div>
+              
+              <h1 className="font-heading text-2xl md:text-5xl lg:text-6xl font-black leading-tight drop-shadow-lg">
+                {blog.title}
+              </h1>
+              
+              <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] md:text-xs font-bold uppercase tracking-widest opacity-90">
+                <span className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#EA6490]"></span>
+                  {dateStr}
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#EA6490]"></span>
+                  {Math.ceil((blog.content?.length || 1000) / 1000)} Min Read
+                </span>
+              </div>
+            </div>
+
+            {/* Breadcrumbs */}
+            <div className="absolute bottom-8 flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] opacity-60 hover:opacity-100 transition-opacity">
+              <Link href="/" className="hover:text-[#EA6490]">Home</Link>
               <FaChevronRight size={8} />
-              <Link href="/blogs/" className="hover:text-[#EA6490] transition-colors">Blogs</Link>
+              <Link href="/blogs/" className="hover:text-[#EA6490]">Journal</Link>
               <FaChevronRight size={8} />
-              <span className="line-clamp-1 max-w-[200px]">{blog.title}</span>
+              <span className="text-white/50 truncate max-w-[100px] md:max-w-none">Article</span>
             </div>
           </div>
         </div>
