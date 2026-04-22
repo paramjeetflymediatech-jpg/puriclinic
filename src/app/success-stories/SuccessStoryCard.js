@@ -10,17 +10,17 @@ export default function SuccessStoryCard({ story, onClick }) {
 
   return (
     <div 
-      className={`group bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-slate-50 overflow-hidden transition-all duration-700 hover:shadow-[0_40px_100px_rgba(0,0,0,0.08)] hover:-translate-y-1 ${onClick ? 'cursor-pointer' : ''}`}
+      className={`group bg-white rounded-2xl md:rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.04)] md:shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-slate-50 overflow-hidden transition-all duration-700 hover:shadow-[0_40px_100px_rgba(0,0,0,0.08)] hover:-translate-y-1 ${onClick ? 'cursor-pointer' : ''}`}
       onClick={onClick}
     >
       {/* Image Section */}
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-[3/2] overflow-hidden">
 
         {story.media_type === 'video' ? (
           <div className="relative w-full h-full group/video">
             <video 
               src={story.image_url} 
-              className="object-cover w-full h-full"
+              className="object-contain w-full h-full bg-slate-50"
               loop
               muted
               playsInline
@@ -39,7 +39,7 @@ export default function SuccessStoryCard({ story, onClick }) {
             alt={displayTitle}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-1000 group-hover:scale-100"
+            className="object-contain bg-slate-50 transition-transform duration-1000 group-hover:scale-100"
           />
         )}
       </div>

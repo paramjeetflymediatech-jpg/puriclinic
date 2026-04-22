@@ -70,29 +70,52 @@ export default async function DrGurinderjitSingh() {
                             </div>
                         </div>
 
-                        {/* Right Column: Image */}
-                        <div className="lg:w-[35%] sticky top-32">
-                            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] md:aspect-auto md:h-[500px]">
-                                <Image
-                                    src="/doctors/dr-gurinderjit-singh/de3.avif"
-                                    alt="Dr. Gurinderjit Singh Puri"
-                                    fill
-                                    className="object-cover"
-                                />
+                        {/* Right Column: Integrated Profile Card */}
+                        <div className="lg:w-[35%] w-full order-first lg:order-last lg:sticky lg:top-32 mb-12 lg:mb-0">
+                            {/* Mobile Integrated Card (Visible on mobile only) */}
+                            <div className="lg:hidden bg-white rounded-[2rem] p-6 shadow-xl border border-slate-50 flex items-center gap-6">
+                                <div className="relative w-28 h-28 rounded-2xl overflow-hidden shadow-md flex-shrink-0 border-2 border-white">
+                                    <Image
+                                        src="/doctors/dr-gurinderjit-singh/de3.avif"
+                                        alt="Dr. Gurinderjit Singh Puri"
+                                        fill
+                                        className="object-cover object-top"
+                                    />
+                                </div>
+                                <div className="flex-grow">
+                                    <p className="text-[#EA6490] text-[10px] font-black uppercase tracking-widest mb-1">Founder & Chief</p>
+                                    <h2 className="text-xl font-heading font-black text-slate-900 leading-tight">Dr Gurinderjit Singh</h2>
+                                    <p className="text-slate-500 text-xs mt-1 font-medium italic">MD (Dermatology)</p>
+                                    <div className="mt-3 flex gap-3">
+                                        <span className="px-2 py-1 bg-slate-50 text-slate-600 text-[10px] rounded-md border border-slate-100 font-bold">35+ Yrs Exp</span>
+                                        <span className="px-2 py-1 bg-[#EA6490]/5 text-[#EA6490] text-[10px] rounded-md border border-[#EA6490]/10 font-bold">Hair Transplant</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            {/* Designation Tag */}
-                            <div className="mt-8 bg-[#EA6490] text-white p-8 rounded-[2rem] shadow-xl">
-                                <p className="text-[10px] uppercase tracking-widest font-black mb-2 opacity-80">Founder & Chief Dermatologist</p>
-                                <p className="text-xl font-heading font-black">MD (Dermatology)</p>
-                                <div className="mt-6 pt-6 border-t border-white/20 space-y-4">
-                                    <div className="flex items-center justify-between text-sm">
-                                        <span className="opacity-70 font-medium">Experience</span>
-                                        <span className="font-bold">35+ Years</span>
-                                    </div>
-                                    <div className="flex items-center justify-between text-sm">
-                                        <span className="opacity-70 font-medium">Speciality</span>
-                                        <span className="font-bold text-right">Hair Transplant</span>
+                            {/* Desktop Layout (Hidden on mobile) */}
+                            <div className="hidden lg:block space-y-8">
+                                <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] h-[450px]">
+                                    <Image
+                                        src="/doctors/dr-gurinderjit-singh/de3.avif"
+                                        alt="Dr. Gurinderjit Singh Puri"
+                                        fill
+                                        className="object-cover object-top"
+                                    />
+                                </div>
+
+                                <div className="bg-[#EA6490] text-white p-8 rounded-[2rem] shadow-xl">
+                                    <p className="text-[10px] uppercase tracking-widest font-black mb-2 opacity-80">Founder & Chief Dermatologist</p>
+                                    <p className="text-xl font-heading font-black leading-tight">MD (Dermatology)</p>
+                                    <div className="mt-6 pt-6 border-t border-white/20 space-y-4">
+                                        <div className="flex items-center justify-between text-sm">
+                                            <span className="opacity-70 font-medium">Experience:</span>
+                                            <span className="font-bold">35+ Years</span>
+                                        </div>
+                                        <div className="flex items-center justify-between text-sm">
+                                            <span className="opacity-70 font-medium">Speciality:</span>
+                                            <span className="font-bold">Hair Transplant</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -114,9 +137,9 @@ export default async function DrGurinderjitSingh() {
                         </h2>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                         {/* Gallery Item 1 */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
+                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
                             <Image
                                 src="/doctors/dr-gurinderjit-singh/Image-1.jpeg"
                                 alt="Achievement 1"
@@ -142,7 +165,7 @@ export default async function DrGurinderjitSingh() {
                         </div>
 
                         {/* Gallery Item 3 */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
+                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
                             <Image
                                 src="/doctors/dr-gurinderjit-singh/Image-3.jpeg"
                                 alt="Achievement 3"
@@ -155,7 +178,7 @@ export default async function DrGurinderjitSingh() {
                         </div>
 
                         {/* Gallery Item 4 */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
+                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
                             <Image
                                 src="/doctors/dr-gurinderjit-singh/Image-4.jpeg"
                                 alt="Achievement 4"
@@ -181,7 +204,7 @@ export default async function DrGurinderjitSingh() {
                         </div>
 
                         {/* Gallery Item 6 */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
+                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
                             <Image
                                 src="/doctors/dr-gurinderjit-singh/Image-6.jpeg"
                                 alt="Achievement 6"
@@ -193,7 +216,7 @@ export default async function DrGurinderjitSingh() {
                             </div>
                         </div>
                         {/* Gallery Item 6 */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
+                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
                             <Image
                                 src="/doctors/dr-gurinderjit-singh/Image-7.jpeg"
                                 alt="Achievement 6"
@@ -205,7 +228,7 @@ export default async function DrGurinderjitSingh() {
                             </div>
                         </div>
                         {/* Gallery Item 6 */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
+                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
                             <Image
                                 src="/doctors/dr-gurinderjit-singh/Image-8.jpeg"
                                 alt="Achievement 6"
@@ -217,7 +240,7 @@ export default async function DrGurinderjitSingh() {
                             </div>
                         </div>
                         {/* Gallery Item 6 */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
+                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
                             <Image
                                 src="/doctors/dr-gurinderjit-singh/Image-9.jpeg"
                                 alt="Achievement 6"

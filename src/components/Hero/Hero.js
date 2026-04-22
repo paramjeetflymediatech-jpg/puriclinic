@@ -40,16 +40,15 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-[400px] md:h-[350px] lg:h-[420px] overflow-hidden bg-gray-50 border-b border-gray-100">
-      
+    <section className="relative w-full h-[450px] md:h-[350px] lg:h-[420px] overflow-hidden bg-gray-50 border-b border-gray-100">
+
       {/* ─── MAIN SLIDER SLIDES (Full Width) ─── */}
       <div className="absolute inset-0 w-full h-full">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
+            className={`absolute top-5 inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10 visible' : 'opacity-0 z-0 invisible'
+              }`}
           >
             {/* Desktop Image */}
             <Image
@@ -57,7 +56,9 @@ const Hero = () => {
               alt={slide.alt}
               fill
               priority={index === 0}
-              className="hidden md:block object-cover object-center"
+              loading={index === 0 ? "eager" : "lazy"}
+              sizes="100vw"
+              className="hidden md:block object-contain md:object-cover"
             />
             {/* Mobile Image */}
             <Image
@@ -65,7 +66,9 @@ const Hero = () => {
               alt={slide.alt}
               fill
               priority={index === 0}
-              className="block md:hidden object-cover object-center"
+              loading={index === 0 ? "eager" : "lazy"}
+              sizes="100vw"
+              className="block md:hidden object-contain"
             />
           </div>
         ))}
@@ -74,7 +77,7 @@ const Hero = () => {
       {/* ─── NAVIGATION & CONTENT CONTAINER (max-w-7xl) ─── */}
       <div className="absolute inset-x-0 inset-y-0 z-30 pointer-events-none">
         <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-4 sm:px-6 lg:px-8">
-          
+
           {/* Previous Slide Button */}
           <button
             onClick={prevSlide}

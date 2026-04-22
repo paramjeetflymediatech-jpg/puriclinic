@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import {FaChevronRight} from 'react-icons/fa';
 
 const BlogCard = ({ blog }) => {
   const dateStr = blog.createdAt 
@@ -8,39 +9,47 @@ const BlogCard = ({ blog }) => {
     : 'February 10, 2026';
 
   return (
-    <article className="bg-white overflow-hidden transition-all duration-700 shadow-[0_10px_50px_rgba(0,0,0,0.02)] hover:shadow-[0_40px_100px_rgba(0,0,0,0.08)] group mb-12 rounded-[2rem] border border-slate-50">
-      <Link href={`/${blog.slug}/`} className="relative w-full aspect-[16/9] overflow-hidden block">
+    <article className="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 flex flex-col h-full">
+      {/* Image Container */}
+      <Link href={`/${blog.slug}/`} className="relative aspect-[16/10] overflow-hidden block">
         <Image 
           src={blog.image_url || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800'}
           alt={blog.title}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 66vw"
-          className="object-cover  "
-          priority
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
+          
       </Link>
       
-      <div className="p-12 md:p-14 flex flex-col">
+      {/* Content */}
+      <div className="p-8 md:p-10 flex flex-col flex-grow">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="w-8 h-[2px] bg-[#EA6490]/30"></span>
+          <span className="text-[#EA6490] text-[10px] font-black uppercase tracking-widest">Medical Insights</span>
+        </div>
+
         <Link href={`/${blog.slug}/`}>
-          <h2 className="font-heading text-3xl md:text-4xl text-slate-900 mb-6 leading-[1.3] font-bold transition-colors duration-500 group-hover:text-[#EA6490]">
+          <h2 className="font-heading text-2xl font-black text-slate-900 mb-4 leading-tight group-hover:text-[#EA6490] transition-colors duration-300">
             {blog.title}
           </h2>
         </Link>
         
         <div 
-          className="text-slate-500 text-lg md:text-xl leading-[1.8] mb-10 line-clamp-3"
+          className="text-slate-500 text-sm leading-relaxed mb-8 line-clamp-3 font-medium"
           dangerouslySetInnerHTML={{ __html: blog.excerpt }}
         />
         
-        <div className="mb-10">
-          <Link href={`/${blog.slug}/`} className="text-xs font-black text-slate-900 uppercase tracking-[0.3em] inline-flex items-center group/link hover:text-[#EA6490] transition-colors gap-2">
-            READ MORE 
-            <span className="group-hover/link:translate-x-2 transition-transform duration-300">»</span>
+        <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+          <Link href={`/${blog.slug}/`} className="text-[10px] font-black text-slate-900 uppercase tracking-widest flex items-center gap-2 group/link">
+            Read Article
+            <span className="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center group-hover/link:bg-[#EA6490] group-hover/link:text-white transition-all duration-300">
+              <FaChevronRight size={8} />
+            </span>
           </Link>
-        </div>
-        
-        <div className="pt-10 border-t border-slate-50 flex items-center justify-between text-slate-400 text-sm font-bold uppercase tracking-widest">
-          <span>{dateStr}</span>
+          <span className="text-slate-300 text-[10px] font-bold uppercase tracking-widest">
+            {Math.ceil((blog.content?.length || 1000) / 1000)} min read
+          </span>
         </div>
       </div>
     </article>

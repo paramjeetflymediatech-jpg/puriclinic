@@ -35,7 +35,7 @@ export default function SuccessStoriesClient({ stories }) {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-10 py-4 rounded-full text-xs font-black uppercase tracking-[0.2em] transition-all duration-500 border-2 ${
+            className={`px-6 md:px-10 py-3 md:py-4 rounded-full text-[10px] md:text-xs font-black uppercase tracking-[0.2em] transition-all duration-500 border-2 ${
               activeCategory === cat
                 ? 'bg-[#EA6490] text-white border-[#EA6490] shadow-xl shadow-[#EA6490]/20'
                 : 'bg-white text-slate-400 border-slate-50 hover:border-[#EA6490]/50 hover:text-[#EA6490] hover:shadow-lg'
@@ -48,7 +48,7 @@ export default function SuccessStoriesClient({ stories }) {
 
 
       {/* Stories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-12 md:gap-y-20">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-x-12 md:gap-y-20">
 
         {filteredStories.map((story, index) => (
           <SuccessStoryCard 

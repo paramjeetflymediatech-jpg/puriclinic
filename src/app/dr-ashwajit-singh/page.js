@@ -45,8 +45,59 @@ export default async function DrAshwajitSingh() {
                 <div className="container px-6 max-w-[1200px] mx-auto">
                     <div className="flex flex-col lg:flex-row gap-12 items-start">
 
-                        {/* Left Column: Bio Text */}
-                        <div className="lg:w-[65%] space-y-8">
+                        {/* Right Column: Integrated Profile Card */}
+                        <div className="lg:w-[35%] w-full order-first lg:order-last lg:sticky lg:top-32 mb-12 lg:mb-0">
+                            {/* Mobile Integrated Card (Visible on mobile only) */}
+                            <div className="lg:hidden bg-white rounded-[2rem] p-6 shadow-xl border border-slate-50 flex items-center gap-6">
+                                <div className="relative w-28 h-28 rounded-2xl overflow-hidden shadow-md flex-shrink-0 border-2 border-white">
+                                    <Image
+                                        src="/doctors/dr-ashwajit/de4.avif"
+                                        alt="Dr. Ashwajit Singh"
+                                        fill
+                                        className="object-cover object-top"
+                                    />
+                                </div>
+                                <div className="flex-grow">
+                                    <p className="text-[#EA6490] text-[10px] font-black uppercase tracking-widest mb-1">Resident Dermatologist</p>
+                                    <h2 className="text-xl font-heading font-black text-slate-900 leading-tight">Dr Ashwajit Singh</h2>
+                                    <p className="text-slate-500 text-xs mt-1 font-medium italic">MD (Dermatology)</p>
+                                    <div className="mt-3 flex gap-3">
+                                        <span className="px-2 py-1 bg-slate-50 text-slate-600 text-[10px] rounded-md border border-slate-100 font-bold">5+ Yrs Exp</span>
+                                        <span className="px-2 py-1 bg-[#EA6490]/5 text-[#EA6490] text-[10px] rounded-md border border-[#EA6490]/10 font-bold">Aesthetics</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Desktop Layout (Hidden on mobile) */}
+                            <div className="hidden lg:block space-y-8">
+                                <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] h-[450px]">
+                                    <Image
+                                        src="/doctors/dr-ashwajit/de4.avif"
+                                        alt="Dr. Ashwajit Singh"
+                                        fill
+                                        className="object-cover object-top"
+                                    />
+                                </div>
+
+                                <div className="bg-[#EA6490] text-white p-8 rounded-[2rem] shadow-xl">
+                                    <p className="text-[10px] uppercase tracking-widest font-black mb-2 opacity-80">Resident Dermatologist</p>
+                                    <p className="text-xl font-heading font-black leading-tight">MD (Dermatology)</p>
+                                    <div className="mt-6 pt-6 border-t border-white/20 space-y-4">
+                                        <div className="flex items-center justify-between text-sm">
+                                            <span className="opacity-70 font-medium">Experience:</span>
+                                            <span className="font-bold">5+ Years</span>
+                                        </div>
+                                        <div className="flex items-center justify-between text-sm">
+                                            <span className="opacity-70 font-medium">Speciality:</span>
+                                            <span className="font-bold">Aesthetics</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Left Column: Bio Text - Order second on mobile */}
+                        <div className="lg:w-[65%] w-full space-y-8 order-last lg:order-first">
                             <h1 className="text-4xl md:text-5xl font-heading font-black text-slate-900 leading-[1.1]">
                                 Dr Ashwajit Singh
                             </h1>
@@ -62,20 +113,6 @@ export default async function DrAshwajitSingh() {
                                     Dr Ashwajit Singh currently offers his medical expertise through the Puri Skin Clinic, providing cutting-edge solutions to any and all issues of hair and skin.
                                 </p>
                             </div>
-                        </div>
-
-                        {/* Right Column: Image */}
-                        <div className="lg:w-[35%] sticky top-32">
-                            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] md:aspect-auto md:h-[500px]">
-                                <Image
-                                    src="/doctors/dr-ashwajit/de4.avif"
-                                    alt="Dr. Ashwajit Singh"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-
-
                         </div>
 
                     </div>

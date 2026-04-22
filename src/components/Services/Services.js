@@ -7,9 +7,9 @@ const ServiceCard = ({ service }) => {
   const href = `/${service.slug || service.link}`;
   
   return (
-    <Link href={href} className="group relative rounded-[15px] bg-[#EA6490] overflow-hidden h-[300px] md:h-[360px] cursor-pointer block shadow-sm hover:shadow-xl transition-all duration-500">
+    <Link href={href} className="group relative rounded-[15px] bg-[#EA6490] overflow-hidden h-[220px] sm:h-[260px] md:h-[360px] cursor-pointer block shadow-sm hover:shadow-xl transition-all duration-500">
       {/* ── FRONT (always visible) ── */}
-      <div className="p-[12px] pb-0 h-[200px] md:h-[260px]">
+      <div className="p-[8px] md:p-[12px] pb-0 h-[150px] sm:h-[180px] md:h-[260px]">
         <div className="w-full h-full rounded-[12px] overflow-hidden bg-white/10">
           <img
             src={service.image_url || '/services/Skin-related-services-28.avif'}
@@ -19,32 +19,32 @@ const ServiceCard = ({ service }) => {
         </div>
       </div>
       
-      <div className="flex items-center justify-center h-[100px] px-5">
+      <div className="flex items-center justify-center h-[70px] md:h-[100px] px-3 md:px-5">
         <h4
-          className="text-white text-center font-bold text-[18px] leading-[1.3] group-hover:opacity-0 transition-opacity duration-300"
+          className="text-white text-center font-bold text-[14px] md:text-[18px] leading-[1.2] md:leading-[1.3] group-hover:opacity-0 transition-opacity duration-300"
           style={{ fontFamily: "var(--font-playfair), serif" }}
         >
           {service.name || service.title}
         </h4>
       </div>
-
+      
       {/* ── HOVER OVERLAY ── */}
       <div
         className="absolute inset-0 z-20 rounded-[15px] bg-[#4CA6AE] flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100"
         style={{ padding: '30px', transition: 'all 0.4s ease-in-out' }}
       >
         <div
-          className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+          className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 px-2"
         >
-          <h4 className="text-white font-bold text-[20px] mb-3" style={{ fontFamily: "var(--font-playfair), serif" }}>
+          <h4 className="text-white font-bold text-[16px] md:text-[20px] mb-2 md:mb-3" style={{ fontFamily: "var(--font-playfair), serif" }}>
             {service.name || service.title}
           </h4>
           <div 
-            className="text-white/90 text-[14px] leading-[1.6] mb-6 line-clamp-6"
+            className="hidden md:block text-white/90 text-[14px] leading-[1.6] mb-6 line-clamp-6"
             dangerouslySetInnerHTML={{ __html: service.description }}
           />
           <span
-            className="inline-block bg-white text-[#4CA6AE] px-8 py-2.5 rounded-full text-[13px] font-black uppercase tracking-widest shadow-lg"
+            className="inline-block bg-white text-[#4CA6AE] px-4 md:px-8 py-1.5 md:py-2.5 rounded-full text-[10px] md:text-[13px] font-black uppercase tracking-widest shadow-lg"
           >
             Read More
           </span>
