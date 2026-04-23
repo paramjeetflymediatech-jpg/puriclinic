@@ -87,24 +87,24 @@ const AboutSection = () => {
         {/* Right Doctor */}
         <div className="hidden lg:flex w-[320px] flex-shrink-0 items-end self-end">
           <img
-            src="/doctors/dr-ashwajit/dr2.avif"
+            src="/doctors/dr-ashwajit/drsa.png"
             alt="Dr Ashwajit Singh"
-            className="w-full h-auto object-contain transform translate-y-[2px]"
+            className="w-full h-auto object-cover transform translate-y-[2px]"
           />
         </div>
 
       </div>
 
       {/* Mobile Doctor Images */}
-      <div className="flex lg:hidden justify-center gap-[10px] px-[15px] pb-[30px] relative z-10">
+      <div className="flex lg:hidden justify-center gap-[10px] px-[15px] relative z-10">
         <img
           src="/doctors/dr-gurinderjit-singh/dr1.avif"
           className="w-[45%] h-auto object-contain"
           alt="Dr Gurinderjit Singh Puri"
         />
         <img
-          src="/doctors/dr-ashwajit/dr2.avif"
-          className="w-[45%] h-auto object-contain"
+          src="/doctors/dr-ashwajit/drsa.png"
+          className="w-[45%] h-auto object-cover"
           alt="Dr Ashwajit Singh"
         />
       </div>

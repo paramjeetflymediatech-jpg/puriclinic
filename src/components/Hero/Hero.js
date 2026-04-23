@@ -40,36 +40,37 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-[450px] md:h-[350px] lg:h-[420px] overflow-hidden bg-gray-50 border-b border-gray-100">
-
+    <section className="relative w-full overflow-hidden bg-white">
       {/* ─── MAIN SLIDER SLIDES (Full Width) ─── */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="relative w-full">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute top-5 inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10 visible' : 'opacity-0 z-0 invisible'
+            className={`w-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10 relative' : 'opacity-0 z-0 absolute inset-0'
               }`}
           >
             {/* Desktop Image */}
             <Image
               src={slide.image}
               alt={slide.alt}
-              fill
+              width={2000}
+              height={2000}
               priority={index === 0}
               loading={index === 0 ? "eager" : "lazy"}
-              sizes="100vw"
-              className="hidden md:block object-contain md:object-cover"
+              className="hidden md:block w-full h-auto object-cover object-center"
             />
             {/* Mobile Image */}
             <Image
               src={slide.mobileImage}
               alt={slide.alt}
-              fill
+              width={2000}
+              height={2000}
               priority={index === 0}
               loading={index === 0 ? "eager" : "lazy"}
-              sizes="100vw"
-              className="block md:hidden object-contain"
+              className="block md:hidden w-full h-auto object-cover object-center"
             />
+            {/* Overlay to match Vitiligo Style */}
+            <div className="absolute inset-0 bg-black/20"></div>
           </div>
         ))}
       </div>
@@ -81,7 +82,7 @@ const Hero = () => {
           {/* Previous Slide Button */}
           <button
             onClick={prevSlide}
-            className="pointer-events-auto bg-transparent text-black/40 hover:text-black transition-colors"
+            className="pointer-events-auto bg-transparent text-white/50 hover:text-white transition-colors"
             aria-label="Previous Slide"
           >
             <FaChevronLeft className="text-2xl md:text-3xl" />
@@ -90,7 +91,7 @@ const Hero = () => {
           {/* Next Slide Button */}
           <button
             onClick={nextSlide}
-            className="pointer-events-auto bg-transparent text-black/40 hover:text-black transition-colors"
+            className="pointer-events-auto bg-transparent text-white/50 hover:text-white transition-colors"
             aria-label="Next Slide"
           >
             <FaChevronRight className="text-2xl md:text-3xl" />
