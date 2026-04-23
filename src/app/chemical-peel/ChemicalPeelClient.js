@@ -44,10 +44,11 @@ export default function ChemicalPeelClient() {
     <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
 
       {/* ── HERO SECTION ── */}
-      <section className="relative w-full h-[200px] md:h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full    flex items-center justify-center overflow-hidden">
         <Image
           src="/skin-related/chemical-peels/5-1.jpg"
-          fill
+         width={2000}
+          height={2000}
           className="object-cover object-center"
           alt="Chemical Peel Banner"
           priority

@@ -22,8 +22,9 @@ export default function HairTransplantClient() {
   return (
     <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
 
-      <section className="relative w-full h-[200px] md:h-[300px] flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#D5E8E4' }}>
-        <Image src="/hair copy/hair-transplant/Hair-Transplant.jpg" fill className="object-cover object-center" alt="Hair Transplant Banner" priority />
+      <section className="relative w-full   flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#D5E8E4' }}>
+        <Image src="/hair copy/hair-transplant/Hair-Transplant.jpg" width={2000}
+          height={2000} className="object-cover object-center" alt="Hair Transplant Banner" priority />
       </section>
 
       {/* ── OVERVIEW SECTION ── */}

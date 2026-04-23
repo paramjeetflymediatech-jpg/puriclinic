@@ -28,7 +28,8 @@ export default function DoctorBioClient({ doctor }) {
             <div className="lg:col-span-5 relative">
                <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100 bg-gray-50 relative">
                  {doctor.image_url ? (
-                   <Image src={doctor.image_url} alt={doctor.name} fill className="object-cover" priority />
+                   <Image src={doctor.image_url} alt={doctor.name} width={2000}
+          height={2000} className="object-cover object-center" priority />
                  ) : (
                    <div className="w-full h-full flex items-center justify-center text-gray-200">
                      <FaUserMd size={100} />

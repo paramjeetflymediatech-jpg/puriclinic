@@ -135,8 +135,8 @@ export default function ServiceCategoryLayout({
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {benefits.map((benefit, idx) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   whileHover={{ y: -5 }}
                   className="flex flex-col items-center text-center p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all"
                 >
@@ -159,8 +159,8 @@ export default function ServiceCategoryLayout({
       <section className="bg-slate-50 py-24">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-20">
-              <h6 className="text-3xl md:text-[50px] font-bold text-slate-900" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-             Types of Hair Treatment Services Available at Puri Skin Clinic
+            <h6 className="text-3xl md:text-[50px] font-bold text-slate-900" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              Types of Hair Treatment Services Available at Puri Skin Clinic
             </h6>
             <p className='py-12 text-xl font-medium leading-[1.8] text-black'>When anything goes wrong with one’s hair, the first instinct is to panic. However, it is imperative to realise that one can find and explore solutions to these issues. In fact, the solutions are widely available. With the help of Puri Skin Clinic, you can thoroughly and effectively ensure the possibility of undergoing any of the following treatment and transplant services to address the issue of hair loss, hair thinning, or complete baldness in an effective and essential manner. </p>
           </div>
@@ -242,7 +242,7 @@ export default function ServiceCategoryLayout({
                   </p>
                 )}
               </div>
-              
+
               {showBottomAppointmentForm && (
                 <div className="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 relative">
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#EA6490] text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">

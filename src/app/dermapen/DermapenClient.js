@@ -47,10 +47,11 @@ export default function DermapenClient() {
     <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
 
         {/* ── HERO SECTION ── */}
-         <section className="relative w-full h-[200px] md:h-[400px] flex items-center justify-center overflow-hidden">
+         <section className="relative w-full    flex items-center justify-center overflow-hidden">
            <Image
              src="/dermapen/Puri-Skin-Clinic-4.jpg"
-             fill
+             width={2000}
+          height={2000}
              className="object-cover object-center"
              alt="Chemical Peel Banner"
              priority
@@ -58,7 +59,7 @@ export default function DermapenClient() {
          </section>
 
       {/* ── MAIN CONTENT ── */}
-      <div className="max-w-[1300px] mx-auto px-6 py-12 md:py-20 space-y-24">
+      <div className="max-w-[1300px] mx-auto px-6 py-8 md:py-12 space-y-16">
       {/* SECTION 1: INTRODUCTION (IMAGE ON LEFT) */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         <div className="relative aspect-[3/2] rounded-[3rem] overflow-hidden shadow-2xl border border-slate-100 lg:sticky lg:top-32">

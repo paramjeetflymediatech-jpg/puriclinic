@@ -62,20 +62,20 @@ export default async function SingleBlog({ params }) {
   return (
     <div className="bg-white min-h-screen">
       <JsonLd schema={customSeo.schema} />
-      
+
       {/* ─── IMPROVED EDITORIAL HERO ─── */}
       <div className="relative pt-10 pb-12 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
           <div className="relative h-[300px] md:h-[450px] rounded-[3rem] overflow-hidden flex flex-col items-center justify-center text-white px-6 md:px-20 text-center">
             {/* Background Image - Dynamic based on post */}
             <Image
-              src={"/bgimg.jpg"}
+              src={blog.image_url || "/bgimg.jpg"}
               alt={blog.title}
               fill
               className="object-cover -z-10 brightness-[0.45]"
               priority
             />
-            
+
             {/* Overlay Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent -z-10"></div>
 
@@ -87,11 +87,11 @@ export default async function SingleBlog({ params }) {
                 </span>
                 <span className="h-[1px] w-8 bg-[#EA6490]"></span>
               </div>
-              
+
               <h1 className="font-heading text-2xl md:text-5xl lg:text-6xl font-black leading-tight drop-shadow-lg">
                 {blog.title}
               </h1>
-              
+
               <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] md:text-xs font-bold uppercase tracking-widest opacity-90">
                 <span className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#EA6490]"></span>

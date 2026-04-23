@@ -27,11 +27,12 @@ export default async function SuccessStoriesPage() {
       <JsonLd schema={seoData.schema} />
       <div className="relative pt-10 pb-10 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
-          <div className="relative h-[250px] md:h-[300px] rounded-[2rem] overflow-hidden flex flex-col items-start justify-center text-white px-10 md:px-16">
+          <div className="relative   rounded-[2rem] overflow-hidden flex flex-col items-start justify-center text-white px-10 md:px-16">
             <Image
               src="/bgimg.jpg"
               alt="Success Stories Hero"
-              fill
+              width={2000}
+          height={2000}
               className="object-cover -z-10 brightness-[0.4]"
               priority
             />

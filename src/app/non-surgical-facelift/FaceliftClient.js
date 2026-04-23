@@ -119,10 +119,11 @@ export default function FaceliftClient() {
 
 
       {/* ── HERO SECTION ── */}
-      <section className="relative w-full h-[200px] md:h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full   flex items-center justify-center overflow-hidden">
         <Image
           src="/non-surgical-facelift/10.jpg"
-          fill
+         width={2000}
+          height={2000}
           className="object-cover object-center"
           alt="Non-Surgical Facelift Banner"
           priority
@@ -131,7 +132,7 @@ export default function FaceliftClient() {
 
 
       {/* ── MAIN CONTENT ── */}
-      <div className="max-w-[1300px] mx-auto px-6 py-12 md:py-20 space-y-24">
+      <div className="max-w-[1300px] mx-auto px-6 py-8 md:py-10 space-y-10 md:space-y-12">
 
         {/* SECTION 1: INTRODUCTION (IMAGE ON LEFT) */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">

@@ -26,10 +26,11 @@ export default function ExosomeClient() {
     <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
 
       {/* ── BESPOKE HERO: EXOSOME ── */}
-      <section className="relative w-full h-[200px] md:h-[300px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full   flex items-center justify-center overflow-hidden">
         <Image
           src="/hair copy/exosome/Exosome-Breadcrumb.jpg"
-          fill
+         width={2000}
+          height={2000}
           className="object-cover object-center"
           alt="Exosome Therapy Banner"
           priority
@@ -38,7 +39,7 @@ export default function ExosomeClient() {
       </section>
 
       {/* ── MAIN CONTENT ── */}
-      <div className="max-w-[1300px] mx-auto px-6 py-12 md:py-16 space-y-20">
+      <div className="max-w-[1300px] mx-auto px-6 py-12  space-y-20">
 
         {/* SECTION 1: INTRODUCTION */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">

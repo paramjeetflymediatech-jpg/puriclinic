@@ -25,10 +25,11 @@ export default function GFCClient() {
     <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
 
       {/* ── BESPOKE HERO: GFC ── */}
-      <section className="relative w-full h-[200px] md:h-[300px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full   flex items-center justify-center overflow-hidden">
         <Image
           src="/hair copy/gfc-treat/PRP-for-Hair-and-Skin-28.jpg"
-          fill
+          width={2000}
+          height={2000}
           className="object-cover object-center"
           alt="GFC Therapy Banner"
           priority

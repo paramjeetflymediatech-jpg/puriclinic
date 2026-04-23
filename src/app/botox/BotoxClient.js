@@ -82,10 +82,11 @@ export default function BotoxClient() {
     <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
 
       {/* ── HERO SECTION ── */}
-      <section className="relative w-full h-[200px] md:h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full   flex items-center justify-center overflow-hidden">
         <Image
           src="/botox/9-1.jpg"
-          fill
+          width={2000}
+          height={2000}
           className="object-cover object-center"
           alt="Non-Surgical Facelift Banner"
           priority
@@ -94,12 +95,12 @@ export default function BotoxClient() {
 
 
       {/* ── MAIN CONTENT ── */}
-      <div className="max-w-[1300px] mx-auto px-6 py-12 md:py-20 space-y-24">
+      <div className="max-w-[1300px] mx-auto px-6 py-8 md:py-12 space-y-24">
 
         {/* SECTION 1: INTRODUCTION (SIDE-BY-SIDE) */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="">
-            <ImageSlider images={sliderImages} aspect="aspect-[4/5]" />
+            <ImageSlider images={sliderImages} aspect="aspect-[1/1] sm:aspect-[3/2]" />
           </div>
           <div className="space-y-8">
             <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>

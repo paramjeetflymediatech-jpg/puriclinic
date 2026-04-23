@@ -18,7 +18,7 @@ export default async function DrAshwajitSingh() {
 
             {/* ─── HERO BANNER SECTION ─── */}
             <div className="container py-10">
-                <div className="relative w-full h-[180px] md:h-[250px] rounded-[2.5rem] overflow-hidden flex items-center justify-start p-6 md:p-12 lg:p-20">
+                <div className="relative w-full rounded-[2.5rem] overflow-hidden flex items-center justify-start p-6 md:p-12 lg:p-20">
                     <Image
                         src="/dermatology-3.jpg"
                         alt="Dr Ashwajit Singh"
@@ -58,12 +58,12 @@ export default async function DrAshwajitSingh() {
                                     />
                                 </div>
                                 <div className="flex-grow">
-                                    <p className="text-[#EA6490] text-[10px] font-black uppercase tracking-widest mb-1">Resident Dermatologist</p>
+                                    <p className="text-[#EA6490] text-[10px] font-black uppercase tracking-widest mb-1">Consultant Dermatologist</p>
                                     <h2 className="text-xl font-heading font-black text-slate-900 leading-tight">Dr Ashwajit Singh</h2>
                                     <p className="text-slate-500 text-xs mt-1 font-medium italic">MD (Dermatology)</p>
                                     <div className="mt-3 flex gap-3">
-                                        <span className="px-2 py-1 bg-slate-50 text-slate-600 text-[10px] rounded-md border border-slate-100 font-bold">5+ Yrs Exp</span>
-                                        <span className="px-2 py-1 bg-[#EA6490]/5 text-[#EA6490] text-[10px] rounded-md border border-[#EA6490]/10 font-bold">Aesthetics</span>
+                                        <span className="px-2 py-1 bg-slate-50 text-slate-600 text-[10px] rounded-md border border-slate-100 font-bold">6+ Yrs Exp</span>
+                                        <span className="px-2 py-1 bg-[#EA6490]/5 text-[#EA6490] text-[10px] rounded-md border border-[#EA6490]/10 font-bold">Skin and Aesthetic Dermatologist</span>
                                     </div>
                                 </div>
                             </div>
@@ -80,16 +80,16 @@ export default async function DrAshwajitSingh() {
                                 </div>
 
                                 <div className="bg-[#EA6490] text-white p-8 rounded-[2rem] shadow-xl">
-                                    <p className="text-[10px] uppercase tracking-widest font-black mb-2 opacity-80">Resident Dermatologist</p>
+                                    <p className="text-[10px] uppercase tracking-widest font-black mb-2 opacity-80">Consultant Dermatologist</p>
                                     <p className="text-xl font-heading font-black leading-tight">MD (Dermatology)</p>
                                     <div className="mt-6 pt-6 border-t border-white/20 space-y-4">
                                         <div className="flex items-center justify-between text-sm">
                                             <span className="opacity-70 font-medium">Experience:</span>
-                                            <span className="font-bold">5+ Years</span>
+                                            <span className="font-bold">6+ Years</span>
                                         </div>
                                         <div className="flex items-center justify-between text-sm">
                                             <span className="opacity-70 font-medium">Speciality:</span>
-                                            <span className="font-bold">Dermatologist</span>
+                                            <span className="font-bold">Skin and Aesthetic Dermatologist </span>
                                         </div>
                                     </div>
                                 </div>
