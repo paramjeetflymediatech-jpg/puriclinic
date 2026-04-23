@@ -69,7 +69,7 @@ export default async function SingleBlog({ params }) {
           <div className="relative h-[300px] md:h-[450px] rounded-[3rem] overflow-hidden flex flex-col items-center justify-center text-white px-6 md:px-20 text-center">
             {/* Background Image - Dynamic based on post */}
             <Image
-              src={blog.image_url || "/bgimg.jpg"}
+              src={"/dermatology-3.jpg"}
               alt={blog.title}
               fill
               className="object-cover -z-10 brightness-[0.45]"
