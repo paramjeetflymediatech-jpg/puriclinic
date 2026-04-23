@@ -108,9 +108,9 @@ export default async function SingleBlog({ params }) {
             <div className="absolute bottom-8 flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] opacity-60 hover:opacity-100 transition-opacity">
               <Link href="/" className="hover:text-[#EA6490]">Home</Link>
               <FaChevronRight size={8} />
-              <Link href="/blogs/" className="hover:text-[#EA6490]">Journal</Link>
-              <FaChevronRight size={8} />
-              <span className="text-white/50 truncate max-w-[100px] md:max-w-none">Article</span>
+              <Link href="/blogs/" className="hover:text-[#EA6490]">Blogs</Link>
+              {/* <FaChevronRight size={8} /> */}
+              {/* <span className="text-white/50 truncate max-w-[100px] md:max-w-none">Article</span> */}
             </div>
           </div>
         </div>
