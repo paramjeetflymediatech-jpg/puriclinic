@@ -6,6 +6,7 @@ import { getGlobalSchema, getGlobalScripts } from '../lib/seo';
 import { HeaderConditional, FooterConditional } from '@/components/ConditionalLayout/ConditionalLayout';
 import HeadScripts from '@/components/Seo/HeadScripts';
 
+export const dynamic = 'force-dynamic';
 // Puri Skin Clinic uses Nunito Sans with heavy weights for that bold look
 const nunitoSans = Nunito_Sans({
   subsets: ['latin'],
