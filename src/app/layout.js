@@ -2,11 +2,37 @@
 import './globals.css';
 import Script from 'next/script';
 import { Nunito_Sans, Cormorant_Garamond, Playfair_Display, Lora } from 'next/font/google';
+export const dynamic = 'force-dynamic';
 import { getGlobalSchema, getGlobalScripts } from '../lib/seo';
 import { HeaderConditional, FooterConditional } from '@/components/ConditionalLayout/ConditionalLayout';
-import HeadScripts from '@/components/Seo/HeadScripts';
 
-export const dynamic = 'force-dynamic';
+function parseHeadHTML(html) {
+  if (!html) return [];
+  const tags = [];
+  // Match tags like <meta ...>, <link ...>, <script ...>...</script>, <style ...>...</style>
+  const tagRegex = /<([a-zA-Z0-9:-]+)([^>]*?)(?:>([\s\S]*?)<\/\1>|\/>|>)/gi;
+  const attrRegex = /([a-zA-Z0-9:-]+)(?:=(?:'([^']*)'|"([^"]*)"|([^\s>]+)))?/g;
+
+  let match;
+  while ((match = tagRegex.exec(html)) !== null) {
+    const tagName = match[1].toUpperCase();
+    const attrString = match[2];
+    const content = match[3] || '';
+
+    const attributes = {};
+    let attrMatch;
+    attrRegex.lastIndex = 0;
+    while ((attrMatch = attrRegex.exec(attrString)) !== null) {
+      const key = attrMatch[1];
+      const val = attrMatch[2] ?? attrMatch[3] ?? attrMatch[4] ?? '';
+      attributes[key] = val;
+    }
+
+    tags.push({ tagName, attributes, content });
+  }
+  return tags;
+}
+
 // Puri Skin Clinic uses Nunito Sans with heavy weights for that bold look
 const nunitoSans = Nunito_Sans({
   subsets: ['latin'],
@@ -70,40 +96,99 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <HeadScripts html={scripts.headScripts} />
-      </head>
-      <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`} suppressHydrationWarning>
+        {/* Parsed global headScripts rendered directly inside head */}
+        {parseHeadHTML(scripts.headScripts).map((tag, idx) => {
+          const { tagName, attributes, content } = tag;
+          const key = `head-tag-${tagName.toLowerCase()}-${idx}`;
+
+          const reactProps = {};
+          Object.entries(attributes).forEach(([k, v]) => {
+            if (k === 'class') {
+              reactProps.className = v;
+            } else if (k === 'for') {
+              reactProps.htmlFor = v;
+            } else {
+              reactProps[k] = v;
+            }
+          });
+
+          if (tagName === 'META') {
+            return <meta key={key} {...reactProps} />;
+          }
+          if (tagName === 'LINK') {
+            return <link key={key} {...reactProps} />;
+          }
+          if (tagName === 'SCRIPT') {
+            if (content) {
+              return (
+                <script
+                  key={key}
+                  {...reactProps}
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+              );
+            }
+            return <script key={key} {...reactProps} />;
+          }
+          if (tagName === 'STYLE') {
+            return (
+              <style
+                key={key}
+                {...reactProps}
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+            );
+          }
+          if (tagName === 'TITLE') {
+            return <title key={key}>{content}</title>;
+          }
+          return null;
+        })}
+
         {/* Google Analytics (GA4) */}
         {scripts.gaId && (
-          <Script
+          <script
+            async
             src={`https://www.googletagmanager.com/gtag/js?id=${scripts.gaId}`}
-            strategy="afterInteractive"
           />
         )}
         {scripts.gaId && (
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${scripts.gaId}');
-            `}
-          </Script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${scripts.gaId}');
+              `
+            }}
+          />
         )}
 
         {/* Google Tag Manager */}
         {scripts.gtmId && (
-          <Script id="gtm-script" strategy="afterInteractive">
-            {`
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtag/js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${scripts.gtmId}');
-            `}
-          </Script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtag/js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${scripts.gtmId}');
+              `
+            }}
+          />
         )}
 
+        {/* Global JSON-LD Schema */}
+        {schema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        )}
+      </head>
+      <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`} suppressHydrationWarning>
         {/* GTM Noscript */}
         {scripts.gtmId && (
           <noscript>
@@ -116,13 +201,6 @@ export default async function RootLayout({ children }) {
           </noscript>
         )}
 
-
-        {schema && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
-        )}
         <HeaderConditional />
         <main>{children}</main>
         <FooterConditional />
