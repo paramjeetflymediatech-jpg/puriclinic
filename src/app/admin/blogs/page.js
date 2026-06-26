@@ -206,7 +206,17 @@ export default function BlogsAdminPage() {
                   <input 
                     placeholder="Article headline..." 
                     value={formData.title} 
-                    onChange={e=>setFormData(prev => ({...prev, title: e.target.value}))} 
+                    onChange={e => {
+                      const title = e.target.value;
+                      const slug = title
+                        .trim()
+                        .toLowerCase()
+                        .replace(/\s+/g, '-')
+                        .replace(/[^\p{L}\p{M}\p{N}\-]/gu, '')
+                        .replace(/\-+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+                      setFormData(prev => ({ ...prev, title, slug }));
+                    }} 
                     required 
                     className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#EA6490]/10 focus:border-[#EA6490] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-bold text-slate-700" 
                   />
