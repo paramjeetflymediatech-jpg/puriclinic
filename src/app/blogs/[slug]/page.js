@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug;
+  const slug = decodeURIComponent(resolvedParams.slug);
   const blog = await Blog.findOne({ where: { slug } });
 
   if (!blog) {
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }) {
 
 export default async function SingleBlog({ params }) {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug;
+  const slug = decodeURIComponent(resolvedParams.slug);
   const [rawBlog, customSeo] = await Promise.all([
     Blog.findOne({ where: { slug } }),
     getPageSeo(`blog:${slug}`)

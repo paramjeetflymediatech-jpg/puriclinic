@@ -17,7 +17,11 @@ export async function POST(request) {
     const blog = await Blog.create(body);
     return NextResponse.json({ success: true, blog });
   } catch(err) {
-    return NextResponse.json({ error: err.message }, { status: 400 });
+    console.error('Blog Create Error:', err);
+    return NextResponse.json({ 
+      error: err.message,
+      details: err.errors ? err.errors.map(e => e.message) : null
+    }, { status: 400 });
   }
 }
 
