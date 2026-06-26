@@ -24,7 +24,8 @@ export default function BlogsAdminPage() {
     meta_title: '',
     meta_description: '',
     meta_keywords: '',
-    meta_schema: ''
+    meta_schema: '',
+    is_published: true
   });
 
   const fetchBlogs = async () => {
@@ -160,7 +161,8 @@ export default function BlogsAdminPage() {
       meta_title: blog.meta_title || '',
       meta_description: blog.meta_description || '',
       meta_keywords: blog.meta_keywords || '',
-      meta_schema: blog.meta_schema || ''
+      meta_schema: blog.meta_schema || '',
+      is_published: blog.is_published !== false
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -169,7 +171,7 @@ export default function BlogsAdminPage() {
     setEditingId(null);
     setFormData({ 
       title: '', slug: '', excerpt: '', content: '', image_url: '',
-      meta_title: '', meta_description: '', meta_keywords: '', meta_schema: ''
+      meta_title: '', meta_description: '', meta_keywords: '', meta_schema: '', is_published: true
     });
   };
 
@@ -365,12 +367,22 @@ export default function BlogsAdminPage() {
               onChange={data => setFormData(prev => ({...prev, content: data}))} 
             />
           </div>
-          <div className="flex justify-end pt-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center pt-6 gap-6">
+            <div className="flex items-center gap-4">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-400">Status</label>
+              <div className="relative inline-flex items-center cursor-pointer" onClick={() => setFormData(prev => ({...prev, is_published: !prev.is_published}))}>
+                <div className={`w-14 h-7 rounded-full shadow-inner transition-colors duration-300 ease-in-out ${formData.is_published ? 'bg-[#4CA6AE]' : 'bg-slate-200'}`}></div>
+                <div className={`absolute left-1 top-1 bg-white w-5 h-5 rounded-full shadow transition-transform duration-300 ease-in-out flex items-center justify-center ${formData.is_published ? 'transform translate-x-7' : ''}`}></div>
+              </div>
+              <span className={`text-sm font-bold ${formData.is_published ? 'text-[#4CA6AE]' : 'text-slate-400'}`}>
+                {formData.is_published ? 'Published' : 'Draft'}
+              </span>
+            </div>
             <button 
               type="submit" 
               className="w-full sm:w-auto bg-[#EA6490] hover:bg-[#d4547a] text-white font-black px-12 py-5 rounded-2xl transition-all shadow-lg shadow-[#EA6490]/20 active:scale-[0.98] uppercase tracking-widest text-sm"
             >
-              {editingId ? 'Update Masterpiece' : 'Publish Story'}
+              {editingId ? 'Update Masterpiece' : 'Save Story'}
             </button>
           </div>
         </form>
@@ -412,7 +424,12 @@ export default function BlogsAdminPage() {
                         )}
                       </div>
                       <div>
-                        <div className="font-bold text-slate-900 group-hover:text-[#EA6490] transition-colors leading-tight mb-1 text-lg">{b.title}</div>
+                        <div className="font-bold text-slate-900 group-hover:text-[#EA6490] transition-colors leading-tight mb-1 text-lg flex items-center gap-3">
+                          {b.title}
+                          {!b.is_published && (
+                            <span className="bg-slate-100 text-slate-500 text-[9px] px-2 py-1 rounded-md uppercase tracking-widest border border-slate-200">Draft</span>
+                          )}
+                        </div>
                         <div className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em]">{new Date(b.createdAt).toLocaleDateString(undefined, { dateStyle: 'long' })}</div>
                       </div>
                     </div>

@@ -19,7 +19,10 @@ export default async function BlogsPage() {
   const seoData = await getPageSeo('blogs');
   let blogs = [];
   try {
-    const rawData = await Blog.findAll({ order: [['createdAt', 'DESC']] });
+    const rawData = await Blog.findAll({ 
+      where: { is_published: true }, 
+      order: [['createdAt', 'DESC']] 
+    });
     blogs = rawData.map(b => b.get({ plain: true }));
   } catch (err) {
     console.error("Failed fetching blogs:", err);

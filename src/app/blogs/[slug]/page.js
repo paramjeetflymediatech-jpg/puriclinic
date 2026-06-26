@@ -15,7 +15,7 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const slug = decodeURIComponent(resolvedParams.slug);
-  const blog = await Blog.findOne({ where: { slug } });
+  const blog = await Blog.findOne({ where: { slug, is_published: true } });
 
   if (!blog) {
     return { title: 'Blog Not Found' };
@@ -45,7 +45,7 @@ export default async function SingleBlog({ params }) {
   const resolvedParams = await params;
   const slug = decodeURIComponent(resolvedParams.slug);
   const [rawBlog, customSeo] = await Promise.all([
-    Blog.findOne({ where: { slug } }),
+    Blog.findOne({ where: { slug, is_published: true } }),
     getPageSeo(`blog:${slug}`)
   ]);
 
