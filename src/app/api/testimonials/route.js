@@ -6,7 +6,7 @@ export async function GET() {
     const data = await Testimonial.findAll({ 
       where: { is_active: true },
       order: [['createdAt', 'DESC']],
-      limit: 10 
+      // limit: 10 
     });
     return NextResponse.json({ testimonials: data });
   } catch (error) {
