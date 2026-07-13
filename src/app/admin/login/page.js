@@ -27,8 +27,9 @@ export default function LoginPage() {
       });
 
       if (res.ok) {
-        // hard refresh to clear any cached states
-        window.location.href = "/admin";
+        // Use Next.js router for smooth navigation
+        router.push("/admin/");
+        router.refresh();
       } else {
         const data = await res.json();
         setError(data.error || 'Invalid username or password');

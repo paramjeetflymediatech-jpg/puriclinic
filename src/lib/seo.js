@@ -178,7 +178,8 @@ export async function getPageSeo(pageKey) {
     const ogTitle = row?.og_title || title;
     const ogDescription = row?.og_description || description;
     const ogImage = row?.og_image || DEFAULT_OG_IMAGE;
-    return {
+    
+    const metadata = {
       title,
       description,
       keywords,
@@ -195,6 +196,16 @@ export async function getPageSeo(pageKey) {
         description: ogDescription,
         images: [ogImage],
       },
+    };
+
+    if (row?.canonical) {
+      metadata.alternates = {
+        canonical: row.canonical,
+      };
+    }
+
+    return {
+      ...metadata,
       // We'll also return the raw schema if someone wants to render it manually
       schema: row?.schema_json ? JSON.parse(row.schema_json) : null,
     };

@@ -29,6 +29,12 @@ export async function syncDB() {
       await sequelize.query("ALTER TABLE blogs ADD COLUMN meta_schema TEXT NULL");
     }
 
+    const [seoResults] = await sequelize.query("SHOW COLUMNS FROM seo_settings LIKE 'canonical'");
+    if (seoResults.length === 0) {
+      console.log('Manually adding missing canonical column to seo_settings table...');
+      await sequelize.query("ALTER TABLE seo_settings ADD COLUMN canonical VARCHAR(500) NULL");
+    }
+
     console.log('Database synced successfully.');
   } catch (error) {
     console.error('Database sync failed critically:', error);

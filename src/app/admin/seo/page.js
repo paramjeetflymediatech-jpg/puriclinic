@@ -622,6 +622,17 @@ export default function SeoAdminPage() {
                     />
                   </div>
 
+                  {/* Canonical URL */}
+                  <div className="sm:col-span-2 space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block">Canonical URL</label>
+                    <input
+                      value={metaData.canonical ?? ''}
+                      onChange={e => setMetaData({ ...metaData, canonical: e.target.value })}
+                      placeholder="https://www.puriskinclinic.in/your-page-url"
+                      className={inputCls('teal')}
+                    />
+                  </div>
+
                   {/* OG Title */}
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
