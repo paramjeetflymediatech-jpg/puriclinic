@@ -198,11 +198,20 @@ export async function getPageSeo(pageKey) {
       },
     };
 
-    if (row?.canonical) {
-      metadata.alternates = {
-        canonical: row.canonical,
-      };
+    let defaultCanonical = 'https://www.puriskinclinic.in';
+    if (pageKey !== 'home' && !pageKey.startsWith('__')) {
+      if (pageKey.startsWith('blog:')) {
+        defaultCanonical += `/blogs/${pageKey.split(':')[1]}`;
+      } else if (pageKey.startsWith('doctor:')) {
+        defaultCanonical += `/doctors/${pageKey.split(':')[1]}`;
+      } else {
+        defaultCanonical += `/${pageKey}`;
+      }
     }
+
+    metadata.alternates = {
+      canonical: row?.canonical || defaultCanonical,
+    };
 
     return {
       ...metadata,

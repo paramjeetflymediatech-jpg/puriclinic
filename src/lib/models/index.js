@@ -18,7 +18,7 @@ export async function syncDB() {
     await sequelize.authenticate();
     console.log('Authentication successful. Starting sync...');
     await sequelize.sync({ alter: true });
-    
+
     // Manual fallback for columns if alter:true missed them
     const [results] = await sequelize.query("SHOW COLUMNS FROM blogs LIKE 'meta_title'");
     if (results.length === 0) {
