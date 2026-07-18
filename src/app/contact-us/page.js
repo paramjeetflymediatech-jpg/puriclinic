@@ -71,7 +71,7 @@ export default async function ContactUs() {
               {social_links.map((social, i) => (
                 <a 
                   key={i}
-                  href={social.href} 
+                  href={social.url} 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center  hover:text-white  transition-all duration-500 text-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transform" style={{ color: social.color }}

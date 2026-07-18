@@ -214,7 +214,7 @@ const Header = () => {
                   className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#4CA6AE] hover:text-white transition-all duration-200"
                   style={{ fontSize: '13px', color: item.color }}
                 >
-                  <a href={item.url}>
+                  <a href={item.url} target='_blank'>
                     {item.icon}
                   </a>
                 </div>
