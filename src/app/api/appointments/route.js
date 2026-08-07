@@ -28,7 +28,9 @@ export async function POST(request) {
     try {
       // Create transporter
       const transporter = nodemailer.createTransport({
-        service: 'smtp-relay.brevo.com', // Optional: Use host/port for other providers or AWS SES
+        host: 'smtp-relay.brevo.com',
+        port: 587,
+        secure: false,
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
