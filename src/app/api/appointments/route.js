@@ -38,7 +38,7 @@ export async function POST(request) {
       });
 
       const mailOptions = {
-        from: process.env.SMTP_USER,
+        from: `PuriSkinClinic <${process.env.CLINIC_EMAIL}>`,
         to: `anujguptaflymedia@gmail.com, pravi.flymediatech@gmail.com, puriskinclinic@gmail.com`,
         subject: `New Appointment Request - ${name}`,
         html: `
