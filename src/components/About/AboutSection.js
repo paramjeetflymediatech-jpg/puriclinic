@@ -36,7 +36,7 @@ const AboutSection = () => {
         {/* Center Content */}
         <div className="flex-1 py-[100px] px-[20px] text-center text-white">
           {/* Heading — 46px Playfair Display, white */}
-          <h2
+          <h1
             className="text-white text-[32px] md:text-[46px] leading-[1.2] mb-[30px]"
             style={{
               fontFamily: "var(--font-playfair), 'Playfair Display', Georgia, serif",
@@ -44,7 +44,7 @@ const AboutSection = () => {
             }}
           >
             Puri Skin Clinic – Your Ideal Choice
-          </h2>
+          </h1>
 
           {/* Description — 18px Nunito Sans, white */}
           <p
