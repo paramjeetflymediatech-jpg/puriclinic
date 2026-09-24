@@ -7,8 +7,8 @@ import { FaMapMarkerAlt, FaClock, FaEnvelope, FaPhoneAlt, FaFacebook, FaInstagra
 export const FAQ_DATA = {
   general: [
     {
-      question: "Which is the best skin clinic near me?",
-      answer: "Puri Skin Clinic is the best skin clinic in Ludhiana as the best skin doctors of Ludhiana Dr Gurinderjit Singh Puri and Dr Ashwajit Singh provide the best skin services and all types of skin treatments while the charges are very economical."
+      question: "Which is the best skin clinic in Ludhiana?",
+      answer: "Puri Skin Clinic is the best skin clinic in Ludhiana where Dr Gurinderjit Singh Puri and Dr Ashwajit Singh provides all types of skin treatments at affordable prices."
     },
     {
       question: "How much does a dermatologist consultation cost?",
