@@ -628,7 +628,7 @@ export default function SeoAdminPage() {
                     <input
                       value={metaData.canonical ?? ''}
                       onChange={e => setMetaData({ ...metaData, canonical: e.target.value })}
-                      placeholder="https://www.puriskinclinic.in/your-page-url"
+                      placeholder="https://www.puriskinclinic.com/your-page-url"
                       className={inputCls('teal')}
                     />
                   </div>
