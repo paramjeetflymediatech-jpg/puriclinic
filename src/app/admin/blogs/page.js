@@ -1,10 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaImage, FaPenNib, FaLink, FaAlignLeft, FaEye } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus, FaTimes, FaUpload, FaImage, FaPenNib, FaLink, FaAlignLeft, FaEye, FaUserMd } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import Swal from '@/lib/swal';
+import { AUTHOR_LIST, getAuthor } from '@/constants/authors';
 
 const Editor = dynamic(() => import('@/components/Editor/Editor'), { ssr: false });
 
@@ -21,6 +22,7 @@ export default function BlogsAdminPage() {
     excerpt: '',
     content: '',
     image_url: '',
+    author_slug: 'dr-gurinderjit-singh',
     meta_title: '',
     meta_description: '',
     meta_keywords: '',
@@ -158,6 +160,7 @@ export default function BlogsAdminPage() {
       excerpt: blog.excerpt,
       content: blog.content,
       image_url: blog.image_url || '',
+      author_slug: blog.author_slug || 'dr-gurinderjit-singh',
       meta_title: blog.meta_title || '',
       meta_description: blog.meta_description || '',
       meta_keywords: blog.meta_keywords || '',
@@ -171,6 +174,7 @@ export default function BlogsAdminPage() {
     setEditingId(null);
     setFormData({ 
       title: '', slug: '', excerpt: '', content: '', image_url: '',
+      author_slug: 'dr-gurinderjit-singh',
       meta_title: '', meta_description: '', meta_keywords: '', meta_schema: '', is_published: true
     });
   };
@@ -180,7 +184,7 @@ export default function BlogsAdminPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-6">
         <div>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-2 leading-none" style={{ fontFamily: 'var(--font-playfair), serif' }}>Blog Articles</h1>
-          <p className="text-slate-500 font-medium">Create and manage your clinic's editorial content.</p>
+          <p className="text-slate-500 font-medium">Create and manage your clinic's editorial content and author bylines.</p>
         </div>
         {editingId && (
           <button 
@@ -237,17 +241,41 @@ export default function BlogsAdminPage() {
                   />
                 </div>
               </div>
-              <div className="space-y-3">
-                <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1 flex items-center gap-2">
-                   <FaAlignLeft className="text-[#4CA6AE]" /> Short Excerpt
-                </label>
-                <textarea 
-                  placeholder="A brief teaser for the blog list page..." 
-                  value={formData.excerpt} 
-                  onChange={e=>setFormData(prev => ({...prev, excerpt: e.target.value}))} 
-                  className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-medium text-slate-600" 
-                  rows={2} 
-                />
+
+              {/* Author Selector and Excerpt */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1 flex items-center gap-2">
+                    <FaUserMd className="text-[#EA6490]" /> Author / Medical Reviewer
+                  </label>
+                  <select 
+                    value={formData.author_slug} 
+                    onChange={e => setFormData(prev => ({ ...prev, author_slug: e.target.value }))}
+                    className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#EA6490]/10 focus:border-[#EA6490] focus:bg-white outline-none transition-all font-bold text-slate-700 text-sm cursor-pointer"
+                  >
+                    {AUTHOR_LIST.map(author => (
+                      <option key={author.slug} value={author.slug}>
+                        {author.bylineName}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-[11px] text-slate-400 font-medium px-1">
+                    Links to: <span className="font-semibold text-slate-600">{getAuthor(formData.author_slug).linkText}</span>
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1 flex items-center gap-2">
+                     <FaAlignLeft className="text-[#4CA6AE]" /> Short Excerpt
+                  </label>
+                  <textarea 
+                    placeholder="A brief teaser for the blog list page..." 
+                    value={formData.excerpt} 
+                    onChange={e=>setFormData(prev => ({...prev, excerpt: e.target.value}))} 
+                    className="w-full p-4 border border-slate-100 bg-slate-50/50 rounded-2xl focus:ring-4 focus:ring-[#4CA6AE]/10 focus:border-[#4CA6AE] focus:bg-white outline-none transition-all placeholder:text-slate-300 font-medium text-slate-600" 
+                    rows={2} 
+                  />
+                </div>
               </div>
             </div>
 
@@ -297,7 +325,7 @@ export default function BlogsAdminPage() {
                 </div>
             </div>
           </div>
-          
+
           {/* SEO SECTION */}
           <div className="pt-8 border-t border-slate-100 space-y-8">
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-[#4CA6AE] flex items-center gap-3">
@@ -401,70 +429,89 @@ export default function BlogsAdminPage() {
             <thead>
               <tr className="bg-slate-50/50 border-b border-slate-100 text-slate-400 uppercase text-[10px] font-black tracking-[0.2em]">
                 <th className="p-8">Content Identity</th>
+                <th className="p-8">Author</th>
                 <th className="p-8">Route Link</th>
                 <th className="p-8 text-right pr-12">Controls</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
               {loading ? (
-                <tr><td colSpan="3" className="p-20 text-center text-slate-300 italic font-bold tracking-widest animate-pulse">Synchronizing Editorial...</td></tr>
+                <tr><td colSpan="4" className="p-20 text-center text-slate-300 italic font-bold tracking-widest animate-pulse">Synchronizing Editorial...</td></tr>
               ) : blogs.length === 0 ? (
-                <tr><td colSpan="3" className="p-20 text-center text-slate-300 italic font-bold">No articles found in the archive.</td></tr>
-              ) : blogs.map(b => (
-                <tr key={b.id} className="hover:bg-slate-50/30 transition-colors group">
-                  <td className="p-8">
-                    <div className="flex items-center gap-6">
-                      <div className="w-24 h-16 rounded-2xl bg-slate-100 overflow-hidden relative shrink-0 border border-slate-100 shadow-sm transition-transform group-hover:scale-105">
-                        {b.image_url ? (
-                          <img src={b.image_url} alt="" className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-slate-200">
-                            <FaImage size={24} />
-                          </div>
-                        )}
-                      </div>
-                      <div>
-                        <div className="font-bold text-slate-900 group-hover:text-[#EA6490] transition-colors leading-tight mb-1 text-lg flex items-center gap-3">
-                          {b.title}
-                          {!b.is_published && (
-                            <span className="bg-slate-100 text-slate-500 text-[9px] px-2 py-1 rounded-md uppercase tracking-widest border border-slate-200">Draft</span>
+                <tr><td colSpan="4" className="p-20 text-center text-slate-300 italic font-bold">No articles found in the archive.</td></tr>
+              ) : blogs.map(b => {
+                const author = getAuthor(b.author_slug);
+                return (
+                  <tr key={b.id} className="hover:bg-slate-50/30 transition-colors group">
+                    <td className="p-8">
+                      <div className="flex items-center gap-6">
+                        <div className="w-24 h-16 rounded-2xl bg-slate-100 overflow-hidden relative shrink-0 border border-slate-100 shadow-sm transition-transform group-hover:scale-105">
+                          {b.image_url ? (
+                            <img src={b.image_url} alt="" className="w-full h-full object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-slate-200">
+                              <FaImage size={24} />
+                            </div>
                           )}
                         </div>
-                        <div className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em]">{new Date(b.createdAt).toLocaleDateString(undefined, { dateStyle: 'long' })}</div>
+                        <div>
+                          <div className="font-bold text-slate-900 group-hover:text-[#EA6490] transition-colors leading-tight mb-1 text-lg flex items-center gap-3">
+                            {b.title}
+                            {!b.is_published && (
+                              <span className="bg-slate-100 text-slate-500 text-[9px] px-2 py-1 rounded-md uppercase tracking-widest border border-slate-200">Draft</span>
+                            )}
+                          </div>
+                          <div className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em]">{new Date(b.createdAt).toLocaleDateString(undefined, { dateStyle: 'long' })}</div>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="p-8">
-                    <span className="bg-white text-[#4CA6AE] px-5 py-2 rounded-xl text-[11px] font-black tracking-widest border border-slate-100 shadow-sm min-w-[120px] inline-block text-center">
-                       /blogs/{b.slug}
-                    </span>
-                  </td>
-                  <td className="p-8 text-right pr-12 space-x-3">
-                    <Link
-                      href={`/blogs/${b.slug}/`}
-                      target="_blank"
-                      className="p-4 text-slate-300 hover:text-white hover:bg-slate-900 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-slate-900/20"
-                      title="View Public Page"
-                    >
-                      <FaEye size={16} />
-                    </Link>
-                    <button 
-                      onClick={() => handleEdit(b)}
-                      className="p-4 text-slate-300 hover:text-white hover:bg-[#4CA6AE] rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-[#4CA6AE]/20"
-                      title="Edit Story"
-                    >
-                      <FaEdit size={16} />
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(b.id)}
-                      className="p-4 text-slate-300 hover:text-white hover:bg-rose-500 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-rose-500/20"
-                      title="Delete Story"
-                    >
-                      <FaTrash size={16} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    <td className="p-8">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full overflow-hidden border border-slate-100 bg-slate-50 shrink-0 relative">
+                          <img src={author.image} alt={author.name} className="w-full h-full object-cover object-top" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold text-slate-800">
+                            {author.name}
+                          </div>
+                          <div className="text-[10px] text-[#EA6490] font-bold">
+                            {author.degree}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-8">
+                      <span className="bg-white text-[#4CA6AE] px-5 py-2 rounded-xl text-[11px] font-black tracking-widest border border-slate-100 shadow-sm min-w-[120px] inline-block text-center">
+                         /blogs/{b.slug}
+                      </span>
+                    </td>
+                    <td className="p-8 text-right pr-12 space-x-3">
+                      <Link
+                        href={`/blogs/${b.slug}/`}
+                        target="_blank"
+                        className="p-4 text-slate-300 hover:text-white hover:bg-slate-900 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-slate-900/20"
+                        title="View Public Page"
+                      >
+                        <FaEye size={16} />
+                      </Link>
+                      <button 
+                        onClick={() => handleEdit(b)}
+                        className="p-4 text-slate-300 hover:text-white hover:bg-[#4CA6AE] rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-[#4CA6AE]/20"
+                        title="Edit Story"
+                      >
+                        <FaEdit size={16} />
+                      </button>
+                      <button 
+                        onClick={() => handleDelete(b.id)}
+                        className="p-4 text-slate-300 hover:text-white hover:bg-rose-500 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-rose-500/20"
+                        title="Delete Story"
+                      >
+                        <FaTrash size={16} />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

@@ -9,6 +9,7 @@ const Blog = sequelize.define('Blog', {
   content: { type: DataTypes.TEXT('long') },
   language: { type: DataTypes.ENUM('en', 'hi'), defaultValue: 'en' },
   image_url: { type: DataTypes.STRING(500) },
+  author_slug: { type: DataTypes.STRING(100), allowNull: true, defaultValue: 'dr-gurinderjit-singh' },
   meta_title: { type: DataTypes.TEXT, allowNull: true },
   meta_description: { type: DataTypes.TEXT, allowNull: true },
   meta_keywords: { type: DataTypes.TEXT, allowNull: true },

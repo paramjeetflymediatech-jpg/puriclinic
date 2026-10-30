@@ -7,6 +7,8 @@ import { Blog } from '@/lib/models';
 import { getPageSeo } from '@/lib/seo';
 import ShareButtons from '@/components/ShareButtons/ShareButtons';
 import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
+import AuthorByline from '@/components/AuthorByline/AuthorByline';
+import { getAuthor, generateAuthorSchema } from '@/constants/authors';
 
 import JsonLd from '@/components/Seo/JsonLd';
 
@@ -55,6 +57,9 @@ export default async function SingleBlog({ params }) {
 
   const blog = rawBlog.get({ plain: true });
 
+  const author = getAuthor(blog.author_slug);
+  const authorSchema = generateAuthorSchema(author, blog);
+
   const dateStr = blog.createdAt
     ? new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
     : 'February 10, 2026';
@@ -63,7 +68,13 @@ export default async function SingleBlog({ params }) {
     <div className="bg-white min-h-screen">
       <JsonLd schema={customSeo.schema} />
 
-      {/* ─── IMPROVED EDITORIAL HERO ─── */}
+      {/* Structured Schema Markup (BlogPosting + Author Person Schema) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(authorSchema) }}
+      />
+
+      {/* ─── EDITORIAL HERO ─── */}
       <div className="relative pt-10 pb-12 overflow-hidden">
         <div className="container px-6 mx-auto relative z-10">
           <div className="relative h-[300px] md:h-[450px] rounded-[3rem] overflow-hidden flex flex-col items-center justify-center text-white px-6 md:px-20 text-center">
@@ -99,6 +110,10 @@ export default async function SingleBlog({ params }) {
                 </span>
                 <span className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#EA6490]"></span>
+                  By {author.name}
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#EA6490]"></span>
                   {Math.ceil((blog.content?.length || 1000) / 1000)} Min Read
                 </span>
               </div>
@@ -109,14 +124,10 @@ export default async function SingleBlog({ params }) {
               <Link href="/" className="hover:text-[#EA6490]">Home</Link>
               <FaChevronRight size={8} />
               <Link href="/blogs/" className="hover:text-[#EA6490]">Blogs</Link>
-              {/* <FaChevronRight size={8} /> */}
-              {/* <span className="text-white/50 truncate max-w-[100px] md:max-w-none">Article</span> */}
             </div>
           </div>
         </div>
       </div>
-
-
 
       <div className="max-w-[1400px] mx-auto px-6 py-16">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
@@ -125,26 +136,31 @@ export default async function SingleBlog({ params }) {
             <BlogSidebar />
           </div>
 
-
           {/* Article Content (Right) */}
           <div className="w-full lg:w-2/3 order-2 bg-white p-4 md:p-8 lg:p-12 shadow-[0_40px_100px_rgba(0,0,0,0.04)] border border-slate-50 rounded-[2.5rem]">
+            {/* Top Author Byline */}
+            <AuthorByline author={author} variant="top" />
 
-            <article className="prose prose-lg ">
-              {/* Main Content */}
-              <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden mb-10">
+            <article className="prose prose-lg max-w-none">
+              {/* Main Content Image */}
+              <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden mb-10 rounded-2xl">
                 <Image
                   src={blog.image_url || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800'}
                   alt={blog.title}
                   fill
-                  className="object-fit"
+                  className="object-cover"
                   priority
                 />
               </div>
+
+              {/* Main Blog HTML Content */}
               <div
                 className="blog-content leading-[1.9] text-[#444] text-lg"
                 dangerouslySetInnerHTML={{ __html: blog.content }}
               />
 
+              {/* Bottom Author Byline / Bio Box */}
+              <AuthorByline author={author} variant="bottom" />
 
               {/* Custom Post Content Styles */}
               <style dangerouslySetInnerHTML={{
@@ -176,7 +192,7 @@ export default async function SingleBlog({ params }) {
           </div>
         </div>
 
-        {/* JSON-LD Schema */}
+        {/* Custom JSON-LD Schema if specified on the blog */}
         {blog.meta_schema && (
           <script
             type="application/ld+json"

@@ -29,6 +29,12 @@ export async function syncDB() {
       await sequelize.query("ALTER TABLE blogs ADD COLUMN meta_schema TEXT NULL");
     }
 
+    const [authorResults] = await sequelize.query("SHOW COLUMNS FROM blogs LIKE 'author_slug'");
+    if (authorResults.length === 0) {
+      console.log('Manually adding missing author_slug column to blogs table...');
+      await sequelize.query("ALTER TABLE blogs ADD COLUMN author_slug VARCHAR(100) NULL DEFAULT 'dr-gurinderjit-singh'");
+    }
+
     const [seoResults] = await sequelize.query("SHOW COLUMNS FROM seo_settings LIKE 'canonical'");
     if (seoResults.length === 0) {
       console.log('Manually adding missing canonical column to seo_settings table...');

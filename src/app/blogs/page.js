@@ -6,6 +6,7 @@ import BlogSidebar from '@/components/BlogSidebar/BlogSidebar';
 import { Blog } from '@/lib/models';
 import Image from 'next/image';
 import { getPageSeo } from '@/lib/seo';
+import { getAuthor } from '@/constants/authors';
 
 import JsonLd from '@/components/Seo/JsonLd';
 
@@ -28,8 +29,9 @@ export default async function BlogsPage() {
     console.error("Failed fetching blogs:", err);
   }
 
+  const featuredAuthor = blogs.length > 0 ? getAuthor(blogs[0].author_slug) : null;
+
   return (
- 
     <div className="bg-slate-50/50 min-h-screen pb-32">
       <JsonLd schema={seoData.schema} />
       
@@ -74,12 +76,19 @@ export default async function BlogsPage() {
                     />
                   </div>
                   <div className="md:w-1/2 p-12 md:p-16 flex flex-col justify-center">
-                    <span className="text-[#EA6490] text-[10px] font-black uppercase tracking-widest mb-6">Featured Article</span>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[#EA6490] text-[10px] font-black uppercase tracking-widest">Featured Article</span>
+                      {featuredAuthor && (
+                        <span className="text-slate-400 text-xs font-semibold">
+                          By {featuredAuthor.name}
+                        </span>
+                      )}
+                    </div>
                     <h2 className="text-3xl md:text-4xl font-heading font-black text-slate-900 mb-6 leading-tight group-hover:text-[#EA6490] transition-colors">
                       {blogs[0].title}
                     </h2>
-                    <div className="text-slate-500 text-sm leading-relaxed mb-10 line-clamp-4 font-medium" dangerouslySetInnerHTML={{ __html: blogs[0].excerpt }} />
-                    <Link href={`/${blogs[0].slug}/`} className="inline-flex items-center gap-4 bg-slate-900 text-white px-10 py-5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#EA6490] transition-all duration-500 shadow-xl shadow-slate-900/10">
+                    <div className="text-slate-500 text-sm leading-relaxed mb-8 line-clamp-4 font-medium" dangerouslySetInnerHTML={{ __html: blogs[0].excerpt }} />
+                    <Link href={`/${blogs[0].slug}/`} className="inline-flex items-center gap-4 bg-slate-900 text-white px-10 py-5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#EA6490] transition-all duration-500 shadow-xl shadow-slate-900/10 self-start">
                       Read Featured Story
                       <FaChevronRight size={10} />
                     </Link>
