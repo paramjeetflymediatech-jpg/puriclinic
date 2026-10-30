@@ -1,5 +1,5 @@
 // instrumentation.js — runs once on server startup (Next.js 16 App Router)
-// Schedules midnight auto-sync for Google Reviews
+// Auto-syncs database columns and schedules midnight auto-sync for Google Reviews
 
 export async function register() {
   // Only run in Node.js runtime, not Edge
@@ -7,7 +7,16 @@ export async function register() {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
     const cronSecret = process.env.CRON_SECRET || '';
 
-    // Try to use node-cron if available, else fall back to a pure-JS midnight scheduler
+    // 1. Auto-verify and sync DB columns (author_slug, SEO meta, etc.) on boot
+    try {
+      const { syncDB } = await import('@/lib/models/index.js');
+      await syncDB();
+      console.log('[DB] ✅ Database synced and verified on server startup');
+    } catch (dbErr) {
+      console.warn('[DB] ⚠️ Startup sync warning:', dbErr.message);
+    }
+
+    // 2. Schedule midnight Google Reviews sync
     try {
       const cron = await import('node-cron');
 

@@ -33,6 +33,7 @@ export async function syncDB() {
     if (authorResults.length === 0) {
       console.log('Manually adding missing author_slug column to blogs table...');
       await sequelize.query("ALTER TABLE blogs ADD COLUMN author_slug VARCHAR(100) NULL DEFAULT 'dr-gurinderjit-singh'");
+      await sequelize.query("UPDATE blogs SET author_slug = 'dr-gurinderjit-singh' WHERE author_slug IS NULL OR author_slug = ''");
     }
 
     const [seoResults] = await sequelize.query("SHOW COLUMNS FROM seo_settings LIKE 'canonical'");
