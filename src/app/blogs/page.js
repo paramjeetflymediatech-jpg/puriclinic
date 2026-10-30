@@ -113,9 +113,7 @@ export default async function BlogsPage() {
 
           {/* Sidebar */}
           <div className="w-full lg:w-1/3">
-            <div className="sticky top-32 space-y-12">
-              <BlogSidebar />
-            </div>
+            <BlogSidebar />
           </div>
 
         </div>
