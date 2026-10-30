@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+:root {
+  --font-nunito-sans: 'Nunito Sans', sans-serif;
+  --font-lora: 'Lora', serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-playfair: 'Playfair Display', serif;
+}
+
 @theme {
   --color-primary: #EA6490;
   --color-secondary: #4CA6AE;
@@ -144,4 +151,3 @@
   70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
-

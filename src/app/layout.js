@@ -1,7 +1,6 @@
 // Root Layout for Puri Skin Clinic
 import './globals.css';
 import Script from 'next/script';
-import { Nunito_Sans, Cormorant_Garamond, Playfair_Display, Lora } from 'next/font/google';
 export const dynamic = 'force-dynamic';
 import { getGlobalSchema, getGlobalScripts } from '../lib/seo';
 import { HeaderConditional, FooterConditional } from '@/components/ConditionalLayout/ConditionalLayout';
@@ -33,39 +32,6 @@ function parseHeadHTML(html) {
   return tags;
 }
 
-// Puri Skin Clinic uses Nunito Sans with heavy weights for that bold look
-const nunitoSans = Nunito_Sans({
-  subsets: ['latin'],
-  // 800 and 900 weights are critical for the Top Bar and Nav bold text
-  weight: ['300', '400', '600', '700', '800', '900'],
-  display: 'swap',
-  variable: '--font-nunito-sans',
-});
-
-// Lora — used for "Premium Option" dynamic text
-const lora = Lora({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-  variable: '--font-lora',
-});
-
-// Cormorant Garamond — used for section headings (e.g. "Access our Exclusive Services!")
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  display: 'swap',
-  variable: '--font-cormorant',
-});
-
-// Playfair Display — the actual font used for section headings (confirmed via DevTools: 46px)
-const playfairDisplay = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-  variable: '--font-playfair',
-});
-
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const metadata = {
@@ -96,6 +62,14 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Fonts Preconnect and Stylesheet */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+
         {/* Parsed global headScripts rendered directly inside head */}
         {parseHeadHTML(scripts.headScripts).map((tag, idx) => {
           const { tagName, attributes, content } = tag;
@@ -188,7 +162,7 @@ export default async function RootLayout({ children }) {
           />
         )}
       </head>
-      <body className={`${nunitoSans.variable} ${lora.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${nunitoSans.className} antialiased`} suppressHydrationWarning>
+      <body className="font-primary antialiased" suppressHydrationWarning>
         {/* GTM Noscript */}
         {scripts.gtmId && (
           <noscript>
