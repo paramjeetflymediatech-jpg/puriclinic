@@ -282,8 +282,83 @@ export default function AcneTreatmentClient() {
           </div>
         </section>
 
+        {/* SECTION 5: ACNE SCARS TREATMENTS & COST (SIDE-BY-SIDE) */}
+        <section className="py-12 border-t border-slate-100">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                  Acne Scars: <span className="text-[#EA6490]">Different Treatments To Manage Acne Scars</span>
+                </h2>
+                <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
+              </div>
 
-        {/* SECTION 5: REMARKABLE RESULTS (CAROUSEL) */}
+              <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
+                <p>
+                  You may notice that acne marks are obstinate, and there is no single treatment available that is best suited for everyone. The good news is that one or a combination of different approaches might be effective to improve your skin, but it depends on your scar type, including your skin type.
+                </p>
+                <p>
+                  However, the most effective acne scar treatments in Ludhiana are laser and microneedling along with chemical peels. These treatments are used alone or in combination by professionals depending on your skin type and scar type. Acne Scar Treatment Cost in Ludhiana depends on the procedure you choose; therefore, treatments generally range from 3500 to 18000 per session.
+                </p>
+              </div>
+
+              {/* Treatment Procedures & Cost Breakdown */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all text-center sm:text-left">
+                  <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
+                    <FaMagic />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-base mb-1">Laser Therapy</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                    Fractional & ablative laser resurfacing for deep scar remodeling.
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all text-center sm:text-left">
+                  <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
+                    <FaStethoscope />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-base mb-1">Microneedling</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                    Collagen induction therapy for textural smoothing & skin tightening.
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all text-center sm:text-left">
+                  <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
+                    <FaRegLightbulb />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-base mb-1">Chemical Peels</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                    Exfoliating peels targeting post-acne pigmentation and shallow marks.
+                  </p>
+                </div>
+              </div>
+
+              {/* Price Highlight Banner */}
+              <div className="p-6 rounded-[2rem] bg-gradient-to-r from-slate-50 to-pink-50/40 border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#EA6490]">Average Treatment Cost</div>
+                  <div className="text-2xl font-black text-slate-900">₹3,500 – ₹18,000 <span className="text-xs font-normal text-slate-500">/ session</span></div>
+                </div>
+                <div className="text-xs text-slate-500 text-center sm:text-right max-w-xs">
+                  Exact cost is tailored depending on chosen procedure, scar depth, and sessions needed.
+                </div>
+              </div>
+            </div>
+
+            <div className="relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-slate-100 lg:sticky lg:top-32">
+              <Image 
+                src="/acne/tw.avif" 
+                fill 
+                className="object-cover" 
+                alt="Acne Scars Treatment and Cost in Ludhiana" 
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 6: REMARKABLE RESULTS (CAROUSEL) */}
         <section className="py-12 border-t border-slate-100 text-center">
           <div className="max-w-[1300px] mx-auto space-y-12">
             <div className="space-y-4">
@@ -342,7 +417,7 @@ export default function AcneTreatmentClient() {
           </div>
         </section>
 
-        {/* SECTION 6: FINAL CTA */}
+        {/* SECTION 7: FINAL CTA */}
         <section className="bg-slate-900 text-white rounded-[3rem] p-8 md:p-16 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-10">
@@ -364,7 +439,7 @@ export default function AcneTreatmentClient() {
         </section>
 
       </div>
-      {/* SECTION 7: FAQS */}
+      {/* SECTION 8: FAQS */}
       <FAQAccordion faqs={FAQ_DATA.acne} title="Frequently Asked Questions" />
 
       <style jsx global>{`
