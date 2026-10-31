@@ -186,7 +186,14 @@ export async function getPageSeo(pageKey) {
       openGraph: {
         title: ogTitle,
         description: ogDescription,
-        images: [{ url: ogImage }],
+        images: [
+          {
+            url: ogImage,
+            width: 1200,
+            height: 630,
+            alt: ogTitle || title,
+          },
+        ],
         siteName: SITE_NAME,
         type: 'website',
       },
