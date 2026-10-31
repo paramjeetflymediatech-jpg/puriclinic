@@ -264,7 +264,61 @@ export default function MelasmaClient() {
           </div>
         </section>
 
-        {/* ── SECTION 6: MELASMA PROCEDURES ── */}
+        {/* ── SECTION 6: V-DISCOVER CONSULTATION & MELASMA TREATMENT COST ── */}
+        <section className="py-10 border-t border-slate-100">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="relative aspect-[5/4] lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border border-slate-100 lg:sticky lg:top-32 order-1">
+              <Image
+                src="/melasma/ns.avif"
+                fill
+                className="object-cover"
+                alt="Melasma Treatment Consultation and Care in Ludhiana"
+              />
+            </div>
+
+            <div className="space-y-8 order-2">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                  Say goodbye to dark spots and get <br /><span className="text-[#EA6490]">flowing skin with melasma treatment</span>
+                </h2>
+                <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
+              </div>
+
+              <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
+                <p>
+                  Melasma is a deposition of pigmentation in the epidermis or dermis of the skin in a defined pattern over the hands, face or forearms. The cells called <strong>melanocytes</strong> are responsible for generating pigment in skin. This quantity and amount of pigment determines the color of your skin. Patients with mild pigmentation have fair skin, blonde hair and light eyes. But the Indian population has a higher proportion of <strong>eumelanin</strong>, which is darker.
+                </p>
+                <p>
+                  The <strong>melasma treatment in Ludhiana</strong> starts with the <strong>V-Discover process</strong>, with great experience. It’s a 5-step consultation to understand the requirements of clients. During the initial consultation, the doctor evaluates various factors such as severity, cause, and type of melasma or pigmentation, and <strong>melasma cost in Ludhiana</strong> also depends on these factors.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-[#EA6490]/30 transition-all space-y-3">
+                  <div className="w-12 h-12 rounded-2xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center text-xl">
+                    <FaUserMd />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-lg">5-Step V-Discover Process</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    A thorough clinical consultation identifying root triggers, pigment depth (epidermal vs. dermal), and tailored patient goals.
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-[#EA6490]/30 transition-all space-y-3">
+                  <div className="w-12 h-12 rounded-2xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center text-xl">
+                    <FaShieldAlt />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-lg">Melasma Treatment Cost</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Personalized pricing determined by melasma severity, target skin surface, and selected clinical therapies such as peels or lasers.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── SECTION 7: MELASMA PROCEDURES ── */}
         <section className="py-10 border-t border-slate-100">
           <div className="max-w-[1300px] mx-auto space-y-12">
             <div className="text-center space-y-6">
@@ -322,7 +376,7 @@ export default function MelasmaClient() {
           </div>
         </section>
 
-        {/* ── SECTION 7: MELASMA PREVENTION ── */}
+        {/* ── SECTION 8: MELASMA PREVENTION ── */}
         <section className="py-20 border-t border-slate-100">
           <div className="max-w-[1300px] mx-auto space-y-12">
             <div className="text-center space-y-6">
@@ -379,7 +433,7 @@ export default function MelasmaClient() {
             </div>
           </div>
         </section>
-        {/* ── SECTION 8: FINAL CTA ── */}
+        {/* ── SECTION 9: FINAL CTA ── */}
         <section className="bg-slate-900 text-white rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl mt-12">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#EA6490]/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-10">
@@ -406,7 +460,7 @@ export default function MelasmaClient() {
           </div>
         </section>
       </div>
-      {/* SECTION 6: FAQS */}
+      {/* SECTION 10: FAQS */}
       <FAQAccordion faqs={FAQ_DATA.melasma} title="Frequently Asked Questions" />
     </div>
   );
