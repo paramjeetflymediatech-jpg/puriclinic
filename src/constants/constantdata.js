@@ -812,6 +812,28 @@ export const FAQ_DATA = {
       question: "Does the procedure involve any pain?",
       answer: "Patients typically feel a warm, soothing sensation during the treatment, similar to a hot stone massage. It is generally a very comfortable and relaxing procedure."
     }
+  ],
+  services: [
+    {
+      question: "Are these 6 skin care services painful?",
+      answer: "No, because we want our clients to feel comfortable, our dermatologists numb the specific area, meaning you will feel absolutely nothing during the treatments."
+    },
+    {
+      question: "How do medical peels fix my skin?",
+      answer: "These peels and tablets are responsible for eliminating skin oils that cause acne, which leaves scars."
+    },
+    {
+      question: "How do I maintain my skin after undoing the treatment to keep it in good condition for the rest of my life?",
+      answer: "You are not supposed to use heavy sunscreen; choose one that matches your skin type, not one from a famous brand."
+    },
+    {
+      question: "Do people notice that I have a hair transplant?",
+      answer: "No, because they assess your facial features and use the angle that matches your face so that the results don't look fake."
+    },
+    {
+      question: "Do skin creams that are applied to remove the dead skin cells have effects on my face?",
+      answer: "They have both negative and positive effects; they only need to be used in the correct proportion to produce satisfactory results."
+    }
   ]
 };
 
