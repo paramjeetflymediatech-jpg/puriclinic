@@ -69,9 +69,9 @@ export default function PRPClient() {
 
           {/* Text Col */}
           <div className="order-1 lg:order-2">
-            <h2 className="text-3xl md:text-[40px] font-bold mb-8 text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+            <h1 className="text-3xl md:text-[40px] font-bold mb-8 text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
               Revitalise Your Hair and Skin with <br/><span className="text-[#EA6490]">PRP Treatment!</span>
-            </h2>
+            </h1>
             <div className="w-16 h-1 bg-[#EA6490] mb-8 rounded-full"></div>
             <p className=" text-black font-medium leading-[1.8] mb-10">
               Having bright skin and luscious hair is often considered a sign of a healthy body and mind. However, with age and constant interaction with the elements of pollution, one’s skin and hair are often impacted. One needs to make sure that you are able to thoroughly and effectively address and resolve the issues you are suffering from. PRP treatment offers the possibility to make sure that you are able to address the problems, including wrinkles, skin texture, and one’s hair growth. With Puri Skin Clinic, you can make certain that you are able to thoroughly and effectively ensure that you are able to seek personalised treatment options. Even if you are worried about PRP treatment costs in Ludhiana, you need not be! At Puri Skin Clinic, you can make certain that you are able to thoroughly and effectively undergo PRP treatment without spending too much money.

@@ -36,9 +36,9 @@ export default function HairTransplantClient() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 mb-8   leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+            <h1 className="text-3xl md:text-[45px] font-bold text-slate-900 mb-8   leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
               What is a <span className="text-[#EA6490]">hair transplant?</span>
-            </h2>
+            </h1>
             <div className="w-16 h-1 bg-[#EA6490] rounded-full mb-10" style={{ margin: "0 auto" }}></div>
 
             <div className="space-y-6 text-lg md:text-xl text-black font-medium leading-[1.8]">

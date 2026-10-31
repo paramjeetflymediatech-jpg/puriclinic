@@ -4,7 +4,7 @@ import {
   FaSearch, FaCode, FaSave, FaCheckCircle, FaExclamationCircle,
   FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaLinkedin,
   FaClock, FaMapMarkerAlt, FaPhone, FaEnvelope, FaLink, FaTimes,
-  FaChevronDown,
+  FaChevronDown, FaUpload, FaImage, FaTrash,
 } from 'react-icons/fa';
 import { MdPreview } from 'react-icons/md';
 import Swal from '@/lib/swal';
@@ -114,6 +114,95 @@ export default function SeoAdminPage() {
   const [showJson, setShowJson] = useState(false); // mobile toggle for JSON preview
   const [isPageDropdownOpen, setIsPageDropdownOpen] = useState(false);
   const [pageSearch, setPageSearch] = useState('');
+
+  const [uploadingOg, setUploadingOg] = useState(false);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
+
+  const handleOgUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingOg(true);
+    const data = new FormData();
+    data.append('file', file);
+
+    try {
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: data,
+      });
+      const result = await res.json();
+      if (result.success) {
+        setMetaData(prev => ({ ...prev, og_image: result.url }));
+        Swal.fire({
+          icon: 'success',
+          title: 'Image Uploaded',
+          text: 'OG Image uploaded successfully!',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          text: result.error || 'Failed to upload image.',
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Connection interrupted or file too large.',
+      });
+    } finally {
+      setUploadingOg(false);
+      e.target.value = '';
+    }
+  };
+
+  const handleLogoUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingLogo(true);
+    const data = new FormData();
+    data.append('file', file);
+
+    try {
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: data,
+      });
+      const result = await res.json();
+      if (result.success) {
+        setSchema(prev => ({ ...prev, logoUrl: result.url }));
+        Swal.fire({
+          icon: 'success',
+          title: 'Logo Uploaded',
+          text: 'Schema logo uploaded successfully!',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          text: result.error || 'Failed to upload logo.',
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Connection interrupted or file too large.',
+      });
+    } finally {
+      setUploadingLogo(false);
+      e.target.value = '';
+    }
+  };
 
 
   const [scriptData, setScriptData] = useState({ gtmId: '', gaId: '', headScripts: '', footerScripts: '' });
@@ -284,7 +373,7 @@ export default function SeoAdminPage() {
             website: bizSchema.url,
             phone: bizSchema.telephone,
             email: bizSchema.email,
-            logoUrl: bizSchema.logo,
+            logoUrl: typeof bizSchema.logo === 'object' ? (bizSchema.logo?.url || '') : (bizSchema.logo || ''),
             priceRange: bizSchema.priceRange,
             address: {
               street: bizSchema.address?.streetAddress,
@@ -333,6 +422,18 @@ export default function SeoAdminPage() {
         opens: v.from,
         closes: v.to,
       }));
+
+    let logoValue = undefined;
+    if (s.logoUrl && s.logoUrl.trim()) {
+      const trimmed = s.logoUrl.trim();
+      if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+        logoValue = trimmed;
+      } else {
+        const site = (s.website && s.website.trim()) ? s.website.trim().replace(/\/+$/, '') : 'https://www.puriskinclinic.com';
+        logoValue = `${site}${trimmed.startsWith('/') ? '' : '/'}${trimmed}`;
+      }
+    }
+
     return {
       '@context': 'https://schema.org',
       '@type': s.businessType || 'MedicalClinic',
@@ -341,7 +442,7 @@ export default function SeoAdminPage() {
       url: s.website,
       telephone: s.phone,
       email: s.email,
-      logo: s.logoUrl || undefined,
+      logo: logoValue,
       priceRange: s.priceRange,
       address: {
         '@type': 'PostalAddress',
@@ -647,30 +748,110 @@ export default function SeoAdminPage() {
                     />
                   </div>
 
-                  {/* OG Image */}
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block">OG Image URL</label>
-                    <input
-                      value={metaData.og_image ?? ''}
-                      onChange={e => setMetaData({ ...metaData, og_image: e.target.value })}
-                      placeholder="https://... or /og-home.jpg"
-                      className={inputCls('teal')}
-                    />
-                  </div>
-
                   {/* OG Description */}
-                  <div className="sm:col-span-2 space-y-2">
+                  <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">OG Description</label>
                       <CharCounter value={metaData.og_description} max={160} />
                     </div>
                     <textarea
-                      rows={5}
+                      rows={2}
                       value={metaData.og_description ?? ''}
                       onChange={e => setMetaData({ ...metaData, og_description: e.target.value })}
                       placeholder="Description shown when page is shared on social media..."
-                      className={`${inputCls('pink')} resize-y min-h-[100px]`}
+                      className={`${inputCls('pink')} resize-y min-h-[50px]`}
                     />
+                  </div>
+
+                  {/* OG Image Upload & URL */}
+                  <div className="sm:col-span-2 space-y-3 pt-2">
+                    <div className="flex justify-between items-center">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 flex items-center gap-1.5">
+                        <FaImage className="text-[#EA6490]" />
+                        Open Graph Image (Social Share Image)
+                      </label>
+                      <span className="text-[10px] font-bold text-slate-400">Recommended: 1200 × 630px</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                      {/* Image Preview / Upload Box */}
+                      <div className="relative group md:col-span-1">
+                        <div className={`w-full aspect-[16/9] rounded-2xl border-2 border-dashed transition-all overflow-hidden flex flex-col items-center justify-center p-2 relative ${
+                          metaData.og_image ? 'border-[#EA6490]/30 bg-slate-50' : 'border-slate-200 bg-slate-50/50 hover:bg-slate-100/50'
+                        }`}>
+                          {metaData.og_image ? (
+                            <div className="relative w-full h-full">
+                              <img
+                                src={metaData.og_image}
+                                alt="OG Preview"
+                                className="w-full h-full object-cover rounded-xl"
+                                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                              />
+                              <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-xs rounded-xl">
+                                <label className="cursor-pointer bg-white text-slate-900 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-lg hover:scale-105 transition-transform flex items-center gap-1.5">
+                                  <FaUpload size={10} /> Replace
+                                  <input type="file" className="hidden" accept="image/*" onChange={handleOgUpload} disabled={uploadingOg} />
+                                </label>
+                                <button
+                                  type="button"
+                                  onClick={() => setMetaData({ ...metaData, og_image: '' })}
+                                  className="bg-rose-500 text-white p-2 rounded-xl text-[10px] shadow-lg hover:bg-rose-600 transition-colors"
+                                  title="Remove image"
+                                >
+                                  <FaTimes size={12} />
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full p-3 text-center">
+                              <div className={`w-10 h-10 rounded-xl bg-white shadow-xs flex items-center justify-center text-[#EA6490] mb-2 border border-slate-100 ${uploadingOg ? 'animate-pulse' : 'group-hover:scale-110 transition-transform'}`}>
+                                {uploadingOg ? (
+                                  <div className="w-4 h-4 border-2 border-[#EA6490] border-t-transparent rounded-full animate-spin" />
+                                ) : (
+                                  <FaUpload size={14} />
+                                )}
+                              </div>
+                              <span className="text-[11px] font-bold text-slate-600 leading-tight">
+                                {uploadingOg ? 'Uploading image...' : 'Click to Upload OG Image'}
+                              </span>
+                              <span className="text-[9px] text-slate-400 mt-1">PNG, JPG, WEBP</span>
+                              <input type="file" className="hidden" accept="image/*" onChange={handleOgUpload} disabled={uploadingOg} />
+                            </label>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Manual URL Input & Controls */}
+                      <div className="md:col-span-2 space-y-2">
+                        <label className="text-[10px] font-bold text-slate-500 block">Or enter image URL / file path:</label>
+                        <div className="flex gap-2">
+                          <input
+                            value={metaData.og_image ?? ''}
+                            onChange={e => setMetaData({ ...metaData, og_image: e.target.value })}
+                            placeholder="/uploads/... or https://..."
+                            className={inputCls('teal')}
+                          />
+                          <label className="cursor-pointer flex-shrink-0 bg-slate-100 hover:bg-[#EA6490] hover:text-white text-slate-700 px-4 py-3 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                            <FaUpload size={12} />
+                            <span>{uploadingOg ? 'Uploading...' : 'Upload'}</span>
+                            <input type="file" className="hidden" accept="image/*" onChange={handleOgUpload} disabled={uploadingOg} />
+                          </label>
+                          {metaData.og_image && (
+                            <button
+                              type="button"
+                              onClick={() => setMetaData({ ...metaData, og_image: '' })}
+                              className="px-3 text-slate-400 hover:text-rose-500 rounded-2xl hover:bg-rose-50 transition-colors"
+                              title="Clear URL"
+                            >
+                              <FaTimes size={14} />
+                            </button>
+                          )}
+                        </div>
+                        <p className="text-[10px] text-slate-400">
+                          This preview image is used when sharing your page on social media platforms like WhatsApp, Facebook, Twitter, and LinkedIn.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -775,21 +956,52 @@ export default function SeoAdminPage() {
                 </div>
               </div>
 
-              {/* Google Preview */}
-              <div className="bg-white rounded-[1.5rem] p-5 sm:p-8 shadow-sm border border-slate-100">
-                <h2 className="text-sm font-black text-slate-700 flex items-center gap-2 mb-5">
-                  <MdPreview className="text-[#4CA6AE] text-lg" /> Google Search Preview
-                </h2>
-                <div className="bg-slate-50 rounded-2xl border border-slate-100 p-4 sm:p-6 max-w-2xl">
-                  <div className="flex items-center gap-2 mb-1">
-                    <div className="w-5 h-5 rounded-full bg-[#EA6490] flex items-center justify-center text-white text-[8px] font-black flex-shrink-0">P</div>
-                    <div>
-                      <p className="text-xs text-slate-600 font-medium">Puri Skin Clinic</p>
-                      <p className="text-[10px] text-slate-400">https://{previewUrl}</p>
+              {/* Google & Social Previews */}
+              <div className="bg-white rounded-[1.5rem] p-5 sm:p-8 shadow-sm border border-slate-100 space-y-8">
+                <div>
+                  <h2 className="text-sm font-black text-slate-700 flex items-center gap-2 mb-4">
+                    <MdPreview className="text-[#4CA6AE] text-lg" /> Google Search Preview
+                  </h2>
+                  <div className="bg-slate-50 rounded-2xl border border-slate-100 p-4 sm:p-6 max-w-2xl">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-5 h-5 rounded-full bg-[#EA6490] flex items-center justify-center text-white text-[8px] font-black flex-shrink-0">P</div>
+                      <div>
+                        <p className="text-xs text-slate-600 font-medium">Puri Skin Clinic</p>
+                        <p className="text-[10px] text-slate-400">https://{previewUrl}</p>
+                      </div>
+                    </div>
+                    <h3 className="text-blue-700 text-base hover:underline cursor-pointer font-normal leading-snug mt-1 line-clamp-1">{previewTitle}</h3>
+                    <p className="text-slate-600 text-sm mt-1 leading-relaxed line-clamp-2">{previewDesc}</p>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-slate-100">
+                  <h2 className="text-sm font-black text-slate-700 flex items-center gap-2 mb-4">
+                    <FaFacebook className="text-[#1877F2] text-base" /> Social Share Card Preview (WhatsApp / Facebook / LinkedIn)
+                  </h2>
+                  <div className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden max-w-md shadow-xs">
+                    <div className="w-full aspect-[1.91/1] bg-slate-200 relative flex items-center justify-center overflow-hidden">
+                      {metaData.og_image ? (
+                        <img
+                          src={metaData.og_image}
+                          alt="Social Preview"
+                          className="w-full h-full object-cover"
+                          onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                        />
+                      ) : (
+                        <div className="flex flex-col items-center justify-center text-slate-400 gap-1.5 p-4 text-center">
+                          <FaImage size={24} className="text-slate-300" />
+                          <span className="text-xs font-bold text-slate-500">No OG Image Uploaded</span>
+                          <span className="text-[10px] text-slate-400">Default fallback image will be used when shared</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-4 bg-white border-t border-slate-100 space-y-1">
+                      <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">puriskinclinic.com</p>
+                      <h4 className="text-sm font-bold text-slate-900 line-clamp-1">{metaData.og_title || previewTitle}</h4>
+                      <p className="text-xs text-slate-500 line-clamp-2">{metaData.og_description || previewDesc}</p>
                     </div>
                   </div>
-                  <h3 className="text-blue-700 text-base hover:underline cursor-pointer font-normal leading-snug mt-1 line-clamp-1">{previewTitle}</h3>
-                  <p className="text-slate-600 text-sm mt-1 leading-relaxed line-clamp-2">{previewDesc}</p>
                 </div>
               </div>
             </form>
@@ -879,9 +1091,95 @@ export default function SeoAdminPage() {
                           {['₹', '₹₹', '₹₹₹', '₹₹₹₹'].map(r => <option key={r} value={r}>{r}</option>)}
                         </select>
                       </Field>
-                      <Field label="Logo URL" colSpan="sm:col-span-2" icon={<FaLink className="text-slate-300" />}>
-                        <input value={schema.logoUrl ?? ''} onChange={e => setSchemaField('logoUrl', e.target.value)} placeholder="/logo.png or https://..." className={inputCls('teal')} />
-                      </Field>
+                      <div className="sm:col-span-2 space-y-3 pt-2">
+                        <div className="flex justify-between items-center">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 flex items-center gap-1.5">
+                            <FaImage className="text-[#4CA6AE]" />
+                            Clinic Logo Image (Schema.org / Google Knowledge Graph)
+                          </label>
+                          <span className="text-[10px] font-bold text-slate-400">PNG, JPG, SVG, or WEBP</span>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                          {/* Logo Preview & Upload Box */}
+                          <div className="relative group sm:col-span-1">
+                            <div className={`w-full h-28 rounded-2xl border-2 border-dashed transition-all overflow-hidden flex flex-col items-center justify-center p-3 relative ${
+                              schema.logoUrl ? 'border-[#4CA6AE]/30 bg-slate-50' : 'border-slate-200 bg-slate-50/50 hover:bg-slate-100/50'
+                            }`}>
+                              {schema.logoUrl ? (
+                                <div className="relative w-full h-full flex items-center justify-center">
+                                  <img
+                                    src={schema.logoUrl}
+                                    alt="Schema Logo"
+                                    className="max-h-full max-w-full object-contain"
+                                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                  />
+                                  <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-xs rounded-xl">
+                                    <label className="cursor-pointer bg-white text-slate-900 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-lg hover:scale-105 transition-transform flex items-center gap-1.5">
+                                      <FaUpload size={10} /> Replace
+                                      <input type="file" className="hidden" accept="image/*" onChange={handleLogoUpload} disabled={uploadingLogo} />
+                                    </label>
+                                    <button
+                                      type="button"
+                                      onClick={() => setSchemaField('logoUrl', '')}
+                                      className="bg-rose-500 text-white p-2 rounded-xl text-[10px] shadow-lg hover:bg-rose-600 transition-colors"
+                                      title="Remove logo"
+                                    >
+                                      <FaTimes size={12} />
+                                    </button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full p-2 text-center">
+                                  <div className={`w-9 h-9 rounded-xl bg-white shadow-xs flex items-center justify-center text-[#4CA6AE] mb-1.5 border border-slate-100 ${uploadingLogo ? 'animate-pulse' : 'group-hover:scale-110 transition-transform'}`}>
+                                    {uploadingLogo ? (
+                                      <div className="w-4 h-4 border-2 border-[#4CA6AE] border-t-transparent rounded-full animate-spin" />
+                                    ) : (
+                                      <FaUpload size={13} />
+                                    )}
+                                  </div>
+                                  <span className="text-[11px] font-bold text-slate-600 leading-tight">
+                                    {uploadingLogo ? 'Uploading logo...' : 'Upload Logo'}
+                                  </span>
+                                  <span className="text-[9px] text-slate-400 mt-0.5">Click to choose file</span>
+                                  <input type="file" className="hidden" accept="image/*" onChange={handleLogoUpload} disabled={uploadingLogo} />
+                                </label>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Manual URL Input & Controls */}
+                          <div className="sm:col-span-2 space-y-2">
+                            <label className="text-[10px] font-bold text-slate-500 block">Logo Image URL or path:</label>
+                            <div className="flex gap-2">
+                              <input
+                                value={schema.logoUrl ?? ''}
+                                onChange={e => setSchemaField('logoUrl', e.target.value)}
+                                placeholder="/logo.png or https://..."
+                                className={inputCls('teal')}
+                              />
+                              <label className="cursor-pointer flex-shrink-0 bg-slate-100 hover:bg-[#4CA6AE] hover:text-white text-slate-700 px-4 py-3 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                <FaUpload size={12} />
+                                <span>{uploadingLogo ? 'Uploading...' : 'Upload'}</span>
+                                <input type="file" className="hidden" accept="image/*" onChange={handleLogoUpload} disabled={uploadingLogo} />
+                              </label>
+                              {schema.logoUrl && (
+                                <button
+                                  type="button"
+                                  onClick={() => setSchemaField('logoUrl', '')}
+                                  className="px-3 text-slate-400 hover:text-rose-500 rounded-2xl hover:bg-rose-50 transition-colors"
+                                  title="Clear logo"
+                                >
+                                  <FaTimes size={14} />
+                                </button>
+                              )}
+                            </div>
+                            <p className="text-[10px] text-slate-400">
+                              Appears as your official organization/clinic logo in Google Search Knowledge Panels and Rich Results.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 

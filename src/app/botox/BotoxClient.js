@@ -103,9 +103,9 @@ export default function BotoxClient() {
             <ImageSlider images={sliderImages} aspect="aspect-[1/1] sm:aspect-[3/2]" />
           </div>
           <div className="space-y-8">
-            <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+            <h1 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
               Rejuvenate Life <br /><span className="text-[#EA6490]">Back Into Your Face!</span>
-            </h2>
+            </h1>
             <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
 
             <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">

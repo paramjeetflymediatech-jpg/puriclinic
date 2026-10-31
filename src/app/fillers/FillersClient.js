@@ -113,9 +113,9 @@ export default function FillersClient() {
 
           <div className="space-y-8 order-1 lg:order-2">
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              <h1 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
                 What are <span className="text-[#EA6490]">Dermal Fillers?</span>
-              </h2>
+              </h1>
               <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
             </div>
 

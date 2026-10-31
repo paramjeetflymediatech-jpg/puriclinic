@@ -66,9 +66,9 @@ export default function ChemicalPeelClient() {
 
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              <h1 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
                 Chemical <span className="text-[#EA6490]">Peeling</span>
-              </h2>
+              </h1>
               <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
             </div>
 
