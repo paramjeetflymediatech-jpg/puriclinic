@@ -97,7 +97,63 @@ export default function GFCClient() {
           </div>
         </section>
 
-        {/* SECTION 3: HOW IT WORKS */}
+        {/* SECTION 3: RECLAIM HAIR THICKNESS WITH GFC */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start border-t border-slate-100 pt-16">
+          <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border border-slate-100 aspect-[4/3] lg:aspect-[4/5] lg:sticky lg:top-32 order-2 lg:order-1">
+            <Image
+              src="/hair copy/ersd.jpg"
+              fill
+              className="object-cover"
+              alt="Reclaim Hair Thickness with GFC Treatment"
+            />
+          </div>
+
+          <div className="order-1 lg:order-2 space-y-8">
+            <div>
+              <h2 className="text-3xl md:text-[40px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                Reclaim hair thickness with <span className="text-[#EA6490]">GFC treatment</span>
+              </h2>
+              <div className="w-16 h-1 bg-[#EA6490] rounded-full mt-6 mb-8"></div>
+            </div>
+
+            <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
+              <p>
+                The dictionary defines the term hair loss as the shedding of hair from various parts of the body, specifically the head. Briefly, hair loss is defined as the result of hair shedding from the head. However, hair loss can happen in various parts of the body, but it becomes a major concern when hair falls from the head. But no worries; there is an effective and advanced treatment known as Growth Factor Concentrate (GFC) treatment in Ludhiana at Puri Skin Clinic as a solution for the hair loss problem.
+              </p>
+              <p>
+                Growth factor is a safe and reliable solution for hair loss. Platelets contain factors that enhance growth. This procedure helps to remove the concentrated growth factors from the platelets of patients. These platelets are applied directly to the scalp area where the regrowth of hair is required. In areas with baldness and thinning hair, this technique is safe to improve hair density and enhance hair regrowth.
+              </p>
+              <p>
+                As it is an advanced and reliable treatment, there are various factors that influence the GFC cost in Ludhiana, and these factors include hair density, customised plans, sessions required, use of equipment and technology and so on.
+              </p>
+            </div>
+
+            {/* Cost & Treatment Factors */}
+            <div className="p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 space-y-4">
+              <h4 className="font-bold text-slate-900 text-lg">Key Factors Influencing GFC Cost in Ludhiana:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium text-slate-700">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#EA6490]"></div>
+                  <span>Hair Density & Area Coverage</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#EA6490]"></div>
+                  <span>Customised Clinical Plan</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#EA6490]"></div>
+                  <span>Number of Sessions Needed</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#EA6490]"></div>
+                  <span>Advanced Technology & Kits</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: HOW IT WORKS */}
         <section className="border-t border-slate-100 pt-16">
           <div className="max-w-4xl mx-auto text-center mb-16 space-y-8">
             <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
@@ -226,7 +282,7 @@ export default function GFCClient() {
           </div>
 
 
-          {/* SECTION: TESTIMONIALS */}
+          {/* SECTION 6: TESTIMONIALS */}
           <section className="py-20 border-t border-slate-100">
             <div className="text-left mb-16 space-y-4">
               <h2 className="text-3xl md:text-[40px] font-bold text-slate-900" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
@@ -270,7 +326,7 @@ export default function GFCClient() {
           </div>
         </section>
 
-          {/* SECTION 5: WHY CHOOSE GFC */}
+          {/* SECTION 7: WHY CHOOSE GFC */}
           <section className="bg-slate-50 rounded-[3rem] p-10 md:p-16 border border-slate-100 relative overflow-hidden mb-20">
             <div className="absolute top-0 right-0 w-40 h-40 bg-[#EA6490]/5 rounded-bl-full"></div>
             <div className="relative z-10">
@@ -296,7 +352,7 @@ export default function GFCClient() {
             </div>
           </section>
 
-          {/* SECTION 6: REMARKABLE RESULTS */}
+          {/* SECTION 8: REMARKABLE RESULTS */}
           <section className="py-20 border-t border-slate-100 mb-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
@@ -326,7 +382,7 @@ export default function GFCClient() {
             </div>
           </section>
 
-          {/* SECTION 8: FAQS (ABOUT US STYLE) */}
+          {/* SECTION 9: FAQS (ABOUT US STYLE) */}
           <section className="py-24 border-t border-slate-100 bg-slate-50/30">
             <div className="container mx-auto">
               <div className="text-center mb-16">
