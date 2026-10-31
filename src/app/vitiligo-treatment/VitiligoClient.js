@@ -290,7 +290,58 @@ export default function VitiligoClient() {
           </div>
         </section>
 
-        {/* SECTION 7: WHEN TO CONSULT (SIDE-BY-SIDE) */}
+        {/* SECTION 7: VITILIGO OPTIONS & TREATMENT COSTS (SIDE-BY-SIDE) */}
+        <section className="py-12 border-t border-slate-100">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                  What is vitiligo disease? <span className="text-[#EA6490]">Understand its treatment options and treatment costs.</span>
+                </h2>
+                <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
+              </div>
+
+              <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
+                <p>
+                  Vitiligo is a condition in which white patches appear on the skin, and this condition is also known as depigmentation, which means a person with vitiligo loses their natural skin color. This is a chronic disease and affects 1% of the population; however, it is not a life-threatening disease.
+                </p>
+                <p>
+                  Vitiligo Treatment in Ludhiana ranges from topical therapies to systemic treatments, including surgical procedures. The average Vitiligo Treatment Cost in Ludhiana for phototherapy and excimer laser therapy ranges from 1500 to 8000 per session. However, surgeries, including grafting and melanocyte transplantation, typically range between 70,000 and 1.5 lakh.
+                </p>
+              </div>
+
+              {/* Treatment Cost Overview Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                  <div className="text-sm font-bold uppercase tracking-wider text-[#EA6490] mb-2">Phototherapy & Laser</div>
+                  <div className="text-2xl font-black text-slate-900 mb-2">₹1,500 – ₹8,000 <span className="text-xs font-normal text-slate-500">/ session</span></div>
+                  <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                    Excimer laser & targeted phototherapy sessions for stimulating repigmentation.
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                  <div className="text-sm font-bold uppercase tracking-wider text-[#EA6490] mb-2">Surgical Surgeries</div>
+                  <div className="text-2xl font-black text-slate-900 mb-2">₹70,000 – ₹1.5 Lakh</div>
+                  <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                    Skin grafting & melanocyte transplantation procedures for stable vitiligo.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-slate-100 lg:sticky lg:top-32">
+              <Image 
+                src="/vitiligo/sa-1.avif" 
+                fill 
+                className="object-cover" 
+                alt="Vitiligo Treatment Options and Costs in Ludhiana" 
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 8: WHEN TO CONSULT (SIDE-BY-SIDE) */}
         <section className="py-12 border-t border-slate-100">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-slate-100 lg:sticky lg:top-32">
@@ -341,7 +392,7 @@ export default function VitiligoClient() {
 
    
 
-        {/* SECTION 8: REMARKABLE RESULTS (CAROUSEL) */}
+        {/* SECTION 9: REMARKABLE RESULTS (CAROUSEL) */}
         <section className="py-12 border-t border-slate-100 text-center">
           <div className="max-w-[1300px] mx-auto space-y-12">
             <div className="space-y-4">
@@ -404,7 +455,7 @@ export default function VitiligoClient() {
 
        
 
-        {/* SECTION 9: FINAL CALL TO ACTION */}
+        {/* SECTION 10: FINAL CALL TO ACTION */}
         <section className="bg-slate-900 text-white rounded-[3rem] p-8 md:p-16 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-10">
@@ -424,7 +475,7 @@ export default function VitiligoClient() {
             </div>
           </div>
         </section>
- {/* SECTION 10: PATIENT TESTIMONIALS (CARDS) */}
+ {/* SECTION 11: PATIENT TESTIMONIALS (CARDS) */}
         <section className="pt-12 border-t border-slate-100">
           <div className="text-center mb-16 space-y-6">
             <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
@@ -455,7 +506,7 @@ export default function VitiligoClient() {
           </div>
         </section>
       </div>
-        {/* SECTION 11: FREQUENTLY ASKED QUESTIONS */}
+        {/* SECTION 12: FREQUENTLY ASKED QUESTIONS */}
       <FAQAccordion faqs={FAQ_DATA.vitiligo} title="Frequently Asked Questions" />
 
       <style jsx global>{`
