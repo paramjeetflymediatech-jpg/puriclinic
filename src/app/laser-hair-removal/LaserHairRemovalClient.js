@@ -137,7 +137,7 @@ export default function LaserHairRemovalClient() {
                   <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
                     <FaCheckCircle />
                   </div>
-                  <h4 className="font-bold text-slate-900 text-base mb-1">No Ingrown Hair or Pigmentation</h4>
+                  <h3 className="font-bold text-slate-900 text-base mb-1">No Ingrown Hair or Pigmentation</h3>
                   <p className="text-xs text-slate-600 leading-relaxed font-medium">
                     Eliminates razor bumps and post-waxing dark spots permanently.
                   </p>
@@ -147,7 +147,7 @@ export default function LaserHairRemovalClient() {
                   <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
                     <FaShieldAlt />
                   </div>
-                  <h4 className="font-bold text-slate-900 text-base mb-1">Tailored Cost Structure</h4>
+                  <h3 className="font-bold text-slate-900 text-base mb-1">Tailored Cost Structure</h3>
                   <p className="text-xs text-slate-600 leading-relaxed font-medium">
                     Transparent pricing based on targeted body area and custom session count.
                   </p>

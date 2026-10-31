@@ -78,9 +78,9 @@ export default async function DrGurinderjitSingh() {
             <span className="inline-block px-4 py-1 rounded-full bg-[#EA6490] text-white text-[11px] font-black uppercase tracking-widest">
               Chief Dermatologist & Founder
             </span>
-            <h2 className="text-2xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+            <p className="text-2xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
               Dr. Gurinderjit Singh Puri
-            </h2>
+            </p>
             <div className="flex items-center justify-start gap-2 text-sm font-medium text-white/90">
               <Link href="/" className="hover:text-[#EA6490] transition-colors">
                 Home
@@ -163,7 +163,7 @@ export default async function DrGurinderjitSingh() {
                       <FaGraduationCap />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base">Higher Qualifications</h4>
+                      <p className="font-bold text-slate-900 text-base">Higher Qualifications</p>
                       <p className="text-sm text-slate-600 mt-1">MBBS, MD (Dermatology, Venereology & Leprosy)</p>
                     </div>
                   </div>
@@ -173,7 +173,7 @@ export default async function DrGurinderjitSingh() {
                       <FaCertificate />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base">Medical Registration</h4>
+                      <p className="font-bold text-slate-900 text-base">Medical Registration</p>
                       <p className="text-sm text-slate-600 mt-1">PMC / MCI Registration No. 23344</p>
                     </div>
                   </div>
@@ -183,7 +183,7 @@ export default async function DrGurinderjitSingh() {
                       <FaAward />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base">38+ Years of Service</h4>
+                      <p className="font-bold text-slate-900 text-base">38+ Years of Service</p>
                       <p className="text-sm text-slate-600 mt-1">Pioneered clinical skin and hair restoration since 1988</p>
                     </div>
                   </div>
@@ -193,7 +193,7 @@ export default async function DrGurinderjitSingh() {
                       <FaUserMd />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base">Founder & Chief</h4>
+                      <p className="font-bold text-slate-900 text-base">Founder & Chief</p>
                       <p className="text-sm text-slate-600 mt-1">Leading Puri Skin Clinic with patient-first ethics</p>
                     </div>
                   </div>
@@ -259,9 +259,9 @@ export default async function DrGurinderjitSingh() {
                     <span className="text-[#EA6490] text-xs font-black uppercase tracking-widest">
                       Founder & Chief Dermatologist
                     </span>
-                    <h3 className="text-2xl font-bold text-slate-900 mt-1" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                    <p className="text-2xl font-bold text-slate-900 mt-1" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
                       Dr. Gurinderjit Singh Puri
-                    </h3>
+                    </p>
                     <p className="text-slate-600 text-sm font-semibold mt-1">
                       MBBS, MD (Dermatology, Venereology & Leprosy)
                     </p>

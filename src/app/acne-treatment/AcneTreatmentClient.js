@@ -308,7 +308,7 @@ export default function AcneTreatmentClient() {
                   <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
                     <FaMagic />
                   </div>
-                  <h4 className="font-bold text-slate-900 text-base mb-1">Laser Therapy</h4>
+                  <h3 className="font-bold text-slate-900 text-base mb-1">Laser Therapy</h3>
                   <p className="text-xs text-slate-600 leading-relaxed font-medium">
                     Fractional & ablative laser resurfacing for deep scar remodeling.
                   </p>
@@ -318,7 +318,7 @@ export default function AcneTreatmentClient() {
                   <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
                     <FaStethoscope />
                   </div>
-                  <h4 className="font-bold text-slate-900 text-base mb-1">Microneedling</h4>
+                  <h3 className="font-bold text-slate-900 text-base mb-1">Microneedling</h3>
                   <p className="text-xs text-slate-600 leading-relaxed font-medium">
                     Collagen induction therapy for textural smoothing & skin tightening.
                   </p>
@@ -328,7 +328,7 @@ export default function AcneTreatmentClient() {
                   <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
                     <FaRegLightbulb />
                   </div>
-                  <h4 className="font-bold text-slate-900 text-base mb-1">Chemical Peels</h4>
+                  <h3 className="font-bold text-slate-900 text-base mb-1">Chemical Peels</h3>
                   <p className="text-xs text-slate-600 leading-relaxed font-medium">
                     Exfoliating peels targeting post-acne pigmentation and shallow marks.
                   </p>

@@ -135,7 +135,7 @@ export default function PRPClient() {
                     <FaShieldAlt />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm mb-1">Safe & Non-Surgical</h4>
+                    <h3 className="font-bold text-slate-900 text-sm mb-1">Safe & Non-Surgical</h3>
                     <p className="text-xs text-slate-600 leading-relaxed font-medium">
                       Profoundly safe thinning hair treatment preferred over surgical procedures.
                     </p>
@@ -147,7 +147,7 @@ export default function PRPClient() {
                     <FaFlask />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm mb-1">Centrifuged Growth Serum</h4>
+                    <h3 className="font-bold text-slate-900 text-sm mb-1">Centrifuged Growth Serum</h3>
                     <p className="text-xs text-slate-600 leading-relaxed font-medium">
                       Concentrated platelets fortified with medications for faster follicle recovery.
                     </p>

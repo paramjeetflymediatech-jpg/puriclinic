@@ -83,9 +83,9 @@ export default async function DrAshwajitSingh() {
             <span className="inline-block px-4 py-1 rounded-full bg-[#EA6490] text-white text-[11px] font-black uppercase tracking-widest">
               Consultant Dermatologist & Aesthetic Specialist
             </span>
-            <h2 className="text-2xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+            <p className="text-2xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
               Dr. Ashwajit Singh
-            </h2>
+            </p>
             <div className="flex items-center justify-start gap-2 text-sm font-medium text-white/90">
               <Link href="/" className="hover:text-[#EA6490] transition-colors">
                 Home
@@ -168,7 +168,7 @@ export default async function DrAshwajitSingh() {
                       <FaGraduationCap />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base">Qualifications</h4>
+                      <p className="font-bold text-slate-900 text-base">Qualifications</p>
                       <p className="text-sm text-slate-600 mt-1">MBBS, MD (Dermatology)</p>
                     </div>
                   </div>
@@ -178,7 +178,7 @@ export default async function DrAshwajitSingh() {
                       <FaBookOpen />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base">Academic Research</h4>
+                      <p className="font-bold text-slate-900 text-base">Academic Research</p>
                       <p className="text-sm text-slate-600 mt-1">6 PubMed Publications & 50+ Conferences</p>
                     </div>
                   </div>
@@ -188,7 +188,7 @@ export default async function DrAshwajitSingh() {
                       <FaHospital />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base">Institutional Pedigree</h4>
+                      <p className="font-bold text-slate-900 text-base">Institutional Pedigree</p>
                       <p className="text-sm text-slate-600 mt-1">Alumnus & Ex-Resident, DMCH Ludhiana</p>
                     </div>
                   </div>
@@ -198,7 +198,7 @@ export default async function DrAshwajitSingh() {
                       <FaAward />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base">Advanced Fellowship</h4>
+                      <p className="font-bold text-slate-900 text-base">Advanced Fellowship</p>
                       <p className="text-sm text-slate-600 mt-1">Admire Advanced Aesthetic Fellowship</p>
                     </div>
                   </div>
@@ -235,7 +235,7 @@ export default async function DrAshwajitSingh() {
                     <div className="w-10 h-10 rounded-xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center mx-auto text-lg">
                       <FaMicroscope />
                     </div>
-                    <h5 className="font-bold text-slate-900 text-sm">Evidence-Based</h5>
+                    <p className="font-bold text-slate-900 text-sm">Evidence-Based</p>
                     <p className="text-xs text-slate-600">Scientifically verified diagnostic and treatment protocols.</p>
                   </div>
 
@@ -243,7 +243,7 @@ export default async function DrAshwajitSingh() {
                     <div className="w-10 h-10 rounded-xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center mx-auto text-lg">
                       <FaUserMd />
                     </div>
-                    <h5 className="font-bold text-slate-900 text-sm">Patient-Centric</h5>
+                    <p className="font-bold text-slate-900 text-sm">Patient-Centric</p>
                     <p className="text-xs text-slate-600">Gentle management and clear, transparent communication.</p>
                   </div>
 
@@ -251,7 +251,7 @@ export default async function DrAshwajitSingh() {
                     <div className="w-10 h-10 rounded-xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center mx-auto text-lg">
                       <FaVideo />
                     </div>
-                    <h5 className="font-bold text-slate-900 text-sm">Telemedicine</h5>
+                    <p className="font-bold text-slate-900 text-sm">Telemedicine</p>
                     <p className="text-xs text-slate-600">Virtual consultation options for patients worldwide.</p>
                   </div>
                 </div>
@@ -282,9 +282,9 @@ export default async function DrAshwajitSingh() {
                     <span className="text-[#EA6490] text-xs font-black uppercase tracking-widest">
                       Consultant Dermatologist
                     </span>
-                    <h3 className="text-2xl font-bold text-slate-900 mt-1" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                    <p className="text-2xl font-bold text-slate-900 mt-1" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
                       Dr. Ashwajit Singh
-                    </h3>
+                    </p>
                     <p className="text-slate-600 text-sm font-semibold mt-1">
                       MBBS, MD (Dermatology)
                     </p>

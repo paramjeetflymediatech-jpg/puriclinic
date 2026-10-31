@@ -298,7 +298,7 @@ export default function MelasmaClient() {
                   <div className="w-12 h-12 rounded-2xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center text-xl">
                     <FaUserMd />
                   </div>
-                  <h4 className="font-bold text-slate-900 text-lg">5-Step V-Discover Process</h4>
+                  <h3 className="font-bold text-slate-900 text-lg">5-Step V-Discover Process</h3>
                   <p className="text-sm text-slate-600 leading-relaxed">
                     A thorough clinical consultation identifying root triggers, pigment depth (epidermal vs. dermal), and tailored patient goals.
                   </p>
@@ -308,7 +308,7 @@ export default function MelasmaClient() {
                   <div className="w-12 h-12 rounded-2xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center text-xl">
                     <FaShieldAlt />
                   </div>
-                  <h4 className="font-bold text-slate-900 text-lg">Melasma Treatment Cost</h4>
+                  <h3 className="font-bold text-slate-900 text-lg">Melasma Treatment Cost</h3>
                   <p className="text-sm text-slate-600 leading-relaxed">
                     Personalized pricing determined by melasma severity, target skin surface, and selected clinical therapies such as peels or lasers.
                   </p>

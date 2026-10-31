@@ -130,7 +130,7 @@ export default function GFCClient() {
 
             {/* Cost & Treatment Factors */}
             <div className="p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 space-y-4">
-              <h4 className="font-bold text-slate-900 text-lg">Key Factors Influencing GFC Cost in Ludhiana:</h4>
+              <h3 className="font-bold text-slate-900 text-lg">Key Factors Influencing GFC Cost in Ludhiana:</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium text-slate-700">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-[#EA6490]"></div>
