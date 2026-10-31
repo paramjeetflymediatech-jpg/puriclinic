@@ -182,7 +182,7 @@ export default function PRPClient() {
                   <FaFlask />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xl mb-3">{tr.title}</h4>
+                  <h3 className="font-bold text-slate-900 text-xl mb-3">{tr.title}</h3>
                   <p className="text-base text-black leading-relaxed font-medium">{tr.description}</p>
             </div>
               </motion.div>
@@ -238,7 +238,7 @@ export default function PRPClient() {
                             <FaCheckCircle />
                         </div>
                         <div>
-                      <h4 className="font-bold text-slate-900 text-xl mb-2">{item.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-xl mb-2">{item.title}</h3>
                       <p className="text-base text-slate-600 leading-relaxed font-medium">{item.desc}</p>
                         </div>
                     </motion.div>
@@ -271,7 +271,7 @@ export default function PRPClient() {
                 <div className="w-16 h-16 rounded-full bg-white text-[#EA6490] flex items-center justify-center text-3xl mb-6 shadow-sm border border-slate-100">
                   {item.icon}
                 </div>
-                <h4 className="text-xl font-bold text-slate-900">{item.title}</h4>
+                <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
               </motion.div>
             ))}
           </div>
@@ -362,7 +362,7 @@ export default function PRPClient() {
                   {item.review}
                 </p>
                 <div className="mt-auto">
-                  <h4 className="font-bold text-slate-900 text-lg">{item.name}</h4>
+                  <p className="font-bold text-slate-900 text-lg">{item.name}</p>
                   <p className="text-sm text-slate-500 font-medium">{item.location}</p>
             </div>
             </div>

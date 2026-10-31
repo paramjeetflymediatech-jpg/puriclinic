@@ -187,7 +187,7 @@ export default function GFCClient() {
                   {item.icon}
                 </div>
                             <div>
-                  <h4 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h4>
+                  <h3 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h3>
                   <p className="text-black text-sm font-medium leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
@@ -232,7 +232,7 @@ export default function GFCClient() {
                   <li key={idx} className="flex gap-4 items-start">
                     <FaCheckCircle className="text-[#EA6490] mt-1 shrink-0 text-xl" />
                     <div>
-                      <h4 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h3>
                       <p className="text-black text-sm font-medium leading-relaxed opacity-80">{item.desc}</p>
                     </div>
                   </li>
@@ -258,7 +258,7 @@ export default function GFCClient() {
                   <li key={idx} className="flex gap-4 items-start">
                     <FaCheckCircle className="text-[#EA6490] mt-1 shrink-0 text-xl" />
                     <div>
-                      <h4 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h3>
                       <p className="text-black text-sm font-medium leading-relaxed opacity-80">{item.desc}</p>
                     </div>
                   </li>
@@ -318,7 +318,7 @@ export default function GFCClient() {
                     “{item.review}”
                   </p>
                   <div className="mt-auto pt-6 border-t border-slate-200/60">
-                    <h4 className="font-bold text-slate-900 text-lg">{item.name}</h4>
+                    <p className="font-bold text-slate-900 text-lg">{item.name}</p>
                     <p className="text-sm text-[#EA6490] font-bold">{item.location}</p>
                   </div>
                 </div>
@@ -343,7 +343,7 @@ export default function GFCClient() {
                   <div key={idx} className="flex gap-4 items-start p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
                     <FaCheckCircle className="text-[#EA6490] mt-1 shrink-0 text-xl" />
                     <div>
-                      <h4 className="font-bold text-slate-900 text-lg mb-2">{item.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-lg mb-2">{item.title}</h3>
                       <p className="text-black text-sm font-medium leading-relaxed">{item.desc}</p>
                     </div>
                   </div>

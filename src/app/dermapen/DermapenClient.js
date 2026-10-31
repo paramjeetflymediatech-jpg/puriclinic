@@ -198,7 +198,7 @@ export default function DermapenClient() {
                   {benefit.icon}
                 </div>
                 <div className="space-y-3 h-full flex flex-col">
-                  <h4 className="font-bold text-slate-900 text-xl">{benefit.title}</h4>
+                  <h3 className="font-bold text-slate-900 text-xl">{benefit.title}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed font-medium">
                     {benefit.desc}
                   </p>
@@ -237,7 +237,7 @@ export default function DermapenClient() {
                 </div>
                 
                 <div className="mt-10 pt-8 border-t border-slate-50">
-                  <h4 className="font-bold text-slate-900 text-lg">{t.name}</h4>
+                  <h3 className="font-bold text-slate-900 text-lg">{t.name}</h3>
                   <p className="text-[#EA6490] text-xs font-bold tracking-widest uppercase mt-1">{t.location}</p>
                 </div>
               </motion.div>

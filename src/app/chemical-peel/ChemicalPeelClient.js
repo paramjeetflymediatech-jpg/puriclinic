@@ -78,9 +78,9 @@ export default function ChemicalPeelClient() {
               </p>
 
               <div className="pt-4 space-y-4">
-                <h3 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                <h2 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
                   Understanding <span className="text-[#EA6490]">chemical peeling</span>
-                </h3>
+                </h2>
                 <p>
                  Chemical peeling therapy is a cosmetic procedure that is beneficial in enhancing the skin’s appearance. The treatment is done by applying a chemical solution to the skin. It later helps in exfoliating the skin, and after some time, it peels off. The chemical solution leaves the skin feeling fresher and young-looking from within. 
                 </p>
@@ -110,21 +110,21 @@ export default function ChemicalPeelClient() {
 
                 <div className="space-y-8">
                   <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
-                    <h4 className="font-bold text-slate-900 text-xl mb-3">Superficial peels</h4>
+                    <h3 className="font-bold text-slate-900 text-xl mb-3">Superficial peels</h3>
                     <p className="text-base leading-relaxed">
                     These are considered light peels as they use mild acids, such as AHAs. They are helpful in exfoliating the skin’s outer layer by treating minor issues like uneven skin tone, fine lines, etc. Also, superficial peels are going to require little or sometimes no downtime, and patients can get back to their normal routines within a short span. People having sensitive skin or have never undergone any chemical peel treatment, can opt for superficial peels. 
                     </p>
                   </div>
 
                   <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
-                    <h4 className="font-bold text-slate-900 text-xl mb-3">Medium peels</h4>
+                    <h3 className="font-bold text-slate-900 text-xl mb-3">Medium peels</h3>
                     <p className="text-base leading-relaxed">
                       Medium peels are known to penetrate deep into the skin, which mainly targets the middle layers. This procedure can help target the major skin issues and involves TCA. It can be helpful in treating pigmentation issues, acne scars, etc. However, the recovery time of the medium peels is considered to be longer as compared to superficial peels. The results of this chemical peel type are highly noticeable and are meant for people who are looking for great skin improvements.
                     </p>
                   </div>
 
                   <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
-                    <h4 className="font-bold text-slate-900 text-xl mb-3">Deep peels</h4>
+                    <h3 className="font-bold text-slate-900 text-xl mb-3">Deep peels</h3>
                     <p className="text-base leading-relaxed">
                      Deep peels are known as intensive treatment as they get deeper skin layers. There is involvement of strong acids in deep peels, which can be beneficial in treating severe wrinkles, major sun damage, etc. Due to its high intensity peels, long recovery periods are needed and are carried out by professional dermatologists. This procedure is best suited for people who have major skin concerns and are in search of profound and great results. 
                     </p>
@@ -169,7 +169,7 @@ export default function ChemicalPeelClient() {
             </div>
 
             <div className="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                <h4 className="text-xl font-bold mb-6 text-slate-900 text-center" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>Book a Consultation</h4>
+                <h3 className="text-xl font-bold mb-6 text-slate-900 text-center" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>Book a Consultation</h3>
                 <AppointmentForm theme="clinical" />
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function ChemicalPeelClient() {
                   <FaCheckCircle />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xl leading-tight mb-2">{benefit.title}</h4>
+                  <h3 className="font-bold text-slate-900 text-xl leading-tight mb-2">{benefit.title}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed font-medium">
                     {benefit.desc}
                   </p>
@@ -266,7 +266,7 @@ export default function ChemicalPeelClient() {
                       {idx + 1}
                     </div>
                     <div className="space-y-2">
-                      <h4 className="text-xl font-bold text-slate-900">{step.title}</h4>
+                      <h3 className="text-xl font-bold text-slate-900">{step.title}</h3>
                       <p className="text-slate-600 font-medium leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
@@ -375,7 +375,7 @@ export default function ChemicalPeelClient() {
                 </div>
                 <p className="text-black text-lg italic font-medium leading-relaxed mb-8">“{item.review}”</p>
                 <div>
-                    <h4 className="font-bold text-slate-900 text-xl">{item.author}</h4>
+                    <p className="font-bold text-slate-900 text-xl">{item.author}</p>
                     <p className="text-[#EA6490] font-bold text-sm uppercase tracking-widest mt-1">Ludhiana</p>
                 </div>
               </motion.div>
@@ -405,7 +405,7 @@ export default function ChemicalPeelClient() {
                 <div className="w-16 h-16 rounded-2xl bg-slate-900 text-[#EA6490] flex items-center justify-center mb-8 text-2xl shadow-lg transition-transform group-hover:rotate-6">
                   {item.icon}
                 </div>
-                <h4 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h4>
+                <h3 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h3>
                 <p className="text-black text-sm font-medium leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}

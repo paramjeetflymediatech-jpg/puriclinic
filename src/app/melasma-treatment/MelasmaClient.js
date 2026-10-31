@@ -80,7 +80,7 @@ export default function MelasmaClient() {
                 </p>
                 
                 <div className="pt-4 space-y-4">
-                    <h4 className="font-bold text-slate-900">Common Causes of Hyperpigmentation:</h4>
+                    <h3 className="font-bold text-slate-900">Common Causes of Hyperpigmentation:</h3>
                     <div className="grid grid-cols-2 gap-4">
                         {[
                             { name: "Sun Exposure", icon: <FaRegLightbulb className="text-xs" /> },
@@ -153,7 +153,7 @@ export default function MelasmaClient() {
                     {cause.icon}
                   </div>
                   <div className="space-y-4 h-full flex flex-col">
-                    <h4 className="font-bold text-slate-900 text-2xl">{cause.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-2xl">{cause.title}</h3>
                     <p className="text-slate-600 leading-[1.8] font-medium text-base">
                       {cause.desc}
                     </p>
@@ -215,7 +215,7 @@ export default function MelasmaClient() {
                       {type.icon}
                     </div>
                     <div className="space-y-2">
-                      <h4 className="font-bold text-slate-900 text-xl">{type.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-xl">{type.title}</h3>
                       <p className="text-sm text-slate-600 leading-relaxed font-medium">
                         {type.desc}
                       </p>
@@ -365,7 +365,7 @@ export default function MelasmaClient() {
                     {proc.icon}
                   </div>
                   <div className="space-y-3">
-                    <h4 className="font-bold text-slate-900 text-2xl">{proc.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-2xl">{proc.title}</h3>
                     <p className="text-slate-600 leading-relaxed font-medium text-base">
                       {proc.desc}
                     </p>
@@ -423,7 +423,7 @@ export default function MelasmaClient() {
                     {tip.icon}
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-bold text-slate-900 text-xl">{tip.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-xl">{tip.title}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed font-medium">
                       {tip.desc}
                     </p>

@@ -52,7 +52,7 @@ export default function AboutUsClient() {
           {/* Greyish/Blurred Overlay Card */}
           <div className="absolute inset-0 bg-black/40 "></div>
           <div className="relative z-10  backdrop-blur-md px-12 py-8  text-left text-white">
-            <h3 className="text-3xl md:text-4xl font-heading mb-4">About Us</h3>
+            <p className="text-3xl md:text-4xl font-heading mb-4">About Us</p>
             <div className="flex items-center justify-start gap-2 text-sm font-medium">
               <Link href="/" className="hover:text-[#EA6490] transition-colors flex items-center gap-2">
                   Home
@@ -133,10 +133,10 @@ export default function AboutUsClient() {
             {/* Right Side: Content */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl md:text-3xl font-heading font-black text-slate-900 leading-[1.2]">
+                <h1 className="text-2xl md:text-3xl font-heading font-black text-slate-900 leading-[1.2]">
                   Puri Skin Clinic –  
                   <span className="text-[#EA6490]"> Attain Advanced Dermatological Care!</span>
-                </h2>
+                </h1>
               </div>
               
               <div className="space-y-6 text-black text-[15px] leading-[1.8] font-light">
@@ -200,7 +200,7 @@ export default function AboutUsClient() {
                     <div className="lg:hidden w-16 h-16 rounded-full bg-[#EA6490]/10 flex items-center justify-center text-[#EA6490] mb-6">
                       {React.cloneElement(tab.icon, { size: 30 })}
                     </div>
-                    <h4 className="text-[#EA6490] font-heading font-black text-lg uppercase tracking-widest mb-4">{tab.title}</h4>
+                    <h2 className="text-[#EA6490] font-heading font-black text-lg uppercase tracking-widest mb-4">{tab.title}</h2>
                     <p className="text-slate-600 text-[14px] leading-relaxed font-medium">
                       {tab.desc}
                     </p>

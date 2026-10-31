@@ -182,7 +182,7 @@ export default function ExosomeClient() {
                 <div className="w-16 h-16 rounded-2xl bg-slate-900 text-[#EA6490] flex items-center justify-center mb-8 text-2xl shadow-lg transition-transform group-hover:rotate-6">
                   {item.icon}
                 </div>
-                <h4 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h4>
+                <h3 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h3>
                 <p className="text-black text-sm font-medium leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
@@ -211,7 +211,7 @@ export default function ExosomeClient() {
                   <li key={idx} className="flex gap-4 items-start">
                     <FaCheckCircle className="text-[#EA6490] mt-1 shrink-0 text-xl" />
                     <div>
-                      <h4 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h3>
                       <p className="text-black text-sm font-medium leading-relaxed opacity-80">{item.desc}</p>
                     </div>
                   </li>
@@ -255,7 +255,7 @@ export default function ExosomeClient() {
                   <div className="w-12 h-12 rounded-full bg-[#EA6490] flex items-center justify-center mx-auto mb-6 text-xl">
                     {item.icon}
                   </div>
-                  <h4 className="font-bold text-white text-lg mb-4">{item.title}</h4>
+                  <h3 className="font-bold text-white text-lg mb-4">{item.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               ))}

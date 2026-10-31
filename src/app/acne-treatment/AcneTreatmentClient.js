@@ -97,7 +97,7 @@ export default function AcneTreatmentClient() {
                   <div className="flex gap-6 group">
                     <div className="w-12 h-12 rounded-full bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center flex-shrink-0 font-bold group-hover:bg-[#EA6490] group-hover:text-white transition-all">1</div>
                     <div className="space-y-2">
-                      <h4 className="text-xl font-bold text-slate-900">Hormonal changes</h4>
+                      <h3 className="text-xl font-bold text-slate-900">Hormonal changes</h3>
                       <p className="text-slate-600 leading-relaxed">Hormonal fluctuations are common in teenagers. This can result in the sebaceous glands to get very large. Later on it can result in extreme sebum production and people can face serious acne.</p>
                     </div>
                   </div>
@@ -105,7 +105,7 @@ export default function AcneTreatmentClient() {
                   <div className="flex gap-6 group">
                     <div className="w-12 h-12 rounded-full bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center flex-shrink-0 font-bold group-hover:bg-[#EA6490] group-hover:text-white transition-all">2</div>
                     <div className="space-y-2">
-                      <h4 className="text-xl font-bold text-slate-900">Growth of bacteria</h4>
+                      <h3 className="text-xl font-bold text-slate-900">Growth of bacteria</h3>
                       <p className="text-slate-600 leading-relaxed">Propionibacterium acnes is known to be a bacterium that appears due to clogged pores. This bacterium results in inflammation and then acne. When one pimple pops up, the bacteria gets spread to the entire skin, leading to an acne breakout.</p>
                     </div>
                   </div>
@@ -113,7 +113,7 @@ export default function AcneTreatmentClient() {
                   <div className="flex gap-6 group">
                     <div className="w-12 h-12 rounded-full bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center flex-shrink-0 font-bold group-hover:bg-[#EA6490] group-hover:text-white transition-all">3</div>
                     <div className="space-y-2">
-                      <h4 className="text-xl font-bold text-slate-900">Genetic issues</h4>
+                      <h3 className="text-xl font-bold text-slate-900">Genetic issues</h3>
                       <p className="text-slate-600 leading-relaxed">Genetics plays a major role in deciding the severity as well as the frequency of the breakouts. If there is a history of acne in the family, then there is a possibility of a predisposed acne issue.</p>
                     </div>
                   </div>
@@ -121,7 +121,7 @@ export default function AcneTreatmentClient() {
                   <div className="flex gap-6 group">
                     <div className="w-12 h-12 rounded-full bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center flex-shrink-0 font-bold group-hover:bg-[#EA6490] group-hover:text-white transition-all">4</div>
                     <div className="space-y-2">
-                      <h4 className="text-xl font-bold text-slate-900">Diet and lifestyle</h4>
+                      <h3 className="text-xl font-bold text-slate-900">Diet and lifestyle</h3>
                       <p className="text-slate-600 leading-relaxed">Not many people know, but dietary situations like high glycemic index foods can result in showing acne symptoms. The high rise in insulin can result in oily skin as well as acne.</p>
                     </div>
                   </div>
@@ -212,7 +212,7 @@ export default function AcneTreatmentClient() {
                   <div className="w-16 h-16 rounded-full bg-slate-50 text-[#EA6490] flex items-center justify-center mb-8 text-2xl shadow-sm group-hover:bg-[#EA6490] group-hover:text-white transition-all duration-500">
                     {item.icon}
                   </div>
-                  <h4 className="font-bold text-xl mb-4 text-slate-900">{item.title}</h4>
+                  <h3 className="font-bold text-xl mb-4 text-slate-900">{item.title}</h3>
                   <p className="text-sm leading-relaxed font-medium text-slate-600">
                     {item.desc}
                   </p>
@@ -273,7 +273,7 @@ export default function AcneTreatmentClient() {
                     {solution.icon}
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-xl mb-3">{solution.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-xl mb-3">{solution.title}</h3>
                     <p className="text-sm text-slate-600 font-medium leading-relaxed">{solution.desc}</p>
                   </div>
                 </motion.div>

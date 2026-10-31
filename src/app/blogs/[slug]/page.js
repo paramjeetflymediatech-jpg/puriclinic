@@ -178,7 +178,7 @@ export default async function SingleBlog({ params }) {
               {/* Share and Appointment Section */}
               <div className="mt-20 pt-12 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8">
                 <div>
-                  <h4 className="font-heading text-2xl font-bold mb-2">Did you find this helpful?</h4>
+                  <h2 className="font-heading text-2xl font-bold mb-2">Did you find this helpful?</h2>
                   <p className="text-gray-500">Share this article with your community</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-6">

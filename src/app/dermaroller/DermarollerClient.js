@@ -161,10 +161,10 @@ export default function DermarollerClient() {
                     {step.icon}
                   </div>
                   <div className="space-y-4 flex-grow">
-                    <h4 className="font-bold text-slate-900 text-xl flex items-center gap-3">
+                    <h3 className="font-bold text-slate-900 text-xl flex items-center gap-3">
                       <span className="text-sm bg-[#EA6490]/10 text-[#EA6490] w-6 h-6 rounded-full flex items-center justify-center font-black">{idx + 1}</span>
                       {step.title}
-                    </h4>
+                    </h3>
                     <p className="text-slate-600 leading-relaxed font-medium text-sm">{step.text}</p>
                   </div>
                 </motion.div>
@@ -185,10 +185,10 @@ export default function DermarollerClient() {
                     {step.icon}
                   </div>
                   <div className="space-y-4 flex-grow">
-                    <h4 className="font-bold text-slate-900 text-xl flex items-center gap-3">
+                    <h3 className="font-bold text-slate-900 text-xl flex items-center gap-3">
                       <span className="text-sm bg-[#EA6490]/10 text-[#EA6490] w-6 h-6 rounded-full flex items-center justify-center font-black">{idx + 4}</span>
                       {step.title}
-                    </h4>
+                    </h3>
                     <p className="text-slate-600 leading-relaxed font-medium text-sm">{step.text}</p>
                   </div>
                 </motion.div>
@@ -348,7 +348,7 @@ export default function DermarollerClient() {
                     </p>
                   </div>
                   <div className="mt-10 pt-8 border-t border-slate-50">
-                    <h4 className="font-bold text-slate-900 text-lg">{t.name}</h4>
+                    <h3 className="font-bold text-slate-900 text-lg">{t.name}</h3>
                     <p className="text-[#EA6490] text-xs font-bold tracking-widest uppercase mt-1">{t.location}</p>
                   </div>
                 </motion.div>

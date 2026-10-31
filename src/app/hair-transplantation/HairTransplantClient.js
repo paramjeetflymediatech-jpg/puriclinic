@@ -59,9 +59,9 @@ export default function HairTransplantClient() {
         <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <ImageSlider images={sliderImages} aspect="aspect-[2/1.5]" />
           <div className="space-y-6">
-            <h3 className="text-2xl md:text-[32px] font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+            <h2 className="text-2xl md:text-[32px] font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
               What is the <span className="text-[#EA6490]">working</span> of a hair transplant?
-            </h3>
+            </h2>
             <p className="text-black text-lg leading-[1.8] font-medium">
               The working of the hair transplant procedure is very simple. The skilled dermatologist will take grafts or tiny skin pieces from different parts of the body containing healthy hair. It is considered a donor site. Most of the time, it is the head or the scalp’s back from where the hair is taken. Later, the healthcare provider will use those grafts and use it at the hairless part of the scalp. After the transplantation, when the skin heals, the hair will continue to grow.
             </p>
@@ -110,7 +110,7 @@ export default function HairTransplantClient() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             <div className="absolute bottom-10 left-10 text-white">
               <p className="text-sm font-bold uppercase tracking-widest mb-2">Puri Skin Clinic</p>
-              <h4 className="text-2xl font-bold italic" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>Expert Hair Restoration</h4>
+              <p className="text-2xl font-bold italic" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>Expert Hair Restoration</p>
             </div>
           </div>
         </section>
@@ -118,9 +118,9 @@ export default function HairTransplantClient() {
         {/* SECTION 2: CONDITIONS TREATED */}
         <section className="bg-slate-50 p-10 md:p-12 rounded-[2.5rem] border border-slate-100 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#EA6490]/5 rounded-bl-full"></div>
-          <h3 className="text-2xl md:text-[32px] font-bold text-[#1a1a1a] mb-8 relative z-10" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+          <h2 className="text-2xl md:text-[32px] font-bold text-[#1a1a1a] mb-8 relative z-10" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
             What conditions can be treated with the <span className="text-[#EA6490]">hair restoration process?</span>
-          </h3>
+          </h2>
           <p className="text-black text-lg leading-[1.8] font-medium mb-8 relative z-10">
             There are different reasons that can lead to a hair loss situation. Sometimes the situation can be temporary, and sometimes permanent. However, hair transplantation can be helpful in a permanent hair loss situation caused by:
           </p>
@@ -265,7 +265,7 @@ export default function HairTransplantClient() {
                   {item.icon}
                         </div>
                 <div className="flex flex-col h-full">
-                  <h4 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h4>
+                  <h3 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h3>
                   <p className="text-sm text-black leading-relaxed font-medium flex-grow">{item.desc}</p>
                         </div>
                     </motion.div>
@@ -383,7 +383,7 @@ export default function HairTransplantClient() {
                 {item.review}
               </p>
               <div className="mt-auto">
-                <h4 className="font-bold text-slate-900 text-lg">{item.name}</h4>
+                <p className="font-bold text-slate-900 text-lg">{item.name}</p>
                 <p className="text-sm text-slate-500 font-medium">{item.location}</p>
               </div>
             </div>

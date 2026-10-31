@@ -209,7 +209,7 @@ export default function LaserHairRemovalClient() {
                   <div className="w-16 h-16 rounded-full bg-slate-50 text-[#EA6490] flex items-center justify-center mb-8 text-2xl shadow-sm group-hover:bg-[#EA6490] group-hover:text-white transition-all duration-500">
                     {step.icon}
                   </div>
-                  <h4 className="font-bold text-xl mb-4 text-slate-900">{step.title}</h4>
+                  <h3 className="font-bold text-xl mb-4 text-slate-900">{step.title}</h3>
                   <p className="text-sm leading-relaxed font-medium text-slate-600">
                     {step.desc}
                   </p>
@@ -279,7 +279,7 @@ export default function LaserHairRemovalClient() {
                       {benefit.icon}
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-base mb-1">{benefit.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-base mb-1">{benefit.title}</h3>
                       <p className="text-[14px] text-slate-600 font-medium leading-tight">{benefit.desc}</p>
                     </div>
                   </motion.div>
@@ -325,7 +325,7 @@ export default function LaserHairRemovalClient() {
                     {benefit.icon}
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-lg mb-2">{benefit.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-lg mb-2">{benefit.title}</h3>
                     <p className="text-[14px] text-slate-600 font-medium leading-relaxed">{benefit.desc}</p>
                   </div>
                 </motion.div>
@@ -379,7 +379,7 @@ export default function LaserHairRemovalClient() {
                       {area.icon}
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-xl mb-3">{area.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-xl mb-3">{area.title}</h3>
                       <p className="text-sm text-slate-600 font-medium leading-relaxed">{area.desc}</p>
                     </div>
                   </motion.div>
@@ -443,7 +443,7 @@ export default function LaserHairRemovalClient() {
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900">{testimonial.name}</h4>
+                      <p className="font-bold text-slate-900">{testimonial.name}</p>
                       <p className="text-xs text-[#EA6490] font-bold uppercase tracking-widest">
                         {testimonial.location}
                       </p>

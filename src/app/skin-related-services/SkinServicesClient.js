@@ -193,7 +193,7 @@ export default function SkinServicesClient() {
                 <div className="w-16 h-16 rounded-2xl bg-slate-900 text-[#EA6490] flex items-center justify-center mb-8 text-2xl shadow-lg transition-transform group-hover:rotate-6">
                   {item.icon}
                 </div>
-                <h4 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h4>
+                <h3 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h3>
                 <p className="text-black text-sm font-medium leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}

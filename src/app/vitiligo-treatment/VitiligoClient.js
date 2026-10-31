@@ -141,7 +141,7 @@ export default function VitiligoClient() {
                       <div className="w-14 h-14 rounded-2xl bg-white text-[#EA6490] flex items-center justify-center mb-6 text-2xl shadow-sm transition-transform group-hover:rotate-6">
                         {item.icon}
                       </div>
-                      <h4 className="font-bold text-slate-900 text-xl mb-3">{item.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-xl mb-3">{item.title}</h3>
                       <p className="text-sm leading-relaxed text-slate-600">
                         {item.desc}
                       </p>
@@ -186,7 +186,7 @@ export default function VitiligoClient() {
                       <div key={idx} className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all flex flex-col group h-full">
                         <div className="w-2 h-2 rounded-full bg-[#EA6490] mb-4 group-hover:scale-150 transition-transform"></div>
                         <div>
-                          <h4 className="font-bold text-slate-900 text-xl mb-2">{item.title}</h4>
+                          <h3 className="font-bold text-slate-900 text-xl mb-2">{item.title}</h3>
                           <p className="text-base text-slate-600 leading-relaxed font-medium">
                             {item.desc}
                           </p>
@@ -278,7 +278,7 @@ export default function VitiligoClient() {
                       <div className="w-14 h-14 rounded-2xl bg-white text-[#EA6490] flex items-center justify-center mb-6 text-2xl shadow-sm transition-transform group-hover:rotate-6 group-hover:bg-[#EA6490] group-hover:text-white">
                         {path.icon}
                       </div>
-                      <h4 className="font-bold text-slate-900 text-xl mb-3">{path.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-xl mb-3">{path.title}</h3>
                       <p className="text-sm text-slate-600 leading-relaxed font-medium">
                         {path.desc}
                       </p>
@@ -498,7 +498,7 @@ export default function VitiligoClient() {
                 </div>
                 <p className="text-black text-lg italic font-medium leading-relaxed mb-8">“{item.review}”</p>
                 <div>
-                    <h4 className="font-bold text-slate-900 text-xl">{item.author}</h4>
+                    <p className="font-bold text-slate-900 text-xl">{item.author}</p>
                     <p className="text-[#EA6490] font-bold text-sm uppercase tracking-widest mt-1">Ludhiana</p>
                 </div>
               </motion.div>

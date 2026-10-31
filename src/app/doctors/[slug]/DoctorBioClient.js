@@ -87,9 +87,9 @@ export default function DoctorBioClient({ doctor }) {
             {/* Bio & Professional Details */}
             <div className="lg:col-span-7 space-y-12">
               <div className="bg-white p-10 md:p-14 rounded-[3rem] shadow-sm border border-gray-100">
-                <h3 className="text-sm font-black uppercase tracking-[0.3em] text-[#EA6490] mb-8">
+                <h2 className="text-sm font-black uppercase tracking-[0.3em] text-[#EA6490] mb-8">
                   Biography
-                </h3>
+                </h2>
                 <div className="prose prose-lg prose-gray max-w-none text-gray-600 leading-relaxed font-medium break-words">
                    <div dangerouslySetInnerHTML={{ __html: doctor.bio_part2 }} />
                 </div>
@@ -97,9 +97,9 @@ export default function DoctorBioClient({ doctor }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm">
-                   <h4 className="text-gray-900 font-black uppercase text-[10px] tracking-widest mb-6 flex items-center gap-3">
+                   <h3 className="text-gray-900 font-black uppercase text-[10px] tracking-widest mb-6 flex items-center gap-3">
                      <FaMedal className="text-[#EA6490]" /> Key Expertise
-                   </h4>
+                   </h3>
                    <ul className="space-y-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
                       <li className="flex items-center gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#EA6490]/30"></div> Advanced Skin Care
@@ -113,9 +113,9 @@ export default function DoctorBioClient({ doctor }) {
                    </ul>
                 </div>
                 <div className="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm">
-                   <h4 className="text-gray-900 font-black uppercase text-[10px] tracking-widest mb-6 flex items-center gap-3">
+                   <h3 className="text-gray-900 font-black uppercase text-[10px] tracking-widest mb-6 flex items-center gap-3">
                      <FaClinicMedical className="text-[#EA6490]" /> Philosophy
-                   </h4>
+                   </h3>
                    <p className="text-sm font-medium text-gray-400 leading-relaxed italic">
                      "Delivering personalized clinical excellence through a combination of cutting-edge technology and compassionate patient care."
                    </p>
@@ -125,9 +125,9 @@ export default function DoctorBioClient({ doctor }) {
               {/* Recognition Gallery */}
               {doctor.achievement_images && doctor.achievement_images.length > 0 && (
                 <div className="pt-8">
-                   <h3 className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-8 border-b border-gray-100 pb-4">
+                   <h2 className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-8 border-b border-gray-100 pb-4">
                      Recognition & Certifications
-                   </h3>
+                   </h2>
                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
                       {doctor.achievement_images.map((img, idx) => (
                         <div key={idx} className="relative aspect-square rounded-[2.5rem] overflow-hidden border border-gray-100 bg-white group shadow-sm">
@@ -151,7 +151,7 @@ export default function DoctorBioClient({ doctor }) {
                    <div className="absolute -top-10 -right-10 text-[#EA6490]/5">
                       <FaAward size={200} />
                    </div>
-                   <h3 className="text-2xl font-bold font-heading text-gray-900 mb-8 relative z-10">Professional <br />Achievements</h3>
+                   <h2 className="text-2xl font-bold font-heading text-gray-900 mb-8 relative z-10">Professional <br />Achievements</h2>
                    <div className="relative z-10 break-words">
                       <div dangerouslySetInnerHTML={{ __html: doctor.achievements }} className="achievements-html" />
                    </div>

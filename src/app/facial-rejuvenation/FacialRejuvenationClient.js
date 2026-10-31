@@ -140,7 +140,7 @@ export default function FacialRejuvenationClient() {
                     <div className="w-14 h-14 rounded-2xl bg-white text-[#EA6490] flex items-center justify-center text-xl shadow-sm group-hover:bg-[#EA6490] group-hover:text-white transition-all duration-500">
                       {item.icon}
                     </div>
-                    <h4 className="font-bold text-slate-900 text-lg">{item.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-lg">{item.title}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed font-medium">{item.desc}</p>
                   </motion.div>
                 ))}
@@ -196,7 +196,7 @@ export default function FacialRejuvenationClient() {
                     {item.icon}
                   </div>
                   <div className="space-y-4">
-                    <h4 className="font-bold text-slate-900 text-2xl">{item.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-2xl">{item.title}</h3>
                     <p className="text-slate-600 leading-[1.8] font-medium text-lg italic">
                       "{item.desc}"
                     </p>
@@ -241,7 +241,7 @@ export default function FacialRejuvenationClient() {
                     {benefit.icon}
                   </div>
                   <div className="space-y-1">
-                    <h4 className="font-bold text-slate-900 text-base">{benefit.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-base">{benefit.title}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed font-medium">{benefit.desc}</p>
                   </div>
                 </div>

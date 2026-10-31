@@ -93,9 +93,9 @@ export default function WartRemovalClient() {
 
           <div className="space-y-8 order-1 lg:order-2">
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              <h1 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
                 Are you waiting to <br /><span className="text-[#EA6490]">get your wart removed?</span>
-              </h2>
+              </h1>
               <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
             </div>
 
@@ -138,7 +138,7 @@ export default function WartRemovalClient() {
                       <FaCheckCircle className="text-sm" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h4>
+                      <h3 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h3>
                       <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
@@ -169,7 +169,7 @@ export default function WartRemovalClient() {
               {methods.map((method, idx) => (
                 <div key={idx} className="p-8 rounded-3xl bg-slate-50 border border-slate-100 space-y-4">
                   <div className="text-[#EA6490] text-2xl">{method.icon}</div>
-                  <h4 className="font-bold text-slate-900 text-xl">{method.title}</h4>
+                  <h3 className="font-bold text-slate-900 text-xl">{method.title}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed">{method.desc}</p>
                 </div>
               ))}
@@ -218,7 +218,7 @@ export default function WartRemovalClient() {
                   </p>
                 </div>
                 <div className="mt-8 border-t border-slate-200 pt-6">
-                  <h4 className="font-bold text-slate-900">{testimonial.name}</h4>
+                  <p className="font-bold text-slate-900">{testimonial.name}</p>
                   <p className="text-[#EA6490] text-sm font-bold uppercase tracking-widest">{testimonial.location}</p>
                 </div>
               </div>

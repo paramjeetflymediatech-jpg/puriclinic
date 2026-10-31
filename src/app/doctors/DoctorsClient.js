@@ -85,9 +85,9 @@ export default function DoctorsClient() {
               
               <div className="p-10 flex flex-col flex-1">
                  <div className="mb-6 flex-1">
-                    <h3 className="text-2xl font-bold font-heading text-slate-900 mb-2 group-hover:text-[#EA6490] transition-colors">
+                    <h2 className="text-2xl font-bold font-heading text-slate-900 mb-2 group-hover:text-[#EA6490] transition-colors">
                       {doctor.name}
-                    </h3>
+                    </h2>
                     <div className="flex items-center gap-2 mb-4">
                        <FaPlus size={10} className="text-[#4CA6AE]" />
                        <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">

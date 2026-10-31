@@ -51,7 +51,7 @@ export default async function ContactUs() {
                 <div className="w-16 h-16 rounded-full bg-[#EA6490]/5 flex items-center justify-center text-[#EA6490] mb-6 group-hover:bg-[#EA6490] group-hover:text-white transition-all duration-300">
                   {React.cloneElement(item.icon, { size: 32 })}
                 </div>
-                <h4 className="text-[16px] font-black uppercase tracking-[0.2em] text-[#EA6490] mb-2">{item.label}</h4>
+                <h3 className="text-[16px] font-black uppercase tracking-[0.2em] text-[#EA6490] mb-2">{item.label}</h3>
                 {Array.isArray(item.value) ? item.value.map((val, idx) => (
                   <p key={idx} className="font-bold text-gray-900">{val}</p>
                 )) : (

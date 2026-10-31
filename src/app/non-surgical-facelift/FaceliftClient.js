@@ -233,7 +233,7 @@ export default function FaceliftClient() {
                     {item.icon}
                   </div>
                   <div className="space-y-3">
-                    <h4 className="font-bold text-slate-900 text-xl">{item.title}</h4>
+                    <h3 className="font-bold text-slate-900 text-xl">{item.title}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed font-medium">
                       {item.desc}
                     </p>
@@ -272,7 +272,7 @@ export default function FaceliftClient() {
                         {reason.icon}
                       </div>
                       <div className="space-y-1">
-                        <h4 className="font-bold text-slate-900 text-xl">{reason.title}</h4>
+                        <h3 className="font-bold text-slate-900 text-xl">{reason.title}</h3>
                         <p className="text-slate-600 font-medium leading-relaxed">{reason.desc}</p>
                       </div>
                     </li>
@@ -300,9 +300,9 @@ export default function FaceliftClient() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* IDEAL CANDIDATES */}
                 <div className="p-8 rounded-[2rem] bg-emerald-50 border border-emerald-100 space-y-6">
-                  <h4 className="font-bold text-emerald-900 text-xl flex items-center gap-3">
+                  <h3 className="font-bold text-emerald-900 text-xl flex items-center gap-3">
                     <FaCheckCircle className="text-emerald-500" /> Ideal Candidates
-                  </h4>
+                  </h3>
                   <ul className="space-y-3 text-emerald-800 font-medium text-sm leading-relaxed">
                     <li>• Sagging skin or aging jowls</li>
                     <li>• Shadows near the eyes</li>
@@ -314,9 +314,9 @@ export default function FaceliftClient() {
 
                 {/* WHO SHOULD AVOID */}
                 <div className="p-8 rounded-[2rem] bg-rose-50 border border-rose-100 space-y-6">
-                  <h4 className="font-bold text-rose-900 text-xl flex items-center gap-3">
+                  <h3 className="font-bold text-rose-900 text-xl flex items-center gap-3">
                     <FaShieldAlt className="text-rose-500" /> When to Stay Away
-                  </h4>
+                  </h3>
                   <ul className="space-y-3 text-rose-800 font-medium text-sm leading-relaxed">
                     <li>• Active acne or Cold sores</li>
                     <li>• Psoriasis or Eczema</li>
@@ -372,7 +372,7 @@ export default function FaceliftClient() {
                   </div>
                   
                   <div className="mt-10 pt-8 border-t border-slate-50">
-                    <h4 className="font-bold text-slate-900 text-lg">{t.name}</h4>
+                    <h3 className="font-bold text-slate-900 text-lg">{t.name}</h3>
                     <p className="text-[#EA6490] text-xs font-bold tracking-widest uppercase mt-1">{t.location}</p>
                   </div>
                 </motion.div>

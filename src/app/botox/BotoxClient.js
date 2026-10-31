@@ -209,7 +209,7 @@ export default function BotoxClient() {
                 <div className="w-16 h-16 rounded-2xl bg-slate-900 text-[#EA6490] flex items-center justify-center mb-8 text-2xl shadow-lg transition-transform group-hover:rotate-6">
                   {item.icon}
                 </div>
-                <h4 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h4>
+                <h3 className="font-bold text-slate-900 text-xl mb-4">{item.title}</h3>
                 <p className="text-black text-sm font-medium leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
@@ -239,7 +239,7 @@ export default function BotoxClient() {
                 </div>
                 <p className="text-black text-lg italic font-medium leading-relaxed mb-8">“{item.text}”</p>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xl">{item.name}</h4>
+                  <p className="font-bold text-slate-900 text-xl">{item.name}</p>
                   <p className="text-[#EA6490] font-bold text-sm uppercase tracking-widest mt-1">{item.location}</p>
                 </div>
               </motion.div>

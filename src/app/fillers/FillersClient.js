@@ -271,7 +271,7 @@ export default function FillersClient() {
                   </div>
                   <div className="space-y-4">
                     <div>
-                      <h4 className="text-[#EA6490] text-xs font-black uppercase tracking-widest mb-1">{benefit.subtitle}</h4>
+                      <h3 className="text-[#EA6490] text-xs font-black uppercase tracking-widest mb-1">{benefit.subtitle}</h3>
                       <h3 className="text-2xl font-bold text-slate-900 leading-tight">{benefit.title}</h3>
                     </div>
                     <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
@@ -324,7 +324,7 @@ export default function FillersClient() {
                     </p>
                   </div>
                   <div className="mt-10 pt-8 border-t border-slate-50">
-                    <h4 className="font-bold text-slate-900 text-lg">{t.name}</h4>
+                    <h3 className="font-bold text-slate-900 text-lg">{t.name}</h3>
                     <p className="text-[#EA6490] text-xs font-bold tracking-widest uppercase mt-1">{t.location}</p>
                   </div>
                 </motion.div>
