@@ -102,7 +102,62 @@ export default function LaserHairRemovalClient() {
           </div>
         </section>
 
-        {/* SECTION 3: HOW IT WORKS (TEXT ONLY - CENTERED) */}
+        {/* SECTION 3: SMOOTH HAIR-FREE SKIN & COST (SIDE-BY-SIDE) */}
+        <section className="py-12 border-t border-slate-100">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="relative aspect-[4/3] lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border border-slate-100 lg:sticky lg:top-32 order-2 lg:order-1">
+              <Image
+                src="/skin-related/skina.avif"
+                fill
+                className="object-cover"
+                alt="Laser Hair Removal Cost and Experience in Ludhiana"
+              />
+            </div>
+
+            <div className="space-y-8 order-1 lg:order-2">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-[45px] font-bold text-slate-900 leading-[1.2]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                  It's your Time To experience smooth, hair-free skin with <span className="text-[#EA6490]">laser hair removal in Ludhiana</span> by Puri Skin
+                </h2>
+                <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
+              </div>
+
+              <div className="space-y-6 text-black font-medium text-lg leading-[1.8]">
+                <p>
+                  We all need hair removal methods that effectively get the job done, without causing ingrown hair, pigmentation and prolonging new growth. The best way to go about it is laser hair removal in Ludhiana, a technique that aims at retarding hair follicle growth, which results in slower hair growth in the future, hence making hair removal results last longer so that you can experience smooth, hair-free skin.
+                </p>
+                <p>
+                  Laser hair removal cost in Ludhiana depends on the body part that needs hair removal and the area to be covered, which is explicitly discussed before the process.
+                </p>
+              </div>
+
+              {/* Highlight Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
+                    <FaCheckCircle />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-base mb-1">No Ingrown Hair or Pigmentation</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                    Eliminates razor bumps and post-waxing dark spots permanently.
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center mb-3 text-lg shadow-sm">
+                    <FaShieldAlt />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-base mb-1">Tailored Cost Structure</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                    Transparent pricing based on targeted body area and custom session count.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: HOW IT WORKS (TEXT ONLY - CENTERED) */}
         <section className="py-10 border-t border-slate-100">
           <div className="max-w-6xl mx-auto text-center space-y-12">
             <div className="space-y-6">
@@ -164,7 +219,7 @@ export default function LaserHairRemovalClient() {
           </div>
         </section>
 
-        {/* SECTION 4: BENEFITS (HYBRID: HEADER -> IMAGE+GRID ROW -> BOTTOM GRID) */}
+        {/* SECTION 5: BENEFITS (HYBRID: HEADER -> IMAGE+GRID ROW -> BOTTOM GRID) */}
         <section className="py-10 border-t border-slate-100">
           <div className="max-w-[1300px] mx-auto space-y-12">
 
@@ -279,7 +334,7 @@ export default function LaserHairRemovalClient() {
           </div>
         </section>
 
-        {/* SECTION 5: TREATABLE AREAS (NEW) */}
+        {/* SECTION 6: TREATABLE AREAS (NEW) */}
        <section className="py-12 border-t border-slate-100">
           <div className="max-w-[1300px] mx-auto space-y-12">
             <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -334,7 +389,7 @@ export default function LaserHairRemovalClient() {
           </div>
         </section>
 
-        {/* SECTION 6: TESTIMONIALS (OUR HAPPY CUSTOMERS) */}
+        {/* SECTION 7: TESTIMONIALS (OUR HAPPY CUSTOMERS) */}
         <section className="py-12 border-t border-slate-100 bg-slate-50/50">
           <div className="max-w-[1300px] mx-auto space-y-12">
             <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -400,7 +455,7 @@ export default function LaserHairRemovalClient() {
           </div>
         </section>
 
-        {/* SECTION 6: FINAL CTA */}
+        {/* SECTION 8: FINAL CTA */}
         <section className="bg-slate-900 text-white rounded-[3rem] p-8 md:p-16 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-10">
@@ -423,7 +478,7 @@ export default function LaserHairRemovalClient() {
          
 
       </div>
-      {/* SECTION 6: FAQS */}
+      {/* SECTION 9: FAQS */}
       <FAQAccordion faqs={FAQ_DATA.laserHairRemoval} title="Frequently Asked Questions" />
 
     </div>
