@@ -860,6 +860,32 @@ export const FAQ_DATA = {
       question: "Which skin treatments do you provide for a radiant glow?",
       answer: "For a radiant glow, we make sure to provide chemical peels, microneedling and laser skin treatments to enhance your skin’s natural glow."
     }
+  ],
+  drAshwajit: [
+    {
+      question: "What is your major medical specialty and scope of practice?",
+      answer: "I am a certified dermatologist and clinically focus on evidence-based treatment, advanced diagnostic approaches, and comprehensive patient care management."
+    },
+    {
+      question: "Are you open to clinical partnerships?",
+      answer: "No, currently we are not open to clinical partnerships."
+    },
+    {
+      question: "Which medical procedures and treatments are performed by you?",
+      answer: "At our clinic, various medical procedures and treatments are performed to manage skin- and hair-related problems, including laser hair removal, facial rejuvenation, melasma treatment and so on."
+    },
+    {
+      question: "What can the patients expect during initial consultation?",
+      answer: "During the initial consultation, patients go through a complete evaluation, including their past medical history and the symptoms they are dealing with."
+    },
+    {
+      question: "Are virtual treatment and telemedicine options provided by your clinic?",
+      answer: "Yes, virtual treatment and telemedicine options are provided by our clinic."
+    },
+    {
+      question: "How are the best treatment pathways determined by you for patients?",
+      answer: "Every treatment approach is designed according to the unique lifestyle, past medical history and goals of the patients. We believe in transparent communication so that patients understand the benefits and alternatives of recommended treatment approaches."
+    }
   ]
 };
 
