@@ -99,7 +99,66 @@ export default function PRPClient() {
           </div>
         </section>
 
-        {/* ── 3. THE PROCEDURE STEPS ── */}
+        {/* ── 3. HAIR LOSS & PRP TREATMENT SECTION ── */}
+        <section className="py-8 md:py-10 border-t border-slate-100">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-[4/3] lg:aspect-[4/5] lg:sticky lg:top-32 order-2 lg:order-1">
+              <Image
+                src="/hair copy/prp/med.jpg"
+                fill
+                className="object-cover"
+                alt="Hair Loss PRP Treatment in Ludhiana"
+              />
+            </div>
+
+            <div className="space-y-6 order-1 lg:order-2">
+              <div>
+                <h2 className="text-3xl md:text-[36px] font-bold text-[#1a1a1a] mb-6 leading-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                  Get Rid of Hair Loss With <span className="text-[#EA6490]">Safe and Popular PRP Treatment</span>
+                </h2>
+                <div className="w-16 h-1 bg-[#EA6490] rounded-full mb-8"></div>
+              </div>
+
+              <div className="space-y-6 text-[#333333] leading-[1.8] text-[15px] md:text-base font-medium">
+                <p>
+                  PRP, or platelet-rich plasma, is a medical procedure that is fast gaining popularity in the modern world not only because of its efficiency but also because it is a profoundly safe and quick thinning hair treatment. In recent times, many people prefer PRP Treatment in Ludhiana as a better choice over different surgical hair transplantation procedures.
+                </p>
+                <p>
+                  In this method, your blood is extracted from your body, and platelets are separated from the blood by a high-power centrifuge method. These platelets then turn into serum with hair-strengthening medications, and the serum is then injected back into the scalp, which leads to better hair growth in weeks. The PRP Treatment Cost in Ludhiana varies depending on the clinic and the technology they use.
+                </p>
+              </div>
+
+              {/* Highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-4 hover:shadow-md transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center shrink-0 shadow-sm text-lg">
+                    <FaShieldAlt />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm mb-1">Safe & Non-Surgical</h4>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      Profoundly safe thinning hair treatment preferred over surgical procedures.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-4 hover:shadow-md transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-white text-[#EA6490] flex items-center justify-center shrink-0 shadow-sm text-lg">
+                    <FaFlask />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm mb-1">Centrifuged Growth Serum</h4>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      Concentrated platelets fortified with medications for faster follicle recovery.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 4. THE PROCEDURE STEPS ── */}
         <section className="py-8 md:py-10 border-t border-slate-100">
           <div className="text-center mb-16 max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-[40px] font-bold text-slate-900" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
@@ -131,7 +190,7 @@ export default function PRPClient() {
           </div>
         </section>
 
-        {/* ── 4. BENEFITS SECTION ── */}
+        {/* ── 5. BENEFITS SECTION ── */}
         <section className="pt-16 border-t border-slate-100">
           {/* Section Heading & Intro */}
           <div className="text-center mb-16 max-w-4xl mx-auto">
@@ -189,7 +248,7 @@ export default function PRPClient() {
           </div>
         </section>
 
-        {/* ── WHY CHOOSE US SECTION ── */}
+        {/* ── 6. WHY CHOOSE US SECTION ── */}
         <section className="pt-16 border-t border-slate-100">
           <div className="text-center mb-16 max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-[40px] font-bold text-slate-900 leading-[1.2] mb-6" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
@@ -218,7 +277,7 @@ export default function PRPClient() {
           </div>
         </section>
 
-        {/* ── 5. RESULTS SLIDER ── */}
+        {/* ── 7. RESULTS SLIDER ── */}
         <section className="pt-16 border-t border-slate-100">
           <div className="text-center mb-16 max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-[40px] font-bold text-slate-900 leading-[1.2] mb-6" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
@@ -269,7 +328,7 @@ export default function PRPClient() {
             </div>
         </section>
 
-        {/* ── TESTIMONIALS SECTION ── */}
+        {/* ── 8. TESTIMONIALS SECTION ── */}
         <section className="pt-16 border-t border-slate-100">
           <div className="text-center mb-16 max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-[40px] font-bold text-slate-900 leading-[1.2] mb-6" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
@@ -314,7 +373,7 @@ export default function PRPClient() {
       </div>
       <FAQAccordion faqs={FAQ_DATA.prp} title="Frequently Asked Questions" />
 
-       {/* ── 6. FOOTER CTA ── */}
+       {/* ── 9. FOOTER CTA ── */}
        <section className="bg-white py-24 mt-10 px-6 border-t-[8px] border-[#EA6490]">
          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
            <div>
