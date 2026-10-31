@@ -160,6 +160,16 @@ const DEFAULTS = {
     description: 'Tighten and firm your skin with Radio-Frequency (RF) therapy in Ludhiana. Safe, non-invasive skin tightening and anti-aging at Puri Skin Clinic.',
     keywords: 'radio frequency skin tightening, RF treatment Ludhiana, skin firming, anti-aging therapy',
   },
+  'dr-gurinderjit-singh': {
+    title: 'Dr. Gurinderjit Singh Puri – Expert Dermatologist & Hair Transplantation Ludhiana',
+    description: 'Dr. Gurinderjit Singh Puri is the Chief Dermatologist & founder of Puri Skin Clinic, Ludhiana, with over 35 years of clinical excellence in dermatology and hair transplantation.',
+    keywords: 'Dr Gurinderjit Singh Puri, dermatologist Ludhiana, hair transplant Ludhiana, Puri Skin Clinic',
+  },
+  'dr-ashwajit-singh': {
+    title: 'Dr. Ashwajit Singh – Skin & Aesthetic Dermatologist Ludhiana | Puri Skin Clinic',
+    description: 'Dr. Ashwajit Singh is an expert dermatologist at Puri Skin Clinic, Ludhiana, specializing in clinical dermatology, laser procedures, and aesthetic skin treatments.',
+    keywords: 'Dr Ashwajit Singh, dermatologist Ludhiana, skin specialist Ludhiana, Puri Skin Clinic',
+  },
 };
 
 /**

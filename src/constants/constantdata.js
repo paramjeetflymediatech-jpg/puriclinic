@@ -834,6 +834,32 @@ export const FAQ_DATA = {
       question: "Do skin creams that are applied to remove the dead skin cells have effects on my face?",
       answer: "They have both negative and positive effects; they only need to be used in the correct proportion to produce satisfactory results."
     }
+  ],
+  drGurinderjit: [
+    {
+      question: "Which specialties are associated with Dr. Gurinderjit Singh Puri in cosmetic issues?",
+      answer: "Addressing different skin conditions such as acne, cystic acne, along with melasma, psoriasis and eczema are his specialties. In addition to this, providing effective skin treatment solutions such as laser treatment, chemical peels, wart removal and melasma treatment is also included in this specialty, providing a natural and radiant skin glow."
+    },
+    {
+      question: "Does he charge any consultation fee on the first visit?",
+      answer: "Yes, the consultation fees to get the right guidance from the experts start at Rs. 600 at Puri Skin Clinic, including access to an expert dermatologist."
+    },
+    {
+      question: "Are skin treatments expensive in Ludhiana?",
+      answer: "Skin treatments in Ludhiana start at a lower price; further, the cost varies according to the specialized or advanced skin treatments such as laser therapies."
+    },
+    {
+      question: "How to get in contact with Dr. Gurinderjit Singh Puri?",
+      answer: "You can simply contact him on his phone number or visit his clinic, Puri Skin Clinic near Pakhowal Road in Ludhiana, to get better skin care guidance."
+    },
+    {
+      question: "Do you recommend skin treatment at first visit only?",
+      answer: "No, we make sure to completely understand your skin condition and provide you with gentle skin care management instead of jumping to heavy skin treatments."
+    },
+    {
+      question: "Which skin treatments do you provide for a radiant glow?",
+      answer: "For a radiant glow, we make sure to provide chemical peels, microneedling and laser skin treatments to enhance your skin’s natural glow."
+    }
   ]
 };
 

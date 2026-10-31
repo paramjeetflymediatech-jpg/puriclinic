@@ -1,277 +1,406 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaChevronRight, FaPlayCircle } from 'react-icons/fa';
+import {
+  FaChevronRight,
+  FaAward,
+  FaUserMd,
+  FaGraduationCap,
+  FaCertificate,
+  FaPhoneAlt,
+  FaCalendarCheck,
+  FaCheckCircle,
+  FaStar,
+  FaMapMarkerAlt,
+  FaBookOpen,
+} from 'react-icons/fa';
 import { getPageSeo } from '@/lib/seo';
 import JsonLd from '@/components/Seo/JsonLd';
+import FAQSchema from '@/components/Seo/FAQSchema';
+import FAQAccordion from '@/components/FAQAccordion/FAQAccordion';
+import { FAQ_DATA } from '@/constants/constantdata';
 
 export async function generateMetadata() {
   return getPageSeo('dr-gurinderjit-singh');
 }
 
 export default async function DrGurinderjitSingh() {
-    const seoData = await getPageSeo('dr-gurinderjit-singh');
+  const seoData = await getPageSeo('dr-gurinderjit-singh');
 
-    return (
-        <div className="bg-white min-h-screen">
-            <JsonLd schema={seoData.schema} />
+  const doctorSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Physician',
+    name: 'Dr. Gurinderjit Singh Puri',
+    jobTitle: 'Founder & Chief Dermatologist',
+    image: 'https://puriskinclinic.com/doctors/dr-gurinderjit-singh/de3.avif',
+    description:
+      'Foremost expert in dermatology and hair transplantation with over 38 years of experience. Founder and Chief Dermatologist at Puri Skin Clinic, Ludhiana.',
+    medicalSpecialty: [
+      'Dermatology',
+      'Hair Transplantation',
+      'Cosmetic Dermatology',
+      'Venereology',
+    ],
+    worksFor: {
+      '@type': 'MedicalClinic',
+      name: 'Puri Skin Clinic',
+      url: 'https://puriskinclinic.com',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '77, Vishal Nagar Ext, Pakhowal Road',
+      addressLocality: 'Ludhiana',
+      addressRegion: 'Punjab',
+      postalCode: '141013',
+      addressCountry: 'IN',
+    },
+    telephone: '+91-9876170054',
+    priceRange: '₹600 - ₹150000',
+  };
 
-            {/* ─── HERO BANNER SECTION ─── */}
-            <div className="container py-10">
-                <div className="relative w-full h-[180px] md:h-[250px] rounded-[2.5rem] overflow-hidden flex items-center justify-start p-6 md:p-12 lg:p-20">
-                    <Image
-                        src="/dermatology-3.jpg"
-                        alt="Dr Gurinderjit Singh Puri"
-                        fill
-                        priority
-                        className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/40 "></div>
-                    <div className="relative z-10 backdrop-blur-md px-12 py-8 text-left text-white">
-                        <h3 className="text-3xl md:text-4xl font-heading mb-4">Dr Gurinderjit Singh Puri</h3>
-                        <div className="flex items-center justify-start gap-2 text-sm font-medium">
-                            <Link href="/" className="hover:text-[#EA6490] transition-colors flex items-center gap-2">
-                                Home
-                            </Link>
-                            <FaChevronRight className="text-white/40 text-[16px]" />
-                            <span className="text-white/80">Dr Gurinderjit Singh Puri</span>
-                        </div>
-                    </div>
+  return (
+    <div className="bg-white min-h-screen text-slate-800" style={{ fontFamily: "var(--font-nunito-sans), 'Nunito Sans', sans-serif" }}>
+      {seoData.schema ? <JsonLd schema={seoData.schema} /> : <JsonLd schema={doctorSchema} />}
+      <FAQSchema faqs={FAQ_DATA.drGurinderjit} />
+
+      {/* ─── HERO BANNER SECTION ─── */}
+      <div className="container py-10">
+        <div className="relative w-full h-[180px] md:h-[240px] rounded-[2.5rem] overflow-hidden flex items-center justify-start p-6 md:p-12 lg:p-16">
+          <Image
+            src="/dermatology-3.jpg"
+            alt="Dr Gurinderjit Singh Puri - Dermatology & Hair Transplantation"
+            fill
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-slate-900/60"></div>
+          <div className="relative z-10 text-left text-white space-y-3">
+            <span className="inline-block px-4 py-1 rounded-full bg-[#EA6490] text-white text-[11px] font-black uppercase tracking-widest">
+              Chief Dermatologist & Founder
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              Dr. Gurinderjit Singh Puri
+            </h2>
+            <div className="flex items-center justify-start gap-2 text-sm font-medium text-white/90">
+              <Link href="/" className="hover:text-[#EA6490] transition-colors">
+                Home
+              </Link>
+              <FaChevronRight className="text-white/40 text-xs" />
+              <Link href="/doctors/" className="hover:text-[#EA6490] transition-colors">
+                Doctors
+              </Link>
+              <FaChevronRight className="text-white/40 text-xs" />
+              <span className="text-[#EA6490] font-bold">Dr. Gurinderjit Singh Puri</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── MAIN CONTENT SECTION ─── */}
+      <section className="py-8 md:py-16">
+        <div className="container px-6 max-w-[1300px] mx-auto">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+
+            {/* Left Column: Comprehensive Bio & Journey */}
+            <div className="lg:w-[65%] w-full space-y-12 order-2 lg:order-1">
+
+              {/* H1 SECTION */}
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <span className="inline-block px-3.5 py-1 bg-[#EA6490]/10 text-[#EA6490] rounded-full text-xs font-black uppercase tracking-widest">
+                    38+ Years of Clinical Excellence
+                  </span>
+                  <h1
+                    className="text-3xl md:text-4xl lg:text-[44px] font-bold text-slate-900 leading-[1.2]"
+                    style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                  >
+                    Dr. Gurinderjit Singh Puri –{' '}
+                    <span className="text-[#EA6490]">
+                      Your Go-To Expert For Dermatology & Hair Transplantation
+                    </span>
+                  </h1>
+                  <div className="w-20 h-1.5 bg-[#EA6490] rounded-full"></div>
                 </div>
+
+                <div className="text-black font-medium text-lg leading-[1.8] space-y-6">
+                  <p>
+                    As the foremost expert in the field of dermatology and hair transplantation, <strong>Dr. Gurinderjit Singh Puri</strong> is the pinnacle of the same industry. Due to his consistent effort in providing skin treatment solutions and hair transplantation services to thousands of patients, he has been renowned as the <strong>Chief Dermatologist and founder of Puri Skin Clinic, Ludhiana</strong>.
+                  </p>
+                  <p>
+                    With <strong>over 35 years of experience</strong>, he has developed the skill of analyzing skin conditions, whether they are acute or chronic, thus providing the right treatment solutions. The same goes for hair transplantation techniques in terms of providing appropriate guidance to the candidates who are planning to undergo it, with the actual facts in terms of successful outcomes so that they can choose what is right for themselves.
+                  </p>
+                  <p>
+                    One of the key attributes of Dr. Gurinderjit Singh Puri is his diverse and effective contributions in the field of dermatology and hair transplantation, and his balanced approach towards practical and theoretical knowledge about skin conditions and hair transplantation.
+                  </p>
+                </div>
+              </div>
+
+              {/* H2 SECTION: CREDENTIALS */}
+              <div className="space-y-6 pt-6 border-t border-slate-100">
+                <div className="space-y-3">
+                  <h2
+                    className="text-2xl md:text-3xl lg:text-[36px] font-bold text-slate-900 leading-[1.2]"
+                    style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                  >
+                    Let’s Get Into The <span className="text-[#EA6490]">Depth Of His Credentials</span>
+                  </h2>
+                  <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
+                </div>
+
+                <div className="text-black font-medium text-lg leading-[1.8] space-y-6">
+                  <p>
+                    Being proficient in the field of dermatology and hair transplantation requires profound knowledge and higher qualifications in the same field. Dr. Gurinderjit Singh Puri’s qualifications include <strong>MBBS, MD in Dermatology, Venereology and Leprosy</strong>. His qualifications establish a significant record of his capability in completing simple to complex skin treatments and hands-on experience in performing hair transplantation surgery.
+                  </p>
+                  <p>
+                    Under the <strong>Medical Registration of 23344</strong>, he has been serving for <strong>more than 38 years</strong> in helping thousands of patients achieve a radiant glow along with a more natural look through hair transplantation.
+                  </p>
+                </div>
+
+                {/* Credentials Quick Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4">
+                  <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-[#EA6490]/30 transition-all flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center text-xl flex-shrink-0">
+                      <FaGraduationCap />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-base">Higher Qualifications</h4>
+                      <p className="text-sm text-slate-600 mt-1">MBBS, MD (Dermatology, Venereology & Leprosy)</p>
+                    </div>
+                  </div>
+
+                  <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-[#EA6490]/30 transition-all flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center text-xl flex-shrink-0">
+                      <FaCertificate />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-base">Medical Registration</h4>
+                      <p className="text-sm text-slate-600 mt-1">PMC / MCI Registration No. 23344</p>
+                    </div>
+                  </div>
+
+                  <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-[#EA6490]/30 transition-all flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center text-xl flex-shrink-0">
+                      <FaAward />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-base">38+ Years of Service</h4>
+                      <p className="text-sm text-slate-600 mt-1">Pioneered clinical skin and hair restoration since 1988</p>
+                    </div>
+                  </div>
+
+                  <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-[#EA6490]/30 transition-all flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-[#EA6490]/10 text-[#EA6490] flex items-center justify-center text-xl flex-shrink-0">
+                      <FaUserMd />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-base">Founder & Chief</h4>
+                      <p className="text-sm text-slate-600 mt-1">Leading Puri Skin Clinic with patient-first ethics</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* H3 SECTION: PROFESSIONAL JOURNEY */}
+              <div className="space-y-6 pt-6 border-t border-slate-100">
+                <div className="space-y-3">
+                  <h3
+                    className="text-2xl md:text-3xl lg:text-[34px] font-bold text-slate-900 leading-[1.2]"
+                    style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                  >
+                    Get Along Through <span className="text-[#EA6490]">His Professional Journey</span>
+                  </h3>
+                  <div className="w-16 h-1 bg-[#EA6490] rounded-full"></div>
+                </div>
+
+                <div className="text-black font-medium text-lg leading-[1.8] space-y-6">
+                  <p>
+                    Being highly intellectual in understanding the diversity of skin problems and hair transplantation is his real tour de force. When the topic is about his great achievement, then his great contribution in <strong>bringing the first instance of hair transplantation methodology in 1988</strong> remains at the top. Due to his immense contribution to hair transplant techniques, his guidance and strategies are still followed by many with the aim of better outcomes.
+                  </p>
+                  <p>
+                    Most significantly, at <strong>Mohandai Oswal Hospital in Ludhiana</strong>, he has even developed his department of Dermato-Venereology and Hair Transplantation, reflecting a sharp turning point in his career and giving him huge recognition and appreciation.
+                  </p>
+                  <p>
+                    His tremendous contribution in the hair transplantation field includes his <strong>introduction of Follicular Unit Extraction (FUE)</strong>, showcasing his precision and resulting in a natural-looking hair appearance for thousands of individuals.
+                  </p>
+                  <p>
+                    The <strong>National Conference for Cutaneous Surgeons at PGI, Chandigarh</strong>, the <strong>Regional Conference of Rajasthan in Kota</strong>, and the <strong>Annual Conference of the Cosmetological Society of India, Mumbai</strong>, have warmly invited him to share his valuable insights and knowledge. Being the <strong>founding member of the Association of Cutaneous Surgeons of India (ACSI)</strong>, he has achieved strong and remarkable success.
+                  </p>
+                  <p>
+                    Being actively and smartly involved in gaining enough knowledge about rising skin conditions showcases his sincere approach towards addressing your cosmetic issues. This is the reason for becoming a <strong>lifetime member of the Indian Association of Dermatologists, Leprologists and Venereologists (IADVL No. LM/P/1627)</strong>, as well as an esteemed member of the <strong>Cosmetic Dermatological Society of India</strong> and the <strong>American Society for Dermatologic Surgery</strong>.
+                  </p>
+                  <p>
+                    Dr. Puri’s intellectual prowess also expands to include his published Punjabi book, <em><strong>Naroi Chamdi</strong></em>, which details the complexities of dermatology and preventive skin care in a manner accessible to the general public.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
-            {/* ─── MAIN CONTENT SECTION ─── */}
-            <section className="py-12 md:py-20">
-                <div className="container px-6 max-w-[1200px] mx-auto">
-                    <div className="flex flex-col lg:flex-row gap-12 items-start">
-
-                        {/* Left Column: Bio Text */}
-                        <div className="lg:w-[65%] space-y-8">
-                            <h1 className="text-4xl md:text-5xl font-heading font-black text-slate-900 leading-[1.1]">
-                                Dr Gurinderjit Singh Puri
-                            </h1>
-
-                            <div className="prose prose-slate prose-lg max-w-none text-slate-600 leading-relaxed font-light space-y-8">
-                                <p>
-                                    Dr Gurinderjit Singh Puri stands as a pillar of innovation in the field of dermatology and hair transplantation in the entirety of North India. His career spans over 35 years of experience, during which he brought forth the first instance of hair transplantation methodology to North India in 1988. He also marked a significant milestone in his career by establishing the Department of Dermato-Venereology and Hair Transplantation at Mohandai Oswal Hospital, Ludhiana. Dr Puri’s earlier contribution to the world of hair transplant laid down the foundation of numerous hair transplant practices that are still practiced in the country to this day. Dr Puri has also contributed significantly to the academia of dermatology by presenting innumerable research papers at various national and international conferences throughout the years.
-                                </p>
-                                <p>
-                                    With a career that spans several decades, Dr Puri has been a pioneer for change and advancement since day one. He was one of the first few surgeons to adopt the FUE hair transplant technique, which offers a much more natural look as far as hair transplant results are concerned.
-                                </p>
-                                <p>
-                                    The FUE hair transplant technique was also introduced by him in 1998 as the follicular unit extraction. This technique ensures that you are able to achieve natural-looking results with a discreet approach. Dr Puri’s ability to conduct hair transplant procedures with extreme detail and precision has earned him a place among the greats of the field.
-                                </p>
-                                <p>
-                                    Dr Gurinderjit Singh Puri’s contributions to the dermatology field extend beyond the practical or theoretical approach. He is often invited to conferences to offer his professional and highly academic insight to the field. Dr Puri has been invited to give guest lectures at many highly acclaimed conferences, including the National Conference of Cutaneous Surgeons at PGI Chandigarh, the Annual Conference of the Cosmetological Society of India in Mumbai, and the Regional Conference of Rajasthan in Kota. His talks have been met with widespread acclaim and have served as a source of inspiration for many up-and-coming surgeons in the field. Dr Puri’s professional prowess expands to include a Punjabi book, Naroi Chamdi, which details the issues of dermatology in a way accessible to the general public.
-                                </p>
-                                <p>
-                                    Dr Gurinderjit Singh Puri is also associated with several esteemed organisations in the field of dermatology. He is a lifetime member of the Indian Association of Dermatologists, Venereologists, and Leprologists (IADVL No. LM/P/1627), while also being a founding member of the Association of Cutaneous Surgeons of India. Dr Puri is also a part of the Cosmetic Dermatological Society of India. Overseas, Dr Puri is a registered member of the American Society for Dermatologic Surgery. Equipped with his Medical Council Registration No. EP 23344, Dr Gurinderjit Singh Puri aims to ensure that each patient is provided with quality care and precise treatment, no matter their illness or issue.
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Right Column: Integrated Profile Card */}
-                        <div className="lg:w-[35%] w-full order-first lg:order-last lg:sticky lg:top-32 mb-12 lg:mb-0">
-                            {/* Mobile Integrated Card (Visible on mobile only) */}
-                            <div className="lg:hidden bg-white rounded-[2rem] p-6 shadow-xl border border-slate-50 flex items-center gap-6">
-                                <div className="relative w-28 h-28 rounded-2xl overflow-hidden shadow-md flex-shrink-0 border-2 border-white">
-                                    <Image
-                                        src="/doctors/dr-gurinderjit-singh/de3.avif"
-                                        alt="Dr. Gurinderjit Singh Puri"
-                                        fill
-                                        className="object-cover object-top"
-                                    />
-                                </div>
-                                <div className="flex-grow">
-                                    <p className="text-[#EA6490] text-[10px] font-black uppercase tracking-widest mb-1">Founder & Chief</p>
-                                    <h2 className="text-xl font-heading font-black text-slate-900 leading-tight">Dr Gurinderjit Singh</h2>
-                                    <p className="text-slate-500 text-xs mt-1 font-medium italic">MD (Dermatology)</p>
-                                    <div className="mt-3 flex gap-3">
-                                        <span className="px-2 py-1 bg-slate-50 text-slate-600 text-[10px] rounded-md border border-slate-100 font-bold">35+ Yrs Exp</span>
-                                        <span className="px-2 py-1 bg-[#EA6490]/5 text-[#EA6490] text-[10px] rounded-md border border-[#EA6490]/10 font-bold">Hair Transplant</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Desktop Layout (Hidden on mobile) */}
-                            <div className="hidden lg:block space-y-8">
-                                <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] h-[450px]">
-                                    <Image
-                                        src="/doctors/dr-gurinderjit-singh/de3.avif"
-                                        alt="Dr. Gurinderjit Singh Puri"
-                                        fill
-                                        className="object-cover object-top"
-                                    />
-                                </div>
-
-                                <div className="bg-[#EA6490] text-white p-8 rounded-[2rem] shadow-xl">
-                                    <p className="text-[10px] uppercase tracking-widest font-black mb-2 opacity-80">Founder & Chief Dermatologist</p>
-                                    <p className="text-xl font-heading font-black leading-tight">MD (Dermatology)</p>
-                                    <div className="mt-6 pt-6 border-t border-white/20 space-y-4">
-                                        <div className="flex items-center justify-between text-sm">
-                                            <span className="opacity-70 font-medium">Experience:</span>
-                                            <span className="font-bold">35+ Years</span>
-                                        </div>
-                                        <div className="flex items-center justify-between text-sm">
-                                            <span className="opacity-70 font-medium">Speciality:</span>
-                                            <span className="font-bold">Hair Transplant</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            {/* Right Column: Integrated Profile Card (Desktop Sticky & Mobile) */}
+            <div className="lg:w-[35%] w-full order-1 lg:order-2 lg:sticky lg:top-32 space-y-6">
+              
+              {/* Desktop Sticky Card */}
+              <div className="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl border border-slate-100 space-y-6">
+                <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-inner border border-slate-100">
+                  <Image
+                    src="/doctors/dr-gurinderjit-singh/de3.avif"
+                    alt="Dr. Gurinderjit Singh Puri"
+                    fill
+                    className="object-cover object-top"
+                    priority
+                  />
+                  <div className="absolute top-4 right-4 bg-[#EA6490] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg">
+                    38+ Yrs Exp
+                  </div>
                 </div>
-            </section>
 
-            {/* ─── ACHIEVEMENTS GALLERY SECTION (Local Images) ─── */}
-            <section className="py-20 bg-slate-50">
-                <div className="container px-6 max-w-[1200px] mx-auto">
-                    <div className="text-center mb-16 space-y-4">
-                        <span className="inline-block px-4 py-1.5 bg-[#EA6490]/10 text-[#EA6490] rounded-full text-[10px] font-black uppercase tracking-widest">
-                            Success Stories & Awards
-                        </span>
-                        <h2 className="text-3xl md:text-5xl font-heading font-black text-slate-900">
-                            Achievements <span className="text-[#EA6490]">Gallery</span>
-                        </h2>
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-[#EA6490] text-xs font-black uppercase tracking-widest">
+                      Founder & Chief Dermatologist
+                    </span>
+                    <h3 className="text-2xl font-bold text-slate-900 mt-1" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                      Dr. Gurinderjit Singh Puri
+                    </h3>
+                    <p className="text-slate-600 text-sm font-semibold mt-1">
+                      MBBS, MD (Dermatology, Venereology & Leprosy)
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 space-y-3 text-sm">
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-500 font-medium">Medical Reg:</span>
+                      <span className="text-slate-900 font-bold">PMC No. 23344</span>
                     </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                        {/* Gallery Item 1 */}
-                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-1.jpeg"
-                                alt="Achievement 1"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p className="text-white font-bold text-sm">Award Ceremony for Clinical Excellence</p>
-                            </div>
-                        </div>
-
-                        {/* Gallery Item 2 - Video Placeholder */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-slate-900">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-2.jpeg"
-                                alt="Achievement 2"
-                                fill
-                                className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
-                                <p className="text-white font-bold text-sm">FUE Hair Transplant Workshop</p>
-                            </div>
-                        </div>
-
-                        {/* Gallery Item 3 */}
-                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-3.jpeg"
-                                alt="Achievement 3"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p className="text-white font-bold text-sm">International Dermatology Seminar</p>
-                            </div>
-                        </div>
-
-                        {/* Gallery Item 4 */}
-                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-4.jpeg"
-                                alt="Achievement 4"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p className="text-white font-bold text-sm">Pioneering Work in Hair Restoration</p>
-                            </div>
-                        </div>
-
-                        {/* Gallery Item 5 - Video Placeholder */}
-                        <div className="group relative rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-slate-900">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-5.jpeg"
-                                alt="Achievement 5"
-                                fill
-                                className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
-                                <p className="text-white font-bold text-sm">Guest Lecture at PGI Chandigarh</p>
-                            </div>
-                        </div>
-
-                        {/* Gallery Item 6 */}
-                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-6.jpeg"
-                                alt="Achievement 6"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p className="text-white font-bold text-sm">Community Health Recognition</p>
-                            </div>
-                        </div>
-                        {/* Gallery Item 6 */}
-                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-7.jpeg"
-                                alt="Achievement 6"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p className="text-white font-bold text-sm">Community Health Recognition</p>
-                            </div>
-                        </div>
-                        {/* Gallery Item 6 */}
-                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-8.jpeg"
-                                alt="Achievement 6"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p className="text-white font-bold text-sm">Community Health Recognition</p>
-                            </div>
-                        </div>
-                        {/* Gallery Item 6 */}
-                        <div className="group relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl aspect-square bg-white">
-                            <Image
-                                src="/doctors/dr-gurinderjit-singh/Image-9.jpeg"
-                                alt="Achievement 6"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <p className="text-white font-bold text-sm">Community Health Recognition</p>
-                            </div>
-                        </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-500 font-medium">Specialty:</span>
+                      <span className="text-slate-900 font-bold">Dermatology & Hair Transplant</span>
                     </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-500 font-medium">First Consultation:</span>
+                      <span className="text-[#EA6490] font-bold">Starts at ₹600</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-500 font-medium">Location:</span>
+                      <span className="text-slate-900 font-bold">Pakhowal Road, Ludhiana</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-2">
+                    <Link
+                      href="/book-appointment/"
+                      className="w-full inline-flex items-center justify-center gap-3 bg-[#EA6490] text-white py-4 px-6 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-slate-900 transition-all shadow-lg active:scale-95"
+                    >
+                      <FaCalendarCheck /> Book Consultation
+                    </Link>
+                    <a
+                      href="tel:+919876170054"
+                      className="w-full inline-flex items-center justify-center gap-3 bg-slate-100 text-slate-800 py-3.5 px-6 rounded-full font-bold text-xs hover:bg-slate-200 transition-all"
+                    >
+                      <FaPhoneAlt className="text-[#EA6490]" /> Call +91-9876170054
+                    </a>
+                  </div>
                 </div>
-            </section>
+              </div>
 
-            {/* ─── CALL TO ACTION ─── */}
-            {/* <section className="py-20 bg-white">
-                <div className="container px-6 max-w-[1000px] mx-auto text-center">
-                    <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-2xl">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#EA6490]/20 blur-[100px] -mr-32 -mt-32"></div>
-                        <div className="relative z-10">
-                            <h2 className="text-3xl md:text-5xl font-heading font-black text-white mb-8">
-                                Consult with the <span className="text-[#EA6490]">Pioneer</span> Himself
-                            </h2>
-                            <Link href="/book-appointment/" className="inline-block bg-[#EA6490] text-white px-12 py-5 rounded-full font-black uppercase tracking-[0.2em] text-xs hover:bg-white hover:text-[#EA6490] transition-all duration-500 shadow-xl shadow-[#EA6490]/20">
-                                Book Your Consultation
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
+            </div>
 
+          </div>
         </div>
-    );
+      </section>
+
+      {/* ─── ACHIEVEMENTS GALLERY SECTION ─── */}
+      <section className="py-20 bg-slate-50 border-t border-slate-100">
+        <div className="container px-6 max-w-[1300px] mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="inline-block px-4 py-1.5 bg-[#EA6490]/10 text-[#EA6490] rounded-full text-[10px] font-black uppercase tracking-widest">
+              Success Stories & Honors
+            </span>
+            <h2
+              className="text-3xl md:text-5xl font-bold text-slate-900"
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+            >
+              Achievements <span className="text-[#EA6490]">Gallery</span>
+            </h2>
+            <div className="w-16 h-1 bg-[#EA6490] rounded-full mx-auto"></div>
+            <p className="text-slate-600 max-w-2xl mx-auto text-base">
+              A glimpse into Dr. Gurinderjit Singh Puri’s decades of contributions, clinical workshops, national guest lectures, and healthcare recognitions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { src: "/doctors/dr-gurinderjit-singh/Image-1.jpeg", caption: "Award Ceremony for Clinical Excellence" },
+              { src: "/doctors/dr-gurinderjit-singh/Image-2.jpeg", caption: "FUE Hair Transplant Workshop & Demonstration" },
+              { src: "/doctors/dr-gurinderjit-singh/Image-3.jpeg", caption: "International Dermatology Seminar" },
+              { src: "/doctors/dr-gurinderjit-singh/Image-4.jpeg", caption: "Pioneering Work in Hair Restoration Since 1988" },
+              { src: "/doctors/dr-gurinderjit-singh/Image-5.jpeg", caption: "Guest Lecture at PGI Chandigarh" },
+              { src: "/doctors/dr-gurinderjit-singh/Image-6.jpeg", caption: "Annual Conference of ACSI & IADVL" },
+              { src: "/doctors/dr-gurinderjit-singh/Image-7.jpeg", caption: "Community Health & Clinical Recognition" },
+              { src: "/doctors/dr-gurinderjit-singh/Image-8.jpeg", caption: "Cutaneous Surgery Insights & Scientific Sessions" },
+              { src: "/doctors/dr-gurinderjit-singh/Image-9.jpeg", caption: "Dedicated Patient Care & Transformative Results" },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="group relative rounded-[2rem] overflow-hidden shadow-lg aspect-square bg-slate-900 border border-slate-100"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.caption}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end p-6">
+                  <p className="text-white font-bold text-sm leading-snug">
+                    {item.caption}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CALL TO ACTION BANNER ─── */}
+      <section className="py-16 bg-white">
+        <div className="container px-6 max-w-[1200px] mx-auto">
+          <div className="bg-slate-900 text-white rounded-[3rem] p-10 md:p-16 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-[#EA6490]/15 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+            <div className="relative z-10 max-w-3xl space-y-6">
+              <span className="inline-block px-4 py-1 rounded-full bg-[#EA6490] text-white text-[11px] font-black uppercase tracking-widest">
+                Personalized Skin & Hair Solutions
+              </span>
+              <h2
+                className="text-3xl md:text-5xl font-bold leading-tight"
+                style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+              >
+                Consult With The Pioneer, <br />
+                <span className="text-[#EA6490]">Dr. Gurinderjit Singh Puri</span>
+              </h2>
+              <p className="text-slate-300 text-lg leading-relaxed">
+                Whether you are dealing with chronic skin concerns, melasma, acne, or seeking natural-looking hair transplantation results, experience trusted dermatological care backed by over 38 years of proven expertise.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <Link
+                  href="/book-appointment/"
+                  className="inline-flex items-center gap-3 bg-[#EA6490] text-white px-8 py-4 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-white hover:text-slate-900 transition-all shadow-xl active:scale-95"
+                >
+                  <FaCalendarCheck /> Book Your Consultation
+                </Link>
+                <a
+                  href="tel:+919876170054"
+                  className="inline-flex items-center gap-3 bg-white/10 text-white px-8 py-4 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-white hover:text-slate-900 transition-all active:scale-95 border border-white/20"
+                >
+                  <FaPhoneAlt /> Call Clinic Directly
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ SECTION ─── */}
+      <FAQAccordion faqs={FAQ_DATA.drGurinderjit} title="Frequently Asked Questions" />
+    </div>
+  );
 }
