@@ -17,7 +17,26 @@ export async function syncDB() {
     console.log('Starting database authentication...');
     await sequelize.authenticate();
     console.log('Authentication successful. Starting sync...');
-    await sequelize.sync({ alter: true });
+
+    // Pre-sync fix: ensure existing admins do not have NULL email
+    try {
+      const [adminTables] = await sequelize.query("SHOW TABLES LIKE 'admins'");
+      if (adminTables.length > 0) {
+        const [emailCols] = await sequelize.query("SHOW COLUMNS FROM admins LIKE 'email'");
+        if (emailCols.length > 0) {
+          await sequelize.query("UPDATE admins SET email = CONCAT('admin_', id, '@puriskinclinic.com') WHERE email IS NULL OR email = ''");
+        }
+      }
+    } catch (preSyncErr) {
+      console.warn('[DB] Pre-sync admin check notice:', preSyncErr.message);
+    }
+
+    try {
+      await sequelize.sync({ alter: true });
+    } catch (syncAlterErr) {
+      console.warn('[DB] ⚠️ sequelize.sync({ alter: true }) notice, continuing with standard sync:', syncAlterErr.message);
+      await sequelize.sync();
+    }
 
     // Manual fallback for columns if alter:true missed them
     const [results] = await sequelize.query("SHOW COLUMNS FROM blogs LIKE 'meta_title'");
