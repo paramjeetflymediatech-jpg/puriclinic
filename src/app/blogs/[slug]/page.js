@@ -148,7 +148,7 @@ export default async function SingleBlog({ params }) {
                   src={blog.image_url || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800'}
                   alt={blog.title}
                   fill
-                  className="object-cover"
+                  className=""
                   priority
                 />
               </div>
