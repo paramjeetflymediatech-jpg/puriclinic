@@ -167,12 +167,22 @@ export default async function SingleBlog({ params }) {
                 __html: `
                 .blog-content h2 { font-family: var(--font-heading); font-size: 2.25rem; color: #000; margin: 3rem 0 1.5rem; font-weight: 700; border-left: 4px solid #EA6490; padding-left: 1rem; }
                 .blog-content h3 { font-family: var(--font-heading); font-size: 1.75rem; color: #000; margin: 2.5rem 0 1.25rem; font-weight: 600; }
+                .blog-content h4 { font-family: var(--font-heading); font-size: 1.35rem; color: #1e293b; margin: 2rem 0 1rem; font-weight: 600; }
                 .blog-content p { margin-bottom: 2rem; }
                 .blog-content ul, .blog-content ol { padding-left: 1.5rem; margin-bottom: 2rem; list-style-type: square; }
                 .blog-content li { margin-bottom: 0.75rem; }
                 .blog-content strong { color: #000; font-weight: 800; }
-                .blog-content blockquote { font-style: italic; border-left: 4px solid #EA6490; padding-left: 1.5rem; color: #666; margin: 2rem 0; font-size: 1.25rem; }
-                .blog-content img { border-radius: 4px; margin: 3rem auto; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+                .blog-content a { color: #EA6490; text-decoration: underline; font-weight: 600; text-underline-offset: 3px; }
+                .blog-content a:hover { color: #d4547a; }
+                .blog-content blockquote { font-style: italic; border-left: 4px solid #EA6490; padding-left: 1.5rem; color: #666; margin: 2rem 0; font-size: 1.25rem; background: #fafafa; padding: 1.5rem; border-radius: 0 1rem 1rem 0; }
+                .blog-content figure.table { margin: 2.5rem 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+                .blog-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; overflow: hidden; }
+                .blog-content th { background-color: #f8fafc; color: #0f172a; font-weight: 700; padding: 1rem; text-align: left; border: 1px solid #e2e8f0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+                .blog-content td { padding: 0.85rem 1rem; border: 1px solid #e2e8f0; color: #334155; }
+                .blog-content tr:nth-child(even) td { background-color: #fafbfd; }
+                .blog-content figure.image { margin: 2.5rem auto; text-align: center; }
+                .blog-content img { border-radius: 1rem; margin: 2rem auto; box-shadow: 0 10px 40px rgba(0,0,0,0.08); max-width: 100%; height: auto; display: block; }
+                .blog-content figcaption { text-align: center; font-size: 0.875rem; color: #64748b; font-style: italic; margin-top: 0.75rem; }
               `}} />
 
               {/* Share and Appointment Section */}
