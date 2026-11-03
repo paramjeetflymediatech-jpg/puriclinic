@@ -83,7 +83,7 @@ export default async function SingleBlog({ params }) {
               src={"/dermatology-3.jpg"}
               alt={blog.title}
               fill
-              className="object-cover -z-10 brightness-[0.45]"
+              className=" -z-10 brightness-[0.45]"
               priority
             />
 
