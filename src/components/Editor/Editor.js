@@ -18,7 +18,10 @@ import {
   FaBold,
   FaItalic,
   FaLink,
-  FaSpinner
+  FaSpinner,
+  FaPalette,
+  FaEraser,
+  FaPaintBrush
 } from 'react-icons/fa';
 
 /**
@@ -75,10 +78,117 @@ function CustomUploadAdapterPlugin(editor) {
   };
 }
 
+/**
+ * Custom Highlight / Background Color Plugin for CKEditor 5
+ * Adds support for custom background colors on inline text without version mismatch
+ */
+function CustomHighlightPlugin(editor) {
+  // 1. Allow customHighlight attribute on $text
+  editor.model.schema.extend('$text', {
+    allowAttributes: 'customHighlight'
+  });
+
+  // 2. Downcast model attribute -> view <span> with background-color style
+  editor.conversion.for('downcast').attributeToElement({
+    model: 'customHighlight',
+    view: (value, { writer }) => {
+      return writer.createAttributeElement(
+        'span',
+        {
+          style: `background-color: ${value}; padding: 0.15em 0.4em; border-radius: 0.25rem;`
+        },
+        { priority: 7 }
+      );
+    }
+  });
+
+  // 3. Upcast: convert <mark> or <span style="background-color: ..."> to model attribute
+  editor.conversion.for('upcast').elementToAttribute({
+    view: {
+      name: 'span',
+      styles: {
+        'background-color': /.+/
+      }
+    },
+    model: {
+      key: 'customHighlight',
+      value: (viewElement) => viewElement.getStyle('background-color')
+    }
+  });
+
+  editor.conversion.for('upcast').elementToAttribute({
+    view: {
+      name: 'mark'
+    },
+    model: {
+      key: 'customHighlight',
+      value: (viewElement) => viewElement.getStyle('background-color') || '#fef08a'
+    }
+  });
+}
+
+// Preset color options for text highlight
+const HIGHLIGHT_COLORS = [
+  { name: 'Yellow', color: '#fef08a', textClass: 'text-yellow-900', label: '🟡 Yellow' },
+  { name: 'Puri Pink', color: '#fce7f3', textClass: 'text-pink-900', label: '🌸 Pink' },
+  { name: 'Mint Green', color: '#dcfce7', textClass: 'text-emerald-900', label: '🌿 Mint' },
+  { name: 'Sky Blue', color: '#e0f2fe', textClass: 'text-sky-900', label: '🌊 Sky' },
+  { name: 'Lavender', color: '#f3e8ff', textClass: 'text-purple-900', label: '🟣 Purple' },
+  { name: 'Warm Amber', color: '#ffedd5', textClass: 'text-amber-900', label: '🍑 Amber' }
+];
+
+// Preset colored box containers for full content sections
+const BOX_CONTAINERS = [
+  {
+    name: 'Puri Pink Card',
+    bgColor: '#fdf2f8',
+    borderColor: '#EA6490',
+    title: '🌸 Clinical Highlight',
+    badge: 'Pink'
+  },
+  {
+    name: 'Mint Teal Card',
+    bgColor: '#f0fdfa',
+    borderColor: '#0d9488',
+    title: '🌿 Treatment Insights',
+    badge: 'Mint'
+  },
+  {
+    name: 'Sky Blue Card',
+    bgColor: '#f0f9ff',
+    borderColor: '#0284c7',
+    title: '💡 Dermatologist Advice',
+    badge: 'Blue'
+  },
+  {
+    name: 'Warm Amber Card',
+    bgColor: '#fffbeb',
+    borderColor: '#d97706',
+    title: '⚠️ Important Note & Care',
+    badge: 'Amber'
+  },
+  {
+    name: 'Lavender Card',
+    bgColor: '#faf5ff',
+    borderColor: '#9333ea',
+    title: '✨ Post-Treatment Results',
+    badge: 'Purple'
+  },
+  {
+    name: 'Neutral Slate Card',
+    bgColor: '#f8fafc',
+    borderColor: '#64748b',
+    title: '📌 Summary & Key Points',
+    badge: 'Slate'
+  }
+];
+
 const Editor = ({ value = '', onChange }) => {
   const [mode, setMode] = useState('visual'); // 'visual' | 'html'
   const [uploadingImage, setUploadingImage] = useState(false);
   const [notification, setNotification] = useState('');
+  const [customColor, setCustomColor] = useState('#fef08a');
+  const [showColorPicker, setShowColorPicker] = useState(false);
   const editorRef = useRef(null);
   const textareaRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -170,6 +280,92 @@ const Editor = ({ value = '', onChange }) => {
     }
   };
 
+  /**
+   * Apply Background Color / Highlight to text
+   * Works seamlessly in both Visual Mode (CKEditor 5) and HTML Code Mode
+   */
+  const applyBackgroundColor = (color) => {
+    if (mode === 'html') {
+      const textarea = textareaRef.current;
+      if (!textarea) return;
+      const start = textarea.selectionStart ?? 0;
+      const end = textarea.selectionEnd ?? 0;
+      const currentVal = textarea.value || '';
+      const selected = currentVal.substring(start, end) || 'highlighted text';
+
+      let replacement = '';
+      if (color) {
+        replacement = `<span style="background-color: ${color}; padding: 0.15em 0.4em; border-radius: 0.25rem;">${selected}</span>`;
+      } else {
+        // Remove background-color wrapper from the selection
+        replacement = selected.replace(
+          /<span[^>]*style="[^"]*background-color:[^"]*"[^>]*>(.*?)<\/span>/gi,
+          '$1'
+        );
+      }
+
+      const updated =
+        currentVal.substring(0, start) + replacement + currentVal.substring(end);
+      onChange(updated);
+
+      setTimeout(() => {
+        textarea.focus();
+        textarea.setSelectionRange(start, start + replacement.length);
+      }, 50);
+      showNotification(color ? 'Background color applied to HTML text!' : 'Highlight removed');
+      return;
+    }
+
+    // Visual mode (CKEditor 5)
+    const editor = editorRef.current;
+    if (!editor) return;
+
+    const model = editor.model;
+    const selection = model.document.selection;
+
+    model.change((writer) => {
+      if (selection.isCollapsed) {
+        if (color) {
+          writer.setSelectionAttribute('customHighlight', color);
+          showNotification('Background color active for upcoming text!');
+        } else {
+          writer.removeSelectionAttribute('customHighlight');
+          showNotification('Background color disabled for new text');
+        }
+      } else {
+        for (const range of selection.getRanges()) {
+          if (color) {
+            writer.setAttribute('customHighlight', color, range);
+          } else {
+            writer.removeAttribute('customHighlight', range);
+          }
+        }
+        showNotification(
+          color ? 'Background color applied to selected text!' : 'Background color cleared'
+        );
+      }
+    });
+
+    const updatedData = editor.getData();
+    onChange(updatedData);
+  };
+
+  /**
+   * Insert a full-width colored background box / card for whole sections
+   */
+  const insertColoredBox = (box) => {
+    const boxHtml = `
+<div style="background-color: ${box.bgColor}; border-left: 5px solid ${box.borderColor}; padding: 1.5rem; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+  <h4 style="margin: 0 0 0.5rem 0; color: ${box.borderColor}; font-size: 1.15rem; font-weight: 800;">${box.title}</h4>
+  <p style="margin: 0; color: #1e293b; font-size: 1rem; line-height: 1.75;">
+    Write your highlighted content here... You can describe key clinical takeaways, patient instructions, or medical procedure details.
+  </p>
+</div>`;
+
+    insertSnippet(boxHtml, boxHtml);
+    showNotification(`${box.name} inserted!`);
+  };
+
   // Quick HTML tag wrapper for HTML Code mode
   const insertTagInHtml = (openTag, closeTag = '') => {
     const textarea = textareaRef.current;
@@ -233,10 +429,11 @@ const Editor = ({ value = '', onChange }) => {
   const h4Count = (value?.match(/<h4/gi) || []).length;
   const tableCount = (value?.match(/<table/gi) || []).length;
   const imageCount = (value?.match(/<img/gi) || []).length;
+  const highlightCount = (value?.match(/background-color/gi) || []).length;
 
   return (
     <div className="ck-editor-wrapper bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm transition-all focus-within:border-[#EA6490] focus-within:ring-4 focus-within:ring-[#EA6490]/10">
-      {/* Top Header: Mode Switcher & Live SEO Stats */}
+      {/* ─── ROW 1: TOP HEADER (Mode Switcher & Live SEO Stats) ─── */}
       <div className="bg-slate-50 border-b border-slate-200 px-4 py-3 flex flex-wrap items-center justify-between gap-3">
         {/* Mode Toggle Tabs */}
         <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-slate-200 shadow-sm">
@@ -301,6 +498,13 @@ const Editor = ({ value = '', onChange }) => {
             </span>
           )}
 
+          {highlightCount > 0 && (
+            <span className="px-2.5 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 shadow-sm flex items-center gap-1">
+              <FaPaintBrush size={9} />
+              Colors: <strong>{highlightCount}</strong>
+            </span>
+          )}
+
           {tableCount > 0 && (
             <span className="px-2.5 py-1 rounded-lg bg-teal-50 border border-teal-200 text-teal-800 shadow-sm">
               📊 {tableCount} Table{tableCount > 1 ? 's' : ''}
@@ -315,12 +519,103 @@ const Editor = ({ value = '', onChange }) => {
         </div>
       </div>
 
-      {/* SEO Quick Snippet Action Bar */}
-      <div className="bg-slate-100/70 border-b border-slate-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
+      {/* ─── ROW 2: BACKGROUND COLOR & HIGHLIGHT TOOLBAR ─── */}
+      <div className="bg-white border-b border-slate-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-xs">
+        {/* Section A: Text Background Color Swatches */}
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 mr-1 flex items-center gap-1.5">
+            <FaPaintBrush className="text-[#EA6490]" size={11} />
+            Text Highlight:
+          </span>
+
+          {HIGHLIGHT_COLORS.map((item) => (
+            <button
+              key={item.color}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()} // Keeps editor selection active
+              onClick={() => applyBackgroundColor(item.color)}
+              className="px-2 py-1 rounded-lg border border-slate-200 hover:border-slate-400 text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs hover:scale-105 active:scale-95"
+              style={{ backgroundColor: item.color }}
+              title={`Highlight selected text with ${item.name}`}
+            >
+              <span className="text-slate-800 text-[11px] font-bold">{item.label}</span>
+            </button>
+          ))}
+
+          {/* Custom Color Input */}
+          <div className="relative flex items-center">
+            <label
+              onMouseDown={(e) => e.preventDefault()}
+              className="px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 text-slate-700 text-xs font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-xs"
+              title="Pick any custom background color"
+            >
+              <span
+                className="w-3.5 h-3.5 rounded-full border border-slate-300 inline-block"
+                style={{ backgroundColor: customColor }}
+              ></span>
+              <span className="text-[11px]">Custom</span>
+              <input
+                type="color"
+                value={customColor}
+                onChange={(e) => {
+                  setCustomColor(e.target.value);
+                  applyBackgroundColor(e.target.value);
+                }}
+                className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+              />
+            </label>
+          </div>
+
+          {/* Clear / Remove Highlight Button */}
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => applyBackgroundColor(null)}
+            className="px-2 py-1 rounded-lg bg-slate-50 hover:bg-rose-50 border border-slate-200 hover:border-rose-300 text-slate-600 hover:text-rose-600 text-xs font-bold transition-all flex items-center gap-1 shadow-xs"
+            title="Clear background color from selected text"
+          >
+            <FaEraser size={10} />
+            <span className="text-[11px]">Clear</span>
+          </button>
+        </div>
+
+        {/* Section B: Colored Section Boxes (Cards) */}
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 mr-1 flex items-center gap-1">
+            <FaPalette className="text-teal-600" size={11} />
+            Box Background:
+          </span>
+
+          {BOX_CONTAINERS.map((box) => (
+            <button
+              key={box.name}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => insertColoredBox(box)}
+              className="px-2.5 py-1 rounded-lg border text-xs font-bold transition-all shadow-xs hover:scale-105 active:scale-95 flex items-center gap-1.5"
+              style={{
+                backgroundColor: box.bgColor,
+                borderColor: box.borderColor,
+                color: box.borderColor
+              }}
+              title={`Insert ${box.name} with ${box.title}`}
+            >
+              <span
+                className="w-2 h-2 rounded-full inline-block"
+                style={{ backgroundColor: box.borderColor }}
+              ></span>
+              <span className="text-[11px] font-bold">{box.badge} Box</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── ROW 3: SEO QUICK SNIPPETS ACTION BAR ─── */}
+      <div className="bg-slate-100/70 border-b border-slate-200 px-4 py-2 flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 mr-1 flex items-center gap-1">
             <FaLightbulb className="text-amber-500" />
-            Quick SEO Snippets:
+            SEO Snippets:
           </span>
 
           {/* Key Takeaways Snippet */}
@@ -434,7 +729,7 @@ const Editor = ({ value = '', onChange }) => {
               insertSnippet(
                 `<div class="seo-doctor-quote" style="border: 2px dashed #4CA6AE; background-color: #f0fdfa; border-radius: 1.25rem; padding: 1.5rem; margin: 2rem 0;">
   <p style="margin: 0 0 0.75rem 0; font-style: italic; color: #134e4a; font-size: 1.05rem; line-height: 1.6;">
-    "Early diagnosis and evidence-based clinical therapy make all the difference in achieving long-term skin health without scarring or hyperpigmentation."
+    "Every skin and scalp condition requires a tailored, medical-first diagnosis before administering aesthetic therapies. That is the only guarantee of lasting results."
   </p>
   <div style="font-weight: 800; color: #0f766e; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">
     — Dr. Gurinderjit Singh Puri (Senior Dermatologist, Puri Skin Clinic)
@@ -538,10 +833,28 @@ const Editor = ({ value = '', onChange }) => {
           </button>
           <button
             type="button"
-            onClick={() => insertTagInHtml('<a href="https://puriskinclinic.com/" target="_blank" rel="noopener noreferrer">', '</a>')}
+            onClick={() =>
+              insertTagInHtml(
+                '<a href="https://puriskinclinic.com/" target="_blank" rel="noopener noreferrer">',
+                '</a>'
+              )
+            }
             className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sky-400 font-mono text-xs"
           >
             &lt;a link&gt;
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              insertTagInHtml(
+                `<span style="background-color: ${customColor}; padding: 0.15em 0.4em; border-radius: 0.25rem;">`,
+                '</span>'
+              )
+            }
+            className="px-2 py-0.5 rounded bg-amber-900/60 hover:bg-amber-800 text-amber-200 font-mono text-xs font-bold"
+            title="Wrap selected code with custom background color span"
+          >
+            &lt;span bg-color&gt;
           </button>
           <button
             type="button"
@@ -627,7 +940,7 @@ const Editor = ({ value = '', onChange }) => {
                   'imageTextAlternative'
                 ]
               },
-              extraPlugins: [CustomUploadAdapterPlugin]
+              extraPlugins: [CustomUploadAdapterPlugin, CustomHighlightPlugin]
             }}
             onReady={(editor) => {
               editorRef.current = editor;
@@ -765,6 +1078,19 @@ const Editor = ({ value = '', onChange }) => {
           color: #EA6490 !important;
           text-decoration: underline !important;
           font-weight: 600 !important;
+        }
+
+        /* Highlight & Background Color styling inside Visual Editor */
+        .ck-content span[style*="background-color"],
+        .ck-content mark {
+          padding: 0.15em 0.4em !important;
+          border-radius: 0.25rem !important;
+          box-decoration-break: clone !important;
+          -webkit-box-decoration-break: clone !important;
+        }
+        .ck-content div[style*="background-color"] {
+          border-radius: 1rem !important;
+          box-sizing: border-box !important;
         }
       `}</style>
     </div>

@@ -183,6 +183,17 @@ export default async function SingleBlog({ params }) {
                 .blog-content figure.image { margin: 2.5rem auto; text-align: center; }
                 .blog-content img { border-radius: 1rem; margin: 2rem auto; box-shadow: 0 10px 40px rgba(0,0,0,0.08); max-width: 100%; height: auto; display: block; }
                 .blog-content figcaption { text-align: center; font-size: 0.875rem; color: #64748b; font-style: italic; margin-top: 0.75rem; }
+                .blog-content span[style*="background-color"],
+                .blog-content mark {
+                  padding: 0.15em 0.45em;
+                  border-radius: 0.35rem;
+                  box-decoration-break: clone;
+                  -webkit-box-decoration-break: clone;
+                }
+                .blog-content div[style*="background-color"] {
+                  border-radius: 1rem;
+                  box-sizing: border-box;
+                }
               `}} />
 
               {/* Share and Appointment Section */}
