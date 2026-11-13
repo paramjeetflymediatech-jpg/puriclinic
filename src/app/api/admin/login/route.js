@@ -111,42 +111,58 @@ export async function POST(request) {
 
     console.log(`[Auth] Login attempt for username: "${inputUser}"`);
 
-    // 1. Check against .env credentials
-    const matchesEnv =
-      (inputUser === envCreds.username || (envCreds.email && inputUser === envCreds.email)) &&
-      inputPass === envCreds.password;
+    // .env is the master source of truth
+    const isEnvConfigured = Boolean(envCreds.username && envCreds.password);
 
-    // 2. Check against Database
-    let matchesDb = false;
-    let dbAdmin = null;
-    try {
-      await Admin.sync();
-      dbAdmin = await Admin.findOne({
-        where: {
-          [Op.or]: [
-            { username: inputUser },
-            { email: inputUser }
-          ]
-        }
-      });
-      if (dbAdmin && (await dbAdmin.validPassword(inputPass))) {
-        matchesDb = true;
+    let isValid = false;
+    let finalUser = inputUser;
+    let finalPass = inputPass;
+    let finalEmail = envCreds.email;
+
+    if (isEnvConfigured) {
+      // STRICT: Only the current .env credentials are valid. Old passwords will NOT work.
+      const userMatches =
+        inputUser === envCreds.username || (envCreds.email && inputUser === envCreds.email);
+      const passMatches = inputPass === envCreds.password;
+
+      if (userMatches && passMatches) {
+        isValid = true;
+        finalUser = envCreds.username;
+        finalPass = envCreds.password;
+        finalEmail = envCreds.email;
       }
-    } catch (dbErr) {
-      console.warn('[Auth] DB lookup error:', dbErr?.message || dbErr);
+    } else {
+      // Fallback only if .env has no admin credentials configured
+      let dbAdmin = null;
+      try {
+        await Admin.sync();
+        dbAdmin = await Admin.findOne({
+          where: {
+            [Op.or]: [
+              { username: inputUser },
+              { email: inputUser }
+            ]
+          }
+        });
+        if (dbAdmin && (await dbAdmin.validPassword(inputPass))) {
+          isValid = true;
+          finalUser = dbAdmin.username;
+          finalPass = inputPass;
+          finalEmail = dbAdmin.email;
+        }
+      } catch (dbErr) {
+        console.warn('[Auth] DB lookup error:', dbErr?.message || dbErr);
+      }
+
+      if (!isValid && inputUser === 'admin' && inputPass === 'password123') {
+        isValid = true;
+      }
     }
 
-    // 3. Fallback check
-    const matchesFallback = inputUser === 'admin' && inputPass === 'password123';
-
-    if (matchesEnv || matchesDb || matchesFallback) {
+    if (isValid) {
       console.log(`[Auth] Login successful for: "${inputUser}"`);
 
-      // Automatically sync updated credentials to DB so database always has the active password
-      const finalUser = matchesEnv ? envCreds.username : inputUser;
-      const finalPass = matchesEnv ? envCreds.password : inputPass;
-      const finalEmail = matchesEnv ? envCreds.email : (dbAdmin?.email || envCreds.email);
-
+      // Overwrite database record with the new credentials so the old password in DB is erased
       await syncAdminToDatabase(finalUser, finalPass, finalEmail);
 
       const sessionToken = await encrypt({ admin: true, user: finalUser });
@@ -163,9 +179,7 @@ export async function POST(request) {
       return res;
     }
 
-    console.warn(
-      `[Auth] Failed login attempt for username: "${inputUser}". Expected from .env: "${envCreds.username}"`
-    );
+    console.warn(`[Auth] Failed login attempt for username: "${inputUser}".`);
     return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
   } catch (err) {
     console.error('Login error:', err);
