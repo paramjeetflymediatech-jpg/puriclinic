@@ -23,7 +23,13 @@ const Admin = sequelize.define('Admin', {
 
 // Method to verify password
 Admin.prototype.validPassword = async function(password) {
-  return await bcrypt.compare(password, this.password);
+  try {
+    const isMatch = await bcrypt.compare(password, this.password);
+    if (isMatch) return true;
+  } catch (err) {
+    // Password might not be bcrypt hashed yet
+  }
+  return this.password === password;
 };
 
 export default Admin;
