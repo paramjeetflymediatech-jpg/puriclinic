@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
-import { encrypt } from '@/lib/auth';
+import { encrypt, decrypt, createTwoFactorToken } from '@/lib/auth';
 import { Admin, sequelize } from '@/lib/models';
 import { Op } from 'sequelize';
+import bcrypt from 'bcryptjs';
 import fs from 'fs';
 import path from 'path';
+import { sendOtpEmail, getTwoFactorEmail, maskEmail } from '@/lib/sendOtpEmail';
 
 function cleanString(val) {
   if (!val) return '';
@@ -71,10 +73,8 @@ function getEnvCredentials() {
 
 async function syncAdminToDatabase(adminUser, adminPass, adminEmail) {
   try {
-    // 1. Ensure table and schema exist
     await Admin.sync();
 
-    // 2. Find existing admin by username or email
     const conditions = [{ username: adminUser }];
     if (adminEmail) conditions.push({ email: adminEmail });
 
@@ -104,6 +104,97 @@ async function syncAdminToDatabase(adminUser, adminPass, adminEmail) {
 export async function POST(request) {
   try {
     const body = await request.json();
+
+    // ─── STEP 2: VERIFY OTP ───────────────────────────────────────
+    if (body?.tempToken && body?.otp !== undefined && !body?.resend) {
+      const { tempToken, otp } = body;
+      const payload = await decrypt(tempToken);
+
+      if (!payload || payload.purpose !== '2fa_login') {
+        return NextResponse.json(
+          { error: 'Verification session expired. Please sign in again.' },
+          { status: 400 }
+        );
+      }
+
+      if (Date.now() > payload.expiresAt) {
+        return NextResponse.json(
+          { error: 'Verification code has expired. Please request a new code.' },
+          { status: 400 }
+        );
+      }
+
+      const cleanedOtp = String(otp || '').trim().replace(/\D/g, '');
+      if (cleanedOtp.length !== 6) {
+        return NextResponse.json(
+          { error: 'Please enter the complete 6-digit code.' },
+          { status: 400 }
+        );
+      }
+
+      const isValidOtp = await bcrypt.compare(cleanedOtp, payload.otpHash);
+      if (!isValidOtp) {
+        return NextResponse.json(
+          { error: 'Invalid verification code. Please check your email and try again.' },
+          { status: 400 }
+        );
+      }
+
+      console.log(`[Auth] 2FA verification successful for: "${payload.user}"`);
+
+      // Sync credentials to database
+      await syncAdminToDatabase(payload.user, payload.pass, payload.email);
+
+      // Create permanent session token
+      const sessionToken = await encrypt({ admin: true, user: payload.user });
+
+      const res = NextResponse.json({ success: true, message: 'Signed in successfully' });
+      res.cookies.set('adminSession', sessionToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 24 * 60 * 60, // 1 day
+      });
+      return res;
+    }
+
+    // ─── STEP 2B: RESEND OTP ──────────────────────────────────────
+    if (body?.tempToken && body?.resend === true) {
+      const { tempToken } = body;
+      const payload = await decrypt(tempToken);
+
+      if (!payload || payload.purpose !== '2fa_login') {
+        return NextResponse.json(
+          { error: 'Session expired. Please sign in again.' },
+          { status: 400 }
+        );
+      }
+
+      const twoFactorEmail = getTwoFactorEmail();
+      const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
+      const salt = await bcrypt.genSalt(10);
+      const newOtpHash = await bcrypt.hash(newOtp, salt);
+
+      const newTempToken = await createTwoFactorToken({
+        purpose: '2fa_login',
+        user: payload.user,
+        pass: payload.pass,
+        email: payload.email,
+        otpHash: newOtpHash,
+        expiresAt: Date.now() + 10 * 60 * 1000,
+      });
+
+      await sendOtpEmail(twoFactorEmail, newOtp);
+
+      return NextResponse.json({
+        success: true,
+        tempToken: newTempToken,
+        message: `A fresh code has been sent to ${maskEmail(twoFactorEmail)}.`,
+      });
+    }
+
+    // ─── STEP 1: VERIFY CREDENTIALS & ISSUE OTP ───────────────────
     const inputUser = cleanString(body?.username);
     const inputPass = cleanString(body?.password);
 
@@ -111,7 +202,6 @@ export async function POST(request) {
 
     console.log(`[Auth] Login attempt for username: "${inputUser}"`);
 
-    // .env is the master source of truth
     const isEnvConfigured = Boolean(envCreds.username && envCreds.password);
 
     let isValid = false;
@@ -120,7 +210,6 @@ export async function POST(request) {
     let finalEmail = envCreds.email;
 
     if (isEnvConfigured) {
-      // STRICT: Only the current .env credentials are valid. Old passwords will NOT work.
       const userMatches =
         inputUser === envCreds.username || (envCreds.email && inputUser === envCreds.email);
       const passMatches = inputPass === envCreds.password;
@@ -132,7 +221,6 @@ export async function POST(request) {
         finalEmail = envCreds.email;
       }
     } else {
-      // Fallback only if .env has no admin credentials configured
       let dbAdmin = null;
       try {
         await Admin.sync();
@@ -160,27 +248,39 @@ export async function POST(request) {
     }
 
     if (isValid) {
-      console.log(`[Auth] Login successful for: "${inputUser}"`);
+      // Strictly obtain destination email from .env
+      const twoFactorEmail = getTwoFactorEmail();
+      const masked = maskEmail(twoFactorEmail);
 
-      // Overwrite database record with the new credentials so the old password in DB is erased
-      await syncAdminToDatabase(finalUser, finalPass, finalEmail);
+      // Generate secure 6-digit OTP
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      const salt = await bcrypt.genSalt(10);
+      const otpHash = await bcrypt.hash(otp, salt);
 
-      const sessionToken = await encrypt({ admin: true, user: finalUser });
-
-      // Build the response with cookie
-      const res = NextResponse.json({ success: true });
-      res.cookies.set('adminSession', sessionToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        path: '/',
-        maxAge: 24 * 60 * 60, // 1 day
+      const tempToken = await createTwoFactorToken({
+        purpose: '2fa_login',
+        user: finalUser,
+        pass: finalPass,
+        email: finalEmail,
+        otpHash,
+        expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes
       });
-      return res;
+
+      console.log(`[Auth] Credentials valid for: "${inputUser}". Triggering 2FA to: ${twoFactorEmail}`);
+
+      // Dispatch OTP email to the .env email only
+      await sendOtpEmail(twoFactorEmail, otp);
+
+      return NextResponse.json({
+        requires2FA: true,
+        tempToken,
+        emailMasked: masked,
+        message: `A 6-digit verification code was sent to ${masked}.`,
+      });
     }
 
     console.warn(`[Auth] Failed login attempt for username: "${inputUser}".`);
-    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
   } catch (err) {
     console.error('Login error:', err);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

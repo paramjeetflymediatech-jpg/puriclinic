@@ -11,6 +11,14 @@ export async function encrypt(payload) {
     .sign(key);
 }
 
+export async function createTwoFactorToken(payload) {
+  return await new SignJWT(payload)
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('10m') // Valid for 10 minutes
+    .sign(key);
+}
+
 export async function decrypt(token) {
   try {
     const { payload } = await jwtVerify(token, key, {
