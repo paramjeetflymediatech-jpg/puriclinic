@@ -45,8 +45,7 @@ export function getTwoFactorEmail() {
     fileEmail ||
     process.env.ADMIN_2FA_EMAIL ||
     process.env.ADMIN_EMAIL ||
-    process.env.CLINIC_EMAIL ||
-    'puri@yopmail.com';
+    process.env.CLINIC_EMAIL 
 
   return cleanEnvValue(raw);
 }
@@ -71,7 +70,7 @@ export async function sendOtpEmail(targetEmail, otp) {
   const port = parseInt(cleanEnvValue(process.env.SMTP_PORT) || '587');
   const user = cleanEnvValue(process.env.SMTP_USER);
   const pass = cleanEnvValue(process.env.SMTP_PASS);
-  const senderEmail = cleanEnvValue(process.env.CLINIC_EMAIL) || 'puri@yopmail.com';
+  const senderEmail = cleanEnvValue(process.env.CLINIC_EMAIL) 
 
   console.log(`\n==================================================`);
   console.log(`[2FA] 🔐 ADMIN LOGIN OTP GENERATED: [ ${otp} ]`);
