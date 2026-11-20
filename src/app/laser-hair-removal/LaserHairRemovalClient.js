@@ -363,7 +363,7 @@ export default function LaserHairRemovalClient() {
               {/* RIGHT SIDE: AREAS GRID */}
               <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {[
-                  { title: "Facial Hair", desc: "Precision removal for upper lip, chin, sideburns, and forehead with delicate clinical care.", icon: <FaSmile /> },
+                  { title: <><Link href="https://puriskinclinic.com/facial-hair-removal-in-ludhiana/">Facial Hair</Link></>, desc: "Precision removal for upper lip, chin, sideburns, and forehead with delicate clinical care.", icon: <FaSmile /> },
                   { title: "Arms & Underarms", desc: "Silky smooth results for full or half arms, and sensitive underarm areas.", icon: <FaUser /> },
                   { title: "Legs", desc: "Long-lasting smoothness for full legs or half legs, eliminating the need for regular waxing.", icon: <FaWalking /> },
                   { title: "Back & Chest", desc: "A popular choice for men seeking a clean, groomed look with permanent reduction.", icon: <FaShieldAlt /> },
