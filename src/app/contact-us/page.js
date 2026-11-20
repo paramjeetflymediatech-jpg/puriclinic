@@ -90,13 +90,14 @@ export default async function ContactUs() {
             {/* Map Section */}
             <div className="h-[500px] lg:h-auto min-h-[500px] grayscale hover:grayscale-0 transition-all duration-700">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13697.8080035035!2d75.8361546!3d30.873215!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a825e0e7aeb65%3A0xe96c4ccfb238da27!2sPuri%20Skin%20Clinic!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3424.2741693093003!2d75.818168475586!3d30.87899037451452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a8231d9959989%3A0x38ab900862146151!2s%E2%9C%85%20Puri%20Skin%20Clinic%20-%20Skin%20Specialist%2C%20Acne%2C%20Melasma%2C%20Hair%20Transplant%2C%20Best%20Skin%20Doctor%20in%20Ludhiana!5e0!3m2!1sen!2sin!4v1795155035549!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
                 allowFullScreen="" 
                 loading="lazy" 
-                title="Google Maps Location"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Puri Skin Clinic Google Maps Location"
               />
             </div>
 
