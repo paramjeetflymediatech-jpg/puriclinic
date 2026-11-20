@@ -215,7 +215,7 @@ export async function getPageSeo(pageKey) {
       },
     };
 
-    let defaultCanonical = 'https://www.puriskinclinic.com';
+    let defaultCanonical = 'https://puriskinclinic.com';
     if (pageKey !== 'home' && !pageKey.startsWith('__')) {
       if (pageKey.startsWith('blog:')) {
         defaultCanonical += `/${pageKey.split(':')[1]}`;
