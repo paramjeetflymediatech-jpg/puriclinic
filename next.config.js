@@ -3,6 +3,11 @@ const nextConfig = {
   turbopack: {
     root: __dirname, // ensures current project folder is root
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '200mb', // Increase for video uploads
+    },
+  },
   serverExternalPackages: ['sequelize', 'mysql2', 'node-cron'],
   images: {
     localPatterns: [
@@ -174,6 +179,11 @@ const nextConfig = {
       {
         source: '/tag/hair-care-service',
         destination: '/hair-related-services/',
+        permanent: true,
+      },
+      {
+        source: '/blogs/:slug',
+        destination: '/:slug/',
         permanent: true,
       },
       {

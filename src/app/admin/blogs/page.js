@@ -482,12 +482,12 @@ export default function BlogsAdminPage() {
                     </td>
                     <td className="p-8">
                       <span className="bg-white text-[#4CA6AE] px-5 py-2 rounded-xl text-[11px] font-black tracking-widest border border-slate-100 shadow-sm min-w-[120px] inline-block text-center">
-                         /blogs/{b.slug}
+                         /{b.slug}
                       </span>
                     </td>
                     <td className="p-8 text-right pr-12 space-x-3">
                       <Link
-                        href={`/blogs/${b.slug}/`}
+                        href={`/${b.slug}/`}
                         target="_blank"
                         className="p-4 text-slate-300 hover:text-white hover:bg-slate-900 rounded-2xl transition-all inline-flex shadow-sm hover:shadow-lg hover:shadow-slate-900/20"
                         title="View Public Page"

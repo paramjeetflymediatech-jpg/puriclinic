@@ -57,7 +57,7 @@ export function getAuthor(slug) {
  */
 export function generateAuthorSchema(author, blog) {
   const siteUrl = 'https://puriskinclinic.com';
-  const blogUrl = `${siteUrl}/blogs/${blog.slug}/`;
+  const blogUrl = `${siteUrl}/${blog.slug}/`;
   const authorPageUrl = author.pageUrl || `${siteUrl}${author.path}`;
   const authorImageUrl = author.image?.startsWith('http')
     ? author.image

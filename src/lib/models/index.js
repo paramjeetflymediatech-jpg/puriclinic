@@ -32,10 +32,9 @@ export async function syncDB() {
     }
 
     try {
-      await sequelize.sync({ alter: true });
-    } catch (syncAlterErr) {
-      console.warn('[DB] ⚠️ sequelize.sync({ alter: true }) notice, continuing with standard sync:', syncAlterErr.message);
       await sequelize.sync();
+    } catch (syncErr) {
+      console.warn('[DB] ⚠️ sequelize.sync notice:', syncErr.message);
     }
 
     // Manual fallback for columns if alter:true missed them
